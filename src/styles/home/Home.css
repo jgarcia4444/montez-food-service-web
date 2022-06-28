@@ -1,0 +1,22 @@
+
+.content-container {
+    width: 50%;
+}
+
+.contact-us-button {
+    border-radius: 5px;
+    background-color: white;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.half-flex-container {
+    width: 50%;
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
