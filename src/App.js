@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom'
 
-function App() {
+import NavHeader from './components/NavHeader';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import OrderOnline from './pages/OrderOnline';
+import CostOptimization from './pages/CostOptimization';
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <NavHeader />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/order-online" element={<OrderOnline />} />
+          <Route path="/cost-optimization" element={<CostOptimization />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
