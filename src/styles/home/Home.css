@@ -1,4 +1,17 @@
 
+.about-us-image {
+    width: 100%;
+}
+
+.about-us-section-container {
+    display: flex;
+    width: 90%;
+    border: 1px solid #a0262e;
+    margin: 3% auto;
+    box-shadow: 0 0 3px -1px black;
+    border-radius: 5px;
+}
+
 .content-container {
     width: 75%;
     height: 100%;
@@ -70,4 +83,17 @@
 
 .red-container {
     background-color: #a0262e;
+}
+
+.section-title {
+    color: #a0262e;
+    font-size: 2em;
+    font-family: sans-serif;
+}
+
+.section-title-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

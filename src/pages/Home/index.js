@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import '../../styles/home/Home.css';
 import Layout from '../../shared/Layout';
 import montezLogo from './imgs/montez-logo.png';
+import coverageMap from './imgs/coverage-map.png';
+import packaging from './imgs/packaging.png'
+import teamwork from './imgs/teamwork.png';
 import ContactModal from '../../components/home/ContactModal';
 
 const Home = () => {
@@ -26,6 +29,39 @@ const Home = () => {
                                 </div>
                             }
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="section-title-row">
+                <h2 className="section-title">About Us</h2>
+            </div>
+            <div className="flex-container">
+                <div className="about-us-section-container">
+                    <div className="half-flex-container">
+                        <img className="about-us-image" src={teamwork} alt="Teamwork example" />
+                    </div>
+                    <div className="half-flex-container">
+                        <h4 className="about-us-section-title">Products and Services</h4>
+                    </div>
+                </div>
+            </div>
+            <div className="flex-container">
+                <div className="about-us-section-container">
+                    <div className="half-flex-container">
+                        <h4 className="about-us-section-title">Service Locations</h4>
+                    </div>
+                    <div className="half-flex-container">
+                        <img className="about-us-image" src={coverageMap} alt="Coverage Map" />
+                    </div>
+                </div>
+            </div>
+            <div className="flex-container">
+                <div className="about-us-section-container">
+                    <div className="half-flex-container">
+                        <img className="about-us-image" src={packaging} alt="Packaging" />
+                    </div>
+                    <div className="half-flex-container">
+                        <h4 className="about-us-section-title">Why Montez?</h4>
                     </div>
                 </div>
             </div>

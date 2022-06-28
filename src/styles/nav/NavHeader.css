@@ -9,6 +9,7 @@
     align-items: center;
     border-bottom: 1px solid lightgray;
     box-shadow: -2px 0 3px -1px black;
+    background-color: white;
 }
 
 .nav-link {
