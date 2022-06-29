@@ -1,0 +1,28 @@
+.product-container {
+    width: 29%;
+    box-shadow: 1px 1px 3px 1px gray;
+    margin: 3% 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    image-rendering: auto;
+    object-fit: cover;
+}
+
+.product-title {
+    margin-bottom: 1%;
+    margin-top: 0;
+    text-align: left;
+    font-weight: 100;
+    font-size: 1.5em;
+}
+
+.product-title-row {
+    width: 100%;
+    margin: 0;
+}
+
