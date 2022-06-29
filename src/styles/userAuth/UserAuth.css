@@ -1,4 +1,55 @@
 
+.action-button {
+    width: 50%;
+    padding: 15px 0;
+    border-radius: 5px;
+    transition: all 400ms;
+    font-weight: bold;
+}
+
+.action-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px -1px black;
+    transform: scale(1.1);
+}
+
+.action-button-row {
+    width: 100%;
+    height: 45%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.action-login-button {
+    background-color: #a0262e;
+    color: #ffc72c;
+}
+
+.action-signup-button {
+    background-color: #FFC72C;
+    color: #a0262e;
+}
+
+.column-flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 40%;
+    box-shadow: 1px 1px 3px -1px gray;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #eee
+}
+
+.or-row {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .user-auth-container {
     width: 100%;

@@ -5,7 +5,7 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <p class="copyright-text"><small>Copyright &copy; 2018 Montez Food Service - All Rights Reserved</small></p>
+            <p className="copyright-text"><small>Copyright &copy; 2018 Montez Food Service - All Rights Reserved</small></p>
         </div>
     )
 };
