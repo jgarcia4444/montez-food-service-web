@@ -2,11 +2,24 @@ import React, {useState, useEffect} from 'react';
 import '../../styles/nav/NavHeader.css';
 import { Link } from 'react-router-dom';
 import { FiUser } from 'react-icons/fi'
+import { connect } from 'react-redux';
 
-const NavHeader = (props) => {
+import { useNavigate } from 'react-router-dom';
 
+const NavHeader = ({userInfo}) => {
+
+    const {email} = userInfo
 
     const [activePage, setActivePage] = useState('');
+    const navigate = useNavigate();
+
+    const handleUserPress = () => {
+        if (email === "") {
+            navigate("/user-auth");
+        } else {
+            navigate('/users/account')
+        }
+    }
 
     return (
         <div className="nav-header-row">
@@ -19,10 +32,19 @@ const NavHeader = (props) => {
                 <Link onClick={() => setActivePage("Order Online")} className={`nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
                 <Link onClick={() => setActivePage("Cost Optimization")} className={`nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
                 <span className="vertical-separator">|</span>
-                <FiUser size={20} color={'black'} />
+                <FiUser onClick={handleUserPress} className="user-icon" size={20} color={'black'} />
             </div>
         </div>
     )
 }
 
-export default NavHeader;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer.userInfo,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(NavHeader);
