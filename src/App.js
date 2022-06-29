@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import OrderOnline from './pages/OrderOnline';
 import CostOptimization from './pages/CostOptimization';
+import Footer from './components/Footer';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/order-online" element={<OrderOnline />} />
           <Route path="/cost-optimization" element={<CostOptimization />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

@@ -6,6 +6,11 @@
     border-radius: 5px;
 }
 
+.product-description {
+    text-align: left;
+    font-weight: 300;
+}
+
 .product-img {
     width: 100%;
     height: 200px;
