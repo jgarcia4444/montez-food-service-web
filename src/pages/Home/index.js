@@ -84,6 +84,12 @@ const Home = () => {
                     </div>
                     <div className="half-flex-container column-flex">
                         <h4 className="about-us-section-title">Why Montez?</h4>
+                        <ul className="left-aligned-list">
+                            <li>Guaranteed to save you money on food costs without sacrificing quality</li>
+                            <li>Diverse and large variety of products</li>
+                            <li>Inclusive cost optimization analysis service</li>
+                            <li>No minimums for delivery</li>
+                        </ul>
                     </div>
                 </div>
             </div>
