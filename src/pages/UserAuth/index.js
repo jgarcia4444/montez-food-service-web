@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../../styles/userAuth/UserAuth.css'
 
 import Layout from '../../shared/Layout';
-import { FiMail, } from 'react-icons/fi'
+import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
 
 const UserAuth = () => {
 
@@ -18,32 +18,47 @@ const UserAuth = () => {
             value: email,
             changeFunction: (val) => setEmail(val),
             error: '',
+            icon: <FiMail size={24} color={'#ffc72c'} />
         },
         {
             label: "Password",
             value: password,
             changeFunction: (val) => setPassword(val),
             error: '',
+            icon: <FiLock size={24} color={'#ffc72c'} />
         },
         {
             label: "Company Name",
             value: companyName,
             changeFunction: (val) => setCompanyName(val),
             error: '',
+            icon: <FiUser size={24} color={'#ffc72c'} />
         }
     ];
 
-    console.log("INPUTS", inputs)
+    const configureInputType = (label) => {
+        switch(label) {
+            case "Password":
+                return "password";
+            case "Email":
+                return "email";
+            default:
+                return "text";
+        }
+    }
 
     const renderInputs = (inputs) => {
         return inputs.map(inputInfo => {
-            let inputType = inputInfo.label === "Password" ? 'password' : 'text'
+            let inputType = configureInputType(inputInfo.label);
             return (
                 <div className="input-row">
                     <div className="input-label-row">
                         {inputInfo.label}
                     </div>
-                    <input type={inputType} value={inputInfo.value} onChange={(val) => inputInfo.changeFunction(val.target.value)} />
+                    <div className="input-outer">
+                        {inputInfo.icon}
+                        <input className="input" type={inputType} value={inputInfo.value} onChange={(val) => inputInfo.changeFunction(val.target.value)} />
+                    </div>
                 </div>
             )
         })
@@ -100,9 +115,18 @@ const UserAuth = () => {
         </div>
     )
 
+    const backButton = (
+        <div onClick={() => setDisplayState('')} className="back-button-row">
+            <FiChevronLeft color={'#00f'} size={20} /> back
+        </div>
+    )
+
     return (
         <Layout>
             <div className="user-auth-container">
+                {displayState !== '' &&
+                    backButton
+                }
                 {renderDisplayState()}
                 {displayState !== '' &&
                     sendButton
