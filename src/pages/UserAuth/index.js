@@ -8,23 +8,32 @@ const UserAuth = () => {
 
     const [displayState, setDisplayState] = useState('');
 
-    const [loginEmail, setLoginEmail] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [companyName, setCompanyName] = useState('');
 
-    const loginInputs = [
+    const inputs = [
         {
             label: "Email",
-            value: loginEmail,
-            changeFunction: (val) => setLoginEmail(val),
+            value: email,
+            changeFunction: (val) => setEmail(val),
             error: '',
         },
         {
             label: "Password",
-            value: loginPassword,
-            changeFunction: (val) => setLoginPassword(val),
+            value: password,
+            changeFunction: (val) => setPassword(val),
+            error: '',
+        },
+        {
+            label: "Company Name",
+            value: companyName,
+            changeFunction: (val) => setCompanyName(val),
             error: '',
         }
-    ]
+    ];
+
+    console.log("INPUTS", inputs)
 
     const renderInputs = (inputs) => {
         return inputs.map(inputInfo => {
@@ -34,7 +43,7 @@ const UserAuth = () => {
                     <div className="input-label-row">
                         {inputInfo.label}
                     </div>
-                    <input type={inputType} value={inputInfo.value} onChange={inputInfo.changeFunction} />
+                    <input type={inputType} value={inputInfo.value} onChange={(val) => inputInfo.changeFunction(val.target.value)} />
                 </div>
             )
         })
@@ -60,13 +69,13 @@ const UserAuth = () => {
 
     const loginForm = (
         <div className='column-flex-container'>
-            {renderInputs(loginInputs)}
+            {renderInputs(inputs.slice(0, 2))}
         </div>
     )
 
     const signupForm = (
         <div className="column-flex-container">
-
+            {renderInputs(inputs)}
         </div>
     )
 
