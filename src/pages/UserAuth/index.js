@@ -1,37 +1,45 @@
 import React, {useState} from 'react';
-import '../../styles/userAuth/UserAuth.css'
+import '../../styles/userAuth/UserAuth.css';
+import { connect } from 'react-redux';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
+import createUser from '../../redux/actions/userActions/createUser';
+import loginUser from '../../redux/actions/userActions/loginUser';
 
-const UserAuth = () => {
+const UserAuth = ({createUser, userReducer}) => {
+
+    const {loading, userInfo} = userReducer;
 
     const [displayState, setDisplayState] = useState('');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [companyName, setCompanyName] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [companyNameError, setCompanyNameError] = useState('');
 
     const inputs = [
         {
             label: "Email",
             value: email,
             changeFunction: (val) => setEmail(val),
-            error: '',
+            error: emailError,
             icon: <FiMail size={24} color={'#ffc72c'} />
         },
         {
             label: "Password",
             value: password,
             changeFunction: (val) => setPassword(val),
-            error: '',
+            error: passwordError,
             icon: <FiLock size={24} color={'#ffc72c'} />
         },
         {
             label: "Company Name",
             value: companyName,
             changeFunction: (val) => setCompanyName(val),
-            error: '',
+            error: companyNameError,
             icon: <FiUser size={24} color={'#ffc72c'} />
         }
     ];
@@ -107,9 +115,62 @@ const UserAuth = () => {
         }
     }
 
+    const handleSendClick = () => {
+        if (displayState === 'login') {
+            handleLoginPress()
+        } else {
+            handleSignupPress()
+        }
+    }
+
+    const handleLoginPress = () => {
+        let loginInputs = inputs.slice(0, 2);
+        checkForPresenceErrors(loginInputs)
+        if (emailError === "" && passwordError === "") {
+            let userInfo = {
+                email: email,
+                password: password
+            }
+            loginUser(userInfo);
+        }
+    };
+
+    const handleSignupPress = () => {
+        checkForPresenceErrors(inputs)
+        if (emailError === "" && passwordError === "" && companyNameError === "") {
+            let userInfo = {
+                email: email,
+                password: password,
+                company_name: companyName
+            }
+            createUser(userInfo);
+        }
+    }
+
+    const checkForPresenceErrors = (formInputs) => {
+        formInputs.forEach(inputInfo => {
+            const {label, value} = inputInfo;
+            if (value === "") {
+                switch(label) {
+                    case "Password":
+                        setPasswordError("Password cannot be left blank.");
+                        break;
+                    case "Email":
+                        setEmailError('Email cannot be left blank.');
+                        break;
+                    case "Company Name":
+                        setCompanyNameError('Company Name cannot be left blank.');
+                        break;
+                    default: 
+                        break;
+                }
+            }
+        })
+    }
+
     const sendButton = (
         <div className='send-button-row'>
-            <div className="send-button">
+            <div onClick={handleSendClick} className="send-button">
                 {displayState === 'login' ? "Login" : "Sign Up"}
             </div>
         </div>
@@ -136,4 +197,20 @@ const UserAuth = () => {
     )
 };
 
-export default UserAuth
+const mapStateToProps = state => {
+    return {
+        userReducer: state.userReducer,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createUser: (userInfo) => dispatch(createUser(userInfo)),
+        loginUser: (userInfo) => dispatch(loginUser(userInfo)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(UserAuth);
