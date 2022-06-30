@@ -92,10 +92,21 @@ const UserAuth = () => {
         }
     }
 
+    const sendButton = (
+        <div className='send-button-row'>
+            <div className="send-button">
+                {displayState === 'login' ? "Login" : "Sign Up"}
+            </div>
+        </div>
+    )
+
     return (
         <Layout>
             <div className="user-auth-container">
                 {renderDisplayState()}
+                {displayState !== '' &&
+                    sendButton
+                }
             </div>
         </Layout>
     )
