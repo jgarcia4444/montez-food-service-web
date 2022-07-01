@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -8,6 +9,8 @@ import createUser from '../../redux/actions/userActions/createUser';
 import loginUser from '../../redux/actions/userActions/loginUser';
 
 const UserAuth = ({createUser, userReducer}) => {
+
+    const navigate = useNavigate();
 
     const {loading, userInfo} = userReducer;
 
@@ -59,7 +62,7 @@ const UserAuth = ({createUser, userReducer}) => {
         return inputs.map(inputInfo => {
             let inputType = configureInputType(inputInfo.label);
             return (
-                <div className="input-row">
+                <div key={inputInfo.label} className="input-row">
                     <div className="input-label-row">
                         {inputInfo.label}
                     </div>
@@ -181,6 +184,12 @@ const UserAuth = ({createUser, userReducer}) => {
             <FiChevronLeft color={'#00f'} size={20} /> back
         </div>
     )
+
+    useEffect(() => {
+        if (userInfo.email !== "") {
+
+        }
+    }, userInfo.email)
 
     return (
         <Layout>
