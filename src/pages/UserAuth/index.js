@@ -13,7 +13,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo} = userReducer;
+    const {loading, userInfo, logginInError, loginErrors} = userReducer;
 
     const [displayState, setDisplayState] = useState('');
 
@@ -66,6 +66,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 <div key={inputInfo.label} className="input-row">
                     <div className="input-label-row">
                         {inputInfo.label}
+                        {inputInfo.error !== "" && <small className="input-error">{inputInfo.error}</small>}
                     </div>
                     <div className="input-outer">
                         {inputInfo.icon}
@@ -157,13 +158,13 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             if (value === "") {
                 switch(label) {
                     case "Password":
-                        setPasswordError("Password cannot be left blank.");
+                        setPasswordError("cannot be left blank.");
                         break;
                     case "Email":
-                        setEmailError('Email cannot be left blank.');
+                        setEmailError('cannot be left blank.');
                         break;
                     case "Company Name":
-                        setCompanyNameError('Company Name cannot be left blank.');
+                        setCompanyNameError('cannot be left blank.');
                         break;
                     default: 
                         break;
@@ -184,17 +185,41 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         </div>
     )
 
+    const handleBackPress = () => {
+        setEmailError('');
+        setPasswordError('');
+        setCompanyNameError('');
+        setDisplayState('');
+    } 
+
     const backButton = (
-        <div onClick={() => setDisplayState('')} className="back-button-row">
-            <FiChevronLeft color={'#00f'} size={20} /> back
+        <div onClick={handleBackPress} className="back-button-row">
+            <FiChevronLeft color={'#a0262e'} size={20} /> Back
         </div>
     )
 
-    useEffect(() => {
-        if (userInfo.email !== "") {
-            navigate('/users/account');
+    const configureGenericError = () => {
+        if (logginInError !== "") {
+
         }
-    }, [userInfo.email])
+    };
+
+    const configureSpecificErrors = () => {
+        if (loginErrors.length > 0) {
+
+        }
+    }
+
+    useEffect(() => {
+        if (loginErrors.length === 0 && logginInError === "") {
+            if (userInfo.email !== "") {
+                navigate('/users/account');
+            }
+        } else {
+            configureGenericError();
+            configureSpecificErrors();
+        }
+    }, [userInfo.email, loginErrors, logginInError]);
 
     return (
         <Layout>

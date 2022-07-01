@@ -7,15 +7,26 @@ const initialState = {
     loading: false,
     userCreationError: "",
     loggingInError: "",
+    loginErrors: [],
+    signupErrors: [],
 }
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "USER_LOGIN_ERROR":
+            let errors = {
+                loggingInError: "",
+                loginErrors: []
+            }
+            if (action.error.hasOwnPropert('errorLabel')) {
+                errors.loginErrors = [action.error];
+            } else {
+                errors.loggingInError = action.error.message;
+            }
             return {
                 ...state,
                 loading: false,
-                loggingInError: action.errorMessage,
+                ...errors,
             }
         case "USER_LOGIN_SUCCESS":
             return {

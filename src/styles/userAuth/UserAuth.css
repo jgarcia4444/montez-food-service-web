@@ -35,9 +35,10 @@
     width: 50%;
     margin: 0 auto;
     display: flex;
-    color: #00f;
+    color: #a0262e;
     align-items: center;
     justify-content: flex-start;
+    font-weight: bold;
 }
 
 .back-button-row:hover {
@@ -66,6 +67,13 @@
     font-weight: bold;
     font-size: 16px;
     border-bottom: 2px solid #ffc72c;
+}
+
+.input-error {
+    color: white;
+    font-family: sans-serif;
+    font-size: 12px;
+    margin-left: 5px;
 }
 
 .input-label-row {
