@@ -15,6 +15,7 @@ import OrderOnline from './pages/OrderOnline';
 import CostOptimization from './pages/CostOptimization';
 import Footer from './components/Footer';
 import UserAuth from './pages/UserAuth';
+import Account from './pages/Account';
 import {store, persistor} from './redux/store';
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
               <Route path="/products" element={<Products />} />
               <Route path="/order-online" element={<OrderOnline />} />
               <Route path="/cost-optimization" element={<CostOptimization />} />
-              {/* <Route path="/users/account" element={<Account />} /> */}
+              <Route path="/users/account" element={<Account />} />
               <Route path="/user-auth" element={<UserAuth />} />
             </Routes>
             <Footer />

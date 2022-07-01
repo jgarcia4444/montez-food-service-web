@@ -187,7 +187,7 @@ const UserAuth = ({createUser, userReducer}) => {
 
     useEffect(() => {
         if (userInfo.email !== "") {
-
+            navigate('/users/account');
         }
     }, userInfo.email)
 
