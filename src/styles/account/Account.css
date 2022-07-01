@@ -1,5 +1,9 @@
 
 
+.information-section-label {
+    margin-bottom: 0;
+}
+
 .logout-button {
     border-radius: 5px;
     background-color: #ffc72c;
@@ -25,4 +29,27 @@
     margin: 3% auto;
     display: flex;
     justify-content: flex-end;
+}
+
+.user-information {
+    margin-top: 1%;
+    font-weight: 300;
+}
+
+.user-information-container {
+    background-color: #a0262e;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 1px gray;
+    color: white;
+}
+
+.user-information-row {
+    text-align: left;
+}
+
+.user-information-section-label-row {
+    border-bottom: 2px solid #ffc72c;
 }

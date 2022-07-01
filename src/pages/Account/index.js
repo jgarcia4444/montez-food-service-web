@@ -24,8 +24,23 @@ const Account = ({userInfo, logout}) => {
                 <div onClick={() => logout()} className="logout-button">Logout</div>
             </div>
             <div className="account-container">
-                <h2>{email}</h2>
-                <h2>{companyName}</h2>
+                <div className="user-information-container">
+                    <div className="user-information-row">
+                        <div className="user-information-section-label-row">
+                            <h2 className="information-section-label">Email</h2>
+                        </div>
+                        <h4 className="user-information">Primary Email: <strong>{email}</strong></h4>
+                    </div>
+                    <div className="user-information-row">
+                        <div className="user-information-section-label-row">
+                            <h2 className="information-section-label">Company Information</h2>
+                        </div>
+                        <h4 className="user-information">Name: <strong>{companyName}</strong></h4>
+                    </div>
+                </div>
+                <div className="past-orders-container">
+                    <h2>Past Orders</h2>
+                </div>
             </div>
         </Layout>
     )
