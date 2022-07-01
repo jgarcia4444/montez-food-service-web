@@ -7,8 +7,9 @@ import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
 import createUser from '../../redux/actions/userActions/createUser';
 import loginUser from '../../redux/actions/userActions/loginUser';
+import SpinningLoader from '../../components/Loaders/SpinningLoader';
 
-const UserAuth = ({createUser, userReducer}) => {
+const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const navigate = useNavigate();
 
@@ -171,10 +172,14 @@ const UserAuth = ({createUser, userReducer}) => {
         })
     }
 
+    const configureSendText = () => {
+        return displayState === 'login' ? "Login" : "Sign Up"
+    }
+
     const sendButton = (
         <div className='send-button-row'>
             <div onClick={handleSendClick} className="send-button">
-                {displayState === 'login' ? "Login" : "Sign Up"}
+                {loading === true ? <SpinningLoader color={'#ffc72c'} /> : configureSendText()}
             </div>
         </div>
     )
@@ -189,7 +194,7 @@ const UserAuth = ({createUser, userReducer}) => {
         if (userInfo.email !== "") {
             navigate('/users/account');
         }
-    }, userInfo.email)
+    }, [userInfo.email])
 
     return (
         <Layout>

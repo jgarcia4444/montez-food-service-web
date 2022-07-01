@@ -2,19 +2,21 @@ import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
 const loginUser = (userInfo) => {
+    console.log("LOGIN ACTION TRIGGERED", userInfo)
     const {email, password} = userInfo;
     let url = `${baseUrl}users/login`;
+    let body = {
+        user_info: {
+            email: email,
+            password: password,
+        }
+    }
     let options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            user_info: {
-                email,
-                password
-            }
-        })
+        body: JSON.stringify(body),
     }
     return async dispatch => {
         dispatch({type: "LOGGING_USER_IN"});
