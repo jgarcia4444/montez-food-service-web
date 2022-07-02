@@ -2,7 +2,6 @@ import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
 const loginUser = (userInfo) => {
-    console.log("LOGIN ACTION TRIGGERED", userInfo)
     const {email, password} = userInfo;
     let url = `${baseUrl}users/login`;
     let body = {
@@ -29,6 +28,7 @@ const loginUser = (userInfo) => {
                     return dispatch({type: "USER_LOGIN_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
+                    console.log("ERROR FROM LOGIN USER ACTION", error);
                     return dispatch({type: "USER_LOGIN_ERROR", error});
                 }
             })

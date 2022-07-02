@@ -18,7 +18,7 @@ const userReducer = (state=initialState, action) => {
                 loggingInError: "",
                 loginErrors: []
             }
-            if (action.error.hasOwnPropert('errorLabel')) {
+            if (action.error.hasOwnProperty('errorLabel')) {
                 errors.loginErrors = [action.error];
             } else {
                 errors.loggingInError = action.error.message;

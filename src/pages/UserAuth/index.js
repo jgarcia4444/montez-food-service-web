@@ -23,6 +23,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [companyNameError, setCompanyNameError] = useState('');
+    const [genericError, setGenericError] = useState('');
 
     const inputs = [
         {
@@ -97,12 +98,18 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const loginForm = (
         <div className='column-flex-container'>
+            {genericError !== "" && 
+                <small className="generic-error">{genericError}</small>
+            }
             {renderInputs(inputs.slice(0, 2))}
         </div>
     )
 
     const signupForm = (
         <div className="column-flex-container">
+            {genericError !== "" && 
+                <small className="generic-error">{genericError}</small>
+            }
             {renderInputs(inputs)}
         </div>
     )
@@ -200,13 +207,28 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const configureGenericError = () => {
         if (logginInError !== "") {
-
+            setGenericError(logginInError);
+        } else {
+            setGenericError('');
         }
     };
 
     const configureSpecificErrors = () => {
         if (loginErrors.length > 0) {
-
+            loginErrors.forEach(error => {
+                let {errorLabel, message} = error;
+                if (errorLabel === "Email") {
+                    setEmailError(message);
+                } else if (errorLabel === "Password") {
+                    setPasswordError(message);
+                } else {
+                    setCompanyNameError(message);
+                }
+            });
+        } else {
+            setEmailError('');
+            setPasswordError('');
+            setCompanyNameError('');
         }
     }
 
