@@ -4,7 +4,6 @@ const { baseUrl } = Urls;
 
 const createUser = (userInfo) => {
     let url = `${baseUrl}users`;
-    console.log("User info sent to create user action", userInfo);
     const {email, password, company_name} = userInfo;
     let body = {
         user_info: {
@@ -20,9 +19,6 @@ const createUser = (userInfo) => {
         },
         body: JSON.stringify(body),
     };
-
-    console.log(options);
-
     return async dispatch => {
         dispatch({type: 'CREATING_USER'});
         fetch(url, options)
@@ -34,7 +30,7 @@ const createUser = (userInfo) => {
                     return dispatch({type: "USER_CREATION_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
-                    return dispatch({type: "USER_CREATION_ERROR", errorMessage: error.message});
+                    return dispatch({type: "USER_CREATION_ERROR", error});
                 }
             })
     }

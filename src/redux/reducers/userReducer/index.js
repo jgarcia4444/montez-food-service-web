@@ -11,6 +11,19 @@ const initialState = {
     signupErrors: [],
 }
 
+const configureSignUpErrors = (errors) => {
+    let errorKeys = Object.keys(errors);
+    let errorsForReducer = [];
+    errorKeys.forEach(errorKey => {
+        if (errorKey === "company_name") {
+            errorsForReducer.push({errorLabel: "companyName", message: errors[errorKey][0]})
+        } else {
+            errorsForReducer.push({errorLabel: errorKey, message: errors[errorKey][0]});
+        }
+    })
+    return errorsForReducer;
+}
+
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "USER_LOGIN_ERROR":
@@ -63,10 +76,19 @@ const userReducer = (state=initialState, action) => {
                 userCreationError: "",
             }
         case "USER_CREATION_ERROR":
+            let newSignupErrors = {
+                userCreationError: "",
+                signupErrors: []
+            };
+            if (action.error.hasOwnProperty('errors')) {
+                newSignupErrors.signupErrors = configureSignUpErrors(action.error.errors);
+            } else {
+                newSignupErrors.userCreationError = action.error.message;
+            }
             return {
                 ...state,
                 loading: false,
-                userCreationError: action.errorMessage,
+                ...newSignupErrors
             }
         default:
             return {

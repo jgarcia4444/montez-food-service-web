@@ -13,7 +13,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo, loggingInError, loginErrors} = userReducer;
+    const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError} = userReducer;
 
     const [displayState, setDisplayState] = useState('');
 
@@ -147,7 +147,8 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         }
     };
 
-    const handleSignupPress = () => {
+    const handleSignupPress = async () => {
+        clearErrors();
         checkForPresenceErrors(inputs)
         if (emailError === "" && passwordError === "" && companyNameError === "") {
             let userInfo = {
@@ -157,6 +158,12 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             }
             createUser(userInfo);
         }
+    }
+
+    const clearErrors = () => {
+        setEmailError('');
+        setPasswordError('');
+        setCompanyNameError('');
     }
 
     const checkForPresenceErrors = (formInputs) => {
@@ -205,21 +212,21 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         </div>
     )
 
-    const configureGenericError = () => {
-        if (loggingInError !== "") {
-            setGenericError(loggingInError);
+    const configureGenericError = (error) => {
+        if (error !== "") {
+            setGenericError(error);
         } else {
             setGenericError('');
         }
     };
 
-    const configureSpecificErrors = () => {
-        if (loginErrors.length > 0) {
-            loginErrors.forEach(error => {
+    const configureSpecificErrors = (errors) => {
+        if (errors.length > 0) {
+            errors.forEach(error => {
                 let {errorLabel, message} = error;
-                if (errorLabel === "Email") {
+                if (errorLabel === "email") {
                     setEmailError(message);
-                } else if (errorLabel === "Password") {
+                } else if (errorLabel === "password") {
                     setPasswordError(message);
                 } else {
                     setCompanyNameError(message);
@@ -233,17 +240,27 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     }
 
     useEffect(() => {
-        console.log("Here are the login errors.", loginErrors);
-        console.log("Here is the login error", loggingInError);
-        if (loginErrors.length === 0 && loggingInError === "") {
-            if (userInfo.email !== "") {
-                navigate('/users/account');
+        if (displayState === 'login') {
+            if (loginErrors.length === 0 && loggingInError === "") {
+                if (userInfo.email !== "") {
+                    navigate('/users/account');
+                }
+            } else {
+                configureGenericError(loggingInError);
+                configureSpecificErrors(loginErrors);
             }
-        } else {
-            configureGenericError();
-            configureSpecificErrors();
+        } else if (displayState === 'signup') {
+            console.log("SIGN UP ERRORS FROM USEEFFECT",signupErrors)
+            if (signupErrors.length === 0 && userCreationError === "") {
+                if (userInfo.email !== "") {
+                    navigate('/users/account');
+                }
+            } else {
+                configureGenericError(userCreationError);
+                configureSpecificErrors(signupErrors);
+            }
         }
-    }, [userInfo.email, loginErrors, loggingInError]);
+    }, [userInfo.email, loginErrors, loggingInError, signupErrors, userCreationError]);
 
     return (
         <Layout>
