@@ -13,7 +13,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo, logginInError, loginErrors} = userReducer;
+    const {loading, userInfo, loggingInError, loginErrors} = userReducer;
 
     const [displayState, setDisplayState] = useState('');
 
@@ -206,8 +206,8 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     )
 
     const configureGenericError = () => {
-        if (logginInError !== "") {
-            setGenericError(logginInError);
+        if (loggingInError !== "") {
+            setGenericError(loggingInError);
         } else {
             setGenericError('');
         }
@@ -233,7 +233,9 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     }
 
     useEffect(() => {
-        if (loginErrors.length === 0 && logginInError === "") {
+        console.log("Here are the login errors.", loginErrors);
+        console.log("Here is the login error", loggingInError);
+        if (loginErrors.length === 0 && loggingInError === "") {
             if (userInfo.email !== "") {
                 navigate('/users/account');
             }
@@ -241,7 +243,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             configureGenericError();
             configureSpecificErrors();
         }
-    }, [userInfo.email, loginErrors, logginInError]);
+    }, [userInfo.email, loginErrors, loggingInError]);
 
     return (
         <Layout>

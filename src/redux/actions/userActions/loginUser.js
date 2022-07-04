@@ -23,12 +23,12 @@ const loginUser = (userInfo) => {
             .then(res => res.json())
             .then(data => {
                 let {success} = data;
+                console.log("Data sent back from the login route", data);
                 if (success === true) {
                     let {userInfo} = data;
                     return dispatch({type: "USER_LOGIN_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
-                    console.log("ERROR FROM LOGIN USER ACTION", error);
                     return dispatch({type: "USER_LOGIN_ERROR", error});
                 }
             })
