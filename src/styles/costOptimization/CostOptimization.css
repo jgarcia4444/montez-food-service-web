@@ -1,0 +1,36 @@
+
+
+.half-column {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding: 20px 20px;
+    text-align: left;
+}
+
+.optimization-details {
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    padding: 10px;
+}
+
+.optimization-details-container>p {
+    margin-top: 0;
+}
+
+.optimization-details-title {
+    margin-bottom: 0;
+}
+
+.optimization-title {
+    color: #a0262e;
+    font-size: 2.5em;
+    font-weight: 500;
+}
+
+.top-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-family: sans-serif;
+}
