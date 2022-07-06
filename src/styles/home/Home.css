@@ -1,6 +1,8 @@
 
 .about-us-image {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-us-image:first-child, .about-us-image:last-child {
@@ -67,6 +69,7 @@
 .flex-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .half-flex-container {
@@ -104,6 +107,7 @@
 
 .red-container {
     background-color: #a0262e;
+    padding: 20px 0;
 }
 
 .section-title {
@@ -117,4 +121,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+    .half-flex-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .about-us-section-container {
+        flex-direction: column;
+    }
 }
