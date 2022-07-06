@@ -34,11 +34,13 @@
 
 .nav-links-container {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
+    justify-content: center;
+    width: 60%;
 }
 
-.nav-title-container, .nav-links-container {
-    width: 50%
+.nav-title-container {
+    width: 40%
 }
 
 .nav-title {
