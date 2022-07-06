@@ -15,6 +15,7 @@ const NavHeader = ({userInfo}) => {
     const {width} = useWindowDimensions();
 
     const [activePage, setActivePage] = useState('');
+    const [showMobileNavLinks, setShowMobileNavLinks] = useState(false);
     const navigate = useNavigate();
 
     const handleUserPress = () => {
@@ -36,11 +37,27 @@ const NavHeader = ({userInfo}) => {
         </>
     )
 
+    const mobileNavLinks = (
+        <>
+            <MobileNavButton handleMobileNavClick={() => setShowMobileNavLinks(!showMobileNavLinks)} />
+            {showMobileNavLinks === true &&
+                <>
+                    <Link onClick={() => setActivePage("Home")} className={`mobile-nav-link ${activePage === "Home" ? "active-link" : ""}`}to="/">Home</Link>
+                    <Link onClick={() => setActivePage("Products")} className={`mobile-nav-link ${activePage === "Products" ? "active-link" : ""}`} to="/products">Products</Link>
+                    <Link onClick={() => setActivePage("Order Online")} className={`mobile-nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
+                    <Link onClick={() => setActivePage("Cost Optimization")} className={`mobile-nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
+                    <span className="vertical-separator">|</span>
+                    <FiUser onClick={handleUserPress} className="user-icon" size={20} color={'black'} />
+                </>
+            }
+        </>
+    )
+
     const renderNavLinks = () => {
         if (width > 800) {
             return navLinks;
         } else {
-            return <MobileNavButton />
+            return mobileNavLinks;
         }
     }
 

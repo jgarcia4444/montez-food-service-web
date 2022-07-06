@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../../styles/nav/MobileNavButton.css'
+import { FiMenu } from 'react-icons/fi';
 
-const MobileNavButton = () => {
+const MobileNavButton = ({handleMobileNavClick}) => {
 
     return (
-        <div>
-            <h4>Mobile</h4>
+        <div onClick={handleMobileNavClick} className="mobile-nav-button">
+            <FiMenu size={24} color={'black'} />
         </div>
     )
 }
