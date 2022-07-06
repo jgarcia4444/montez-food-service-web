@@ -24,7 +24,42 @@ const CostOptimization = () => {
                 </div>
                 <div className="half-column">
                     <div className="optimization-details">
-                        <h2>Data Table</h2>
+                        <h2 className="savings-title">Food and Supply Savings</h2>
+                        <div className="savings-table-container">
+                            <div className="table-headers-row">
+                                <div className="table-half-column">
+                                    <strong className="table-headers">Source</strong>
+                                </div>
+                                <div className="table-quarter-column middle-column">
+                                    <strong className="table-headers">Savings/Week (adjusted for seasonality)</strong>
+                                </div>
+                                <div className="table-quarter-column">
+                                    <strong className="table-headers">Over 1 year</strong>
+                                </div>
+                            </div>
+                            <div className="table-data-row even-row">
+                                <div className="table-half-column">
+                                    Savings from invoices for 4 days of deliveries in October
+                                </div>
+                                <div className="table-quarter-column middle-column">
+                                    ~$975
+                                </div>
+                                <div className="table-quarter-column">
+                                    $50,000
+                                </div>
+                            </div>
+                            <div className="table-data-row">
+                                <div className="table-half-column">
+                                    Extra days of invoice(s) not provided
+                                </div>
+                                <div className="table-quarter-column middle-column">
+                                    ~$150
+                                </div>
+                                <div className="table-quarter-column">
+                                    $7,500
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
