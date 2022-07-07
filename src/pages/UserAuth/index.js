@@ -52,8 +52,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     ];
 
     const renderInputs = (inputs) => {
-        return inputs.map(inputInfo => {
-            
+        return inputs.map(inputInfo => {    
             return <FormInput key={inputInfo.label} inputInfo={inputInfo} />
         })
     }
