@@ -82,6 +82,11 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 <small className="generic-error">{genericError}</small>
             }
             {renderInputs(inputs.slice(0, 2))}
+            <div className="forgot-password-button-row">
+                <div className="forgot-password-button" onClick={() => setDisplayState('forgot')}>
+                    Forgot Password
+                </div>
+            </div>
         </div>
     )
 
