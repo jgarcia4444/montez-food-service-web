@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import '../../styles/forgotPassword/ForgotPassword.css';
 import FormInput from '../FormInput';
-import { FiMail } from 'react-icons/fi';
+import { FiMail, FiHash, FiLock } from 'react-icons/fi';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code, setCode, passwordResetError}) => {
 
     const [passwordResetState, setPasswordResetState] = useState('');
-    const [email, setEmail] = useState('');
-    const [emailError, setEmailError] = useState('');
 
     const findUserInputInfo = {
         label: "Email",
@@ -21,19 +19,34 @@ const ForgotPassword = () => {
         <FormInput inputInfo={findUserInputInfo} />
     )
 
+    const codeInputInfo = {
+        label: "Code",
+        value: code,
+        changeFunction: (val) = setCode(val),
+        error: passwordResetError,
+        icon: <FiHash size={24} color={'#ffc72c'} />
+    }
+
+    const inputCode = (
+        <FormInput inputInfo={codeInputInfo} />
+    )
+
     const renderInputByState = () => {
-        switch(passwordResetState) {
+        switch(forgotPasswordState) {
+            case "code":
+                return inputCode;
             default:
                 return findUser;
         }
     }
 
     const renderAssociatedText = () => {
-        switch(passwordResetState) {
+        switch(forgotPasswordState) {
             default:
                 return "Enter the email associated with your account:"
         }
     }
+
 
     return (
         <div className="column-flex-container">

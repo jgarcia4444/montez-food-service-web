@@ -26,6 +26,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     const [passwordError, setPasswordError] = useState('');
     const [companyNameError, setCompanyNameError] = useState('');
     const [genericError, setGenericError] = useState('');
+    const [forgotPasswordState, setForgotPasswordState] = useState('');
 
     const inputs = [
         {
@@ -107,7 +108,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             case 'signup':
                 return signupForm; 
             case 'forgot':
-                return <ForgotPassword />
+                return <ForgotPassword forgotPasswordState={forgotPasswordState} emailError={emailError} email={email} setEmail={setEmail} />
             default:
                 return actionButtons
         }
@@ -116,10 +117,12 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     const handleSendClick = () => {
         if (displayState === 'login') {
             handleLoginPress()
-        } else {
+        } else if (displayState === 'signup') {
             handleSignupPress()
+        } else if (displayState === 'forgot') {
+            handleSendCodePress()
         }
-    }
+     }
 
     const handleLoginPress = () => {
         let loginInputs = inputs.slice(0, 2);
@@ -143,6 +146,20 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 company_name: companyName
             }
             createUser(userInfo);
+        }
+    }
+
+    const handleSendCodePress = async () => {
+        clearErrors();
+        checkForPresenceErrors(inputs.slice(0, 1));
+        if (emailError === "") {
+            let userInfo = {
+                email: email,
+            }
+            await sendResetCode(userInfo)
+            if (passwordresetError === "") {
+                setForgotPasswordState('code');
+            }
         }
     }
 
@@ -174,7 +191,13 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     }
 
     const configureSendText = () => {
-        return displayState === 'login' ? "Login" : "Sign Up"
+        if (displayState === "login") {
+            return "Login";
+        } else if (displayState === "signup") {
+            return "Sign Up"
+        } else if (displayState === "forgot") {
+            return "Send Code";
+        }
     }
 
     const sendButton = (
@@ -190,6 +213,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         setPasswordError('');
         setCompanyNameError('');
         setDisplayState('');
+        setForgotPasswordState('')
     } 
 
     const backButton = (

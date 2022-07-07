@@ -3,12 +3,14 @@ const initialState = {
     userInfo: {
         email: "",
         companyName: "",
+        otaCode: ""
     },
     loading: false,
     userCreationError: "",
     loggingInError: "",
     loginErrors: [],
     signupErrors: [],
+    passwordResetError: "",
 }
 
 const configureSignUpErrors = (errors) => {
@@ -26,6 +28,24 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "CODE_SEND_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                passwordResetError: "",
+            }
+        case "CODE_SEND_ERROR":
+            return {
+                ...state,
+                loading: false,
+                passwordResetError: action.errorMessage
+            }
+        case "SENDING_CODE":
+            return {
+                ...state,
+                loading: true,
+                passwordResetError: ""
+            }
         case "USER_LOGIN_ERROR":
             let errors = {
                 loggingInError: "",
