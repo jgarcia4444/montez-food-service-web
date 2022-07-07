@@ -57,54 +57,6 @@
     background-color: #a0262e
 }
 
-.input {
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-    flex: 1;
-    height: 25px;
-    color: #FFC72C;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 2px solid #ffc72c;
-}
-
-.input-error {
-    color: white;
-    font-family: sans-serif;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-.input-label-row {
-    text-align: left;
-    color: #FFC72C;
-    font-family: serif;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.input-outer {
-    background-color: transparent;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    gap: 5px;
-    
-}
-
-.input-row {
-    width: 75%;
-    margin: 10px 0;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active {
-    background-color: transparent;
-}
-
 .or-row {
     width: 100%;
     height: 10%;

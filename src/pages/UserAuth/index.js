@@ -8,6 +8,8 @@ import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
 import createUser from '../../redux/actions/userActions/createUser';
 import loginUser from '../../redux/actions/userActions/loginUser';
 import SpinningLoader from '../../components/Loaders/SpinningLoader';
+import FormInput from '../../components/FormInput';
+import ForgotPassword from '../../components/ForgotPassword';
 
 const UserAuth = ({createUser, userReducer, loginUser}) => {
 
@@ -49,32 +51,10 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         }
     ];
 
-    const configureInputType = (label) => {
-        switch(label) {
-            case "Password":
-                return "password";
-            case "Email":
-                return "email";
-            default:
-                return "text";
-        }
-    }
-
     const renderInputs = (inputs) => {
         return inputs.map(inputInfo => {
-            let inputType = configureInputType(inputInfo.label);
-            return (
-                <div key={inputInfo.label} className="input-row">
-                    <div className="input-label-row">
-                        {inputInfo.label}
-                        {inputInfo.error !== "" && <small className="input-error">{inputInfo.error}</small>}
-                    </div>
-                    <div className="input-outer">
-                        {inputInfo.icon}
-                        <input className="input" type={inputType} value={inputInfo.value} onChange={(val) => inputInfo.changeFunction(val.target.value)} />
-                    </div>
-                </div>
-            )
+            
+            return <FormInput key={inputInfo.label} inputInfo={inputInfo} />
         })
     }
 
@@ -122,6 +102,8 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 return loginForm;
             case 'signup':
                 return signupForm; 
+            case 'forgot':
+                return <ForgotPassword />
             default:
                 return actionButtons
         }
@@ -250,7 +232,6 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 configureSpecificErrors(loginErrors);
             }
         } else if (displayState === 'signup') {
-            console.log("SIGN UP ERRORS FROM USEEFFECT",signupErrors)
             if (signupErrors.length === 0 && userCreationError === "") {
                 if (userInfo.email !== "") {
                     navigate('/users/account');
