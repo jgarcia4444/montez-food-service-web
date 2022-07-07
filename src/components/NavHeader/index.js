@@ -19,6 +19,7 @@ const NavHeader = ({userInfo}) => {
     const navigate = useNavigate();
 
     const handleUserPress = () => {
+        setShowMobileNavLinks(false);
         if (email === "") {
             navigate("/user-auth");
         } else {
@@ -27,30 +28,36 @@ const NavHeader = ({userInfo}) => {
     }
 
     const navLinks = (
-        <>
+        <div className="nav-links-container">
             <Link onClick={() => setActivePage("Home")} className={`nav-link ${activePage === "Home" ? "active-link" : ""}`}to="/">Home</Link>
             <Link onClick={() => setActivePage("Products")} className={`nav-link ${activePage === "Products" ? "active-link" : ""}`} to="/products">Products</Link>
             <Link onClick={() => setActivePage("Order Online")} className={`nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
             <Link onClick={() => setActivePage("Cost Optimization")} className={`nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
             <span className="vertical-separator">|</span>
             <FiUser onClick={handleUserPress} className="user-icon" size={20} color={'black'} />
-        </>
+        </div>
     )
 
+    const handleMobileLinkClick = (pageName) => {
+        setShowMobileNavLinks(false);
+        setActivePage(pageName);
+    }
+
     const mobileNavLinks = (
-        <>
+        <div className="mobile-nav-links-container">
             <MobileNavButton handleMobileNavClick={() => setShowMobileNavLinks(!showMobileNavLinks)} />
             {showMobileNavLinks === true &&
-                <>
-                    <Link onClick={() => setActivePage("Home")} className={`mobile-nav-link ${activePage === "Home" ? "active-link" : ""}`}to="/">Home</Link>
-                    <Link onClick={() => setActivePage("Products")} className={`mobile-nav-link ${activePage === "Products" ? "active-link" : ""}`} to="/products">Products</Link>
-                    <Link onClick={() => setActivePage("Order Online")} className={`mobile-nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
-                    <Link onClick={() => setActivePage("Cost Optimization")} className={`mobile-nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
-                    <span className="vertical-separator">|</span>
-                    <FiUser onClick={handleUserPress} className="user-icon" size={20} color={'black'} />
-                </>
+                <div className="mobile-nav-links">
+                    <Link onClick={() => handleMobileLinkClick("Home")} className={`mobile-nav-link ${activePage === "Home" ? "active-link" : ""}`}to="/">Home</Link>
+                    <Link onClick={() => handleMobileLinkClick("Products")} className={`mobile-nav-link ${activePage === "Products" ? "active-link" : ""}`} to="/products">Products</Link>
+                    <Link onClick={() => handleMobileLinkClick("Order Online")} className={`mobile-nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
+                    <Link onClick={() => handleMobileLinkClick("Cost Optimization")} className={`mobile-nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
+                    <div onClick={handleUserPress} className="icon-color-change mobile-nav-link">
+                        <FiUser  className="user-icon" size={20} />
+                    </div>
+                </div>
             }
-        </>
+        </div>
     )
 
     const renderNavLinks = () => {
@@ -66,9 +73,7 @@ const NavHeader = ({userInfo}) => {
             <div className="nav-title-container">
                 <h2 className="nav-title"><Link onClick={() => setActivePage("Home")} to="/" className="nav-title-link">Montez Food Service</Link></h2>
             </div>
-            <div className="nav-links-container">
-                {renderNavLinks()}
-            </div>
+            {renderNavLinks()}
         </div>
     )
 }
