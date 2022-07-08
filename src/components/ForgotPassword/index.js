@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../../styles/forgotPassword/ForgotPassword.css';
 import FormInput from '../FormInput';
 import { FiMail, FiKey, FiLock } from 'react-icons/fi';
 
 const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code, setCode, passwordResetError}) => {
-
-    const [passwordResetState, setPasswordResetState] = useState('');
 
     const findUserInputInfo = {
         label: "Email",

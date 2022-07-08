@@ -11,8 +11,9 @@ import SpinningLoader from '../../components/Loaders/SpinningLoader';
 import FormInput from '../../components/FormInput';
 import ForgotPassword from '../../components/ForgotPassword';
 import sendResetCode from '../../redux/actions/userActions/sendResetCode';
+import checkCode from '../../redux/actions/userActions/checkCode';
 
-const UserAuth = ({createUser, userReducer, loginUser, sendResetCode}) => {
+const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode}) => {
 
     const navigate = useNavigate();
 
@@ -32,7 +33,6 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode}) => {
     const [forgotPasswordState, setForgotPasswordState] = useState('');
     const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [forgotPasswordError, setForgotPasswordError] = useState('');
     const dispatch = useDispatch();
 
     const inputs = [
@@ -347,7 +347,8 @@ const mapDispatchToProps = dispatch => {
     return {
         createUser: (userInfo) => dispatch(createUser(userInfo)),
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
-        sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo))
+        sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
+        checkCode: (userInfo) => dispatch(checkCode(userInfo)),
     }
 }
 
