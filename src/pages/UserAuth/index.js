@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
@@ -10,12 +10,15 @@ import loginUser from '../../redux/actions/userActions/loginUser';
 import SpinningLoader from '../../components/Loaders/SpinningLoader';
 import FormInput from '../../components/FormInput';
 import ForgotPassword from '../../components/ForgotPassword';
+import sendResetCode from '../../redux/actions/userActions/sendResetCode';
 
-const UserAuth = ({createUser, userReducer, loginUser}) => {
+const UserAuth = ({createUser, userReducer, loginUser, sendResetCode}) => {
 
     const navigate = useNavigate();
 
-    const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError} = userReducer;
+    const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
+
+    const {otaCode} = userInfo;
 
     const [displayState, setDisplayState] = useState('');
 
@@ -27,6 +30,10 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     const [companyNameError, setCompanyNameError] = useState('');
     const [genericError, setGenericError] = useState('');
     const [forgotPasswordState, setForgotPasswordState] = useState('');
+    const [code, setCode] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [forgotPasswordError, setForgotPasswordError] = useState('');
+    const dispatch = useDispatch();
 
     const inputs = [
         {
@@ -108,7 +115,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             case 'signup':
                 return signupForm; 
             case 'forgot':
-                return <ForgotPassword forgotPasswordState={forgotPasswordState} emailError={emailError} email={email} setEmail={setEmail} />
+                return <ForgotPassword newPassword={newPassword} setNewPassword={setNewPassword} code={code} setCode={setCode} forgotPasswordState={forgotPasswordState} emailError={emailError} email={email} setEmail={setEmail} />
             default:
                 return actionButtons
         }
@@ -120,7 +127,13 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         } else if (displayState === 'signup') {
             handleSignupPress()
         } else if (displayState === 'forgot') {
-            handleSendCodePress()
+            if (displayState === "checkCode") {
+                handleCheckCodePress()
+            } else if (displayState === "newPassword") {
+                handlePasswordChange()
+            } else {
+                handleSendCodePress()
+            }
         }
      }
 
@@ -157,9 +170,41 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
                 email: email,
             }
             await sendResetCode(userInfo)
-            if (passwordresetError === "") {
-                setForgotPasswordState('code');
+            if (passwordResetError === "") {
+                setForgotPasswordState('checkCode');
             }
+        }
+    };
+
+    const handleCheckCodePress = async () => {
+        clearErrors();
+        if (code === "") {
+            dispatch({type: "PASSWORD_RESET_ERROR", errorMessage: "Code cannot be left blank"})
+        } else {
+            let userInfo = {
+                email: userInfo.email,
+                ota_code: code,
+            }
+            await checkCode(userInfo);
+            if (passwordResetError === "") {
+                setForgotPasswordState('newPassword')
+            }
+        }
+    }
+
+    const handlePasswordChange = () => {
+        clearErrors();
+        if (newPassword !== "") {
+            let userInfo = {
+                email: email,
+                ota_code: otaCode
+            }
+            await changePassword(userInfo)
+            if (passwordResetError === "") {
+
+            }
+        } else {
+            dispatch({type: "PASSWORD_RESET_ERROR", errorMessage: "New Password cannot be left empty."})
         }
     }
 
@@ -196,7 +241,13 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
         } else if (displayState === "signup") {
             return "Sign Up"
         } else if (displayState === "forgot") {
-            return "Send Code";
+            if (forgotPasswordState === 'checkCode') {
+                return 'Check Code';
+            } else if (forgotPasswordState === "newPassword") {
+                return "Set Password";
+            } else {
+                return "Send Code";
+            }
         }
     }
 
@@ -252,7 +303,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
     useEffect(() => {
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
-                if (userInfo.email !== "") {
+                if (userInfo.email !== "" && userInfo.companyName !== "") {
                     navigate('/users/account');
                 }
             } else {
@@ -261,7 +312,7 @@ const UserAuth = ({createUser, userReducer, loginUser}) => {
             }
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
-                if (userInfo.email !== "") {
+                if (userInfo.email !== "" && userInfo.companyName !== "") {
                     navigate('/users/account');
                 }
             } else {
@@ -296,6 +347,7 @@ const mapDispatchToProps = dispatch => {
     return {
         createUser: (userInfo) => dispatch(createUser(userInfo)),
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
+        sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo))
     }
 }
 

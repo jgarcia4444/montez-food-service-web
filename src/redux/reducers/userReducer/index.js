@@ -33,6 +33,10 @@ const userReducer = (state=initialState, action) => {
                 ...state,
                 loading: false,
                 passwordResetError: "",
+                userInfo: {
+                    ...state.userInfo,
+                    ...action.userInfo,
+                }
             }
         case "CODE_SEND_ERROR":
             return {

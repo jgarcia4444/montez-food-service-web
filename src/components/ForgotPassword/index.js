@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../../styles/forgotPassword/ForgotPassword.css';
 import FormInput from '../FormInput';
-import { FiMail, FiHash, FiLock } from 'react-icons/fi';
+import { FiMail, FiKey, FiLock } from 'react-icons/fi';
 
 const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code, setCode, passwordResetError}) => {
 
@@ -24,7 +24,7 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
         value: code,
         changeFunction: (val) = setCode(val),
         error: passwordResetError,
-        icon: <FiHash size={24} color={'#ffc72c'} />
+        icon: <FiKey size={24} color={'#ffc72c'} />
     }
 
     const inputCode = (
