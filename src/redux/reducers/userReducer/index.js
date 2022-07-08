@@ -28,6 +28,28 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "CODE_CHECK_ERROR":
+            return {
+                ...state,
+                loading: false,
+                passwordResetError: action.errorMessage,
+            }
+        case "CODE_CHECK_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                passwordResetError: "",
+                userInfo: {
+                    ...state.userInfo,
+                    ...action.userInfo
+                }
+            }
+        case "CHECKING_CODE":
+            return {
+                ...state,
+                loading: true,
+                passwordResetError: "",
+            }
         case "CODE_SEND_SUCCESS":
             return {
                 ...state,
