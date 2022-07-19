@@ -23,7 +23,9 @@ const sendResetCode = (userInfo) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    return dispatch({type: "CODE_SEND_SUCCESS"});
+                    let {userInfo} = data;
+                    let {email} = userInfo;
+                    return dispatch({type: "CODE_SEND_SUCCESS", email});
                 } else {
                     let {error} = data;
                     let {message} = error;

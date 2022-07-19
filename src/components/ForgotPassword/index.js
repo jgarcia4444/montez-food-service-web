@@ -20,7 +20,7 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
     const codeInputInfo = {
         label: "Code",
         value: code,
-        changeFunction: (val) = setCode(val),
+        changeFunction: (val) => setCode(val),
         error: passwordResetError,
         icon: <FiKey size={24} color={'#ffc72c'} />
     }
@@ -31,7 +31,7 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
 
     const renderInputByState = () => {
         switch(forgotPasswordState) {
-            case "code":
+            case "checkCode":
                 return inputCode;
             default:
                 return findUser;
@@ -49,7 +49,6 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
     return (
         <div className="column-flex-container">
             <p className="description-text">{renderAssociatedText()}</p>
-            
             {renderInputByState()}
         </div>
     )

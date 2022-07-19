@@ -79,7 +79,7 @@ const userReducer = (state=initialState, action) => {
                 passwordResetError: "",
                 userInfo: {
                     ...state.userInfo,
-                    ...action.userInfo,
+                    email: action.email,
                 }
             }
         case "CODE_SEND_ERROR":

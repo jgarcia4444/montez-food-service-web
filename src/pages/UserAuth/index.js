@@ -12,8 +12,9 @@ import FormInput from '../../components/FormInput';
 import ForgotPassword from '../../components/ForgotPassword';
 import sendResetCode from '../../redux/actions/userActions/sendResetCode';
 import checkCode from '../../redux/actions/userActions/checkCode';
+import changePassword from '../../redux/actions/userActions/changePassword';
 
-const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode}) => {
+const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
 
@@ -192,7 +193,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode}
         }
     }
 
-    const handlePasswordChange = () => {
+    const handlePasswordChange = async () => {
         clearErrors();
         if (newPassword !== "") {
             let userInfo = {
@@ -349,6 +350,7 @@ const mapDispatchToProps = dispatch => {
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
         sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
         checkCode: (userInfo) => dispatch(checkCode(userInfo)),
+        changePassword: (userInfo) =>dispatch(changePassword(userInfo)),
     }
 }
 
