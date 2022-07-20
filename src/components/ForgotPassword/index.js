@@ -3,7 +3,7 @@ import '../../styles/forgotPassword/ForgotPassword.css';
 import FormInput from '../FormInput';
 import { FiMail, FiKey, FiLock } from 'react-icons/fi';
 
-const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code, setCode, passwordResetError}) => {
+const ForgotPassword = ({newPassword, setNewPassword, email, setEmail, emailError, forgotPasswordState, code, setCode, passwordResetError}) => {
 
     const findUserInputInfo = {
         label: "Email",
@@ -29,10 +29,24 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
         <FormInput inputInfo={codeInputInfo} />
     )
 
+    const newPasswordInputInfo = {
+        label: "New Password",
+        value: newPassword,
+        changeFunction: val => setNewPassword(val),
+        error: passwordResetError,
+        icon: <FiLock size={24} color={'#ffc72c'} />
+    }
+
+    const newPasswordInput = (
+        <FormInput inputInfo={newPasswordInputInfo} />
+    )
+
     const renderInputByState = () => {
         switch(forgotPasswordState) {
             case "checkCode":
                 return inputCode;
+            case "newPassword":
+                return newPasswordInput;
             default:
                 return findUser;
         }
@@ -40,6 +54,10 @@ const ForgotPassword = ({email, setEmail, emailError, forgotPasswordState, code,
 
     const renderAssociatedText = () => {
         switch(forgotPasswordState) {
+            case "newPassword":
+                return "Enter a new password";
+            case "checkCode":
+                return "Check your email inbox for a code (check the spam folder)";
             default:
                 return "Enter the email associated with your account:"
         }

@@ -3,16 +3,17 @@ const {baseUrl} = Urls;
 
 const changePassword = (userInfo) => {
     let url = `${baseUrl}users/forgot-password/change-password`;
+    let bodyInfo = {
+        user_info: {
+            ...userInfo
+        }
+    }
     let options = {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
-            'Content-Type': 'applicaton/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            user_info: {
-                ...userInfo
-            }
-        })
+        body: JSON.stringify(bodyInfo)
     };
     return async dispatch => {
         dispatch({type: "CHANGING_PASSWORD"});

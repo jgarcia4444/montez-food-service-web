@@ -128,9 +128,9 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         } else if (displayState === 'signup') {
             handleSignupPress()
         } else if (displayState === 'forgot') {
-            if (displayState === "checkCode") {
+            if (forgotPasswordState === "checkCode") {
                 handleCheckCodePress()
-            } else if (displayState === "newPassword") {
+            } else if (forgotPasswordState === "newPassword") {
                 handlePasswordChange()
             } else {
                 handleSendCodePress()
@@ -167,10 +167,10 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         clearErrors();
         checkForPresenceErrors(inputs.slice(0, 1));
         if (emailError === "") {
-            let userInfo = {
+            let backendUserInfo = {
                 email: email,
             }
-            await sendResetCode(userInfo)
+            await sendResetCode(backendUserInfo)
             if (passwordResetError === "") {
                 setForgotPasswordState('checkCode');
             }
@@ -182,11 +182,11 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         if (code === "") {
             dispatch({type: "PASSWORD_RESET_ERROR", errorMessage: "Code cannot be left blank"})
         } else {
-            let userInfo = {
+            let backendUserInfo = {
                 email: userInfo.email,
                 ota_code: code,
             }
-            await checkCode(userInfo);
+            await checkCode(backendUserInfo);
             if (passwordResetError === "") {
                 setForgotPasswordState('newPassword')
             }
@@ -196,14 +196,12 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
     const handlePasswordChange = async () => {
         clearErrors();
         if (newPassword !== "") {
-            let userInfo = {
-                email: email,
-                ota_code: otaCode
+            let backendUserInfo = {
+                email: userInfo.email,
+                ota_code: otaCode, 
+                new_password: newPassword,
             }
-            await changePassword(userInfo)
-            if (passwordResetError === "") {
-
-            }
+            await changePassword(backendUserInfo);
         } else {
             dispatch({type: "PASSWORD_RESET_ERROR", errorMessage: "New Password cannot be left empty."})
         }
@@ -320,8 +318,12 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
                 configureGenericError(userCreationError);
                 configureSpecificErrors(signupErrors);
             }
-        }
-    }, [userInfo.email, loginErrors, loggingInError, signupErrors, userCreationError]);
+        } else if (displayState === "forgot") {
+            if (forgotPasswordState === "newPassword" && userInfo.companyName !== "") {
+                navigate('/users/account');
+            }
+        } 
+    }, [userInfo.companyName, userInfo.email, loginErrors, loggingInError, signupErrors, userCreationError]);
 
     return (
         <Layout>
@@ -350,7 +352,7 @@ const mapDispatchToProps = dispatch => {
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
         sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
         checkCode: (userInfo) => dispatch(checkCode(userInfo)),
-        changePassword: (userInfo) =>dispatch(changePassword(userInfo)),
+        changePassword: (userInfo) => dispatch(changePassword(userInfo)),
     }
 }
 
