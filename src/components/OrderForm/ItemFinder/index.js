@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../styles/components/ItemFinder.css';
 import { FiChevronDown } from 'react-icons/fi';
 
-const ItemFinder = ({setItemText, itemText, suggestions}) => {
+const ItemFinder = ({itemFinderTextChange, itemText, suggestions}) => {
 
     return (
         <div className="item-finder-container"> 
@@ -10,7 +10,7 @@ const ItemFinder = ({setItemText, itemText, suggestions}) => {
                 <h3 className="item-finder-label">Item Name</h3>
             </div>
             <div className="item-finder-input-container">
-                <input onChange={(e) => setItemText(e.target.value)} type='text' className="item-finder-input" value={itemText} />
+                <input onChange={(e) => itemFinderTextChange(e.target.value)} type='text' className="item-finder-input" value={itemText} />
                 <div className="suggestions-indicator-container">
                     {suggestions.length > 0 && <FiChevronDown className='suggestions-indicator' size={20} />}
                 </div>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import fetchSuggestions from '../../redux/actions/orderActions/fetchSuggestions';
 import '../../styles/components/OrderForm.css'
 import ItemFinder from './ItemFinder';
 import QuantitySelector from './QuantitySelector';
 
 
 
-const OrderForm = ({userInfo}) => {
+const OrderForm = ({userInfo, fetchSuggestions}) => {
 
     const [itemText, setItemText] = useState('');
     const [itemPrice, setItemPrice] = useState('')
@@ -34,10 +35,16 @@ const OrderForm = ({userInfo}) => {
 
     }
 
+    const itemFinderTextChange = (e) => {
+        let {value} = e.target
+        fetchSuggestions(value);
+        setItemText(value);
+    }
+
     return (
         <div className="order-form-container">
             <div className="order-form-row">
-                <ItemFinder selectedItem={selectedItem} setSelectedItem={handleItemSelection} setItemText={setItemText} itemText={itemText} suggestions={[]} />
+                <ItemFinder selectedItem={selectedItem} setSelectedItem={handleItemSelection} itemFinderTextChange={itemFinderTextChange} itemText={itemText} suggestions={[]} />
                 <div className="item-price-container">
                     <h3>Price</h3>
                     {itemPrice === "" ? "" : `$${itemPrice}`}
@@ -65,7 +72,13 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
+    }
+}
+
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(OrderForm);
