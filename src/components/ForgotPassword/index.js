@@ -55,7 +55,7 @@ const ForgotPassword = ({newPassword, setNewPassword, email, setEmail, emailErro
     const renderAssociatedText = () => {
         switch(forgotPasswordState) {
             case "newPassword":
-                return "Enter a new password";
+                return "Enter a new password"; 
             case "checkCode":
                 return "Check your email inbox for a code (check the spam folder)";
             default:
