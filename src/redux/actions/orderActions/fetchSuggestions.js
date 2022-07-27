@@ -5,6 +5,7 @@ const fetchSuggestions = (itemQuery) => {
     let url = `${baseUrl}order-online/fetch-suggestions/${itemQuery}`;
 
     return async dispatch => {
+        dispatch({type: "FETCHING_SUGGESTIONS"})
         fetch(url)
             .then(res => res.json())
             .then(data => {
