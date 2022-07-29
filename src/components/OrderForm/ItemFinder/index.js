@@ -25,10 +25,10 @@ const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
                 <div className="suggestions-indicator-container">
                     {suggestions.length > 0 && <FiChevronDown onClick={() => setShowSuggestions(!showSuggestions)} className={`suggestions-indicator ${showSuggestions === true ? 'flip-chevron' : ''}`} size={20} />}
                 </div>
-                {showSuggestions === true &&
-                    renderSuggestions()
-                }
             </div>
+            {showSuggestions === true &&
+                renderSuggestions()
+            }
         </div>
     )
 }
