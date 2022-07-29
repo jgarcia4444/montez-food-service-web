@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
 import '../../../styles/components/ItemFinder.css';
 import { FiChevronDown } from 'react-icons/fi';
 
-const ItemFinder = ({itemFinderTextChange, itemText, suggestions}) => {
+import Suggestion from './Suggestion';
+
+const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
+
+    const {suggestions} = order;
+
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+    const renderSuggestions = () => {
+        return suggestions.map((item, i) => <Suggestion key={`${item.description}${i}`} item={item} />)
+    }
 
     return (
         <div className="item-finder-container"> 
@@ -12,11 +23,23 @@ const ItemFinder = ({itemFinderTextChange, itemText, suggestions}) => {
             <div className="item-finder-input-container">
                 <input onChange={(e) => itemFinderTextChange(e)} type='text' className="item-finder-input" value={itemText} />
                 <div className="suggestions-indicator-container">
-                    {suggestions.length > 0 && <FiChevronDown className='suggestions-indicator' size={20} />}
+                    {suggestions.length > 0 && <FiChevronDown onClick={() => setShowSuggestions(!showSuggestions)} className={`suggestions-indicator ${showSuggestions === true ? 'flip-chevron' : ''}`} size={20} />}
                 </div>
+                {showSuggestions === true &&
+                    renderSuggestions()
+                }
             </div>
         </div>
     )
 }
 
-export default ItemFinder;
+const mapStateToProps = state => {
+    return {
+        order: state.order,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+    )(ItemFinder);
