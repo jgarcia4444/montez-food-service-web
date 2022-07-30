@@ -1,4 +1,21 @@
 
 .quantity-selector-container {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quantity-selector-label {
+    margin-bottom: 1%;
+}
+
+.quantity-selector-label-row {
+    width: 50%;
+    text-align: left;
+}
+
+.quantity-selector-input-container {
+    width: 50%;
+    display: flex;
 }

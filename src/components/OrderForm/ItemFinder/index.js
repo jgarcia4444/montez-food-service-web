@@ -21,7 +21,7 @@ const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
                 <h3 className="item-finder-label">Item Name</h3>
             </div>
             <div className="item-finder-input-container">
-                <input onChange={(e) => itemFinderTextChange(e)} type='text' className="item-finder-input" value={itemText} />
+                <input placeholder="Search for an item..." onChange={(e) => itemFinderTextChange(e)} type='text' className="item-finder-input" value={itemText} />
                 <div className="suggestions-indicator-container">
                     {suggestions.length > 0 && <FiChevronDown onClick={() => setShowSuggestions(!showSuggestions)} className={`suggestions-indicator ${showSuggestions === true ? 'flip-chevron' : ''}`} size={20} />}
                 </div>
