@@ -7,28 +7,22 @@ import QuantitySelector from './QuantitySelector';
 
 
 
-const OrderForm = ({userInfo, fetchSuggestions}) => {
+const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
 
     const [itemText, setItemText] = useState('');
-    const [itemPrice, setItemPrice] = useState('')
     const [quantity, setQuantity] = useState('1');
-    const [selectedItem, setSelectedItem] = useState({});
 
     const {email, companyName} = userInfo;
+    const {price, } = selectedSuggestion;
 
     const configureTotalPrice = () => {
-        if (itemPrice === "") {
-            return ""
+        if (price === "") {
+            return "$0.00"
         } else {
-            let priceNum = parseFloat(itemPrice);
+            let priceNum = parseFloat(price);
             let totalPrice = (parseInt(quantity) * priceNum).toFixed(2);
             return totalPrice;
         }
-    }
-
-    const handleItemSelection = (itemInfo) => {
-        setSelectedItem(itemInfo);
-        setItemPrice(itemInfo.price);
     }
 
     const addItemToOrder = () => {
@@ -44,17 +38,17 @@ const OrderForm = ({userInfo, fetchSuggestions}) => {
     return (
         <div className="order-form-container">
             <div className="order-form-row">
-                <ItemFinder selectedItem={selectedItem} setSelectedItem={handleItemSelection} itemFinderTextChange={itemFinderTextChange} itemText={itemText} suggestions={[]} />
+                <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={itemText} suggestions={[]} />
                 <div className="item-price-container">
                     <h3>Price</h3>
-                    {itemPrice === "" ? "" : `$${itemPrice}`}
+                    <p>{price === "" ? "$0.00" : `$${price}`}</p>
                 </div>
             </div>
             <div className="order-form-row">
                 <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
                 <div className="total-price-container">
                     <h3>Total Price</h3>
-                    <p><strong>{configureTotalPrice()}</strong></p>
+                    <p>{configureTotalPrice()}</p>
                 </div>
             </div>
             <div className="order-form-row">
@@ -69,6 +63,7 @@ const OrderForm = ({userInfo, fetchSuggestions}) => {
 const mapStateToProps = state => {
     return {
         userInfo: state.userReducer.userInfo,
+        selectedSuggestion: state.order.selectedSuggestion
     }
 }
 

@@ -2,11 +2,25 @@
 const initialState = {
     suggestions: [],
     suggestionsLoading: false,
-    fetchSuggestionsError: ""
+    fetchSuggestionsError: "",
+    selectedSuggestion: {
+        price: "",
+        description: "",
+        upc: "",
+        item: "",
+        costPerUnit: "",
+        caseCost: "",
+        fiveCaseCost: "",
+    },
 }
 
 const orderReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "SUGGESTION_SELECTED":
+            return {
+                ...state,
+                selectedSuggestion: action.orderItem,
+            }
         case "FETCHING_SUGGESTIONS":
             return {
                 ...state,
