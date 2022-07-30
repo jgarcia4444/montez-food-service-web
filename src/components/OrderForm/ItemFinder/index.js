@@ -27,7 +27,9 @@ const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
                 </div>
             </div>
             {showSuggestions === true &&
-                renderSuggestions()
+                <div className="suggestions-container">
+                    {renderSuggestions()}
+                </div>
             }
         </div>
     )
