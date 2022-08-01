@@ -31,10 +31,6 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion, clearSelecte
     }
 
     const getNewItemTextValue = textValue => {
-        // THOUGHTS
-        // return slice of the strings length - 1 to get the last item
-        // set a vaiable for fetch suggestions and setting the items text rather thnan just
-        // using th value sent from input
         return textValue.slice(textValue.length - 1);
     }
 

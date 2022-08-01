@@ -4,6 +4,15 @@ import '../../../styles/components/QuantitySelector.css'
 
 const QuantitySelector = ({quantity, setQuantity}) => {
 
+    const handleQuantitySet = (e) => {
+        let {value} = e.target;
+        if (parseInt(value) < 1) {
+            setQuantity('1');
+        } else {
+            setQuantity(value);
+        }
+    }
+
     return (
         <div className="quantity-selector-container">
             <div className="quantity-selector-label-row">
@@ -13,7 +22,7 @@ const QuantitySelector = ({quantity, setQuantity}) => {
                 <div className="icon-container">
                     
                 </div>
-                <input className="quantity-selector-input" type='number' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+                <input className="quantity-selector-input" type='number' value={quantity} onChange={handleQuantitySet} />
             </div>
         </div>
     )
