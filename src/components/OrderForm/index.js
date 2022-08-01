@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import fetchSuggestions from '../../redux/actions/orderActions/fetchSuggestions';
+
 import '../../styles/components/OrderForm.css'
 import ItemFinder from './ItemFinder';
 import QuantitySelector from './QuantitySelector';
 
+import fetchSuggestions from '../../redux/actions/orderActions/fetchSuggestions';
+import clearSelectedSuggestion from '../../redux/actions/orderActions/clearSelectedSuggestion';
 
-
-const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
+const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion, clearSelectedSuggestion}) => {
 
     const [itemText, setItemText] = useState('');
     const [quantity, setQuantity] = useState('1');
@@ -17,7 +18,7 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
 
     const configureTotalPrice = () => {
         if (price === "") {
-            return "$0.00"
+            return "0.00"
         } else {
             let priceNum = parseFloat(price);
             let totalPrice = (parseInt(quantity) * priceNum).toFixed(2);
@@ -29,16 +30,31 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
 
     }
 
+    const getNewItemTextValue = textValue => {
+        // THOUGHTS
+        // return slice of the strings length - 1 to get the last item
+        // set a vaiable for fetch suggestions and setting the items text rather thnan just
+        // using th value sent from input
+        return textValue.slice(textValue.length - 1);
+    }
+
     const itemFinderTextChange = (e) => {
         let {value} = e.target
-        fetchSuggestions(value);
-        setItemText(value);
+        var inputText = value;
+        if (selectedSuggestion.description !== "") {
+            clearSelectedSuggestion()
+            inputText = getNewItemTextValue(value);
+        }
+        fetchSuggestions(inputText);
+        setItemText(inputText);
     }
+
+    const configureItemFinderText = selectedSuggestion.description === "" ? itemText : selectedSuggestion.description;
 
     return (
         <div className="order-form-container">
             <div className="order-form-row">
-                <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={itemText} suggestions={[]} />
+                <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={configureItemFinderText} suggestions={[]} />
                 <div className="item-price-container">
                     <div className="item-price-details-container">
                         <h3 className="price-label">Price</h3>
@@ -51,7 +67,7 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
                 <div className="total-price-container">
                     <div className="item-price-details-container">
                         <h3 className="price-label">Total Price</h3>
-                        <p className="price-details">{configureTotalPrice()}</p>
+                        <p className="price-details">${configureTotalPrice()}</p>
                     </div>
                 </div>
             </div>
@@ -74,6 +90,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
+        clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion())
     }
 }
 
