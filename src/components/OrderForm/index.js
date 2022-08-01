@@ -40,15 +40,19 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion}) => {
             <div className="order-form-row">
                 <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={itemText} suggestions={[]} />
                 <div className="item-price-container">
-                    <h3>Price</h3>
-                    <p>{price === "" ? "$0.00" : `$${price}`}</p>
+                    <div className="item-price-details-container">
+                        <h3 className="price-label">Price</h3>
+                        <p className="price-details">{price === "" ? "$0.00" : `$${price}`}</p>
+                    </div>
                 </div>
             </div>
             <div className="order-form-row">
                 <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
                 <div className="total-price-container">
-                    <h3>Total Price</h3>
-                    <p>{configureTotalPrice()}</p>
+                    <div className="item-price-details-container">
+                        <h3 className="price-label">Total Price</h3>
+                        <p className="price-details">{configureTotalPrice()}</p>
+                    </div>
                 </div>
             </div>
             <div className="order-form-row">

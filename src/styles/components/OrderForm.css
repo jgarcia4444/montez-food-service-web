@@ -1,4 +1,37 @@
 
+.add-to-order-button {
+    padding: 10px 25px;
+    border: 2px solid #a0262e;
+    border-radius: 5px;
+    color: #a0262e;
+    font-weight: bold;
+    position: relative;
+    transition: all 400ms ease-in;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.add-to-order-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #a0262e;
+    transition: all 300ms ease-in;
+    z-index: -1;
+}
+
+.add-to-order-button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.add-to-order-button:hover::after {
+    left: 0;
+}
+
 .order-form-row {
     display: flex;
     flex-direction: row;
@@ -11,6 +44,17 @@
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
+    justify-content: center;
+}
+
+.item-price-details-container {
+    width: 50%;
+}
+
+.price-details {
+    margin-top: 0;
+}
+
+.price-label {
+    margin-bottom: 1%;
 }
