@@ -5,6 +5,7 @@ import '../../styles/components/OrderCart.css';
 import OrderItem from './OrderItem';
 
 const OrderCart = ({items}) => {
+    console.log("Here are the items",items)
 
     const renderOrderItems = () => {
         if (items.length < 1) {
