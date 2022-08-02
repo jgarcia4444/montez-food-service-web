@@ -1,4 +1,8 @@
 
+.order-form-container {
+    width: 100%;
+}
+
 .add-to-order-button {
     padding: 10px 25px;
     border: 2px solid #a0262e;
@@ -37,7 +41,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 3% 0;
+    margin-bottom: 2%;
+}
+.order-form-row:first-child {
+    margin-bottom: 15%;
+}
+
+.order-form-row:last-child {
+    justify-content: flex-start;
+    padding-left: 12.5%;
 }
 
 .item-price-container, .total-price-container {
