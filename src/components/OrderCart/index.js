@@ -20,7 +20,7 @@ const OrderCart = ({items}) => {
             return "0.00";
         } else {
             var subTotal = 0.00;
-            items.forEach(item => subTotal += parseFloat(item.price))
+            items.forEach(item => subTotal += parseFloat(item.totalPrice))
             return subTotal.toFixed(2);
         }
     }
@@ -51,16 +51,16 @@ const OrderCart = ({items}) => {
             </div>
             <div className="calculated-total-container">
                 <div className="sub-total-row">
-                    <h4>Subtotal</h4>
-                    ${calculateSubTotal()}
+                    <h4 className="cost-calulation-label">Subtotal:</h4>
+                    <span className="calculated-values">${calculateSubTotal()}</span>
                 </div>
                 <div className="calculated-taxes-row">
-                    <h4>Taxes</h4>
-                    ${calculateSalesTax()}
+                    <h4 className="cost-calulation-label">Taxes:</h4>
+                    <span className="calculated-values">${calculateSalesTax()}</span>
                 </div>
                 <div className="total-row">
-                    <h4>Total</h4>
-                    ${calculateOrderTotal()}
+                    <h4 className="cost-calulation-label">Total:</h4>
+                    <span className="calculated-values">${calculateOrderTotal()}</span>
                 </div>
             </div>
         </div>

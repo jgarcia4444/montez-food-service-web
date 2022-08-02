@@ -1,4 +1,28 @@
 
+.calculated-total-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.calculated-values {
+    color: white;
+}
+
+.sub-total-row, .calculated-taxes-row , .total-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 2vh 0;
+}
+
+.cost-calulation-label {
+    color: white;
+    margin: 0;
+}
+
 .item-label {
     margin: 0;
     color: #FFC72C;
