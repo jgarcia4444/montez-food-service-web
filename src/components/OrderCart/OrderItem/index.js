@@ -34,6 +34,32 @@ const OrderItem = ({itemInfo}) => {
                     </div>
                 </div>
             </div>
+            <div className="order-item-bottom-row">
+                <div className="item-price-per-container">
+                    <div className="item-price-per-label-row">
+                        <h6 className="item-label">
+                            Price Per
+                        </h6>
+                    </div>
+                    <div className="item-price-per-row">
+                        <p className="item-value">
+                            ${price}
+                        </p>
+                    </div>
+                </div>
+                <div className="item-quantity-container">
+                    <div className="item-quantity-label-row">
+                        <h6 className="item-label">
+                            Quantity
+                        </h6>
+                    </div>
+                    <div className="item-quantity-row">
+                        <p className="item-value">
+                            {quantity}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

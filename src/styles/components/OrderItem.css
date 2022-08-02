@@ -5,11 +5,11 @@
     font-weight: 300;
 }
 
-.item-name-container {
+.item-name-container, .item-price-per-container {
     width: 60%;
 }
 
-.item-total-price-container {
+.item-total-price-container, .item-quantity-container {
     width: 30%;
 }
 
@@ -30,7 +30,7 @@
     margin: 2px 0;
 }
 
-.order-item-top-row {
+.order-item-top-row, .order-item-bottom-row {
     display: flex;
     text-align: left;
     justify-content: space-between;
