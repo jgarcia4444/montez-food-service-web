@@ -5,6 +5,12 @@ const initialState = {
 
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "REMOVE_ORDER_ITEM":
+            let itemsWithRemovedItem = state.items.filter(item => item.description !== action.itemName);
+            return {
+                ...state,
+                items: itemsWithRemovedItem,
+            }
         case "ADD_ITEM_TO_CART":
             if (state.items.some(item => item.description === action.cartItem.description)) {
                 let itemToBeUpdatedIndex = 0;

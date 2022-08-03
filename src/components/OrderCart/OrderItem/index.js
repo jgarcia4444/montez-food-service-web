@@ -1,10 +1,13 @@
 
 import React from 'react';
 import {FiTrash, FiEdit} from 'react-icons/fi';
+import { connect } from 'react-redux';
 
 import '../../../styles/components/OrderItem.css';
 
-const OrderItem = ({itemInfo}) => {
+import removeOrderItem from '../../../redux/actions/cartActions/removeOrderItem';
+
+const OrderItem = ({itemInfo, removeOrderItem}) => {
 
     const {description, price, quantity, totalPrice} = itemInfo;
 
@@ -13,7 +16,7 @@ const OrderItem = ({itemInfo}) => {
     };
 
     const handleRemoveOrderItem = () => {
-        
+        removeOrderItem(description);
     }
 
     return (
@@ -78,4 +81,13 @@ const OrderItem = ({itemInfo}) => {
     )
 }
 
-export default OrderItem;
+const mapDispatchToProps = dispatch => {
+    return {
+        removeOrderItem: (itemName) => dispatch(removeOrderItem(itemName)),
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(OrderItem);
