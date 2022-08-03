@@ -1,11 +1,21 @@
 
 import React from 'react';
+import {FiTrash, FiEdit} from 'react-icons/fi';
 
 import '../../../styles/components/OrderItem.css';
 
 const OrderItem = ({itemInfo}) => {
 
     const {description, price, quantity, totalPrice} = itemInfo;
+
+    const handleEditClick = () => {
+
+    };
+
+    const handleRemoveOrderItem = () => {
+        
+    }
+
     return (
         <div className="order-item-row">
             <div className="order-item-top-row">
@@ -59,6 +69,10 @@ const OrderItem = ({itemInfo}) => {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className="order-item-action-row">
+                <FiEdit onClick={handleEditClick} size={16} className="order-item-action-icon" />
+                <FiTrash onClick={handleRemoveOrderItem} size={16} className="order-item-action-icon" />
             </div>
         </div>
     )
