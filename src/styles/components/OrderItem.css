@@ -15,7 +15,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    margin: 2vh 0;
+    margin: 2vh 0 0 0;
 }
 
 .cost-calulation-label {

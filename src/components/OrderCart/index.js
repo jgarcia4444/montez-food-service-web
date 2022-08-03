@@ -42,6 +42,10 @@ const OrderCart = ({items}) => {
             return (parseFloat(calculateSubTotal()) + parseFloat(calculateSalesTax())).toFixed(2);
         }
     }
+    
+    const handleOrderCheckout = () => {
+        
+    }
 
     return (
         <div className="order-cart-container">
@@ -62,6 +66,9 @@ const OrderCart = ({items}) => {
                     <h4 className="cost-calulation-label">Total:</h4>
                     <span className="calculated-values">${calculateOrderTotal()}</span>
                 </div>
+            </div>
+            <div className="order-checkout-button" onClick={handleOrderCheckout}>
+                Checkout
             </div>
         </div>
     )
