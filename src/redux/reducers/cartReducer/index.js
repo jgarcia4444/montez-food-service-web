@@ -5,6 +5,22 @@ const initialState = {
 
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "EDIT_ORDER_ITEM_QUANTITY":
+            let itemToEditQuantity = state.items.filter(item => item.description === action.orderItemInfo.description)[0];
+            let indexToReplace;
+            for (let i = 0; i < state.items.length; i++) {
+                let orderItem = state.items[i]
+                if (orderItem.description === action.orderItemInfo.description) {
+                    indexToReplace = i;
+                    break;
+                }
+            }
+            itemToEditQuantity.quantity = action.orderItemInfo.quantity;
+            let itemsWithUpdatedQuantity = [itemToEditQuantity,...state.items.filter(orderItem => orderItem.description !== action.orderItemInfo.description)];
+            return {
+                ...state,
+                items: itemsWithUpdatedQuantity
+            }
         case "UPDATE_ORDER_ITEM_QUANTITY":
             state.items.forEach(item => {
                 if (item.description === action.cartItem.description) {

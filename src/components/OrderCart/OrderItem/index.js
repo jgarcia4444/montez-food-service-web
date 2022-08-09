@@ -1,23 +1,55 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import {FiTrash, FiEdit} from 'react-icons/fi';
 import { connect } from 'react-redux';
 
 import '../../../styles/components/OrderItem.css';
 
 import removeOrderItem from '../../../redux/actions/cartActions/removeOrderItem';
+import updateOrderItemQuantity from '../../../redux/actions/cartActions/updateOrderItemQuantity';
 
-const OrderItem = ({itemInfo, removeOrderItem}) => {
+const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
+
+    const [editingQuantity, setEditingQuantity] = useState(false);
+    const [newQuantityValue, setNewQuantityValue] = useState(itemInfo.quantity)
 
     const {description, price, quantity, totalPrice} = itemInfo;
-
-    const handleEditClick = () => {
-
-    };
 
     const handleRemoveOrderItem = () => {
         removeOrderItem(description);
     }
+
+    const handleEditItemClick = () => {
+        if (editingQuantity === true) {
+            if (newQuantityValue !== quantity) {
+                // Save new quantity if changed
+                let editOrderItemInfo = {
+                    description,
+                    newQuantityValue
+                }
+                updateOrderItemQuantity(editOrderItemInfo)
+            }
+        } else {
+            setEditingQuantity(true);
+        }
+    }
+
+    const handleOrderItemQuantityChange = (e) => {
+        const {value} = e.target;
+        if (parseInt(value) < 1) {
+            setNewQuantityValue('1');
+        } else {
+            setNewQuantityValue(value)
+        }
+    }
+
+    const orderItemQuantity = editingQuantity === false ?
+    <p className="item-value">
+        {quantity}
+    </p> :
+    <div className="editing-quantity-input-container">
+        <input type="number" className="editing-quantity-input" value={newQuantityValue} onChange={handleOrderItemQuantityChange} />
+    </div>
 
     return (
         <div className="order-item-row">
@@ -67,14 +99,12 @@ const OrderItem = ({itemInfo, removeOrderItem}) => {
                         </h6>
                     </div>
                     <div className="item-quantity-row">
-                        <p className="item-value">
-                            {quantity}
-                        </p>
+                        {orderItemQuantity}
                     </div>
                 </div>
             </div>
             <div className="order-item-action-row">
-                <FiEdit onClick={handleEditClick} size={16} className="order-item-action-icon" />
+                <FiEdit onClick={handleEditItemClick} size={16} className="order-item-action-icon" />
                 <FiTrash onClick={handleRemoveOrderItem} size={16} className="order-item-action-icon" />
             </div>
         </div>
@@ -83,7 +113,8 @@ const OrderItem = ({itemInfo, removeOrderItem}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        removeOrderItem: (itemName) => dispatch(removeOrderItem(itemName)),
+        removeOrderItem: itemName => dispatch(removeOrderItem(itemName)),
+        updateOrderItemQuantity: orderItemInfo => dispatch(updateOrderItemQuantity(orderItemInfo)),
     }
 }
 
