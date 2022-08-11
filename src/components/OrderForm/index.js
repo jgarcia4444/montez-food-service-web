@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import '../../styles/components/OrderForm.css'
@@ -60,6 +60,12 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
 
 
     const configureItemFinderText = selectedSuggestion.description === "" ? itemText : selectedSuggestion.description;
+
+    useEffect(() => {
+        if (selectedSuggestion.description !== "") {
+            clearSuggestions();
+        }
+    }, [selectedSuggestion.description])
 
     return (
         <div className="order-form-container">
