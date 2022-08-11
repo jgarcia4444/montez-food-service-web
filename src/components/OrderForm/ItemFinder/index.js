@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import '../../../styles/components/ItemFinder.css';
 import { FiChevronDown } from 'react-icons/fi';
 
 import Suggestion from './Suggestion';
 
-const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
+const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
 
     const {suggestions} = order;
 
@@ -14,6 +14,16 @@ const ItemFinder = ({itemFinderTextChange, itemText, order}) => {
     const renderSuggestions = () => {
         return suggestions.map((item, i) => <Suggestion key={`${item.description}${i}`} item={item} />)
     }
+
+    console.log("SUGGETIONS!!!", suggestions);
+
+    useEffect(() => {
+        if (suggestions.length > 0) {
+            setShowSuggestions(true);
+        } else {
+            setShowSuggestions(false);
+        }
+    },[suggestions])
 
     return (
         <div className="item-finder-container"> 

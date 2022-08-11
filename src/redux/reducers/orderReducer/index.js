@@ -16,6 +16,11 @@ const initialState = {
 
 const orderReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "CLEAR_SUGGESTIONS":
+            return {
+                ...state,
+                suggestions: [],
+            }
         case "CLEAR_SELECTED_SUGGESTION":
             return {
                 ...state,

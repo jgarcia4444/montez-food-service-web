@@ -8,8 +8,9 @@ import QuantitySelector from './QuantitySelector';
 import fetchSuggestions from '../../redux/actions/orderActions/fetchSuggestions';
 import clearSelectedSuggestion from '../../redux/actions/orderActions/clearSelectedSuggestion';
 import addItemOrderToCart from '../../redux/actions/cartActions/addItemOrderToCart';
+import clearSuggestions from '../../redux/actions/orderActions/clearSuggestions';
 
-const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion, clearSelectedSuggestion, addItemOrderToCart}) => {
+const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSuggestion, clearSelectedSuggestion, addItemOrderToCart}) => {
 
     const [itemText, setItemText] = useState('');
     const [quantity, setQuantity] = useState('1');
@@ -49,9 +50,14 @@ const OrderForm = ({userInfo, fetchSuggestions, selectedSuggestion, clearSelecte
             clearSelectedSuggestion()
             inputText = getNewItemTextValue(value);
         }
-        fetchSuggestions(inputText);
+        if (value === "") {
+            clearSuggestions();
+        } else {
+            fetchSuggestions(inputText);
+        }
         setItemText(inputText);
     }
+
 
     const configureItemFinderText = selectedSuggestion.description === "" ? itemText : selectedSuggestion.description;
 
@@ -95,7 +101,8 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
         clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion()),
-        addItemOrderToCart: (cartItem) => dispatch(addItemOrderToCart(cartItem))
+        addItemOrderToCart: (cartItem) => dispatch(addItemOrderToCart(cartItem)),
+        clearSuggestions: () => dispatch(clearSuggestions()),
     }
 }
 
