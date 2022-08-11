@@ -22,12 +22,13 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
     const handleEditItemClick = () => {
         if (editingQuantity === true) {
             if (newQuantityValue !== quantity) {
-                // Save new quantity if changed
                 let editOrderItemInfo = {
                     description,
                     newQuantityValue
                 }
                 updateOrderItemQuantity(editOrderItemInfo)
+                setEditingQuantity(false);
+                // Show a success message
             }
         } else {
             setEditingQuantity(true);

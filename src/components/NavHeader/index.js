@@ -17,7 +17,6 @@ const NavHeader = ({userInfo}) => {
     const [activePage, setActivePage] = useState('');
     const [showMobileNavLinks, setShowMobileNavLinks] = useState(false);
     const navigate = useNavigate();
-    console.log(activePage);
 
     const handleUserPress = () => {
         setShowMobileNavLinks(false);

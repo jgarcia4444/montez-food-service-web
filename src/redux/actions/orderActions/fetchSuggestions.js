@@ -12,7 +12,6 @@ const fetchSuggestions = (itemQuery) => {
                 let {success} = data;
                 if (success === true) {
                     let {suggestions} = data;
-                    console.log("Here are the suggestions from the fetch suggestions action", suggestions);
                     return dispatch({type: "SUGGESTIONS_FETCH_SUCCESS", suggestions})
                 } else {
                     let {error} = data;

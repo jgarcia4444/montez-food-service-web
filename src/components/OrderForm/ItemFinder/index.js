@@ -15,8 +15,6 @@ const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
         return suggestions.map((item, i) => <Suggestion key={`${item.description}${i}`} item={item} />)
     }
 
-    console.log("SUGGETIONS!!!", suggestions);
-
     useEffect(() => {
         if (suggestions.length > 0) {
             setShowSuggestions(true);

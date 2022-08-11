@@ -7,6 +7,7 @@ const cartReducer = (state=initialState, action) => {
     switch(action.type) {
         case "EDIT_ORDER_ITEM_QUANTITY":
             let itemToEditQuantity = state.items.filter(item => item.description === action.orderItemInfo.description)[0];
+            console.log("Item to edit found in reducer!", itemToEditQuantity);
             let indexToReplace;
             for (let i = 0; i < state.items.length; i++) {
                 let orderItem = state.items[i]
@@ -15,8 +16,11 @@ const cartReducer = (state=initialState, action) => {
                     break;
                 }
             }
-            itemToEditQuantity.quantity = action.orderItemInfo.quantity;
+            console.log("Here is the index in the items that it is found at!", indexToReplace);
+            itemToEditQuantity.quantity = action.orderItemInfo.newQuantityValue;
+            console.log("Item to edit quantity with the quantity changed", itemToEditQuantity);
             let itemsWithUpdatedQuantity = [itemToEditQuantity,...state.items.filter(orderItem => orderItem.description !== action.orderItemInfo.description)];
+            console.log("New items updated with the item with the updated quantity:", itemsWithUpdatedQuantity)
             return {
                 ...state,
                 items: itemsWithUpdatedQuantity
