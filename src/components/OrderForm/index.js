@@ -35,7 +35,8 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
                 quantity,
                 totalPrice: configureTotalPrice()
             };
-            addItemOrderToCart(cartItem)
+            addItemOrderToCart(cartItem);
+            setQuantity('1');
         }
     }
 

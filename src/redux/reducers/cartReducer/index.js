@@ -7,7 +7,6 @@ const cartReducer = (state=initialState, action) => {
     switch(action.type) {
         case "EDIT_ORDER_ITEM_QUANTITY":
             let itemToEditQuantity = state.items.filter(item => item.description === action.orderItemInfo.description)[0];
-            console.log("Item to edit found in reducer!", itemToEditQuantity);
             let indexToReplace;
             for (let i = 0; i < state.items.length; i++) {
                 let orderItem = state.items[i]
@@ -16,11 +15,8 @@ const cartReducer = (state=initialState, action) => {
                     break;
                 }
             }
-            console.log("Here is the index in the items that it is found at!", indexToReplace);
             itemToEditQuantity.quantity = action.orderItemInfo.newQuantityValue;
-            console.log("Item to edit quantity with the quantity changed", itemToEditQuantity);
             let itemsWithUpdatedQuantity = [itemToEditQuantity,...state.items.filter(orderItem => orderItem.description !== action.orderItemInfo.description)];
-            console.log("New items updated with the item with the updated quantity:", itemsWithUpdatedQuantity)
             return {
                 ...state,
                 items: itemsWithUpdatedQuantity
@@ -53,11 +49,12 @@ const cartReducer = (state=initialState, action) => {
                     }
                 }
                 let itemToBeUpdated = state.items[itemToBeUpdatedIndex];
-                let leftItems = itemToBeUpdatedIndex !== 0 ? state.items.slice(0, itemToBeUpdatedIndex) : [];
-                let rightItems = itemToBeUpdatedIndex !== state.items.length - 1 ? state.items.slice(itemToBeUpdatedIndex + 1) : [];
                 itemToBeUpdated.quantity = parseInt(itemToBeUpdated.quantity) + parseInt(action.cartItem.quantity);
                 itemToBeUpdated.totalPrice = (parseFloat(itemToBeUpdated.price) * parseInt(itemToBeUpdated.quantity)).toFixed(2);
-                let updatedItems = [...leftItems, ...rightItems, itemToBeUpdated];
+                let updatedItems = state.items.filter(stateItem => stateItem.description !== action.cartItem.description);
+                updatedItems.push(itemToBeUpdated);
+                console.log("Item to be updated after update:", itemToBeUpdated);
+                console.log("Updated Items:", updatedItems);
                 return {
                     ...state,
                     items: updatedItems,
