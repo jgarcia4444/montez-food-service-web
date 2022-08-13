@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import '../../../styles/components/OrderItem.css';
 
-import CartActionAlert from '../../Alerts/CartActionAlert';
 
 import removeOrderItem from '../../../redux/actions/cartActions/removeOrderItem';
 import updateOrderItemQuantity from '../../../redux/actions/cartActions/updateOrderItemQuantity';

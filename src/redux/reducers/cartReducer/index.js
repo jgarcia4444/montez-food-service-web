@@ -29,27 +29,26 @@ const cartReducer = (state=initialState, action) => {
                 items: itemsWithRemovedItem,
             }
         case "ADD_ITEM_TO_CART":
-            console.log("TEST!!!")
             if (state.items.some(item => item.description === action.cartItem.description)) {
-                let itemToBeUpdatedIndex = 0;
-                for (let i = 0; i < state.items.length; i++) {
-                    let iItem = state.items[i];
-                    if (iItem.description === action.cartItem.description) {
-                        itemToBeUpdatedIndex = i
+                console.log("TEST!!!")
+                let itemIndex;
+                for(let i = 0; i < state.items.length; i++) {
+                    let item = state.items[i];
+                    if (item.description === action.cartItem.description) {
+                        itemIndex = i;
                         break;
                     }
                 }
-                let itemToBeUpdated = state.items[itemToBeUpdatedIndex];
-                itemToBeUpdated.quantity = parseInt(itemToBeUpdated.quantity) + parseInt(action.cartItem.quantity);
-                itemToBeUpdated.totalPrice = (parseFloat(itemToBeUpdated.price) * parseInt(itemToBeUpdated.quantity)).toFixed(2);
-                let updatedItems = state.items.filter(stateItem => stateItem.description !== action.cartItem.description);
-                updatedItems.push(itemToBeUpdated);
-                console.log("Item to be updated after update:", itemToBeUpdated);
-                console.log("Updated Items:", updatedItems);
+                let itemsWithUpdatedProperties = state.items.filter(item => item.description !== action.cartItem.description);
+                console.log(itemsWithUpdatedProperties);
+                let newQuantity = parseInt(state.items[itemIndex].quantity) + parseInt(action.cartItem.quantity)
+                let updatedItem = updateItemsProperties(state.items[itemIndex], newQuantity)
+                itemsWithUpdatedProperties.push(updatedItem);
+                console.log(itemsWithUpdatedProperties);
                 return {
                     ...state,
-                    items: updatedItems,
-                };
+                    items: itemsWithUpdatedProperties,
+                }
             } else {
                 return {
                     ...state,

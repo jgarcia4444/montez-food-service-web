@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 
 import '../../styles/components/OrderCart.css';
 import OrderItem from './OrderItem';
 
-const OrderCart = ({items}) => {
+const OrderCart = ({items, companyName}) => {
+
+    const [showUserAuthOptions, setShowUserAuthOptions] = useState(false);
 
     const renderOrderItems = () => {
         if (items.length < 1) {
@@ -43,8 +45,20 @@ const OrderCart = ({items}) => {
     }
     
     const handleOrderCheckout = () => {
-        
+        if (items.length !== 0) {
+            if (companyName === "") {
+                // alert user they must be signed in
+                // give option to sign in or sign up
+                setShowUserAuthOptions(true)
+            } else {
+                // send order
+            }
+        }
     }
+
+    useEffect(() => {
+
+    }, [items])
 
     return (
         <div className="order-cart-container">
@@ -75,7 +89,8 @@ const OrderCart = ({items}) => {
 
 const mapStateToProps = state => {
     return {
-        items: state.cart.items
+        items: state.cart.items,
+        companyName: state.userReducer.userInfo.companyName
     }
 }
 
