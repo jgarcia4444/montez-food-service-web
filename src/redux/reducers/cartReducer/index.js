@@ -3,24 +3,14 @@ const initialState = {
     items: [],
 }
 
+const updateItemsProperties = (item, newQuantity) => {
+    item.quantity = newQuantity;
+    item.totalPrice = (parseFloat(item.price) * parseInt(newQuantity)).toFixed(2);
+    return item;
+}
+
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "EDIT_ORDER_ITEM_QUANTITY":
-            let itemToEditQuantity = state.items.filter(item => item.description === action.orderItemInfo.description)[0];
-            let indexToReplace;
-            for (let i = 0; i < state.items.length; i++) {
-                let orderItem = state.items[i]
-                if (orderItem.description === action.orderItemInfo.description) {
-                    indexToReplace = i;
-                    break;
-                }
-            }
-            itemToEditQuantity.quantity = action.orderItemInfo.newQuantityValue;
-            let itemsWithUpdatedQuantity = [itemToEditQuantity,...state.items.filter(orderItem => orderItem.description !== action.orderItemInfo.description)];
-            return {
-                ...state,
-                items: itemsWithUpdatedQuantity
-            }
         case "UPDATE_ORDER_ITEM_QUANTITY":
             state.items.forEach(item => {
                 if (item.description === action.cartItem.description) {
@@ -39,6 +29,7 @@ const cartReducer = (state=initialState, action) => {
                 items: itemsWithRemovedItem,
             }
         case "ADD_ITEM_TO_CART":
+            console.log("TEST!!!")
             if (state.items.some(item => item.description === action.cartItem.description)) {
                 let itemToBeUpdatedIndex = 0;
                 for (let i = 0; i < state.items.length; i++) {

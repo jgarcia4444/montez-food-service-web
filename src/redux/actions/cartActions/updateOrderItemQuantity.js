@@ -1,9 +1,11 @@
 
 const updateOrderItemQuantity = (orderItemInfo) => {
-    console.log("ORDER ITEM INFO", orderItemInfo);
     return {
-        type: "EDIT_ORDER_ITEM_QUANTITY",
-        orderItemInfo
+        type: "UPDATE_ORDER_ITEM_QUANTITY",
+        cartItem: {
+            description: orderItemInfo.description,
+            quantity: orderItemInfo.newQuantityValue
+        }
     }
 }
 

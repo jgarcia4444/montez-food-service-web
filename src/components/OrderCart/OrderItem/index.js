@@ -62,7 +62,6 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
 
     return (
         <div className="order-item-row">
-            {showUpdateAlert === true && <CartActionAlert destructive={false} title={"Item Updated"} message={`${description} quantity successfully changed.`} />}
             <div className="order-item-top-row">
                 <div className="item-name-container">
                     <div className="item-name-label-row">

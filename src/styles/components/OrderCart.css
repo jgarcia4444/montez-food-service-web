@@ -8,7 +8,6 @@
     border-top-left-radius: 5px;
     box-shadow: -3px 0px 3px -1px gray;
     position: relative;
-    z-index: -1;
 }
 
 .order-cart-title {
