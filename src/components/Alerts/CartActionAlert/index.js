@@ -30,15 +30,17 @@ const CartActionAlert = ({title, message, destructive}) => {
     }
 
     return (
-        <div className="cart-action-alert-container">
-            <div className="action-title-row">
-                <h3 className={dynamicTitleClassName()}>{title}</h3>
-            </div>
-            <div className="action-icon-row">
-                {configureIcon()}
-            </div>
-            <div className="action-message-row">
-                <p className={dynamicMessageClassName()}>{message}</p>
+        <div className="cart-action-overall-container">
+            <div className="cart-action-alert-container">
+                <div className="action-title-row">
+                    <h3 className={dynamicTitleClassName()}>{title}</h3>
+                </div>
+                <div className="action-icon-row">
+                    {configureIcon()}
+                </div>
+                <div className="action-message-row">
+                    <p className={dynamicMessageClassName()}>{message}</p>
+                </div>
             </div>
         </div>
     )

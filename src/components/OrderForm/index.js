@@ -39,7 +39,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
             };
             addItemOrderToCart(cartItem);
             setQuantity('1');
-            presentActionAlert()
+            presentActionAlert();
         }
     }
 

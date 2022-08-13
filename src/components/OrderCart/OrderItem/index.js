@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import '../../../styles/components/OrderItem.css';
 
+import CartActionAlert from '../../Alerts/CartActionAlert';
+
 import removeOrderItem from '../../../redux/actions/cartActions/removeOrderItem';
 import updateOrderItemQuantity from '../../../redux/actions/cartActions/updateOrderItemQuantity';
 
@@ -12,12 +14,15 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
 
     const [editingQuantity, setEditingQuantity] = useState(false);
     const [newQuantityValue, setNewQuantityValue] = useState(itemInfo.quantity)
+    const [showDestructiveAlert, setShowDestructiveAlert] = useState(false);
+    const [showUpdateAlert, setShowUpdateAlert] = useState(false);
 
     const {description, price, quantity, totalPrice} = itemInfo;
-    console.log("Order Item Info:", itemInfo);
 
     const handleRemoveOrderItem = () => {
         removeOrderItem(description);
+        setShowDestructiveAlert(true);
+        setTimeout(() => setShowDestructiveAlert(false), 2000);
     }
 
     const handleEditItemClick = () => {
@@ -30,6 +35,8 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
                 updateOrderItemQuantity(editOrderItemInfo)
                 setEditingQuantity(false);
                 // Show a success message
+                setShowUpdateAlert(true);
+                setTimeout(() => setShowUpdateAlert(false), 2000);
             }
         } else {
             setEditingQuantity(true);
@@ -55,6 +62,7 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
 
     return (
         <div className="order-item-row">
+            {showUpdateAlert === true && <CartActionAlert destructive={false} title={"Item Updated"} message={`${description} quantity successfully changed.`} />}
             <div className="order-item-top-row">
                 <div className="item-name-container">
                     <div className="item-name-label-row">
