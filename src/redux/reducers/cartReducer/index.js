@@ -14,7 +14,7 @@ const cartReducer = (state=initialState, action) => {
         case "UPDATE_ORDER_ITEM_QUANTITY":
             state.items.forEach(item => {
                 if (item.description === action.cartItem.description) {
-                    item.quantity = action.cartItem.quantity
+                    item = updateItemsProperties(item, action.cartItem.quantity)
                 }
             })
             let quantityUpdatedItems = state.items
