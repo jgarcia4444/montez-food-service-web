@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 
 import '../../styles/components/OrderCart.css';
+
+import UserAuthAlert from '../Alerts/UserAuthAlert';
 import OrderItem from './OrderItem';
 
 const OrderCart = ({items, companyName}) => {
@@ -56,12 +58,11 @@ const OrderCart = ({items, companyName}) => {
         }
     }
 
-    useEffect(() => {
-
-    }, [items])
-
     return (
         <div className="order-cart-container">
+            {showUserAuthOptions === true &&
+                <UserAuthAlert closeAuthAlert={() => setShowUserAuthOptions(false)} />
+            }
             <h2 className="order-cart-title">Order</h2>
             <div className="order-items-container">
                 {renderOrderItems()}
