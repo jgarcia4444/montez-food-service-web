@@ -32,7 +32,10 @@ const App = () => {
               <Route path="/order-online" element={<OrderOnline />} />
               <Route path="/cost-optimization" element={<CostOptimization />} />
               <Route path="/users/account" element={<Account />} />
-              <Route path="/user-auth" element={<UserAuth />} />
+              <Route path="/user-auth">
+                <Route path="/user-auth" element={<UserAuth />} />
+                <Route path="/user-auth/:auth_state" element={<UserAuth />} />
+              </Route>
             </Routes>
             <Footer />
           </div>

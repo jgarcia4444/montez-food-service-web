@@ -1,9 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {FiMinus} from 'react-icons/fi';
+import { connect } from 'react-redux';
 
 import '../../../styles/components/Alerts/UserAuthAlert.css'
 
-const UserAuthAlert = ({closeAuthAlert}) => {
+const UserAuthAlert = ({closeAuthAlert, items}) => {
+
+    const navigate = useNavigate();
+
+    const handleUserAuthClick = (authAction) => {
+        console.log("Hanlde user auth click function triggered!!");
+        if (authAction === "LOGIN") {
+            navigate("/user-auth/login");
+        } else if (authAction === "SIGNUP") {
+            navigate("/user-auth/signup");
+        }
+    }
 
     return (
         <div className="user-auth-alert-container">
@@ -17,7 +30,7 @@ const UserAuthAlert = ({closeAuthAlert}) => {
                 <small className="message sub-message">Your order will be saved while you login or create an account.</small>
             </div>
             <div className="action-row">
-                <div className="action-button action-login-button">
+                <div onClick={() => handleUserAuthClick("LOGIN")} className="action-button action-login-button">
                         Login
                 </div>
             </div>
@@ -25,7 +38,7 @@ const UserAuthAlert = ({closeAuthAlert}) => {
                 <small><strong>Or</strong></small>
             </div>
             <div className="action-row">
-                <div className="action-button action-signup-button">
+                <div onClick={() => handleUserAuthClick("SIGNUP")} className="action-button action-signup-button">
                         Sign Up
                 </div>
             </div>
@@ -33,4 +46,13 @@ const UserAuthAlert = ({closeAuthAlert}) => {
     )
 }
 
-export default UserAuthAlert;
+const mapStateToProps = state => {
+    return {
+        items: state.cart.items
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(UserAuthAlert);
