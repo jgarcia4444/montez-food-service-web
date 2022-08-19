@@ -49,11 +49,10 @@ const OrderCart = ({items, companyName}) => {
     const handleOrderCheckout = () => {
         if (items.length !== 0) {
             if (companyName === "") {
-                // alert user they must be signed in
-                // give option to sign in or sign up
                 setShowUserAuthOptions(true)
             } else {
-                // send order
+                // send order and persist order as a past order.
+                // send confirmation that the order has been received.
             }
         }
     }
@@ -82,7 +81,7 @@ const OrderCart = ({items, companyName}) => {
                 </div>
             </div>
             <div className="order-checkout-button" onClick={handleOrderCheckout}>
-                Checkout
+                Order
             </div>
         </div>
     )

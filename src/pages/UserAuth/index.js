@@ -313,7 +313,11 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
-                    navigate('/users/account');
+                    if (authState === "login") {
+                        navigate('/order-online')
+                    } else {
+                        navigate('/users/account');
+                    }
                 }
             } else {
                 configureGenericError(loggingInError);
@@ -322,7 +326,11 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
-                    navigate('/users/account');
+                    if (authState === "signup") {
+                        navigate("/order-online");
+                    } else {
+                        navigate('/users/account');
+                    }
                 }
             } else {
                 configureGenericError(userCreationError);
