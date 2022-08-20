@@ -8,6 +8,7 @@
 
 .quantity-selector-label {
     margin-bottom: 1%;
+    color: #a0262e;
 }
 
 .quantity-selector-label-row {
@@ -16,11 +17,12 @@
 }
 
 .quantity-selector-input {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #a0262e;
     border-top: none;
     border-left: none;
     border-right: none;
     box-shadow: none;
+    color: #a0262e;
 }
 
 .quantity-selector-input-container {

@@ -1,6 +1,7 @@
-import { baseUrl } from '../../../config/Urls'
+import Urls from '../../../config/Urls';
 
 const sendOrder = (orderDetails) => {
+    const {baseUrl} = Urls;
     const {email, items} = orderDetails;
     const url = `${baseUrl}order-online/orders`;
     let configuredBody = {

@@ -13,7 +13,6 @@ const OrderCart = ({items, userInfo, sendOrder}) => {
 
     const [showUserAuthOptions, setShowUserAuthOptions] = useState(false);
     const {companyName, email, pastOrders} = userInfo;
-    const pastOrdersLength = pastOrders.length;
 
     const navigate = useNavigate();
 
@@ -67,11 +66,8 @@ const OrderCart = ({items, userInfo, sendOrder}) => {
     }
 
     useEffect(() => {
-        if (pastOrdersLength !== pastOrders.length) {
-            // take to confirmation page.
-            navigate('/order-online/confirmation')
-        }
-    },[pastOrders.length])
+
+    })
 
     return (
         <div className="order-cart-container">

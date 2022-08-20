@@ -6,7 +6,14 @@ const OrderConfirmation = () => {
 
     return (
         <div className="order-confirmation-container">
-            <h2>Order Confirmation</h2>
+            <div className="title-row">
+                <h2 className="order-title">Order Confirmation</h2>
+            </div>
+            <div className="message-row">
+                <p className="order-message">
+                    Your order has been received. Look out for an email regarding confirmation of your order.
+                </p>
+            </div>
         </div>
     )
 }

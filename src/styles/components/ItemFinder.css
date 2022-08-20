@@ -15,7 +15,13 @@
 .item-finder-input {
     border: none;
     width: 80%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #a0262e;
+    color: #a0262e;
+}
+
+.item-finder-input::placeholder {
+    color: #a0262e;
+    opacity: 0.5;
 }
 
 .item-finder-input-container {
@@ -28,6 +34,7 @@
 
 .item-finder-label {
     margin-bottom: 1%;
+    color: #a0262e;
 }
 
 .item-finder-label-row {
@@ -53,6 +60,7 @@
 
 .suggestions-indicator {
     transition: all 300ms;
+    color: #a0262e;
 }
 
 .suggestions-indicator:hover {
