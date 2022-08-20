@@ -3,7 +3,8 @@ const initialState = {
     userInfo: {
         email: "",
         companyName: "",
-        otaCode: ""
+        otaCode: "",
+        pastOrders: [],
     },
     loading: false,
     userCreationError: "",

@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import sendOrder from '../../redux/actions/cartActions/sendOrder';
 
 import '../../styles/components/OrderCart.css';
 
 import UserAuthAlert from '../Alerts/UserAuthAlert';
 import OrderItem from './OrderItem';
 
-const OrderCart = ({items, companyName}) => {
+const OrderCart = ({items, userInfo, sendOrder}) => {
 
     const [showUserAuthOptions, setShowUserAuthOptions] = useState(false);
+    const {companyName, email, pastOrders} = userInfo;
+    const pastOrdersLength = pastOrders.length;
+
+    const navigate = useNavigate();
 
     const renderOrderItems = () => {
         if (items.length < 1) {
@@ -51,11 +58,20 @@ const OrderCart = ({items, companyName}) => {
             if (companyName === "") {
                 setShowUserAuthOptions(true)
             } else {
-                // send order and persist order as a past order.
-                // send confirmation that the order has been received.
+                sendOrder({
+                    email,
+                    items
+                })
             }
         }
     }
+
+    useEffect(() => {
+        if (pastOrdersLength !== pastOrders.length) {
+            // take to confirmation page.
+            navigate('/order-online/confirmation')
+        }
+    },[pastOrders.length])
 
     return (
         <div className="order-cart-container">
@@ -90,11 +106,17 @@ const OrderCart = ({items, companyName}) => {
 const mapStateToProps = state => {
     return {
         items: state.cart.items,
-        companyName: state.userReducer.userInfo.companyName
+        userInfo: state.userReducer.userInfo,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        sendOrder: (orderDetails) => dispatch(sendOrder(orderDetails)),
     }
 }
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(OrderCart);
