@@ -1,6 +1,8 @@
 
 const initialState = {
     items: [],
+    sendingOrder: false,
+    orderSendError: ""
 }
 
 const updateItemsProperties = (item, newQuantity) => {
