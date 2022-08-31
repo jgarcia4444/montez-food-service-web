@@ -13,6 +13,21 @@ const updateItemsProperties = (item, newQuantity) => {
 
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ORDER_SEND_ERROR":
+            return {
+                ...state,
+                sendingOrder: false,
+            }
+        case "ORDER_SEND_SUCCESS":
+            return {
+                ...state,
+                sendingOrder: false,
+            }
+        case "SENDING_ORDER":
+            return {
+                ...state,
+                sendingOrder: true,
+            }
         case "UPDATE_ORDER_ITEM_QUANTITY":
             state.items.forEach(item => {
                 if (item.description === action.cartItem.description) {

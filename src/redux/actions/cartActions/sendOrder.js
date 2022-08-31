@@ -1,6 +1,7 @@
 import Urls from '../../../config/Urls';
 
 const sendOrder = (orderDetails) => {
+
     const {baseUrl} = Urls;
     const {email, items} = orderDetails;
     const url = `${baseUrl}order-online/orders`;
@@ -27,10 +28,12 @@ const sendOrder = (orderDetails) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {pastOrders} = data;
-                    return dispatch({type: "ORDER_SEND_SUCCESS", pastOrders});
+                    let {pastOrder} = data;
+                    console.log("Past Order",pastOrder)
+                    return dispatch({type: "ORDER_SEND_SUCCESS", pastOrder});
                 } else {
                     let {error} = data;
+                    console.log("Order Error", error);
                     let {message} = error;
                     return dispatch({type: "ORDER_SEND_ERROR", errorMessage: message});
                 }

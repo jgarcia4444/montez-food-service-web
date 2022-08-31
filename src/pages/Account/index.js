@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import '../../styles/account/Account.css';
+import '../../styles/Global.css';
 import Layout from '../../shared/Layout';
+import PastOrders from '../../components/PastOrders';
 
 
 const Account = ({userInfo, logout}) => {
@@ -23,6 +25,9 @@ const Account = ({userInfo, logout}) => {
             <div className="logout-row">
                 <div onClick={() => logout()} className="logout-button">Logout</div>
             </div>
+            <div className="section-title-row">
+                <h2 className="section-title">Account Info</h2>
+            </div>
             <div className="account-container">
                 <div className="user-information-container">
                     <div className="user-information-row">
@@ -38,9 +43,7 @@ const Account = ({userInfo, logout}) => {
                         <h4 className="user-information">Name: <strong>{companyName}</strong></h4>
                     </div>
                 </div>
-                <div className="past-orders-container">
-                    <h2>Past Orders</h2>
-                </div>
+                <PastOrders />
             </div>
         </Layout>
     )

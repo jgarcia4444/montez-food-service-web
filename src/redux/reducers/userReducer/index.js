@@ -29,6 +29,12 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ORDER_SEND_SUCCESS":
+            let updatedPastOrders = [action.pastOrder, ...state.pastOrders]
+            return {
+                ...state,
+                pastOrders: updatedPastOrders,
+            }
         case "PASSWORD_CHANGE_ERROR":
             return {
                 ...state,
