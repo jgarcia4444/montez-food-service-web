@@ -9,7 +9,9 @@ import '../../styles/components/OrderCart.css';
 import UserAuthAlert from '../Alerts/UserAuthAlert';
 import OrderItem from './OrderItem';
 
-const OrderCart = ({items, userInfo, sendOrder}) => {
+const OrderCart = ({cart, userInfo, sendOrder}) => {
+
+    const {items, orderSendError} = cart;
 
     const [showUserAuthOptions, setShowUserAuthOptions] = useState(false);
     const {companyName, email, pastOrders} = userInfo;
@@ -57,16 +59,15 @@ const OrderCart = ({items, userInfo, sendOrder}) => {
             if (companyName === "") {
                 setShowUserAuthOptions(true)
             } else {
-                sendOrder({
-                    email,
-                    items
-                })
+                sendOrder({email, items})
+                if (orderSendError === "") {
+                    navigate('/order-online/confirmation')
+                }
             }
         }
     }
 
-    useEffect(() => {
-
+    useEffect(() => {   
     })
 
     return (
@@ -101,7 +102,7 @@ const OrderCart = ({items, userInfo, sendOrder}) => {
 
 const mapStateToProps = state => {
     return {
-        items: state.cart.items,
+        cart: state.cart,
         userInfo: state.userReducer.userInfo,
     }
 }
