@@ -43,8 +43,8 @@ const PastOrder = ({orderInfo}) => {
                     ${totalPrice}
                 </div>
             </div>
-            <div className="past-order-details-action-block">
-                <FiChevronDown color={'black'} size={24} />
+            <div onClick={() => setShowDetails(!showDetails)} className="past-order-details-action-block">
+                <FiChevronDown className={`past-order-details-chevron ${showDetails === false ? 'show-details' : ''}`} color={'black'} size={24} />
             </div>
         </div>
     )

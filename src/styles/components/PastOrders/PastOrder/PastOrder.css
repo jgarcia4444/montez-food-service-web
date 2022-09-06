@@ -28,3 +28,11 @@
 .past-order-info-label {
     font-weight: bold;
 }
+
+.past-order-details-chevron {
+    transition: all 333ms ease-in;
+}
+
+.show-details {
+    transform: rotate(180deg);
+}
