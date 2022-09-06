@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem/PastOrderItem.css';
 
 const PastOrderItem = ({item}) => {
 

@@ -1,0 +1,9 @@
+
+
+.past-order-item-container {
+    width: 50%;
+    box-shadow: 0 0 3px -1px black;
+    margin: 3vh auto;
+    border-radius: 5px;
+    padding: 2vh;
+}
