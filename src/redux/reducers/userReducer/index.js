@@ -30,7 +30,7 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ORDER_SEND_SUCCESS":
-            let updatedPastOrders = [action.pastOrder].concat(state.userInfo.pastOrders)
+            let updatedPastOrders = [action.pastOrder,...state.userInfo.pastOrders]
             return {
                 ...state,
                 pastOrders: updatedPastOrders,
