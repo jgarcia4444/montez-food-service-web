@@ -3,6 +3,8 @@ import {FiChevronDown} from 'react-icons/fi';
 
 import '../../../styles/components/PastOrders/PastOrder/PastOrder.css';
 
+import PastOrderDetails from './PastOrderDetails';
+
 const PastOrder = ({orderInfo}) => {
 
     const {items, totalPrice, orderDate} = orderInfo;
@@ -15,6 +17,10 @@ const PastOrder = ({orderInfo}) => {
             itemsQuantity += parseInt(item.quantity);
         })
         return itemsQuantity;
+    }
+
+    const renderDetails = () => {
+        return showDetails === true && <PastOrderDetails orderItems={items} />
     }
 
     return (
@@ -44,8 +50,9 @@ const PastOrder = ({orderInfo}) => {
                 </div>
             </div>
             <div onClick={() => setShowDetails(!showDetails)} className="past-order-details-action-block">
-                <FiChevronDown className={`past-order-details-chevron ${showDetails === false ? 'show-details' : ''}`} color={'black'} size={24} />
+                <FiChevronDown className={`past-order-details-chevron ${showDetails === true ? 'show-details' : ''}`} color={'black'} size={24} />
             </div>
+            {renderDetails()}
         </div>
     )
 }
