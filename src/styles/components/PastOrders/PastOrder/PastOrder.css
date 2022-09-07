@@ -9,6 +9,7 @@
     border-radius: 5px;
     padding: 1vh;
     z-index: 10;
+    flex-wrap: wrap;
 }
 
 .past-order-info-block {

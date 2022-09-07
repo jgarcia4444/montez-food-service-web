@@ -1,13 +1,8 @@
 
 
 .past-order-details-container {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    z-index: 1;
     background-color: #ffffff;
-    margin-top: 5vh;
 }
 
 .past-order-items-container {
@@ -17,5 +12,5 @@
 }
 
 .past-order-details-label {
-    margin-top: 7vh;
+    /* margin-top: 5vh; */
 }
