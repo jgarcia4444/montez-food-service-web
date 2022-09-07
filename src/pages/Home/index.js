@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import '../../styles/home/Home.css';
 import Layout from '../../shared/Layout';
 import montezLogo from './imgs/montez-logo.png';
@@ -7,9 +10,19 @@ import packaging from './imgs/packaging.png'
 import teamwork from './imgs/teamwork.png';
 import ContactModal from '../../components/home/ContactModal';
 
-const Home = () => {
+const Home = ({userInfo}) => {
+
+    const navigate = useNavigate();
+
+    const {email, companyName} = userInfo;
 
     const [showContactModal, setShowContactModal] = useState(false);
+
+    // useEffect(() => {
+    //     if (email !== "" && companyName !== "") {
+    //         navigate()
+    //     }
+    // })
 
     return (
         <Layout>
@@ -97,4 +110,13 @@ const Home = () => {
     )
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer.userInfo
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(Home);

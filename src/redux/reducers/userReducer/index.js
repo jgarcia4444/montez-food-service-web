@@ -29,6 +29,11 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "persist/REHYDRATE":
+            let {payload} = action;
+            return {
+                ...payload.userReducer,
+            }
         case "ORDER_SEND_SUCCESS":
             let updatedPastOrders = [action.pastOrder,...state.userInfo.pastOrders]
             return {
