@@ -1,7 +1,23 @@
 
 
+.past-orders-box {
+    margin-top: 0;
+    background-color: #a0262e;
+    width: 80%;
+    padding: 10px;
+    height: 25vh;
+    overflow-y: scroll;
+    box-shadow: 1px 1px 3px 1px gray;
+    border-radius: 5px;
+    overflow-x :hidden;
+}
+
 .past-orders-container {
     text-align: left;
-    width: 80%;
-    margin: 5vh auto;
+    width: 100%;
+    margin: 0vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

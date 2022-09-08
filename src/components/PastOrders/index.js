@@ -22,8 +22,12 @@ const PastOrders = ({pastOrders}) => {
 
   return (
     <div className="past-orders-container">
+      <div className="section-title-row">
         <h2 className="section-title">Past Orders</h2>
-        {renderPastOrders()}
+      </div>
+        <div className="past-orders-box">
+          {renderPastOrders()}
+        </div>
     </div>
   )
 }

@@ -1,23 +1,26 @@
 
 .past-order-container {
     position: relative;
-    width: 100%;
+    width: 97.5%;
     margin: 3vh auto;
     display: flex;
     flex-direction: row;
-    box-shadow: 0 0 4px -1px gray;
+    box-shadow: 0 0 4px -1px black;
     border-radius: 5px;
     padding: 1vh;
     z-index: 10;
     flex-wrap: wrap;
 }
 
+/* #ffc72c yellow */
+/* #a0262e red */
+
 .past-order-info-block {
     width: 31%;
 }
 
 .past-order-details-action-block {
-    width: 7%;
+    width: 6%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,6 +33,11 @@
 
 .past-order-info-label {
     font-weight: bold;
+    color: #ffffff;
+}
+
+.past-order-info-value {
+    color: #ffc72c;
 }
 
 .past-order-details-chevron {
