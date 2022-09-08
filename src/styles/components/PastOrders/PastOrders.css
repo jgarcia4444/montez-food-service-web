@@ -9,7 +9,24 @@
     overflow-y: scroll;
     box-shadow: 1px 1px 3px 1px gray;
     border-radius: 5px;
-    overflow-x :hidden;
+    overflow-x: hidden;
+}
+
+.past-orders-box::-webkit-scrollbar {
+    width: 20px;
+    height: 100%;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.past-orders-box::-webkit-scrollbar-track {
+    background-color: rgba(255,255,255, 0.15);
+}
+
+.past-orders-box::-webkit-scrollbar-thumb {
+    background-color: #a0262e;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .past-orders-container {
