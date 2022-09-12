@@ -85,6 +85,8 @@ const PastOrder = ({orderInfo}) => {
         }
     }
 
+    console.log(totalPrice)
+
     return (
         <div className="past-order-container">
             <div className="past-order-info-block">
@@ -108,7 +110,7 @@ const PastOrder = ({orderInfo}) => {
                     Total Price
                 </div>
                 <div className="past-order-info-value">
-                    ${totalPrice}
+                    ${totalPrice.toFixed(2)}
                 </div>
             </div>
             <div onClick={() => setShowDetails(!showDetails)} className="past-order-details-action-block">
