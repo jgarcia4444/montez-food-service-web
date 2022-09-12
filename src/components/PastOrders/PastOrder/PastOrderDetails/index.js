@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 import PastOrderItem from './PastOrderItem'
 import '../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderDetails.css';
@@ -21,4 +22,13 @@ const PastOrderDetails = ({orderItems}) => {
   )
 }
 
-export default PastOrderDetails
+const mapStateToProps = state => {
+    return {
+        orderItems: state.orderDetails.orderItems,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(PastOrderDetails);

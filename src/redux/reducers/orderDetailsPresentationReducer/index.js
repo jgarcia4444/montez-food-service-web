@@ -1,5 +1,5 @@
 const initialState = {
-    presentOrderDetails: false,
+    showOrderDetails: false,
     orderItems: []
 }
 
@@ -8,13 +8,13 @@ const orderDetailsPresentationReducer = (state=initialState, action) => {
         case "PRESENT_ORDER_DETAILS":
             return {
                 ...state,
-                presentOrderDetails: true,
+                showOrderDetails: true,
                 orderItems: action.orderItems,
             }
         case "DISMISS_ORDER_DETAILS":
             return {
                 ...state,
-                presentOrderDetails: false,
+                showOrderDetails: false,
                 orderItems: [],
             }
         default: 

@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
-import {FiChevronDown} from 'react-icons/fi';
+import { connect } from 'react-redux';
+import {FiList} from 'react-icons/fi';
 
 import '../../../styles/components/PastOrders/PastOrder/PastOrder.css';
 
 import PastOrderDetails from './PastOrderDetails';
 
-const PastOrder = ({orderInfo}) => {
+import presentOrderDetails from '../../../redux/actions/orderDetailsPresentationActions/presentOrderDetails';
+
+const PastOrder = ({orderInfo, presentOrderDetails}) => {
 
     const {items, totalPrice, orderDate} = orderInfo;
 
@@ -85,7 +88,10 @@ const PastOrder = ({orderInfo}) => {
         }
     }
 
-    console.log(totalPrice)
+    const handleOrderDetailsClick = () => {
+        console.log("Order Details Clicked");
+        presentOrderDetails(items);
+    }
 
     return (
         <div className="past-order-container">
@@ -113,13 +119,21 @@ const PastOrder = ({orderInfo}) => {
                     ${totalPrice.toFixed(2)}
                 </div>
             </div>
-            <div onClick={() => setShowDetails(!showDetails)} className="past-order-details-action-block">
-                <FiChevronDown className={`past-order-details-chevron ${showDetails === true ? 'show-details' : ''}`} color={'#ffc72c'} size={24} />
+            <div onClick={handleOrderDetailsClick} className="past-order-details-action-block">
+                <FiList className="past-order-details-button" color={'#ffc72c'} size={24} />
             </div>
             {renderDetails()}
         </div>
     )
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        presentOrderDetails: (orderItems) => dispatch(presentOrderDetails(orderItems)),
+    }
+}
 
-export default PastOrder
+export default connect(
+    null,
+    mapDispatchToProps
+)(PastOrder);

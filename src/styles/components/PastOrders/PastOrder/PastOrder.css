@@ -40,6 +40,14 @@
     color: #ffc72c;
 }
 
+.past-order-details-button {
+    transition: all 333ms ease-in;
+}
+
+.past-order-details-button:hover {
+    transform: scale(1.05);
+}
+
 .past-order-details-chevron {
     transition: all 333ms ease-in;
 }

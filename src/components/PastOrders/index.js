@@ -7,9 +7,10 @@ import '../../styles/components/PastOrders/PastOrders.css'
 import '../../styles/Global.css'
 
 import PastOrder from './PastOrder'
+import OrderDetailsModal from './OrderDetailsModal'
 
 
-const PastOrders = ({pastOrders}) => {
+const PastOrders = ({pastOrders, showOrderDetails}) => {
 
   const renderPastOrders = () => {
     return pastOrders.length > 0 ?
@@ -20,6 +21,8 @@ const PastOrders = ({pastOrders}) => {
     </h3>
   }
 
+console.log(showOrderDetails);
+
   return (
     <div className="past-orders-container">
       <div className="section-title-row">
@@ -28,13 +31,15 @@ const PastOrders = ({pastOrders}) => {
         <div className="past-orders-box">
           {renderPastOrders()}
         </div>
+        {showOrderDetails && <OrderDetailsModal />}
     </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    pastOrders: state.userReducer.userInfo.pastOrders
+    pastOrders: state.userReducer.userInfo.pastOrders,
+    showOrderDetails: state.orderDetails.showOrderDetails,
   }
 }
 
