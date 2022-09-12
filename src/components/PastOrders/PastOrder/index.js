@@ -23,6 +23,68 @@ const PastOrder = ({orderInfo}) => {
         return showDetails === true && <PastOrderDetails orderItems={items} />
     }
 
+
+    const configuredDate = () => {
+        let pastOrderDate = new Date(orderDate);
+        let day = getLetterDay(pastOrderDate);
+        let month = getLetterMonth(pastOrderDate);
+        let date = pastOrderDate.getDate();
+        let year = pastOrderDate.getFullYear();
+        return `${day}, ${month} ${date}, ${year}`;
+    };
+
+    const getLetterDay = (pastOrderDate) => {
+        switch(pastOrderDate.getDay()) {
+            case 0:
+                return "Sun";
+            case 1:
+                return "Mon";
+            case 2:
+                return "Tues";
+            case 3: 
+                return "Wed";
+            case 4:
+                return "Thur";
+            case 5:
+                return "Fri";
+            case 6: 
+            return "Sat";
+            default: 
+                return "Mon"
+        }
+    }
+
+    const getLetterMonth = (pastOrderDate) => {
+        switch(pastOrderDate.getMonth()) {
+            case 0: 
+                return "Jan";
+            case 1:
+                return "Feb";
+            case 2: 
+                return "Mar";
+            case 3: 
+                return "Apr";
+            case 4:
+                return "May";
+            case 5:
+                return "Jun";
+            case 6:
+                return "Jul";
+            case 7:
+                return "Aug";
+            case 8: 
+                return "Sep";
+            case 9: 
+                return "Oct";
+            case 10: 
+                return "Nov";
+            case 11:
+                return "Dec";
+            default:
+                return "Jan";
+        }
+    }
+
     return (
         <div className="past-order-container">
             <div className="past-order-info-block">
@@ -30,7 +92,7 @@ const PastOrder = ({orderInfo}) => {
                     Order Date
                 </div>
                 <div className="past-order-info-value">
-                    {orderDate}
+                    {configuredDate()}
                 </div>
             </div>
             <div className="past-order-info-block">
