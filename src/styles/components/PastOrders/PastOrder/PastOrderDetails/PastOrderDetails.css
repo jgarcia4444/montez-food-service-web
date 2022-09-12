@@ -1,14 +1,18 @@
 
 
 .past-order-details-container {
-    width: 100%;
-    background-color: #ffffff;
+    width: 75%;
+    margin: 0 auto;
+    
 }
 
 .past-order-items-container {
     width: 100%;
     height: 250px;
     overflow-y: scroll;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px -1px black;
 }
 
 .past-order-details-label {
