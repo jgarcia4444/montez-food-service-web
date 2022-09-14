@@ -1,16 +1,31 @@
 import React from 'react'
-import PastOrderDetails from '../PastOrder/PastOrderDetails';
+import { connect } from 'react-redux';
 
 import '../../../styles/components/PastOrders/OrderDetailsModal.css';
 
-const OrderDetailsModal = () => {
+import dismissOrderDetails from '../../../redux/actions/orderDetailsPresentationActions/dismissOrderDetails';
+
+import PastOrderDetails from '../PastOrder/PastOrderDetails';
+import ModalDismissButton from './ModalDismissButton';
+
+const OrderDetailsModal = ({dismissOrderDetails}) => {
 
 
   return (
-    <div className="order-details-modal">
-        <PastOrderDetails />
+    <div onClick={() => dismissOrderDetails()} className="order-details-modal">
+      <ModalDismissButton />
+      <PastOrderDetails />
     </div>
   )
 }
 
-export default OrderDetailsModal;
+const mapDispatchToProps = dispatch => {
+  return {
+    dismissOrderDetails: () => dispatch(dismissOrderDetails()),
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(OrderDetailsModal);

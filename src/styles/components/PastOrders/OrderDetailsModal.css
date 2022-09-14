@@ -9,4 +9,39 @@
     z-index: 20;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation-name: FadeIn;
+    animation-duration: 300ms;
+    animation-iteration-count: 1;
+}
+
+@keyframes FadeIn {
+    0% {
+        opacity: 0.0;
+    }
+    12.5% {
+        opacity: 0.125
+    }
+    25% {
+        opacity: 0.25;
+    }
+    37.5% {
+        opacity: 0.375;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    62.5% {
+        opacity: 0.625;
+    }
+    75% {
+        opacity: 0.75;
+    }
+    87.5% {
+        opacity: 0.875;
+    }
+    100% {
+        opacity: 1.0;
+    }
 }
