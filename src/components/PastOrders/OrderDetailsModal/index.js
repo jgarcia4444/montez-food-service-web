@@ -7,6 +7,7 @@ import dismissOrderDetails from '../../../redux/actions/orderDetailsPresentation
 
 import PastOrderDetails from '../PastOrder/PastOrderDetails';
 import ModalDismissButton from './ModalDismissButton';
+import OrderAgainButton from './OrderAgainButton';
 
 const OrderDetailsModal = ({dismissOrderDetails}) => {
 
@@ -20,9 +21,10 @@ const OrderDetailsModal = ({dismissOrderDetails}) => {
   }
 
   return (
-    <div onClick={handleDismissClick} className={`order-details-modal ${modalDismissing === true ? "dismiss-modal" : ""}`}>
-      <ModalDismissButton />
+    <div className={`order-details-modal ${modalDismissing === true ? "dismiss-modal" : ""}`}>
+      <ModalDismissButton dismissClick={handleDismissClick} />
       <PastOrderDetails />
+      <OrderAgainButton />
     </div>
   )
 }

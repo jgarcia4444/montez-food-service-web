@@ -21,8 +21,6 @@ const PastOrders = ({pastOrders, showOrderDetails}) => {
     </h3>
   }
 
-console.log(showOrderDetails);
-
   return (
     <div className="past-orders-container">
       <div className="section-title-row">

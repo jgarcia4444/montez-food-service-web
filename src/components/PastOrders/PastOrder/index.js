@@ -11,6 +11,7 @@ import presentOrderDetails from '../../../redux/actions/orderDetailsPresentation
 const PastOrder = ({orderInfo, presentOrderDetails}) => {
 
     const {items, totalPrice, orderDate} = orderInfo;
+    console.log(orderInfo);
 
     const [showDetails, setShowDetails] = useState(false);
 
@@ -89,8 +90,7 @@ const PastOrder = ({orderInfo, presentOrderDetails}) => {
     }
 
     const handleOrderDetailsClick = () => {
-        console.log("Order Details Clicked");
-        presentOrderDetails(items);
+        presentOrderDetails(orderInfo);
     }
 
     return (

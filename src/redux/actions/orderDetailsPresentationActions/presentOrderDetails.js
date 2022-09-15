@@ -1,8 +1,8 @@
 
-const presentOrderDetails = (orderItems) => {
+const presentOrderDetails = (orderInfo) => {
     return {
         type: "PRESENT_ORDER_DETAILS",
-        orderItems,
+        orderInfo,
     }
 }
 
