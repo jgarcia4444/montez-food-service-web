@@ -5,10 +5,11 @@ const initialState = {
 }
 
 const orderDetailsPresentationReducer = (state=initialState, action) => {
-    let {orderInfo} = action;
-    let {totalPrice, items} = orderInfo;
+    
     switch (action.type) {
         case "PRESENT_ORDER_DETAILS":
+            let {orderInfo} = action;
+            let {totalPrice, items} = orderInfo;
             return {
                 ...state,
                 showOrderDetails: true,
