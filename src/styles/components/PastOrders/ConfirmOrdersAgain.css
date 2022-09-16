@@ -1,0 +1,9 @@
+
+.check-button {
+    border: 2px solid #4bb543;
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

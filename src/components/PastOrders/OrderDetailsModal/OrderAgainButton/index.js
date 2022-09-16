@@ -9,12 +9,24 @@ const OrderAgainButton = ({orderItems, email, sendOrder}) => {
 
     const [orderAgainPressed, setOrderAgainPressed] = useState(false);
 
+    const handleSendOrder = () => {
+        let orderDetails = {
+            order_info: {
+                items: orderItems,
+            },
+            user_info: {
+                email
+            }
+        }
+        sendOrder(orderDetails)
+    }
+
     return (
         <div className="order-again-button-row">
             <div onClick={() => setOrderAgainPressed(true)} className="order-again-button">
                 Reorder
             </div>
-            {orderAgainPressed === true && <ConfirmOrderAgain />}
+            {orderAgainPressed === true && <ConfirmOrderAgain handleSendOrder={handleSendOrder} />}
         </div>
     )
 }
