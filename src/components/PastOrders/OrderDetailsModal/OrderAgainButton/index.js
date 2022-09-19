@@ -1,13 +1,18 @@
 import React, { useState, } from 'react'
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import sendOrder from '../../../../redux/actions/cartActions/sendOrder';
 
 import '../../../../styles/components/PastOrders/OrderAgainButton.css';
+
 import ConfirmOrderAgain from '../ConfirmOrderAgain';
 
 const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
 
     const [orderAgainPressed, setOrderAgainPressed] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSendOrder = () => {
         let itemsFormattedForBackend = formatItems(orderItems)
@@ -16,6 +21,9 @@ const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
             email,
         }
         sendOrder(orderDetails)
+        if (orderSendError === "") {
+            navigate('/order-online/confirmation');
+        }
     }
 
     const formatItems = (items) => {
