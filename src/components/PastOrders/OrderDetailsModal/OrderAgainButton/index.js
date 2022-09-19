@@ -35,7 +35,7 @@ const OrderAgainButton = ({orderItems, email, sendOrder}) => {
             <div onClick={() => setOrderAgainPressed(true)} className="order-again-button">
                 Reorder
             </div>
-            {orderAgainPressed === true && <ConfirmOrderAgain handleSendOrder={handleSendOrder} />}
+            {orderAgainPressed === true && <ConfirmOrderAgain dismissConfirm={() => setOrderAgainPressed(false)} handleSendOrder={handleSendOrder} />}
         </div>
     )
 }
