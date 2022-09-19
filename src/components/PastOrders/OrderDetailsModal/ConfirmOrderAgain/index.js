@@ -17,10 +17,10 @@ const ConfirmOrderAgain = ({dismissConfirm, handleSendOrder}) => {
             </div>
             <div className="confirm-order-again-action-row">
                 <div className="confirm-order-again-action-button">
-                    <FiXCircle onClick={dismissConfirm} color="#a0262e" size={32}/>
+                    <FiXCircle className="order-again-action-icon" onClick={dismissConfirm} color="#a0262e" size={32}/>
                 </div>
                 <div className="confirm-order-again-action-button">
-                    <FiCheck onClick={handleSendOrder} className="check-button" color={"#4bb543"} size={20} />
+                    <FiCheck onClick={handleSendOrder} className="check-button order-again-action-icon" color={"#4bb543"} size={20} />
                 </div>
             </div>
         </div>

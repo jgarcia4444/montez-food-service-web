@@ -10,15 +10,24 @@ const OrderAgainButton = ({orderItems, email, sendOrder}) => {
     const [orderAgainPressed, setOrderAgainPressed] = useState(false);
 
     const handleSendOrder = () => {
+        console.log("Order Items", orderItems);
+        console.log("User Email", email);
+        let itemsFormattedForBackend = formatItems(orderItems)
         let orderDetails = {
-            order_info: {
-                items: orderItems,
-            },
-            user_info: {
-                email
-            }
+            items: itemsFormattedForBackend,
+            email,
         }
         sendOrder(orderDetails)
+    }
+
+    const formatItems = (items) => {
+        return items.map(item => {
+            return {
+                price: item.itemInfo.price,
+                quantity: item.quantity,
+                description: item.itemInfo.description,
+            }
+        })
     }
 
     return (
