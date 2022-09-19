@@ -7,3 +7,34 @@
     align-items: center;
     justify-content: center;
 }
+
+.confirm-order-again-action-row {
+    margin-top: 5vh;
+    display: flex;
+}
+
+.confirm-order-again-container {
+    padding: 10vh 10vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    opacity: 1.0;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+}
+
+.confirm-order-again-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    flex-direction: column;
+}
