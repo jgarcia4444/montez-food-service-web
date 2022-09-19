@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import '../../../../styles/components/PastOrders/ConfirmOrdersAgain.css'
 
-import {FiCheck, FiXCircle} from 'react-icons/fi';
+import {FiCheck, FiXCircle, FiLoader} from 'react-icons/fi';
 
-const ConfirmOrderAgain = ({dismissConfirm, handleSendOrder}) => {
+const ConfirmOrderAgain = ({dismissConfirm, handleSendOrder, sendingOrder}) => {
   return (
     <div className="confirm-order-again-frame">
         <div className="confirm-order-again-container">
@@ -23,9 +25,25 @@ const ConfirmOrderAgain = ({dismissConfirm, handleSendOrder}) => {
                     <FiCheck onClick={handleSendOrder} className="check-button order-again-action-icon" color={"#4bb543"} size={20} />
                 </div>
             </div>
+        {sendingOrder === true &&
+        (
+            <div className="loading-container">
+                <FiLoader color={'#000000'} size={42} className="loading-indicator" />
+            </div>
+        )
+        }
         </div>
     </div>
   )
 }
 
-export default ConfirmOrderAgain
+const mapStateToProps = state => {
+    return {
+        sendingOrder: state.cart.sendingOrder
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(ConfirmOrderAgain)

@@ -5,13 +5,11 @@ import sendOrder from '../../../../redux/actions/cartActions/sendOrder';
 import '../../../../styles/components/PastOrders/OrderAgainButton.css';
 import ConfirmOrderAgain from '../ConfirmOrderAgain';
 
-const OrderAgainButton = ({orderItems, email, sendOrder}) => {
+const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
 
     const [orderAgainPressed, setOrderAgainPressed] = useState(false);
 
     const handleSendOrder = () => {
-        console.log("Order Items", orderItems);
-        console.log("User Email", email);
         let itemsFormattedForBackend = formatItems(orderItems)
         let orderDetails = {
             items: itemsFormattedForBackend,
@@ -44,6 +42,7 @@ const mapStateToProps = state => {
     return {
         orderItems: state.orderDetails.orderItems,
         email: state.userReducer.userInfo.email,
+        orderSendError: state.cart.orderSendError,
     }
 }
 
