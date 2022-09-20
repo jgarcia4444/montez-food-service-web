@@ -5,49 +5,30 @@
     left: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.75);
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    animation-name: FadeIn;
-    animation-duration: 300ms;
-    animation-iteration-count: 1;
     transition: all 300ms ease-in;
+    animation-name: ExpandFromMiddle;
+    animation-iteration-count: 1;
+    animation-duration: 300ms;
+}
+
+@keyframes ExpandFromMiddle {
+    from {
+        transform: scale(0.0);
+        opacity: 0.0;
+    }
+    to {
+        transform: scale(1.0);
+        opacity: 1.0;
+    }
 }
 
 .dismiss-modal {
-    transform: scale(0.1);
-    opacity: 0.3;
-}
-
-@keyframes FadeIn {
-    0% {
-        opacity: 0.0;
-    }
-    12.5% {
-        opacity: 0.125
-    }
-    25% {
-        opacity: 0.25;
-    }
-    37.5% {
-        opacity: 0.375;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    62.5% {
-        opacity: 0.625;
-    }
-    75% {
-        opacity: 0.75;
-    }
-    87.5% {
-        opacity: 0.875;
-    }
-    100% {
-        opacity: 1.0;
-    }
+    transform: scale(0.0);
+    opacity: 0.0;
 }

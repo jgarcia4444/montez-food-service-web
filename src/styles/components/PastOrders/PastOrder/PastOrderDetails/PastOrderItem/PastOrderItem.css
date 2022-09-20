@@ -1,5 +1,5 @@
 
-
+/* ecwe */
 .item-info-block {
     width: 50%;
     display: flex;
@@ -21,16 +21,19 @@
 }
 
 .item-info-label {
+    color: #ffffff;
     font-weight: bold;
     font-size: 1.15em;
 }
 
 .item-info-value {
+    color: #ffc72c;
     font-weight: 300;
     font-size: 0.75em;
 }
 
 .past-order-item-container {
+    background-color: #a0262e;
     width: 50%;
     box-shadow: 0 0 3px -1px black;
     margin: 3vh auto;
