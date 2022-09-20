@@ -1,5 +1,5 @@
 
-
+/* soifnewso */
 .nav-header-row {
     width: 100%;
     position: fixed;
@@ -9,13 +9,13 @@
     align-items: center;
     border-bottom: 1px solid lightgray;
     box-shadow: -2px 0 3px -1px black;
-    background-color: white;
+    background-color: #a0262e;
 }
 
 .nav-link {
     text-decoration: none;
     margin: 0 10px;
-    color: black;
+    color: #fff;
     font-weight: bold;
     font-size: 0.9em;
     transition: all 300ms;
@@ -25,11 +25,11 @@
 
 
 .active-link {
-    border-bottom: 1px solid #a0262e;
+    border-bottom: 1px solid #fff;
 }
 
 .icon-color-change {
-    color: black;
+    color: #ffc72c;
     flex: 1;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .nav-link:hover {
-    color: #a0262e;
+    color: #ffc72c;
 }
 
 .nav-links-container {
@@ -61,7 +61,7 @@
 }
 
 .nav-title-link {
-    color: #a0262e;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -103,11 +103,17 @@
     z-index: 100;
 }
 
+.user-icon {
+    color: #fff;
+}
+
 .user-icon:hover {
     cursor: pointer;
+    color: #ffc72c;
 }
 
 .vertical-separator {
     margin-right: 20px;
     margin-left: 10px;
+    color: #fff;
 }
