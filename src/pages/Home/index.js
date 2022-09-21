@@ -18,12 +18,6 @@ const Home = ({userInfo}) => {
 
     const [showContactModal, setShowContactModal] = useState(false);
 
-    // useEffect(() => {
-    //     if (email !== "" && companyName !== "") {
-    //         navigate()
-    //     }
-    // })
-
     return (
         <Layout>
             <div className='flex-container'>
@@ -54,36 +48,40 @@ const Home = ({userInfo}) => {
                         <img className="about-us-image" src={teamwork} alt="Teamwork example" />
                     </div>
                     <div className="half-flex-container column-flex">
-                        <h4 className="about-us-section-title">Products and Services</h4>
-                        <p>Some of the different types of products we sell are:</p>
-                        <ul className="left-aligned-list">
-                            <li>Meat</li>
-                            <li>Produce</li>
-                            <li>Dry-Goods</li>
-                            <li>Canned-Goods</li>
-                            <li>Paper Products</li>
-                            <li>Equipment</li>
-                            <li>Smallwares</li>
-                            <li>And more...</li>
-                        </ul>
+                        <div className="about-us-info-container">
+                            <h4 className="about-us-section-title">Products and Services</h4>
+                            <p>Some of the different types of products we sell are:</p>
+                            <ul className="left-aligned-list">
+                                <li>Meat</li>
+                                <li>Produce</li>
+                                <li>Dry-Goods</li>
+                                <li>Canned-Goods</li>
+                                <li>Paper Products</li>
+                                <li>Equipment</li>
+                                <li>Smallwares</li>
+                                <li>And more...</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="flex-container">
                 <div className="about-us-section-container">
                     <div className="half-flex-container column-flex">
-                        <h4 className="about-us-section-title">Service Locations</h4>
-                        <p>We provide delivery services to the following areas</p>
-                        <ul className="left-aligned-list">
-                            <li>Big Bear Mountain Area</li>
-                            <li>Coachella Valley</li>
-                            <li>Riverside</li>
-                            <li>Ontario</li>
-                            <li>Oak Glen</li>
-                            <li>Ridgecrest</li>
-                            <li>Victorville</li>
-                            <li>Everywhere in Between!</li>
-                        </ul>
+                        <div className="about-us-info-container">    
+                            <h4 className="about-us-section-title">Service Locations</h4>
+                            <p>We provide delivery services to the following areas</p>
+                            <ul className="left-aligned-list">
+                                <li>Big Bear Mountain Area</li>
+                                <li>Coachella Valley</li>
+                                <li>Riverside</li>
+                                <li>Ontario</li>
+                                <li>Oak Glen</li>
+                                <li>Ridgecrest</li>
+                                <li>Victorville</li>
+                                <li>Everywhere in Between!</li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="half-flex-container">
                         <img className="about-us-image about-us-second-image" src={coverageMap} alt="Coverage Map" />
@@ -96,13 +94,15 @@ const Home = ({userInfo}) => {
                         <img className="about-us-image" src={packaging} alt="Packaging" />
                     </div>
                     <div className="half-flex-container column-flex">
-                        <h4 className="about-us-section-title">Why Montez?</h4>
-                        <ul className="left-aligned-list">
-                            <li>Guaranteed to save you money on food costs without sacrificing quality</li>
-                            <li>Diverse and large variety of products</li>
-                            <li>Inclusive cost optimization analysis service</li>
-                            <li>No minimums for delivery</li>
-                        </ul>
+                        <div className="about-us-info-container">    
+                            <h4 className="about-us-section-title">Why Montez?</h4>
+                            <ul className="left-aligned-list">
+                                <li>Guaranteed to save you money on food costs without sacrificing quality</li>
+                                <li>Diverse and large variety of products</li>
+                                <li>Inclusive cost optimization analysis service</li>
+                                <li>No minimums for delivery</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

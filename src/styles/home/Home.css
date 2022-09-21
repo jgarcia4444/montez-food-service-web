@@ -1,26 +1,35 @@
 
+.about-us-info-container {
+    width: 100%;
+    text-align: left;
+    padding: 5px 10px;
+}
+
 .about-us-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.about-us-image:first-child, .about-us-image:last-child {
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px
-}
-
-.about-us-second-image {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 1px #555;
 }
 
 .about-us-section-container {
     display: flex;
     width: 90%;
     margin: 3% auto;
-    box-shadow: 0 0 3px -1px black;
     border-radius: 5px;
+}
+
+.about-us-section-title {
+    color: #a0262e;
+    text-align: left;
+    font-weight: 900;
+    font-size: 1.25em;
+}
+
+p {
+    color: #a0262e;
+    font-weight: 300;
 }
 
 .content-container {
@@ -75,7 +84,7 @@
 .half-flex-container {
     width: 50%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -92,6 +101,8 @@
 
 .left-aligned-list>li {
     font-size: 14px;
+    color: #a0262e;
+    font-weight: 900;
 }
 
 .logo-img {
@@ -114,6 +125,7 @@
     color: #a0262e;
     font-size: 2em;
     font-family: sans-serif;
+    font-weight: 900;
 }
 
 .section-title-row {
