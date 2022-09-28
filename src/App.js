@@ -35,6 +35,7 @@ const App = () => {
               <Route path="/order-online/confirmation" element={<OrderConfirmation />} />
               <Route path="/cost-optimization" element={<CostOptimization />} />
               <Route path="/users/account" element={<Account />} />
+              <Route path="/users/account/verify/" element={<AccountVerification />} />
               <Route path="/user-auth">
                 <Route path="/user-auth" element={<UserAuth />} />
                 <Route path="/user-auth/:auth_state" element={<UserAuth />} />
