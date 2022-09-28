@@ -313,10 +313,23 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
+                    navigate('/users/account/verify', {
+                        state: {
+                            authState: "MID_ORDER_SIGNUP"
+                        }
+                    })
                     if (authState === "login") {
-                        navigate('/order-online')
+                        navigate('/users/account/verify', {
+                            state: {
+                                authState: "MID_ORDER_SIGNUP"
+                            }
+                        })
                     } else {
-                        navigate('/users/account');
+                        navigate('/users/account/verify', {
+                            state: {
+                                authState: "NEW_ACCOUNT"
+                            }
+                        })
                     }
                 }
             } else {
@@ -326,6 +339,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
+
                     if (authState === "signup") {
                         navigate("/order-online");
                     } else {
