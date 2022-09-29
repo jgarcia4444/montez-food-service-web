@@ -16,6 +16,7 @@ import CostOptimization from './pages/CostOptimization';
 import Footer from './components/Footer';
 import UserAuth from './pages/UserAuth';
 import Account from './pages/Account';
+import AccountVerification from './pages/Account/AccountVerification';
 import OrderConfirmation from './pages/OrderConfirmation';
 
 import {store, persistor} from './redux/store';
