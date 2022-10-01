@@ -20,8 +20,8 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
     const params = useParams();
 
     const location = useLocation();
-
-    const authState = location.state.authState !== undefined ? location.state.authState : "";
+    console.log("Location Object", location);
+    const authState = location.state !== null ? location.state.authState : "";
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
