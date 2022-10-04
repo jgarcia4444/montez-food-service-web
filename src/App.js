@@ -38,7 +38,7 @@ const App = () => {
               <Route path="/cost-optimization" element={<CostOptimization />} />
               <Route path="/users/account" element={<Account />} />
               <Route path="/users/account/verify/" element={<AccountVerification />} />
-              <Route path="users/account/verifying" element={<AccountVerifying />} />
+              <Route path="/users/account/verifying" element={<AccountVerifying />} />
               <Route path="/user-auth">
                 <Route path="/user-auth" element={<UserAuth />} />
                 <Route path="/user-auth/:auth_state" element={<UserAuth />} />
