@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -17,10 +17,7 @@ import changePassword from '../../redux/actions/userActions/changePassword';
 const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
-    const params = useParams();
-
     const location = useLocation();
-    console.log("Location Object", location);
     const authState = location.state !== null ? location.state.authState : "";
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
@@ -162,7 +159,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             let userInfo = {
                 email: email,
                 password: password,
-                company_name: companyName
+                company_name: companyName,
             }
             createUser(userInfo);
         }
@@ -332,12 +329,16 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
                     if (authState === "signup") {
                         navigate('/users/account/verify', {
                             state: {
-                                authState: "MID_ORDER_SIGNUP"
+                                isMidOrder: true
                             }
                         })
 
                     } else {
-                        navigate('/users/account');
+                        navigate('/users/account/verify', {
+                            state: {
+                                isMidOrder: false
+                            }
+                        });
                     }
                 }
             } else {
