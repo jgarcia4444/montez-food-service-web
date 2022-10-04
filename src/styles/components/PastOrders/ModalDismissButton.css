@@ -1,0 +1,16 @@
+
+.modal-dismiss-button {
+    transition: all 300ms ease-in;
+}
+
+.modal-dismiss-button:hover {
+    transform: scale(1.5) rotate(180deg);
+    cursor: pointer;
+}
+
+.modal-dismiss-button-row {
+    width: 75%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}

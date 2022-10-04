@@ -1,0 +1,86 @@
+
+.calculated-total-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.calculated-values {
+    color: white;
+}
+
+.sub-total-row, .calculated-taxes-row , .total-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 2vh 0 0 0;
+}
+
+.cost-calulation-label {
+    color: white;
+    margin: 0;
+}
+
+.editing-quantity-input {
+    width: 100%;
+}
+
+.editing-quantity-input-container {
+    width: 50%;
+}
+
+.item-label {
+    margin: 0;
+    color: #FFC72C;
+    font-weight: 300;
+}
+
+.item-name-container, .item-price-per-container {
+    width: 60%;
+}
+
+.item-total-price-container, .item-quantity-container {
+    width: 30%;
+}
+
+.item-value {
+    margin: 0;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.order-item-row {
+    z-index: -1;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #a0262e;
+    padding: 5px 0;
+    color: black;
+    margin: 2px 0;
+}
+
+.order-item-top-row, .order-item-bottom-row {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+}
+
+.order-item-action-icon {
+    color: #FFC72C;
+}
+
+.order-item-action-row {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80%;
+    gap: 10%;
+}
+
+.order-item-action-row:hover {
+    cursor: pointer;
+}

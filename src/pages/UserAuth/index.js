@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -17,6 +17,9 @@ import changePassword from '../../redux/actions/userActions/changePassword';
 const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
+    const params = useParams();
+
+    const authState = params.auth_state !== undefined ? params.auth_state : "";
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
@@ -300,10 +303,21 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
     }
 
     useEffect(() => {
+        if (authState !== "") {
+            if (authState === "login") {
+                setDisplayState('login');
+            } else if (authState === "signup") {
+                setDisplayState('signup');
+            }
+        } 
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
-                    navigate('/users/account');
+                    if (authState === "login") {
+                        navigate('/order-online')
+                    } else {
+                        navigate('/users/account');
+                    }
                 }
             } else {
                 configureGenericError(loggingInError);
@@ -312,7 +326,11 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
-                    navigate('/users/account');
+                    if (authState === "signup") {
+                        navigate("/order-online");
+                    } else {
+                        navigate('/users/account');
+                    }
                 }
             } else {
                 configureGenericError(userCreationError);

@@ -1,0 +1,31 @@
+
+.quantity-selector-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quantity-selector-label {
+    margin-bottom: 1%;
+    color: #a0262e;
+}
+
+.quantity-selector-label-row {
+    width: 50%;
+    text-align: left;
+}
+
+.quantity-selector-input {
+    border-bottom: 1px solid #a0262e;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    color: #a0262e;
+}
+
+.quantity-selector-input-container {
+    width: 50%;
+    display: flex;
+}

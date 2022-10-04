@@ -1,0 +1,91 @@
+
+.check-button {
+    border: 2px solid #4bb543;
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-order-again-action-button:first-child {
+    margin-right: 3vw;
+}
+
+.confirm-order-again-action-row {
+    margin-top: 5vh;
+    display: flex;
+}
+
+.confirm-order-again-container {
+    position: relative;
+    padding: 10vh 10vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    opacity: 1.0;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+}
+
+.confirm-order-again-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    flex-direction: column;
+}
+
+.loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.loading-indicator {
+    transition: all 300ms;
+    animation-name: Rotate;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes Rotate {
+    0% {
+        transform: scale(1);
+    } 
+    35% {
+        transform: scale(1.25) rotate(180deg);
+    }
+    70% {
+        transform: scale(1.5) rotate(360deg);
+    }
+
+}
+
+.order-again-action-icon {
+    transition: all 300ms;
+}
+
+.order-again-action-icon:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+}
+
+.order-again-action-icon:active {
+    transform: scale(0.9);
+}

@@ -1,4 +1,8 @@
 
+.copyright-text {
+    color: rgba(255, 255, 255, 0.75);
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -8,4 +12,5 @@
     color: lightgray;
     box-shadow: -2px 0px 2px 0 gray;
     z-index: 10;
+    background-color: #a0262e;
 }

@@ -1,0 +1,62 @@
+
+.action-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 0;
+}
+
+.close-btn-container {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 3vh;
+    height: 3vh;
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px 0px gray;
+    transition: all 300ms;
+}
+
+.close-btn-container:hover {
+    cursor: pointer;
+    transform: scale(1.075);
+    box-shadow: 0 0 5px -1px black;
+}
+
+.user-auth-alert-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    z-index: 100;
+    transition: all 300ms;
+    animation-name: DropDown;
+    animation-iteration-count: 1;
+    animation-duration: 300ms;
+}
+
+.message {
+    text-align: left;
+    margin-bottom: 5vh;
+}
+
+@keyframes DropDown {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 0
+    }
+}
