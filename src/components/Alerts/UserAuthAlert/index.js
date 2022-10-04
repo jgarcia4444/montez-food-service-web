@@ -10,11 +10,18 @@ const UserAuthAlert = ({closeAuthAlert, items}) => {
     const navigate = useNavigate();
 
     const handleUserAuthClick = (authAction) => {
-        console.log("Hanlde user auth click function triggered!!");
         if (authAction === "LOGIN") {
-            navigate("/user-auth/login");
+            navigate("/user-auth/login", {
+                state: {
+                    authState: 'login',
+                }
+            });
         } else if (authAction === "SIGNUP") {
-            navigate("/user-auth/signup");
+            navigate("/user-auth/signup", {
+                state: {
+                    authState: 'signup'
+                }
+            });
         }
     }
 

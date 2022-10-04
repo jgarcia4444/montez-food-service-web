@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -19,7 +19,9 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
     const navigate = useNavigate();
     const params = useParams();
 
-    const authState = params.auth_state !== undefined ? params.auth_state : "";
+    const location = useLocation();
+    console.log("Location Object", location);
+    const authState = location.state !== null ? location.state.authState : "";
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
@@ -314,9 +316,9 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
                     if (authState === "login") {
-                        navigate('/order-online')
+                        navigate("/order-online");
                     } else {
-                        navigate('/users/account');
+                        navigate('/users/account')
                     }
                 }
             } else {
@@ -326,8 +328,14 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
+
                     if (authState === "signup") {
-                        navigate("/order-online");
+                        navigate('/users/account/verify', {
+                            state: {
+                                authState: "MID_ORDER_SIGNUP"
+                            }
+                        })
+
                     } else {
                         navigate('/users/account');
                     }

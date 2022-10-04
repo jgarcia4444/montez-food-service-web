@@ -16,6 +16,8 @@ import CostOptimization from './pages/CostOptimization';
 import Footer from './components/Footer';
 import UserAuth from './pages/UserAuth';
 import Account from './pages/Account';
+import AccountVerification from './pages/Account/AccountVerification';
+import AccountVerifying from './pages/Account/AccountVerifying';
 import OrderConfirmation from './pages/OrderConfirmation';
 
 import {store, persistor} from './redux/store';
@@ -35,6 +37,8 @@ const App = () => {
               <Route path="/order-online/confirmation" element={<OrderConfirmation />} />
               <Route path="/cost-optimization" element={<CostOptimization />} />
               <Route path="/users/account" element={<Account />} />
+              <Route path="/users/account/verify/" element={<AccountVerification />} />
+              <Route path="users/account/verifying" element={<AccountVerifying />} />
               <Route path="/user-auth">
                 <Route path="/user-auth" element={<UserAuth />} />
                 <Route path="/user-auth/:auth_state" element={<UserAuth />} />

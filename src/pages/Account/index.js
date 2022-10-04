@@ -19,7 +19,7 @@ const Account = ({userInfo, logout}) => {
         if (email === "") {
             navigate('/user-auth');
         }
-    }, [email])
+    }, [email, navigate, pastOrders])
 
     return (
         <Layout>
