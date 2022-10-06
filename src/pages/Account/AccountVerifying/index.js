@@ -1,20 +1,26 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import {FiLoader, FiActivity} from 'react-icons/fi';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import '../../../styles/account/AccountVerifying.css';
 import verifyUser from '../../../redux/actions/userActions/verifyUser';
 
 import Layout from '../../../shared/Layout';
 
-const AccountVerifying = ({verifyUser}) => {
+const AccountVerifying = ({verifyUser, userInfo}) => {
 
     const {email} = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // verifyUser(email)
-    })
+        verifyUser(email);
+        if (userInfo.verificationError === "") {
+            if (userInfo.companyName !== "") {
+                userInfo.isOrdering === true ? navigate("/order-online") : navigate("/users/account")
+            }
+        }
+    },[userInfo.companyName, userInfo.verificationError])
 
     return (
         <Layout>
@@ -30,6 +36,12 @@ const AccountVerifying = ({verifyUser}) => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        userInfo: state.userReducer.userInfo,
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         verifyUser: (email) => dispatch(verifyUser(email)),
@@ -37,6 +49,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(AccountVerifying);

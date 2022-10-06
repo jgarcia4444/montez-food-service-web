@@ -3,6 +3,7 @@ import Urls from '../../../config/Urls'
 const { baseUrl } = Urls;
 
 const verifyUser = (email) => {
+    console.log("Verify User Action triggered.");
     let url = `${baseUrl}users/verify/`;
 
     let options = {
@@ -16,10 +17,7 @@ const verifyUser = (email) => {
             }
         })
     }
-
     return async dispatch => {
-        dispatch({type: "VERIFYING_ACCOUNT"});
-
         fetch(url, options)
             .then(res => res.json())
             .then(data => {

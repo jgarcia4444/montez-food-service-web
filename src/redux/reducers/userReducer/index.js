@@ -6,6 +6,7 @@ const initialState = {
         otaCode: "",
         pastOrders: [],
         isOrdering: false,
+        verificationError: ""
     },
     loading: false,
     userCreationError: "",
@@ -30,6 +31,21 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ACCOUNT_VERIFICATION_SUCCESS":
+            return {
+                ...state,
+                userInfo: {
+                    ...action.userInfo,
+                    verificationError: ""
+                }
+            }
+        case "ACCOUNT_VERIFICATION_ERROR":
+            return {
+                ...state,
+                userInfo: {
+                    verificationError: action.errorMessage
+                }
+            }
         case "persist/REHYDRATE":
             if (action.payload !== undefined) {
                 let {payload} = action;
