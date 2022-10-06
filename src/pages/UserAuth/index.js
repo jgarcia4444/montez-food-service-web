@@ -160,6 +160,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
                 email: email,
                 password: password,
                 company_name: companyName,
+                is_ordering: authState === "signup" ? true : false,
             }
             createUser(userInfo);
         }

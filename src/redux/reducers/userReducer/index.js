@@ -5,6 +5,7 @@ const initialState = {
         companyName: "",
         otaCode: "",
         pastOrders: [],
+        isOrdering: false,
     },
     loading: false,
     userCreationError: "",

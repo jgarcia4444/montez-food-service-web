@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {} from 'react'
+
 import Layout from '../../../shared/Layout'
 import '../../../styles/account/AccountVerification.css';
 
@@ -20,4 +21,4 @@ const AccountVerification = () => {
   )
 }
 
-export default AccountVerification
+export default AccountVerification;
