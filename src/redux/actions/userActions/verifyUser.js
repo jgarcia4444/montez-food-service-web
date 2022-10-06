@@ -28,7 +28,8 @@ const verifyUser = (email) => {
                 } else {
                     let {error} = data;
                     let {message} = error;
-                    return dispatch({type: "ACCOUNT_VERIFICATION_ERROR", errorMessage: message});
+
+                    return dispatch({type: "ACCOUNT_VERIFICATION_ERROR", message});
                 }
             })
 

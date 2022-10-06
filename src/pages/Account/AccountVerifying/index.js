@@ -22,6 +22,8 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
         }
     },[userInfo.companyName, userInfo.verificationError])
 
+    console.log(userInfo.verificationError)
+
     return (
         <Layout>
             <div className="account-verifying-container">
@@ -29,8 +31,13 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
                     Account Verifying
                 </h1>
                 <div className="verifying-loader-row">
-                    <FiLoader className="verifying-loader" size={96} color={"#a0262e"} />
+                    <FiLoader className={`verifying-loader ${userInfo.verificationError !== "" ? "stop-loader" : "" }`} size={96} color={"#a0262e"} />
                 </div>
+                {userInfo.verificationError !== "" &&
+                    <div className="account-verification-error-container">
+                        <p className="account-verification-error-text">{userInfo.verificationError}</p>
+                    </div>
+                }
             </div>
         </Layout>
     )

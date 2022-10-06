@@ -43,7 +43,7 @@ const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 userInfo: {
-                    verificationError: action.errorMessage
+                    verificationError: action.message
                 }
             }
         case "persist/REHYDRATE":
@@ -145,7 +145,6 @@ const userReducer = (state=initialState, action) => {
                 ...errors,
             }
         case "USER_LOGIN_SUCCESS":
-            console.log("User Logged in Successfully!!!");
             return {
                 ...state,
                 loading: false,
@@ -162,7 +161,7 @@ const userReducer = (state=initialState, action) => {
             }
         case "USER_LOGOUT":
             return {
-                ...initialState
+                ...initialState,
             }
         case 'CREATING_USER':
             return {
