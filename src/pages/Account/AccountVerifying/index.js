@@ -12,17 +12,22 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
 
     const {email} = useParams();
     const navigate = useNavigate();
+    const {isVerifying, verificationError, isOrdering, companyName} = userInfo;
 
     useEffect(() => {
-        verifyUser(email);
-        if (userInfo.verificationError === "") {
-            if (userInfo.companyName !== "") {
-                userInfo.isOrdering === true ? navigate("/order-online") : navigate("/users/account")
+        setTimeout(() => {
+            verifyUser(email);
+        }, 2000);
+        if (isVerifying === false) {
+            if (verificationError === "") {
+                if (companyName !== "") {
+                    isOrdering === true ? navigate("/order-online") : navigate("/users/account")
+                }
             }
         }
-    },[userInfo.companyName, userInfo.verificationError])
+    },[isVerifying])
 
-    console.log(userInfo.verificationError)
+    console.log(verificationError)
 
     return (
         <Layout>
@@ -31,11 +36,11 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
                     Account Verifying
                 </h1>
                 <div className="verifying-loader-row">
-                    <FiLoader className={`verifying-loader ${userInfo.verificationError !== "" ? "stop-loader" : "" }`} size={96} color={"#a0262e"} />
+                    <FiLoader className={`verifying-loader ${verificationError !== "" ? "stop-loader" : "" }`} size={96} color={"#a0262e"} />
                 </div>
                 {userInfo.verificationError !== "" &&
                     <div className="account-verification-error-container">
-                        <p className="account-verification-error-text">{userInfo.verificationError}</p>
+                        <p className="account-verification-error-text">{verificationError}</p>
                     </div>
                 }
             </div>

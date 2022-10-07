@@ -6,7 +6,8 @@ const initialState = {
         otaCode: "",
         pastOrders: [],
         isOrdering: false,
-        verificationError: ""
+        verificationError: "",
+        isVerifying: false,
     },
     loading: false,
     userCreationError: "",
@@ -32,18 +33,32 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ACCOUNT_VERIFICATION_SUCCESS":
+            console.log("Account Verified Successfully", action);
             return {
                 ...state,
                 userInfo: {
+                    ...state.userInfo,
                     ...action.userInfo,
-                    verificationError: ""
+                    verificationError: "",
+                    isVerifying: false,
                 }
             }
         case "ACCOUNT_VERIFICATION_ERROR":
             return {
                 ...state,
                 userInfo: {
-                    verificationError: action.message
+                    ...state.userInfo,
+                    verificationError: action.message,
+                    isVerifying: false,
+                }
+            }
+        case "VERIFYING_USER":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    verificationError: "",
+                    isVerifying: true,
                 }
             }
         case "persist/REHYDRATE":
@@ -174,6 +189,7 @@ const userReducer = (state=initialState, action) => {
                 ...state,
                 loading: false,
                 userInfo: {
+                    ...state.userInfo,
                     ...action.userInfo,
                 },
                 userCreationError: "",
