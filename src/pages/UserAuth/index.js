@@ -325,16 +325,15 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             }
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
-                if (userInfo.email !== "" && userInfo.companyName !== "") {
-
+                if (userInfo.email !== "") {
                     if (authState === "signup") {
                         navigate('/users/account/verify', {
                             state: {
                                 isMidOrder: true
                             }
                         })
-
                     } else {
+                        console.log("Should navigate to users/account/verify ")
                         navigate('/users/account/verify', {
                             state: {
                                 isMidOrder: false

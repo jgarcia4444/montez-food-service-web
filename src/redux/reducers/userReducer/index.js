@@ -33,7 +33,6 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ACCOUNT_VERIFICATION_SUCCESS":
-            console.log("Account Verified Successfully", action);
             return {
                 ...state,
                 userInfo: {
