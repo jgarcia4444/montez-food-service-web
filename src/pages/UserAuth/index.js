@@ -14,7 +14,7 @@ import sendResetCode from '../../redux/actions/userActions/sendResetCode';
 import checkCode from '../../redux/actions/userActions/checkCode';
 import changePassword from '../../redux/actions/userActions/changePassword';
 
-const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
+const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -161,6 +161,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
                 password: password,
                 company_name: companyName,
                 is_ordering: authState === "signup" ? true : false,
+                cart_info: authState === "signup" ? items : [],
             }
             createUser(userInfo);
         }
@@ -370,6 +371,7 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
 const mapStateToProps = state => {
     return {
         userReducer: state.userReducer,
+        items: state.cart.items
     }
 };
 
