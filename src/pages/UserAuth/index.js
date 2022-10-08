@@ -161,9 +161,9 @@ const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, che
                 password: password,
                 company_name: companyName,
                 is_ordering: authState === "signup" ? true : false,
-                cart_info: authState === "signup" ? items : [],
             }
-            createUser(userInfo);
+            let cartInfo = items;
+            createUser(userInfo, cartInfo);
         }
     }
 
@@ -377,7 +377,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createUser: (userInfo) => dispatch(createUser(userInfo)),
+        createUser: (userInfo, cartInfo) => dispatch(createUser(userInfo, cartInfo)),
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
         sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
         checkCode: (userInfo) => dispatch(checkCode(userInfo)),

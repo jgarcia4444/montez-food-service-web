@@ -17,7 +17,6 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
     const [showUpdateAlert, setShowUpdateAlert] = useState(false);
 
     const {description, price, quantity, totalPrice} = itemInfo;
-    console.log("Item Info from Order Item", itemInfo);
 
     const handleRemoveOrderItem = () => {
         removeOrderItem(description);

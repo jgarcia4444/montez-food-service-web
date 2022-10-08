@@ -23,9 +23,9 @@ const verifyUser = (email) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {userInfo, lastCartInfo} = data;
+                    let {userInfo, latestCartInfo} = data;
                     if (userInfo.isOrdering) {
-                        return dispatch({type: "ACCOUNT_VERIFICATION_SUCCESS", userInfo, lastCartInfo});    
+                        return dispatch({type: "ACCOUNT_VERIFICATION_SUCCESS", userInfo, latestCartInfo});    
                     }
                     return dispatch({type: "ACCOUNT_VERIFICATION_SUCCESS", userInfo});
                 } else {

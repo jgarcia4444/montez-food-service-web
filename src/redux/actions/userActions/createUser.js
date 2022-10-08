@@ -2,15 +2,12 @@
 import Urls from "../../../config/Urls";
 const { baseUrl } = Urls;
 
-const createUser = (userInfo) => {
+const createUser = (userInfo, cartInfo) => {
+    console.log("Create User cart info", cartInfo);
     let url = `${baseUrl}users`;
-    const {email, password, company_name} = userInfo;
     let body = {
-        user_info: {
-            email: email,
-            password: password,
-            company_name: company_name
-        }
+        user_info: userInfo,
+        cart_info: cartInfo,
     }
     let options = {
         method: "POST",
