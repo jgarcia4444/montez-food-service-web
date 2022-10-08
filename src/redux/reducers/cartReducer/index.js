@@ -14,9 +14,10 @@ const updateItemsProperties = (item, newQuantity) => {
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ACCOUNT_VERIFICATION_SUCCESS":
+            let cartItems = action.lastCartInfo !== undefined ? action.lastCartInfo.items : []; 
             return {
                 ...state,
-                items: action.lastCartInfo.items,
+                items: cartItems,
             }
         case "ORDER_SEND_ERROR":
             return {
