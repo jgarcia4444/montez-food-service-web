@@ -13,6 +13,11 @@ const updateItemsProperties = (item, newQuantity) => {
 
 const cartReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ACCOUNT_VERIFICATION_SUCCESS":
+            return {
+                ...state,
+                items: action.lastCartInfo.items,
+            }
         case "ORDER_SEND_ERROR":
             return {
                 ...state,

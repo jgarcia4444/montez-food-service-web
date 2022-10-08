@@ -23,7 +23,10 @@ const verifyUser = (email) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {userInfo} = data;
+                    let {userInfo, lastCartInfo} = data;
+                    if (userInfo.isOrdering) {
+                        return dispatch({type: "ACCOUNT_VERIFICATION_SUCCESS", userInfo, lastCartInfo});    
+                    }
                     return dispatch({type: "ACCOUNT_VERIFICATION_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
