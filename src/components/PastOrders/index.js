@@ -13,12 +13,21 @@ import OrderDetailsModal from './OrderDetailsModal'
 const PastOrders = ({pastOrders, showOrderDetails}) => {
 
   const renderPastOrders = () => {
-    return pastOrders.length > 0 ?
-    pastOrders.map((pastOrder, i) => <PastOrder key={i} orderInfo={pastOrder} />)
-    :
-    <h3>
-      No Past orders
-    </h3>
+    console.log("PAST ORDERS", pastOrders)
+    if (pastOrders !== undefined) {
+      return pastOrders.length > 0 && pastOrders !== undefined ?
+      pastOrders.map((pastOrder, i) => <PastOrder key={i} orderInfo={pastOrder} />)
+      :
+      <h3 className="white-text">
+        No Past orders
+      </h3>
+    } else {
+      return (
+        <h3 className="white-text">
+          No Past orders
+        </h3>    
+      )
+    }
   }
 
   return (

@@ -12,14 +12,15 @@ const Account = ({userInfo, logout}) => {
 
     const navigate = useNavigate();
 
+    console.log("User Info from account page:", userInfo);
+
     const {email, companyName, pastOrders} = userInfo;
 
     useEffect(() => {
-        console.log("PAST ORDERS------", pastOrders)
         if (email === "") {
             navigate('/user-auth');
         }
-    }, [email])
+    }, [email, navigate, pastOrders])
 
     return (
         <Layout>

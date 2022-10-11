@@ -2,7 +2,8 @@
 
 .order-cart-container {
     background-color: #a0262e;
-    height: 50vh;
+    width: 100%;
+    height: 75vh;
     padding: 5px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
@@ -19,7 +20,7 @@
 }
 
 .order-checkout-button {
-    width: 95%;
+    width: 98%;
     margin: 1% auto;
     position: relative;
     border: 2px solid #FFC72C;
@@ -55,18 +56,20 @@
 }
 
 .order-items-container {
-    background-color: #FFC72C;
+    background-color: #fff;
     width: 100%;
     height: 50%;
     border-radius: 5px;
     padding: 5px 0;
-    box-shadow: inset 0 0 3px 1px gray;
+    box-shadow: inset 0 0 5px 2px gray;
     overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-items-text {
-    text-align: left;
-    color: white;
+    color: #a0262e;
     font-weight: bold;
-    margin: 0;
+    font-size: 1.5em;
 }

@@ -70,6 +70,12 @@
 
 .order-item-action-icon {
     color: #FFC72C;
+    transition: all 300ms;
+}
+
+.order-item-action-icon:hover {
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
 .order-item-action-row {

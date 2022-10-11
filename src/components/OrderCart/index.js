@@ -20,7 +20,7 @@ const OrderCart = ({cart, userInfo, sendOrder}) => {
 
     const renderOrderItems = () => {
         if (items.length < 1) {
-            return <p className="no-items-text">"No items added to cart yet..."</p>
+            return <p className="no-items-text">No items added to cart yet...</p>
         } else {
             return items.map((orderItem, i) => <OrderItem key={`${orderItem.description}${i}`} itemInfo={orderItem} />)
         }

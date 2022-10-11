@@ -11,9 +11,6 @@ import presentOrderDetails from '../../../redux/actions/orderDetailsPresentation
 const PastOrder = ({orderInfo, presentOrderDetails}) => {
 
     const {items, totalPrice, orderDate} = orderInfo;
-    console.log(orderInfo);
-
-    const [showDetails, setShowDetails] = useState(false);
 
     const totalQuantity = () => {
         let itemsQuantity = 0;
@@ -22,11 +19,6 @@ const PastOrder = ({orderInfo, presentOrderDetails}) => {
         })
         return itemsQuantity;
     }
-
-    const renderDetails = () => {
-        return showDetails === true && <PastOrderDetails orderItems={items} />
-    }
-
 
     const configuredDate = () => {
         let pastOrderDate = new Date(orderDate);
@@ -122,7 +114,6 @@ const PastOrder = ({orderInfo, presentOrderDetails}) => {
             <div onClick={handleOrderDetailsClick} className="past-order-details-action-block">
                 <FiList className="past-order-details-button" color={'#ffc72c'} size={24} />
             </div>
-            {renderDetails()}
         </div>
     )
 }

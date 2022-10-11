@@ -5,6 +5,9 @@ const initialState = {
         companyName: "",
         otaCode: "",
         pastOrders: [],
+        isOrdering: false,
+        verificationError: "",
+        isVerifying: false,
     },
     loading: false,
     userCreationError: "",
@@ -29,10 +32,44 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "persist/REHYDRATE":
-            let {payload} = action;
+        case "ACCOUNT_VERIFICATION_SUCCESS":
             return {
-                ...payload.userReducer,
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    ...action.userInfo,
+                    verificationError: "",
+                    isVerifying: false,
+                }
+            }
+        case "ACCOUNT_VERIFICATION_ERROR":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    verificationError: action.message,
+                    isVerifying: false,
+                }
+            }
+        case "VERIFYING_USER":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    verificationError: "",
+                    isVerifying: true,
+                }
+            }
+        case "persist/REHYDRATE":
+            if (action.payload !== undefined) {
+                let {payload} = action;
+                return {
+                    ...payload.userReducer,
+                }
+            } else {
+                return {
+                    ...state,
+                }
             }
         case "ORDER_SEND_SUCCESS":
             let updatedPastOrders = [action.pastOrder,...state.userInfo.pastOrders]
@@ -138,7 +175,7 @@ const userReducer = (state=initialState, action) => {
             }
         case "USER_LOGOUT":
             return {
-                ...initialState
+                ...initialState,
             }
         case 'CREATING_USER':
             return {
@@ -151,6 +188,7 @@ const userReducer = (state=initialState, action) => {
                 ...state,
                 loading: false,
                 userInfo: {
+                    ...state.userInfo,
                     ...action.userInfo,
                 },
                 userCreationError: "",

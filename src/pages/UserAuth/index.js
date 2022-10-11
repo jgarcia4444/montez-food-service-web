@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -14,12 +14,11 @@ import sendResetCode from '../../redux/actions/userActions/sendResetCode';
 import checkCode from '../../redux/actions/userActions/checkCode';
 import changePassword from '../../redux/actions/userActions/changePassword';
 
-const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
+const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
-    const params = useParams();
-
-    const authState = params.auth_state !== undefined ? params.auth_state : "";
+    const location = useLocation();
+    const authState = location.state !== null ? location.state.authState : "";
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
@@ -160,9 +159,11 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             let userInfo = {
                 email: email,
                 password: password,
-                company_name: companyName
+                company_name: companyName,
+                is_ordering: authState === "signup" ? true : false,
             }
-            createUser(userInfo);
+            let cartInfo = items;
+            createUser(userInfo, cartInfo);
         }
     }
 
@@ -314,9 +315,9 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
                     if (authState === "login") {
-                        navigate('/order-online')
+                        navigate("/order-online");
                     } else {
-                        navigate('/users/account');
+                        navigate('/users/account')
                     }
                 }
             } else {
@@ -325,11 +326,20 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
             }
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
-                if (userInfo.email !== "" && userInfo.companyName !== "") {
+                if (userInfo.email !== "") {
                     if (authState === "signup") {
-                        navigate("/order-online");
+                        navigate('/users/account/verify', {
+                            state: {
+                                isMidOrder: true
+                            }
+                        })
                     } else {
-                        navigate('/users/account');
+                        console.log("Should navigate to users/account/verify ")
+                        navigate('/users/account/verify', {
+                            state: {
+                                isMidOrder: false
+                            }
+                        });
                     }
                 }
             } else {
@@ -361,12 +371,13 @@ const UserAuth = ({createUser, userReducer, loginUser, sendResetCode, checkCode,
 const mapStateToProps = state => {
     return {
         userReducer: state.userReducer,
+        items: state.cart.items
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        createUser: (userInfo) => dispatch(createUser(userInfo)),
+        createUser: (userInfo, cartInfo) => dispatch(createUser(userInfo, cartInfo)),
         loginUser: (userInfo) => dispatch(loginUser(userInfo)),
         sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
         checkCode: (userInfo) => dispatch(checkCode(userInfo)),
