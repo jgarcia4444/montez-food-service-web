@@ -20,6 +20,7 @@ const NavHeader = ({userInfo}) => {
 
     const handleUserPress = () => {
         setShowMobileNavLinks(false);
+        setActivePage('User Auth');
         if (email === "") {
             navigate("/user-auth");
         } else {
@@ -34,7 +35,7 @@ const NavHeader = ({userInfo}) => {
             <Link onClick={() => setActivePage("Order Online")} className={`nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
             <Link onClick={() => setActivePage("Cost Optimization")} className={`nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
             <span className="vertical-separator">|</span>
-            <FiUser onClick={handleUserPress} className="user-icon" size={20} color={'black'} />
+            <FiUser onClick={handleUserPress} className={`user-icon ${activePage === 'User Auth' ? "active-link" : ""}`} size={20} />
         </div>
     )
 
@@ -53,7 +54,7 @@ const NavHeader = ({userInfo}) => {
                     <Link onClick={() => handleMobileLinkClick("Order Online")} className={`mobile-nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
                     <Link onClick={() => handleMobileLinkClick("Cost Optimization")} className={`mobile-nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
                     <div onClick={handleUserPress} className="icon-color-change mobile-nav-link">
-                        <FiUser  className="user-icon" size={20} />
+                        <FiUser className="user-icon" size={20} />
                     </div>
                 </div>
             }

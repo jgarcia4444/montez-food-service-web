@@ -16,10 +16,10 @@ const Products = () => {
         <Layout>
             <div className="page-title-row">
                 <h1 className="page-title">Products</h1>
+            </div>
                 <div className="products-container">
                     {renderProducts()}
                 </div>
-            </div>
         </Layout>
     )
 }
