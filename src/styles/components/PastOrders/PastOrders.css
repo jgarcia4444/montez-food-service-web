@@ -44,3 +44,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.white-text {
+    color: "#fff";
+}
