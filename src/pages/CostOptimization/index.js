@@ -4,6 +4,34 @@ import Layout from '../../shared/Layout';
 
 const CostOptimization = () => {
 
+    const data = [
+        {source: "Savings from invoices for 4 days of deliveries in October", weeklySavings: '975', yearlySavings: '50,000'},
+        {source: "Extra days of invoice(s) not provided", weeklySavings: '150', yearlySavings: '7,500'},
+        {source: "Spices and Grains", weeklySavings: '50', yearlySavings: '2500'},
+        {source: "Potential for cleaning supplies/services", weeklySavings: '100', yearlySavings: '5,000'},
+        {source: "Assistance in price negotiations for things such as produce", weeklySavings: '150', yearlySavings: '7,500'},
+        {source: "Equipment and supplies for rest/catering", weeklySavings: '?', yearlySavings: '?'},
+    ];
+
+    const renderTableData = () => {
+        return data.map(dataInfo => {
+            const {source, weeklySavings, yearlySavings} = dataInfo
+            return (
+                <div className="table-data-row">
+                    <div className="table-half-column">
+                        {source}
+                    </div>
+                    <div className="table-quarter-column middle-column">
+                        ~${weeklySavings}
+                    </div>
+                    <div className="table-quarter-column">
+                        ${yearlySavings}
+                    </div>
+                </div>
+            )
+        })
+    }
+
     return (
         <Layout>
             <div className="top-container">
@@ -26,7 +54,7 @@ const CostOptimization = () => {
                 </div>
                 <div className="half-column">
                     <div className="optimization-details">
-                        <h2 className="savings-title">Food and Supply Savings</h2>
+                        <h2 className="savings-title">Savings</h2>
                         <div className="savings-table-container">
                             <div className="table-headers-row">
                                 <div className="table-half-column">
@@ -39,72 +67,7 @@ const CostOptimization = () => {
                                     <strong className="table-headers">Over 1 year</strong>
                                 </div>
                             </div>
-                            <div className="table-data-row even-row">
-                                <div className="table-half-column">
-                                    Savings from invoices for 4 days of deliveries in October
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ~$975
-                                </div>
-                                <div className="table-quarter-column">
-                                    $50,000
-                                </div>
-                            </div>
-                            <div className="table-data-row">
-                                <div className="table-half-column">
-                                    Extra days of invoice(s) not provided
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ~$150
-                                </div>
-                                <div className="table-quarter-column">
-                                    $7,500
-                                </div>
-                            </div>
-                            <div className="table-data-row even-row">
-                                <div className="table-half-column">
-                                    Spices and Grains
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ~$50
-                                </div>
-                                <div className="table-quarter-column">
-                                    $2,500
-                                </div>
-                            </div>
-                            <div className="table-data-row">
-                                <div className="table-half-column">
-                                    Potential for cleaning supplies/services
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ~$100
-                                </div>
-                                <div className="table-quarter-column">
-                                    $5,000
-                                </div>
-                            </div>
-                            <div className="table-data-row even-row">
-                                <div className="table-half-column">
-                                    Assistance in price negotiations for things such as produce
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ~$150
-                                </div>
-                                <div className="table-quarter-column">
-                                    $7,500
-                                </div>
-                            </div>
-                            <div className="table-data-row">
-                                <div className="table-half-column">
-                                    Equipment and supplies for rest/catering
-                                </div>
-                                <div className="table-quarter-column middle-column">
-                                    ?
-                                </div>
-                                <div className="table-quarter-column">
-                                    ?
-                                </div>
-                            </div>
+                            {renderTableData()}
                             <div className="table-data-row even-row">
                                 <div className="table-half-column">
                                     <strong>Total</strong>

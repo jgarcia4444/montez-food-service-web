@@ -1,7 +1,7 @@
 
 
 .even-row {
-    background-color: #eee;
+    /* background-color: #eee; */
 }
 
 .half-column {
@@ -36,13 +36,11 @@
 }
 
 .savings-table-container {
-    border: 2px solid #a0262e;
     border-radius: 5px;
 }
 
 .table-half-column {
     width: 50%;
-    border-right: 2px solid #a0262e;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -56,7 +54,6 @@
 }
 
 .middle-column {
-    border-right: 2px solid #a0262e;
 }
 
 .smaller-container {
@@ -72,9 +69,16 @@
     font-size: 14px;
 }
 
+.table-headers-row {
+    background-color: #a0262e;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px -1px #000;
+    z-index: 10;
+}
+
 .table-headers-row, .table-data-row {
     display: flex;
-    border-bottom: 2px solid #a0262e;
 }
 
 .table-data-row:last-child {
