@@ -17,7 +17,7 @@ const PastOrders = ({pastOrders, showOrderDetails}) => {
       return pastOrders.length > 0 && pastOrders !== undefined ?
       pastOrders.map((pastOrder, i) => <PastOrder key={i} orderInfo={pastOrder} />)
       :
-      <h3 style={{color: '#fff'}} className="white-text">
+      <h3 className="white-text">
         No Past orders
       </h3>
     } else {
