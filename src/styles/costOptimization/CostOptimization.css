@@ -65,6 +65,11 @@
     /* border: 1px solid black; */
 }
 
+.table-data-container {
+    height: 20vh;
+    overflow-y: auto;
+}
+
 .table-headers {
     font-size: 14px;
 }
@@ -72,8 +77,9 @@
 .table-headers-row {
     background-color: #a0262e;
     color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 3px -1px #000;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 0 0 3px -1px #000;
     z-index: 10;
 }
 
@@ -90,4 +96,12 @@
     align-items: flex-start;
     justify-content: center;
     font-family: sans-serif;
+}
+
+.total-savings-row {
+    background-color: #a0262e;
+    color: #fff;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 0 3px -1px #000;
 }

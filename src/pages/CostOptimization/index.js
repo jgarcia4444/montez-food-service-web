@@ -67,8 +67,10 @@ const CostOptimization = () => {
                                     <strong className="table-headers">Over 1 year</strong>
                                 </div>
                             </div>
-                            {renderTableData()}
-                            <div className="table-data-row even-row">
+                            <div className="table-data-container">
+                                {renderTableData()}
+                            </div>
+                            <div className="table-data-row total-savings-row">
                                 <div className="table-half-column">
                                     <strong>Total</strong>
                                 </div>
