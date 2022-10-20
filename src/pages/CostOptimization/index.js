@@ -17,7 +17,7 @@ const CostOptimization = () => {
         return data.map(dataInfo => {
             const {source, weeklySavings, yearlySavings} = dataInfo
             return (
-                <div className="table-data-row">
+                <div key={source} className="table-data-row">
                     <div className="table-half-column">
                         {source}
                     </div>
@@ -34,7 +34,7 @@ const CostOptimization = () => {
 
     return (
         <Layout>
-            <div className="top-container">
+            <div className="cost-optimization-container">
                 <div className="half-column">
                     <div className="optimization-details">
                         <div className="optimization-title-row">

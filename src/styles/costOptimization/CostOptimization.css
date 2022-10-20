@@ -18,14 +18,22 @@
 
 .optimization-details-container {
     margin: 20px 0; 
+    background-color: #a0262e;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 3px -1px #000;
 }
 
 .optimization-details-container>p {
     margin-top: 0;
+    color: #fff;
+    font-size: 1.1em;
 }
 
 .optimization-details-title {
-    margin-bottom: 0;
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-size: 1.40em;
 }
 
 .optimization-title, .savings-title {
@@ -116,7 +124,7 @@
     border-bottom: none;
 }
 
-.top-container {
+.cost-optimization-container {
     display: flex;
     align-items: flex-start;
     justify-content: center;
