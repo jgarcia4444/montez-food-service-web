@@ -8,7 +8,6 @@ const OrderOnline = () => {
 
     return (
         <Layout>
-            {/* <h1 className="page-title">Order Online</h1> */}
             <div className="order-online-container">
                 <div className="seventy-width-container">
                     <OrderForm />

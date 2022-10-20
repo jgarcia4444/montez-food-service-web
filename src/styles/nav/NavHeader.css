@@ -7,8 +7,7 @@
     left: 0;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid lightgray;
-    box-shadow: -2px 0 3px -1px black;
+    box-shadow: 0px 1px 3px -1px black;
     background-color: #a0262e;
 }
 
