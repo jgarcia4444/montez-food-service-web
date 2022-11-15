@@ -1,5 +1,3 @@
-
-/* soifnewso */
 .nav-header-row {
     width: 100%;
     position: fixed;
@@ -11,8 +9,6 @@
     background-color: #a0262e;
     padding: 5px 0;
 }
-
-
 
 .nav-link {
     text-decoration: none;
@@ -72,6 +68,19 @@
 .mobile-nav-header-img {
     width: 50px;
     border-radius: 50%;
+    animation-name: FadeIn;
+    animation-duration: 1250ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
 }
 
 .mobile-nav-link {
@@ -113,12 +122,12 @@
 }
 
 .user-icon {
-    color: #fff;
+    color: #000;
 }
 
 .user-icon:hover {
     cursor: pointer;
-    color: #ffc72c;
+    color: #a0262e;
 }
 
 .vertical-separator {
