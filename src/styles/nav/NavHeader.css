@@ -122,16 +122,25 @@
 }
 
 .user-icon {
-    color: #000;
+    color: #fff;
 }
 
 .user-icon:hover {
     cursor: pointer;
-    color: #a0262e;
+    color: #ffc72c;
 }
 
 .vertical-separator {
     margin-right: 20px;
     margin-left: 10px;
     color: #fff;
+}
+
+@media screen and (max-width: 788px) {
+    .user-icon {
+        color: #000;
+    }
+    .user-icon:hover {
+        color: #a0262e;
+    }
 }

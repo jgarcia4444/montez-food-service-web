@@ -64,7 +64,7 @@ const NavHeader = ({userInfo}) => {
     )
 
     const renderNavLinks = () => {
-        if (width > 768) {
+        if (width > 788) {
             return navLinks;
         } else {
             return mobileNavLinks;
