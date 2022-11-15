@@ -53,7 +53,7 @@
 }
 
 .order-item-row {
-    z-index: -1;
+    z-index: 0;
     width: 100%;
     border-radius: 5px;
     background-color: #a0262e;

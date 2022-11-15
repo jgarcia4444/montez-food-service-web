@@ -23,3 +23,12 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 788px) {
+    .order-online-container {
+        flex-direction: column;
+    }
+    .seventy-width-container, .thirty-width-container {
+        width: 100%;
+    }
+}

@@ -72,7 +72,7 @@ const NavHeader = ({userInfo}) => {
     }
 
     const renderNavTitle = () => {
-        return width > 768 ? (
+        return width > 788 ? (
             <h2 className="nav-title">
                 <Link onClick={() => setActivePage("Home")} to="/" className="nav-title-link">Montez Food Service</Link>
             </h2>
