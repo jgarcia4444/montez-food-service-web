@@ -15,10 +15,10 @@
 
 .action-button-row {
     width: 100%;
-    height: 45%;
     align-items: center;
     justify-content: center;
     display: flex;
+    margin: 20px 0;
 }
 
 .action-login-button {
@@ -32,7 +32,7 @@
 }
 
 .back-button-row {
-    width: 100%;
+    width: 75%;
     margin: 0 auto;
     display: flex;
     color: #a0262e;
@@ -48,8 +48,8 @@
 .column-flex-container {
     display: flex;
     flex-direction: column;
-    height: 40%;
-    /* box-shadow: 1px 1px 3px -1px gray; */
+    min-width: 75%;
+    box-shadow: 1px 1px 3px -1px gray;
     align-items: center;
     justify-content: center;
 }
@@ -60,11 +60,13 @@
     border-radius: 5px;
     color: #a0262e;
     transition: all 300ms;
+    margin-right: 10px;
 }
 
 .forgot-password-button-row {
     font-size: 12px;
-    width: 75%;
+    width: 100%;
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
 }
@@ -88,7 +90,7 @@
     position: relative;
     border:  3px solid #a0262e;
     color: #a0262e;
-    width: 50%;
+    width: 100%;
     padding: 1% 0;
     border-radius: 5px;
     font-weight: bold;
@@ -123,18 +125,17 @@
 
 .send-button-row {
     margin-top: 1%;
-    width: 100%;
+    width: 75%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .user-auth-container {
-    width: 80%;
-    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    width: 100%;
+    margin-top: 20vh;
 }
