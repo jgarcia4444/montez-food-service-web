@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { reactGa } from '../../config/Urls';
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -310,7 +311,10 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             } else if (authState === "signup") {
                 setDisplayState('signup');
             }
-        } 
+        }
+        if (displayState === "") {
+            reactGa.pageView('/user-auth');
+        }
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
@@ -334,7 +338,6 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
                             }
                         })
                     } else {
-                        console.log("Should navigate to users/account/verify ")
                         navigate('/users/account/verify', {
                             state: {
                                 isMidOrder: false

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { reactGa } from '../../config/Urls';
+
 import '../../styles/costOptimization/CostOptimization.css';
 import Layout from '../../shared/Layout';
 
@@ -31,6 +33,10 @@ const CostOptimization = () => {
             )
         })
     }
+
+    useEffect(() => {
+        reactGa.pageView('cost-optimization');
+    })
 
     return (
         <Layout>

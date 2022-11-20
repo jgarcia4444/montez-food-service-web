@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { reactGa } from '../../config/Urls'; 
 
 import '../../styles/home/Home.css';
 import Layout from '../../shared/Layout';
@@ -17,6 +18,10 @@ const Home = ({userInfo}) => {
     const {email, companyName} = userInfo;
 
     const [showContactModal, setShowContactModal] = useState(false);
+
+    useEffect(() => {
+        reactGa.pageView('/');
+    })
 
     return (
         <Layout>
