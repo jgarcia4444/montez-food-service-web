@@ -1,9 +1,4 @@
 
-
-.even-row {
-    /* background-color: #eee; */
-}
-
 .half-column {
     display: flex;
     width: 80%;
@@ -20,7 +15,7 @@
     margin: 20px 0; 
     background-color: #a0262e;
     border-radius: 5px;
-    padding: 5px;
+    padding: 20px 10px;
     box-shadow: 0 0 3px -1px #000;
 }
 
