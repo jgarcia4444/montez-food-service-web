@@ -32,6 +32,12 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "CLEAR_ERRORS":
+            return {
+                ...state,
+                loginErrors: [],
+                signupErrors: [],
+            }
         case "ACCOUNT_VERIFICATION_SUCCESS":
             return {
                 ...state,

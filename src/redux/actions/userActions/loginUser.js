@@ -2,6 +2,7 @@ import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
 const loginUser = (userInfo) => {
+    console.log("Login user action triggered.");
     const {email, password} = userInfo;
     let url = `${baseUrl}users/login`;
     let body = {
@@ -22,6 +23,7 @@ const loginUser = (userInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("Data returned from the login user fetch request", data);
                 let {success} = data;
                 if (success === true) {
                     let {userInfo} = data;
