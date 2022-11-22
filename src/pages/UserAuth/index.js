@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { reactGa } from '../../config/Urls';
+import ReactGA from 'react-ga';
+
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -21,6 +22,7 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
     const navigate = useNavigate();
     const location = useLocation();
     const authState = location.state !== null ? location.state.authState : "";
+
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
@@ -313,7 +315,8 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             }
         }
         if (displayState === "") {
-            reactGa.pageView('/user-auth');
+            ReactGA.initialize('G-7380SQJ6M9');
+            ReactGA.pageview('/user-auth');
         }
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {

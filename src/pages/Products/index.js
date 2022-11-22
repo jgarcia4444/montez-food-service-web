@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { reactGa } from '../../config/Urls';
+import ReactGA from 'react-ga';
 
 import '../../styles/products/Products.css';
 import Layout from '../../shared/Layout';
@@ -13,7 +13,8 @@ const Products = () => {
     }
 
     useEffect(() => {
-        reactGa.pageView('/products');
+        ReactGA.initialize('G-7380SQJ6M9');
+        ReactGA.pageview('/products');
     })
 
     return (
