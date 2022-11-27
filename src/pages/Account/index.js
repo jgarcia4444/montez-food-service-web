@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import '../../styles/account/Account.css';
 import '../../styles/Global.css';
@@ -12,13 +13,14 @@ const Account = ({userInfo, logout}) => {
 
     const navigate = useNavigate();
 
-    console.log("User Info from account page:", userInfo);
-
     const {email, companyName, pastOrders} = userInfo;
 
     useEffect(() => {
         if (email === "") {
             navigate('/user-auth');
+        } else {
+            ReactGA.initialize('G-7380SQJ6M9');
+            ReactGA.pageview('/users/account')
         }
     }, [email, navigate, pastOrders])
 
