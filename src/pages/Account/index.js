@@ -7,6 +7,7 @@ import '../../styles/account/Account.css';
 import '../../styles/Global.css';
 import Layout from '../../shared/Layout';
 import PastOrders from '../../components/PastOrders';
+import logout from '../../redux/actions/userActions/logout';
 
 
 const Account = ({userInfo, logout}) => {
@@ -61,7 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch({type: "USER_LOGOUT"}),
+        logout: () => dispatch(logout()),
     }
 }
 
