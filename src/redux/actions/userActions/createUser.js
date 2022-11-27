@@ -29,7 +29,7 @@ const createUser = (userInfo, cartInfo) => {
                         category: "Account",
                         action: "User Created an account",
                         label: "User Sign Up"
-                    })
+                    });
                     return dispatch({type: "USER_CREATION_SUCCESS", userInfo});
                 } else {
                     let {error} = data;

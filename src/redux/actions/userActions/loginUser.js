@@ -1,8 +1,9 @@
 import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
+import ReactGA from 'react-ga';
+
 const loginUser = (userInfo) => {
-    console.log("Login user action triggered.");
     const {email, password} = userInfo;
     let url = `${baseUrl}users/login`;
     let body = {
@@ -23,10 +24,15 @@ const loginUser = (userInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
-                console.log("Data returned from the login user fetch request", data);
                 let {success} = data;
                 if (success === true) {
                     let {userInfo} = data;
+                    ReactGA.initialize('G-7380SQJ6M9');
+                    ReactGA.event({
+                        category: "Account",
+                        action: "User Logged In Successfully",
+                        label: "User Login"
+                    });
                     return dispatch({type: "USER_LOGIN_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
