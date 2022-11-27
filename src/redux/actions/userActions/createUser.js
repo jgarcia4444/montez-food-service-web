@@ -1,7 +1,7 @@
+import ReactGA from 'react-ga';
 
 import Urls from "../../../config/Urls";
 const { baseUrl } = Urls;
-import ReactGA from 'react-ga';
 
 const createUser = (userInfo, cartInfo) => {
     let url = `${baseUrl}users`;

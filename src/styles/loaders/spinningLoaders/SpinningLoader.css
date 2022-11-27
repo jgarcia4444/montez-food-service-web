@@ -2,15 +2,9 @@
 
 .spinning-loader {
     animation-name: Spin;
-    animation-duration: 1000ms;
+    animation-duration: 500ms;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border-right-width: 3px;
-    border-left-width: 1px;
-    border-style: solid;
+    animation-timing-function: ease-in;
 }
 
 
@@ -23,29 +17,10 @@
 }
 
 @keyframes Spin {
-    0% {
-        border-top-width: 0px;
-        border-left-width: 1px;
-        border-bottom-width: 3px;
+    from {
+        transform: rotate(0deg) scale(1);
     }
-    25% {
-        border-left-width: 0px;
-        border-bottom-width: 1px;
-        border-right-width: 3px;
-    }
-    50% {
-        border-bottom-width: 0px;
-        border-right-width: 1px;
-        border-top-width: 3px;
-    }
-    75% {
-        border-right-width: 0px;
-        border-top-width: 1px;
-        border-left-width: 3px;
-    }
-    100% {
-        border-top-width: 0px;
-        border-left-width: 1px;
-        border-bottom-width: 3px;
+    to {
+        transform: rotate(360deg) scale(1.15);
     }
 }
