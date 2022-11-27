@@ -8,11 +8,26 @@ import OrderForm from '../../components/OrderForm';
 import OrderCart from '../../components/OrderCart';
 
 
-const OrderOnline = ({companyName}) => {
+const OrderOnline = ({companyName, items}) => {
 
     useEffect(() => {
         ReactGA.initialize('G-7380SQJ6M9');
         ReactGA.pageview('/order-online');
+    })
+
+    useEffect(() => {
+        return () => {
+            if (companyName !== "") {
+                if (items.length > 0) {
+                    ReactGA.initialize('G-7380SQJ6M9');
+                    ReactGA.event({
+                        category: "Order",
+                        action: "User Left An Order In The Cart",
+                        label: "Cart Left"
+                    });
+                }
+            }
+        }
     })
 
     return (
@@ -31,7 +46,8 @@ const OrderOnline = ({companyName}) => {
 
 const mapStateToProps = state => {
     return {
-        companyName: state.userReducer.userInfo.companyName
+        companyName: state.userReducer.userInfo.companyName,
+        items: state.cart.items,
     }
 }
 
