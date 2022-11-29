@@ -8,6 +8,8 @@ import useWindowDimensions from '../../customHooks/useWindowDimensions';
 import { useNavigate } from 'react-router-dom';
 import MobileNavButton from './MobileNavButton';
 
+import montezLogo from '../../pages/Home/imgs/montez-logo.png';
+
 const NavHeader = ({userInfo}) => {
 
     const {email} = userInfo;
@@ -62,17 +64,29 @@ const NavHeader = ({userInfo}) => {
     )
 
     const renderNavLinks = () => {
-        if (width > 800) {
+        if (width > 788) {
             return navLinks;
         } else {
             return mobileNavLinks;
         }
     }
 
+    const renderNavTitle = () => {
+        return width > 788 ? (
+            <h2 className="nav-title">
+                <Link onClick={() => setActivePage("Home")} to="/" className="nav-title-link">Montez Food Service</Link>
+            </h2>
+            )
+            :
+            (
+                <img className='mobile-nav-header-img' src={montezLogo}/>
+            )
+    }
+
     return (
         <div className="nav-header-row">
             <div className="nav-title-container">
-                <h2 className="nav-title"><Link onClick={() => setActivePage("Home")} to="/" className="nav-title-link">Montez Food Service</Link></h2>
+                {renderNavTitle()}
             </div>
             {renderNavLinks()}
         </div>

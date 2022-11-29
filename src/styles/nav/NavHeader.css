@@ -1,5 +1,3 @@
-
-/* soifnewso */
 .nav-header-row {
     width: 100%;
     position: fixed;
@@ -7,9 +5,9 @@
     left: 0;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid lightgray;
-    box-shadow: -2px 0 3px -1px black;
+    box-shadow: 0px 1px 3px -1px black;
     background-color: #a0262e;
+    padding: 5px 0;
 }
 
 .nav-link {
@@ -50,7 +48,9 @@
 }
 
 .nav-title-container {
-    width: 40%
+    width: 40%;
+    display: flex;
+    align-items: center;
 }
 
 .nav-title {
@@ -65,15 +65,33 @@
     text-decoration: none;
 }
 
+.mobile-nav-header-img {
+    width: 50px;
+    border-radius: 50%;
+    animation-name: FadeIn;
+    animation-duration: 1250ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
 .mobile-nav-link {
     text-decoration: none;
-    color: black;
+    color: #fff;
     padding: 5px;
     transition: all 300ms;
 }
 
 .mobile-nav-link:hover {
-    color: #a0262e;
+    color: #ffc72c;
     cursor: pointer;
     box-shadow: 0 0 3px -1px black;
 }
@@ -88,7 +106,7 @@
     flex-direction: column;
     text-align: left;
     top: 100%;
-    background-color: white;
+    background-color: #a0262e;
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
     z-index: 100;
@@ -116,4 +134,13 @@
     margin-right: 20px;
     margin-left: 10px;
     color: #fff;
+}
+
+@media screen and (max-width: 788px) {
+    .user-icon {
+        color: #fff;
+    }
+    .user-icon:hover {
+        color: #ffc72c;
+    }
 }

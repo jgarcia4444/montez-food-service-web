@@ -1,5 +1,7 @@
+import ReactGA from 'react-ga';
 import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
+
 
 const loginUser = (userInfo) => {
     const {email, password} = userInfo;
@@ -25,6 +27,12 @@ const loginUser = (userInfo) => {
                 let {success} = data;
                 if (success === true) {
                     let {userInfo} = data;
+                    ReactGA.initialize('G-7380SQJ6M9');
+                    ReactGA.event({
+                        category: "Account",
+                        action: "User Logged In Successfully",
+                        label: "User Login"
+                    });
                     return dispatch({type: "USER_LOGIN_SUCCESS", userInfo});
                 } else {
                     let {error} = data;

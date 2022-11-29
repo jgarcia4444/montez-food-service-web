@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
+
 import '../../styles/products/Products.css';
 import Layout from '../../shared/Layout';
-
 import Product from '../../components/products/Product';
-
 import productsData from '../../data/productsData';
 
 const Products = () => {
@@ -11,6 +11,11 @@ const Products = () => {
     const renderProducts = () => {
         return productsData.map(product => <Product key={product.id} info={product} />)
     }
+
+    useEffect(() => {
+        ReactGA.initialize('G-7380SQJ6M9');
+        ReactGA.pageview('/products');
+    })
 
     return (
         <Layout>

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import '../../styles/userAuth/UserAuth.css';
 import { connect, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import ReactGA from 'react-ga';
+
 
 import Layout from '../../shared/Layout';
 import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
@@ -13,12 +15,14 @@ import ForgotPassword from '../../components/ForgotPassword';
 import sendResetCode from '../../redux/actions/userActions/sendResetCode';
 import checkCode from '../../redux/actions/userActions/checkCode';
 import changePassword from '../../redux/actions/userActions/changePassword';
+import clearAuthReduxErrors from '../../redux/actions/userActions/clearAuthReduxErrors';
 
-const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
+const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUser, sendResetCode, checkCode, changePassword}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
     const authState = location.state !== null ? location.state.authState : "";
+
 
     const {loading, userInfo, loggingInError, loginErrors, signupErrors, userCreationError, passwordResetError} = userReducer;
 
@@ -140,31 +144,36 @@ const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, che
         }
      }
 
+    const clearErrors = () => {
+        
+        setEmailError('');
+        setPasswordError('');
+        setCompanyNameError('');
+    }
+
+
     const handleLoginPress = () => {
+        clearAuthReduxErrors()
         let loginInputs = inputs.slice(0, 2);
         checkForPresenceErrors(loginInputs)
-        if (emailError === "" && passwordError === "") {
             let userInfo = {
                 email: email,
                 password: password
             }
             loginUser(userInfo);
-        }
     };
 
     const handleSignupPress = async () => {
-        clearErrors();
+        clearAuthReduxErrors()
         checkForPresenceErrors(inputs)
-        if (emailError === "" && passwordError === "" && companyNameError === "") {
-            let userInfo = {
-                email: email,
-                password: password,
-                company_name: companyName,
-                is_ordering: authState === "signup" ? true : false,
-            }
-            let cartInfo = items;
-            createUser(userInfo, cartInfo);
+        let userInfo = {
+            email: email,
+            password: password,
+            company_name: companyName,
+            is_ordering: authState === "signup" ? true : false,
         }
+        let cartInfo = items;
+        createUser(userInfo, cartInfo);
     }
 
     const handleSendCodePress = async () => {
@@ -209,12 +218,6 @@ const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, che
         } else {
             dispatch({type: "PASSWORD_RESET_ERROR", errorMessage: "New Password cannot be left empty."})
         }
-    }
-
-    const clearErrors = () => {
-        setEmailError('');
-        setPasswordError('');
-        setCompanyNameError('');
     }
 
     const checkForPresenceErrors = (formInputs) => {
@@ -310,7 +313,11 @@ const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, che
             } else if (authState === "signup") {
                 setDisplayState('signup');
             }
-        } 
+        }
+        if (displayState === "") {
+            ReactGA.initialize('G-7380SQJ6M9');
+            ReactGA.pageview('/user-auth');
+        }
         if (displayState === 'login') {
             if (loginErrors.length === 0 && loggingInError === "") {
                 if (userInfo.email !== "" && userInfo.companyName !== "") {
@@ -334,7 +341,6 @@ const UserAuth = ({items, createUser, userReducer, loginUser, sendResetCode, che
                             }
                         })
                     } else {
-                        console.log("Should navigate to users/account/verify ")
                         navigate('/users/account/verify', {
                             state: {
                                 isMidOrder: false
@@ -382,6 +388,7 @@ const mapDispatchToProps = dispatch => {
         sendResetCode: (userInfo) => dispatch(sendResetCode(userInfo)),
         checkCode: (userInfo) => dispatch(checkCode(userInfo)),
         changePassword: (userInfo) => dispatch(changePassword(userInfo)),
+        clearAuthReduxErrors: () => dispatch(clearAuthReduxErrors()),
     }
 }
 

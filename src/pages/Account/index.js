@@ -1,24 +1,27 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import '../../styles/account/Account.css';
 import '../../styles/Global.css';
 import Layout from '../../shared/Layout';
 import PastOrders from '../../components/PastOrders';
+import logout from '../../redux/actions/userActions/logout';
 
 
 const Account = ({userInfo, logout}) => {
 
     const navigate = useNavigate();
 
-    console.log("User Info from account page:", userInfo);
-
     const {email, companyName, pastOrders} = userInfo;
 
     useEffect(() => {
         if (email === "") {
             navigate('/user-auth');
+        } else {
+            ReactGA.initialize('G-7380SQJ6M9');
+            ReactGA.pageview('/users/account')
         }
     }, [email, navigate, pastOrders])
 
@@ -59,7 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch({type: "USER_LOGOUT"}),
+        logout: () => dispatch(logout()),
     }
 }
 

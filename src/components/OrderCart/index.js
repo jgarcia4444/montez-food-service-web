@@ -22,6 +22,7 @@ const OrderCart = ({cart, userInfo, sendOrder}) => {
         if (items.length < 1) {
             return <p className="no-items-text">No items added to cart yet...</p>
         } else {
+            console.log("ITEMS FROM RENDERORDERITEMS FUNCTION", items);
             return items.map((orderItem, i) => <OrderItem key={`${orderItem.description}${i}`} itemInfo={orderItem} />)
         }
     }

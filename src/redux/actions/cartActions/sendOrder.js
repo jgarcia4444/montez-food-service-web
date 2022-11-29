@@ -1,4 +1,5 @@
 import Urls from '../../../config/Urls';
+import ReactGA from 'react-ga';
 
 const sendOrder = (orderDetails) => {
 
@@ -29,11 +30,15 @@ const sendOrder = (orderDetails) => {
                 let {success} = data;
                 if (success === true) {
                     let {pastOrder} = data;
-                    console.log("Past Order",pastOrder)
+                    ReactGA.initialize('G-7380SQJ6M9');
+                    ReactGA.event({
+                        category: "Order",
+                        action: "User Placed An Order",
+                        label: "Order Placed"
+                    });
                     return dispatch({type: "ORDER_SEND_SUCCESS", pastOrder});
                 } else {
                     let {error} = data;
-                    console.log("Order Error", error);
                     let {message} = error;
                     return dispatch({type: "ORDER_SEND_ERROR", errorMessage: message});
                 }

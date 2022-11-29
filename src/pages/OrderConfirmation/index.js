@@ -1,10 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {FiUser} from 'react-icons/fi';
+import useReactGA from '../../customHooks/useReactGA';
 
 import '../../styles/pages/OrderConfirmation.css'
 
 const OrderConfirmation = () => {
+
+    const reactGa = useReactGA();
 
     const navigate = useNavigate();
 

@@ -6,7 +6,7 @@ const MobileNavButton = ({handleMobileNavClick}) => {
 
     return (
         <div onClick={handleMobileNavClick} className="mobile-nav-button">
-            <FiMenu size={24} color={'black'} />
+            <FiMenu size={24} color={'#fff'} />
         </div>
     )
 }
