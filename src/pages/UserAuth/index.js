@@ -198,6 +198,9 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             password: password,
             company_name: companyName,
             is_ordering: authState === "signup" ? true : false,
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber,
         }
         let cartInfo = items;
         createUser(userInfo, cartInfo);
