@@ -6,7 +6,7 @@ import ReactGA from 'react-ga';
 
 
 import Layout from '../../shared/Layout';
-import { FiUser, FiLock, FiMail, FiChevronLeft } from 'react-icons/fi';
+import { FiUser, FiLock, FiMail, FiChevronLeft, FiPhone } from 'react-icons/fi';
 import createUser from '../../redux/actions/userActions/createUser';
 import loginUser from '../../redux/actions/userActions/loginUser';
 import SpinningLoader from '../../components/Loaders/SpinningLoader';
@@ -40,6 +40,12 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
     const [forgotPasswordState, setForgotPasswordState] = useState('');
     const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
+    const [phoneNumberError, setPhoneNumberError] = useState("");
     const dispatch = useDispatch();
 
     const inputs = [
@@ -63,6 +69,27 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             changeFunction: (val) => setCompanyName(val),
             error: companyNameError,
             icon: <FiUser size={24} color={'#ffc72c'} />
+        },
+        {
+            label: "First Name",
+            value: firstName,
+            changeFunction: (val) => setFirstName(val),
+            error: firstNameError,
+            icon: <FiUser size={24} color={"#ffc72c"} />
+        },
+        {
+            label: "Last Name",
+            value: lastName,
+            changeFunction: (val) => setLastName(val),
+            error: lastNameError,
+            icon: <FiUser size={24} color={"#ffc72c"} />
+        },
+        {
+            label: "Phone Number",
+            value: phoneNumber,
+            changeFunction: (val) => setPhoneNumber(val),
+            error: phoneNumberError,
+            icon: <FiPhone size={24} color={"#ffc72c"} />
         }
     ];
 
@@ -171,6 +198,9 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             password: password,
             company_name: companyName,
             is_ordering: authState === "signup" ? true : false,
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber,
         }
         let cartInfo = items;
         createUser(userInfo, cartInfo);
