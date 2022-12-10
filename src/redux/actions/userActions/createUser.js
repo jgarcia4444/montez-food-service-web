@@ -18,11 +18,9 @@ const createUser = (userInfo, cartInfo) => {
     };
     return async dispatch => {
         dispatch({type: 'CREATING_USER'});
-        console.log("Before fetch to create a user.");
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
-                console.log("Here is the data sent back from creating a user", data);
                 let {success} = data;
                 if (success === true) {
                     let {userInfo} = data;
