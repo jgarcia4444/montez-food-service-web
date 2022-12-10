@@ -24,12 +24,15 @@ const migrations = {
             ...state,
             userReducer: {
                 ...state.userReducer,
-                usersAddress: {
-                    number: "",
-                    streetName: "",
-                    city: "",
-                    state: "",
-                    zipCode: "", 
+                userInfo: {
+                    ...state.userInfo,
+                    usersAddress: {
+                        number: "",
+                        streetName: "",
+                        city: "",
+                        state: "",
+                        zipCode: "", 
+                    }
                 }
             }
         }

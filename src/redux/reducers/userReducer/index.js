@@ -22,6 +22,7 @@ const initialState = {
     loginErrors: [],
     signupErrors: [],
     passwordResetError: "",
+    savingAddress: false,
 }
 
 const configureSignUpErrors = (errors) => {
@@ -39,6 +40,30 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "SAVING_ADDRESS":
+            return {
+                ...state,
+                savingAddress: true,
+                addressError: "",
+            }
+        case "ADDRESS_SAVE_ERROR":
+            return {
+                ...state,
+                savingAddress: false,
+                addressError: action.message
+            }
+        case "ADDRESS_SAVE_SUCCESS":
+            return {
+                ...state,
+                savingAddress: false,
+                addressError: "",
+                userInfo: {
+                    ...state.userInfo,
+                    usersAddress: {
+                        ...action.usersAddress,
+                    }
+                }
+            }
         case "CLEAR_ERRORS":
             return {
                 ...state,
