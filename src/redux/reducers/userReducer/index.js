@@ -8,6 +8,13 @@ const initialState = {
         isOrdering: false,
         verificationError: "",
         isVerifying: false,
+        usersAddress: {
+            number: "",
+            streetName: "",
+            city: "",
+            state: "",
+            zipCode: "",   
+        }
     },
     loading: false,
     userCreationError: "",

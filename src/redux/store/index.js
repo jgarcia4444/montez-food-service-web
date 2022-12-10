@@ -18,6 +18,21 @@ const migrations = {
                 signupErrors: [],
             }
         }
+    },
+    1: state => {
+        return {
+            ...state,
+            userReducer: {
+                ...state.userReducer,
+                usersAddress: {
+                    number: "",
+                    streetName: "",
+                    city: "",
+                    state: "",
+                    zipCode: "", 
+                }
+            }
+        }
     }
 }
 
