@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -8,6 +8,7 @@ import '../../styles/Global.css';
 import Layout from '../../shared/Layout';
 import PastOrders from '../../components/PastOrders';
 import logout from '../../redux/actions/userActions/logout';
+import Locations from '../../components/Locations';
 
 
 const Account = ({userInfo, logout}) => {
@@ -15,6 +16,7 @@ const Account = ({userInfo, logout}) => {
     const navigate = useNavigate();
 
     const {email, companyName, pastOrders} = userInfo;
+    console.log("Users Info", userInfo);
 
     useEffect(() => {
         if (email === "") {
@@ -49,6 +51,7 @@ const Account = ({userInfo, logout}) => {
                     </div>
                 </div>
                 <PastOrders />
+                <Locations />
             </div>
         </Layout>
     )

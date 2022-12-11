@@ -43,7 +43,7 @@ const persistConfig = {
     key: 'root',
     storage,
     whitelist: ['userReducer'],
-    version: 0,
+    version: 1,
     debug: true,
     migrate: createMigrate(migrations, {debug: true}),
 };
