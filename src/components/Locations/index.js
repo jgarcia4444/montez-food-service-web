@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 
+import '../../styles/components/Locations.css';
+
 import addAddress from '../../redux/actions/userActions/addAddress';
 
 import '../../styles/Global.css'
@@ -15,7 +17,7 @@ const Locations = ({userInfo, addAddress}) => {
     const renderLocations = () => {
         if (usersAddress.city === "") {
             console.log("Address is empty")
-            return <h3>No locations added yet...</h3>
+            return <h3 className="no-locations-text">No locations added yet...</h3>
         }
     }
 
