@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
+import {FiPlus} from 'react-icons/fi';
 
 import '../../styles/components/Locations.css';
 
@@ -11,6 +12,7 @@ import '../../styles/Global.css'
 const Locations = ({userInfo, addAddress}) => {
 
     const [emphasizeLocation, setEmphasizeLocation] = useState(false);
+    const [showForm, setShowForm] = useState(false);
 
     const {userId, usersAddress} = userInfo;
 
@@ -27,10 +29,21 @@ const Locations = ({userInfo, addAddress}) => {
         }
     }, [usersAddress.city]);
 
+    const setAddLocationButtonClass = () => {
+        let buttonClassName = "add-location-button ";
+        if (emphasizeLocation === true) {
+            buttonClassName += "emphasize-button";
+        }
+        return buttonClassName;
+    }
+
     return (
         <div className="locations-container">
-            <div className="section-title-row">
+            <div className="section-title-row locations-title-row">
                 <h2 className="section-title">Locations</h2>
+                <div className={setAddLocationButtonClass()}>
+                    <FiPlus size={24} color={"#fff"} />
+                </div>
             </div>
             <div className="locations-box">
                 {renderLocations()}
