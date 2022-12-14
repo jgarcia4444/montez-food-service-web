@@ -16,6 +16,37 @@
     box-shadow: 0 0 5px 0px black;
 }
 
+.add-location-button:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.emphasize-button {
+    animation-name: GrowShrink;
+    animation-iteration-count: infinite;
+    animation-duration: 750ms;
+    animation-timing-function: ease-in;
+}
+
+@keyframes GrowShrink {
+    0% {
+        transform: scale(1.0);
+        box-shadow: none;
+    }
+    25% {
+        transform: scale(1.1);
+        box-shadow: 0 0 3px 1px black;
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 5px 1px black;
+    }
+    75% {
+        transform: scale(1.1);
+        box-shadow: 0 0 3px 1px black;
+    }
+}
+
 .locations-box {
     margin-top: 0;
     background-color: #a0262e;

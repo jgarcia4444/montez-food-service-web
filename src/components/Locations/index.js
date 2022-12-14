@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import {FiPlus} from 'react-icons/fi';
 
 import '../../styles/components/Locations.css';
+import '../../styles/Global.css'
+
+import AddLocationForm from './AddLocationForm';
 
 import addAddress from '../../redux/actions/userActions/addAddress';
 
-import '../../styles/Global.css'
 
 
 const Locations = ({userInfo, addAddress}) => {
@@ -29,25 +31,27 @@ const Locations = ({userInfo, addAddress}) => {
         }
     }, [usersAddress.city]);
 
-    const setAddLocationButtonClass = () => {
+    const addLocationButtonClass = () => {
         let buttonClassName = "add-location-button ";
         if (emphasizeLocation === true) {
             buttonClassName += "emphasize-button";
         }
         return buttonClassName;
     }
-
     return (
         <div className="locations-container">
             <div className="section-title-row locations-title-row">
                 <h2 className="section-title">Locations</h2>
-                <div className={setAddLocationButtonClass()}>
+                <div onClick={() => setShowForm(true)} className={addLocationButtonClass()}>
                     <FiPlus size={24} color={"#fff"} />
                 </div>
             </div>
             <div className="locations-box">
                 {renderLocations()}
             </div>
+            {showForm === true &&
+                <AddLocationForm />
+            }
         </div>
     )
 
