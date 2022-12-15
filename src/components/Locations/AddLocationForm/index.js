@@ -33,8 +33,8 @@ const AddLocationForm = ({closeForm}) => {
         <div className="add-location-container">
             <div className="add-location-form-container">
                 <div className="close-container-row">
-                    <div onClick={closeForm} className="close-container-button">
-                        <FiMinus size={24} color={"#a0262e"} />
+                    <div onClick={closeForm} className="close-button">
+                        <FiMinus size={24} color={"#fff"} />
                     </div>
                 </div>
                 <div className="add-location-form-title-row">

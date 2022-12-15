@@ -44,6 +44,24 @@
     margin: 0 auto;
 }
 
+.close-button {
+    width: 40px;
+    height: 40px;
+    background-color: #a0262e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px -1px black;
+    transition: all 500ms;
+}
+
+.close-button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0 0 5px -1px black;
+}
+
 .close-container-row, .add-location-form-container {
     width: 50%;
 }
