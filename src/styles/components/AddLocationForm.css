@@ -2,7 +2,7 @@
 .add-location-container {
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     position: fixed;
     top: 0;
     left: 0;
@@ -10,10 +10,38 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
+}
+
+@keyframes FadeInZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+    to {
+        opacity: 1.0;
+        transform: scale(1.0);
+    }
 }
 
 .add-location-form {
     background-color: #a0262e;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    padding: 5px 0;
+}
+
+.add-location-form-container {
+    animation-name: FadeInZoomIn;
+    animation-duration: 750ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    transition: all 750ms
+}
+
+.add-location-form-input-row {
+    width: 90%;
+    margin: 0 auto;
 }
 
 .close-container-row, .add-location-form-container {
