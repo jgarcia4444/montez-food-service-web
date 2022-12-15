@@ -26,7 +26,8 @@
 
 .add-location-form {
     background-color: #a0262e;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     box-shadow: 0 0 3px -1px black;
     padding: 5px 0;
 }
@@ -64,6 +65,27 @@
 
 .close-container-row, .add-location-form-container {
     width: 50%;
+}
+
+.save-location-button {
+    width: 100%;
+    background-color: #a0262e;
+    margin-top: 5px;
+    text-align: center;
+    padding: 5px 0;
+    color: #FFC72C;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    transition: all 500ms;
+}
+
+.save-location-button:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 0 5px -1px black;
 }
 
 .state-select-container {
