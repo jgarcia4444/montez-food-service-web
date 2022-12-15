@@ -65,3 +65,22 @@
 .close-container-row, .add-location-form-container {
     width: 50%;
 }
+
+.state-select-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.state-select-label {
+    color: #FFC72C;
+    font-family: serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.two-input-row {
+    display: flex;
+    flex-direction: row;
+}

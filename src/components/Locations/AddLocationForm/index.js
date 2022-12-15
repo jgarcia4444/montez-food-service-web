@@ -12,6 +12,8 @@ const AddLocationForm = ({closeForm}) => {
     const [streetError, setStreetError] = useState("");
     const [city, setCity] = useState("");
     const [cityError, setCityError] = useState("");
+    const [state, setState] = useState("");
+    const [stateError, setStateError] = useState("");
 
     let streetAddressInputObject = {
         label: "Street",
@@ -44,8 +46,15 @@ const AddLocationForm = ({closeForm}) => {
                     <div className="add-location-form-input-row">
                         <FormInput inputInfo={streetAddressInputObject}/>
                     </div>
-                    <div className="add-location-form-input-row">
+                    <div className="add-location-form-input-row two-input-row">
                         <FormInput inputInfo={cityInputObject}/>
+                        <div className="state-select-container">
+                            <label htmlFor="state" className="state-select-label">State</label>
+                            <select onChange={(val) => setState(val.target.value)} name="state">
+                                <option value="none" selected disabled hidden>Select an option...</option>
+                                <option value="Ca">Ca</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
