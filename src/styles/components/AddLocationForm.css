@@ -1,0 +1,13 @@
+
+.add-location-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.add-location-form {
+    background-color: #a0262e;
+}

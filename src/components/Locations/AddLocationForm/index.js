@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {FiHome} from 'react-icons/fi';
 
 import '../../../styles/Global.css';
+import '../../../styles/components/AddLocationForm.css';
 
 import FormInput from '../../FormInput';
 
@@ -30,6 +31,11 @@ const AddLocationForm = () => {
 
     return (
         <div className="add-location-container">
+            <div className="close-container-row">
+                <div className="close-container-button">
+
+                </div>
+            </div>
             <div className="add-location-form-container">
                 <div className="add-location-form-title-row">
                     <h2 className="section-title">Add Location</h2>
