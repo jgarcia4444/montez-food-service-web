@@ -50,7 +50,7 @@ const Locations = ({userInfo, addAddress}) => {
                 {renderLocations()}
             </div>
             {showForm === true &&
-                <AddLocationForm />
+                <AddLocationForm closeForm={() => setShowForm(false)} />
             }
         </div>
     )

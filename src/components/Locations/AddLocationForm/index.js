@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {FiHome} from 'react-icons/fi';
+import {FiHome, FiMinus} from 'react-icons/fi';
 
 import '../../../styles/Global.css';
 import '../../../styles/components/AddLocationForm.css';
 
 import FormInput from '../../FormInput';
 
-const AddLocationForm = () => {
+const AddLocationForm = ({closeForm}) => {
 
     const [street, setStreet] = useState("");
     const [streetError, setStreetError] = useState("");
@@ -32,8 +32,8 @@ const AddLocationForm = () => {
     return (
         <div className="add-location-container">
             <div className="close-container-row">
-                <div className="close-container-button">
-
+                <div onClick={closeForm} className="close-container-button">
+                    <FiMinus size={24} color={"#a0262e"} />
                 </div>
             </div>
             <div className="add-location-form-container">
