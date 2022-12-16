@@ -41,6 +41,34 @@ const AddLocationForm = ({closeForm}) => {
         error: zipCodeError,
     }
 
+    const handleLocationSave = () => {
+        if (street === "") {
+            setStreetError("Street can not be left blank.");
+        } else {
+            setStreetError("")
+        }
+        if (city === "") {
+            setCityError("City can not be left empty.");
+        } else {
+            setCityError("")
+        }
+        if (state === "") {
+            setStateError("A state must be selected.");
+        } else {
+            setStateError("")
+        }
+        if (zipCode === "") {
+            setZipCodeError("Zip code can not be left empty.");
+        } else {
+            setZipCodeError("")
+        }
+
+        if ((streetError === "" && cityError === "") && (stateError === "" && zipCodeError === "")) {
+            // send info to back end
+        }
+
+    }
+
     return (
         <div className="add-location-container">
             <div className="add-location-form-container">
@@ -70,7 +98,7 @@ const AddLocationForm = ({closeForm}) => {
                         <FormInput inputInfo={zipCodeInputObject} />
                     </div>
                 </div>
-                <div className="save-location-button">
+                <div onClick={handleLocationSave} className="save-location-button">
                     Add Location
                 </div>
             </div>
