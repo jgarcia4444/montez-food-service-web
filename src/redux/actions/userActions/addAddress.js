@@ -3,17 +3,16 @@ const {baseUrl} = Urls;
 
 const formatAddress = address => {
     return {
-        number: address.number,
-        street_name: address.streetName,
+        street: address.street,
         city: address.city,
         state: address.state,
         zip_code: address.zipCode,
     }
 }
 
-const addAddress = (addressInfo, userId) => {
+const addAddress = (addressInfo, email) => {
 
-    const url = `${baseUrl}addresses/${userId}`;
+    const url = `${baseUrl}addresses/${email}`;
 
     const formattedAddress = formatAddress(addressInfo)
 

@@ -36,6 +36,42 @@ const migrations = {
                 }
             }
         }
+    },
+    2: state => {
+        return {
+            ...state,
+            userReducer: {
+                ...state.userReducer,
+                userInfo: {
+                    ...state.userInfo,
+                    usersAddress: {
+                        number: "",
+                        streetName: "",
+                        city: "",
+                        state: "",
+                        zipCode: "", 
+                    }
+                }
+            }
+        }
+    },
+    3: state => {
+        return {
+            ...state,
+            userReducer: {
+                ...state.userReducer,
+                userInfo: {
+                    ...state.userInfo,
+                    usersAddress: {
+                        number: "",
+                        streetName: "",
+                        city: "",
+                        state: "",
+                        zipCode: "", 
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -43,7 +79,7 @@ const persistConfig = {
     key: 'root',
     storage,
     whitelist: ['userReducer'],
-    version: 1,
+    version: 3,
     debug: true,
     migrate: createMigrate(migrations, {debug: true}),
 };

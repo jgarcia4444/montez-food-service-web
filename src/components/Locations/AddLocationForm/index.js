@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import {FiHome, FiMinus} from 'react-icons/fi';
+import {FiHome, FiMinus, FiActivity} from 'react-icons/fi';
+import { connect } from 'react-redux';
 
 import '../../../styles/Global.css';
 import '../../../styles/components/AddLocationForm.css';
 
+import addAddress from '../../../redux/actions/userActions/addAddress';
+
 import FormInput from '../../FormInput';
 
-const AddLocationForm = ({closeForm}) => {
+const AddLocationForm = ({closeForm, addAddress, email, savingAddress}) => {
 
     const [street, setStreet] = useState("");
     const [streetError, setStreetError] = useState("");
@@ -64,7 +67,13 @@ const AddLocationForm = ({closeForm}) => {
         }
 
         if ((streetError === "" && cityError === "") && (stateError === "" && zipCodeError === "")) {
-            // send info to back end
+            let addressInfo = {
+                street,
+                city,
+                state,
+                zipCode
+            }
+            addAddress(addressInfo, email);
         }
 
     }
@@ -99,11 +108,32 @@ const AddLocationForm = ({closeForm}) => {
                     </div>
                 </div>
                 <div onClick={handleLocationSave} className="save-location-button">
-                    Add Location
+                    {savingAddress === true ?
+                    <FiActivity size={20} color={"#ffc72c"} />
+                    :
+                    "Add Location"
+                    }
+                    
                 </div>
             </div>
         </div>
     )
 }
 
-export default AddLocationForm;
+const mapStateToProps = state => {
+    return {
+        email: state.userReducer.userInfo.email,
+        savingAddress: state.userReducer.savingAddress,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addAddress: (addressInfo, email) => dispatch(addAddress(addressInfo, email)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddLocationForm);

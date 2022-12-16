@@ -41,6 +41,7 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "SAVING_ADDRESS":
+            console.log("Saving Address reducer case triggered!!!")
             return {
                 ...state,
                 savingAddress: true,
@@ -101,6 +102,7 @@ const userReducer = (state=initialState, action) => {
         case "persist/REHYDRATE":
             if (action.payload !== undefined) {
                 let {payload} = action;
+                console.log("PAYLOAD", payload);
                 return {
                     ...payload.userReducer,
                 }
@@ -202,6 +204,7 @@ const userReducer = (state=initialState, action) => {
                 loading: false,
                 loggingInError: "",
                 userInfo: {
+                    ...state.userInfo,
                     ...action.userInfo,
                 }
             }
