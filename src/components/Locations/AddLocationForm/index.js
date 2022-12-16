@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {FiHome, FiMinus, FiActivity} from 'react-icons/fi';
+import {FiHome, FiMinus, FiLoader} from 'react-icons/fi';
 import { connect } from 'react-redux';
 
 import '../../../styles/Global.css';
-import '../../../styles/components/AddLocationForm.css';
+import '../../../styles/components/Locations/AddLocationForm.css';
 
 import addAddress from '../../../redux/actions/userActions/addAddress';
 
@@ -109,7 +109,7 @@ const AddLocationForm = ({closeForm, addAddress, email, savingAddress}) => {
                 </div>
                 <div onClick={handleLocationSave} className="save-location-button">
                     {savingAddress === true ?
-                    <FiActivity size={20} color={"#ffc72c"} />
+                    <FiLoader size={20} color={"#ffc72c"} />
                     :
                     "Add Location"
                     }

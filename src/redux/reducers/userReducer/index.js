@@ -8,6 +8,7 @@ const initialState = {
         isOrdering: false,
         verificationError: "",
         isVerifying: false,
+        locations: [],
         usersAddress: {
             number: "",
             streetName: "",
@@ -62,7 +63,8 @@ const userReducer = (state=initialState, action) => {
                     ...state.userInfo,
                     usersAddress: {
                         ...action.usersAddress,
-                    }
+                    },
+                    locations: state.userInfo.locations.push(action.usersAddress),
                 }
             }
         case "CLEAR_ERRORS":

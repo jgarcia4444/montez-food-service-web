@@ -2,34 +2,35 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import {FiPlus} from 'react-icons/fi';
 
-import '../../styles/components/Locations.css';
+import '../../styles/components/Locations/Locations.css';
 import '../../styles/Global.css'
 
 import AddLocationForm from './AddLocationForm';
-
-import addAddress from '../../redux/actions/userActions/addAddress';
-
+import Location from './Location';
 
 
-const Locations = ({userInfo, addAddress}) => {
+
+const Locations = ({userInfo}) => {
 
     const [emphasizeLocation, setEmphasizeLocation] = useState(false);
     const [showForm, setShowForm] = useState(false);
 
-    const {userId, usersAddress} = userInfo;
+    const {usersAddress, locations} = userInfo;
 
     const renderLocations = () => {
-        if (usersAddress.city === "") {
-            console.log("Address is empty")
+        console.log("Locations",locations)
+        if (locations.length === 0) {
             return <h3 className="no-locations-text">No locations added yet...</h3>
+        } else {
+            return locations.map(location => <Location locationInfo={location} />)
         }
     }
 
     useEffect(() => {
-        if (usersAddress.city === "") {
+        if (locations.length === 0) {
             setEmphasizeLocation(true);
         }
-    }, [usersAddress.city]);
+    }, [locations]);
 
     const addLocationButtonClass = () => {
         let buttonClassName = "add-location-button ";
@@ -64,13 +65,13 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addAddress: (addressInfo, userId) => dispatch(addAddress(addressInfo, userId)),
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+
+//     }
+// }
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
 )(Locations);

@@ -72,14 +72,26 @@ const migrations = {
                 }
             }
         }
-    }
+    },
+    4: state => {
+        return {
+            ...state,
+            userReducer: {
+                ...state.userReducer,
+                userInfo: {
+                    ...state.userInfo,
+                    locations: [],
+                }
+            }
+        }
+    },
 }
 
 const persistConfig = {
     key: 'root',
     storage,
     whitelist: ['userReducer'],
-    version: 3,
+    version: 4,
     debug: true,
     migrate: createMigrate(migrations, {debug: true}),
 };

@@ -3,10 +3,12 @@ const {baseUrl} = Urls;
 
 const formatAddress = address => {
     return {
-        street: address.street,
-        city: address.city,
-        state: address.state,
-        zip_code: address.zipCode,
+        address: {
+            street: address.street,
+            city: address.city,
+            state: address.state,
+            zip_code: address.zipCode,
+        }
     }
 }
 
@@ -29,6 +31,7 @@ const addAddress = (addressInfo, email) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("Data from Add Addresses", data);
                 let {success} = data;
                 if (success === true) {
                     let {usersAddress} = data;
