@@ -1,8 +1,11 @@
 import React from 'react';
+import {FiTrash} from 'react-icons/fi';
 
 import '../../../styles/components/Locations/Location.css';
 
 const Location = ({locationInfo}) => {
+
+    //
 
     const {street, city, state, zipCode} = locationInfo;
     
@@ -43,7 +46,9 @@ const Location = ({locationInfo}) => {
                 </div>
             </div>
             <div className="location-action-row">
-
+                <div className="remove-location-button">
+                    <FiTrash />
+                </div>
             </div>
         </div>
     )
