@@ -5,7 +5,7 @@ import '../../../styles/components/Locations/Location.css';
 const Location = ({locationInfo}) => {
 
     const {street, city, state, zipCode} = locationInfo;
-//
+    
     return (
         <div className="location-container">
             <div className="location-info-row">
