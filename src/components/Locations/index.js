@@ -18,7 +18,6 @@ const Locations = ({userInfo}) => {
     const {usersAddress, locations} = userInfo;
 
     const renderLocations = () => {
-        console.log("Locations",typeof locations)
         if (typeof locations !== 'number') {
             if (locations.length === 0) {
                 return <h3 className="no-locations-text">No locations added yet...</h3>
@@ -33,8 +32,10 @@ const Locations = ({userInfo}) => {
     useEffect(() => {
         if (locations.length === 0) {
             setEmphasizeLocation(true);
+        } else {
+            setEmphasizeLocation(false);
         }
-    }, [locations]);
+    }, [locations.length]);
 
     const addLocationButtonClass = () => {
         let buttonClassName = "add-location-button ";

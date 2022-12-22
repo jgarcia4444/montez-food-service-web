@@ -20,7 +20,7 @@ const removeLocation = (locationInfo) => {
                 if (success === true) {
                     let {locations, locationId} = data;
                     console.log("Data from remove location", data);
-                    return({type: "LOCATION_DELETE_SUCCESS", locations, locationId});
+                    return dispatch({type: "LOCATION_DELETE_SUCCESS", locations, locationId});
                 } else {
                     let {error} = data;
                     let message = error;

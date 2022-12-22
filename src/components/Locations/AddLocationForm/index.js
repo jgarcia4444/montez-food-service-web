@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FiHome, FiMinus, FiLoader} from 'react-icons/fi';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,7 @@ import addAddress from '../../../redux/actions/userActions/addAddress';
 
 import FormInput from '../../FormInput';
 
-const AddLocationForm = ({closeForm, addAddress, email, savingAddress}) => {
+const AddLocationForm = ({addressError, closeForm, addAddress, email, savingAddress}) => {
 
     const [street, setStreet] = useState("");
     const [streetError, setStreetError] = useState("");
@@ -74,6 +74,9 @@ const AddLocationForm = ({closeForm, addAddress, email, savingAddress}) => {
                 zipCode
             }
             addAddress(addressInfo, email);
+            if (addressError === "") {
+                setTimeout(closeForm, 300);
+            }
         }
 
     }
@@ -124,6 +127,7 @@ const mapStateToProps = state => {
     return {
         email: state.userReducer.userInfo.email,
         savingAddress: state.userReducer.savingAddress,
+        addressError: state.userReducer.addressError,
     }
 }
 

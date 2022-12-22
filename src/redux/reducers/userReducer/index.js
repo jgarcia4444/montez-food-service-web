@@ -45,7 +45,9 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "LOCATION_DELETE_SUCCESS":
-            const locationRemoved = state.userInfo.locations.filter(location => location.id !== action.locationId)
+            console.log("Location Removed SuccessFully");
+            const locationRemoved = state.userInfo.locations.filter(location => parseInt(location.id) !== parseInt(action.locationId))
+            console.log("Location Removed", locationRemoved);
             return {
                 ...state,
                 userInfo: {
@@ -62,6 +64,7 @@ const userReducer = (state=initialState, action) => {
                 addressError: action.message,
             }
         case "DELETING_LOCATION":
+            console.log("Deleting Location");
             return {
                 ...state,
                 deletingAddress: true,

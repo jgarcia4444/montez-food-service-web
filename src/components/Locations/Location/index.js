@@ -8,7 +8,6 @@ import '../../../styles/components/Locations/Location.css';
 const Location = ({locationInfo, email, removeLocation}) => {
 
     const {street, city, state, zipCode, id} = locationInfo;
-    console.log("Location Info: ", locationInfo);
 
     const handleDeleteLocation = () => {
         if (email !== "") {
