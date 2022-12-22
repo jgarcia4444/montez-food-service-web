@@ -5,9 +5,12 @@ import '../../../styles/components/Locations/Location.css';
 
 const Location = ({locationInfo}) => {
 
-    //
-
     const {street, city, state, zipCode} = locationInfo;
+    console.log("Location Info: ", locationInfo);
+
+    const handleDeleteLocation = () => {
+
+    }
     
     return (
         <div className="location-container">
@@ -45,9 +48,9 @@ const Location = ({locationInfo}) => {
                     </div>
                 </div>
             </div>
-            <div className="location-action-row">
+            <div onClick={handleDeleteLocation} className="location-action-row">
                 <div className="remove-location-button">
-                    <FiTrash />
+                    <FiTrash size={20} color={"#fff"} />
                 </div>
             </div>
         </div>

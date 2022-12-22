@@ -24,6 +24,8 @@ const initialState = {
     signupErrors: [],
     passwordResetError: "",
     savingAddress: false,
+    deletingAddress: false,
+    addressError: ""
 }
 
 const configureSignUpErrors = (errors) => {
@@ -41,6 +43,28 @@ const configureSignUpErrors = (errors) => {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "LOCATION_DELETE_SUCCESS":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    locations: action.locations,
+                },
+                deletingAddress: false,
+                addressError: "",
+            }
+        case "LOCATION_DELETE_ERROR":
+            return {
+                ...state,
+                deletingAddress: false,
+                addressError: action.message,
+            }
+        case "DELETING_LOCATION":
+            return {
+                ...state,
+                deletingAddress: true,
+                addressError: ""
+            }
         case "SAVING_ADDRESS":
             console.log("Saving Address reducer case triggered!!!")
             return {

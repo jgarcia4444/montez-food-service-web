@@ -1,6 +1,14 @@
 
+.location-action-row {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1vw;
+}
+
 .location-container {
-    width: 95%;
+    width: 100%;
     border-radius: 5px;
     background-color: #a0262e;
     box-shadow: 0 0 5px -1px black;
@@ -21,4 +29,22 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+.remove-location-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #a0262e;
+    box-shadow: 0 0 3px 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 500ms;
+}
+
+.remove-location-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px -1px black;
 }
