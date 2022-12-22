@@ -6,12 +6,9 @@ const removeLocation = (locationInfo) => {
 
     const {email, locationId} = locationInfo;
 
-    const url = `${baseUrl}users/${email}/addresses/${locationId}`;
+    const url = `${baseUrl}users/${email.slice(0, -4)}/addresses/${locationId}`;
     const options = {
-        method: "DESTROY",
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        method: "DELETE"
     }
 
     return async dispatch => {

@@ -1,15 +1,19 @@
 import React from 'react';
 import {FiTrash} from 'react-icons/fi';
+import { connect } from 'react-redux';
+import removeLocation from '../../../redux/actions/locationActions/removeLocation';
 
 import '../../../styles/components/Locations/Location.css';
 
-const Location = ({locationInfo}) => {
+const Location = ({locationInfo, email, removeLocation}) => {
 
-    const {street, city, state, zipCode} = locationInfo;
+    const {street, city, state, zipCode, id} = locationInfo;
     console.log("Location Info: ", locationInfo);
 
     const handleDeleteLocation = () => {
-
+        if (email !== "") {
+            removeLocation({email, locationId: id});
+        }
     }
     
     return (
@@ -57,4 +61,19 @@ const Location = ({locationInfo}) => {
     )
 }
 
-export default Location;
+const mapStateToProps = state => {
+    return {
+        email: state.userReducer.userInfo.email,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        removeLocation: (deletionInfo) => dispatch(removeLocation(deletionInfo)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Location);
