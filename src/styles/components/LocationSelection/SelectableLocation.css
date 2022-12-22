@@ -1,0 +1,38 @@
+
+.selectable-location-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 2px solid #a0262e;
+    border-radius: 5px;
+    margin: 10px;
+    transition: all 400ms;
+}
+
+.selectable-location-container:hover {
+    cursor: pointer;
+}
+
+.selectable-location-container-selected {
+    background-color: #a0262e;
+    border: none;
+    box-shadow: 0 0 5px -1px black;
+}
+
+.selectable-location-info-container {
+    width: 10vw;
+    padding: 5px;
+}
+
+.selectable-location-info {
+    transition: all 400ms;
+    color: #a0262e;
+}
+
+.selectable-location-info-selected {
+    color: #fff;
+}
+
+.selectable-location-value-selected {
+    color: #fff;
+}

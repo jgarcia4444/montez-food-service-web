@@ -1,0 +1,11 @@
+
+.location-selection-container {
+    width: 100%;
+}
+
+.locations-selector-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}

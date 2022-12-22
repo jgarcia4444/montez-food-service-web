@@ -6,6 +6,7 @@ import '../../styles/orderOnline/OrderOnline.css';
 import Layout from '../../shared/Layout';
 import OrderForm from '../../components/OrderForm';
 import OrderCart from '../../components/OrderCart';
+import LocationSelection from '../../components/LocationSelection';
 
 
 const OrderOnline = ({companyName, items}) => {
@@ -35,6 +36,8 @@ const OrderOnline = ({companyName, items}) => {
             <div className="order-online-container">
                 <div className="seventy-width-container">
                     <OrderForm />
+                    <LocationSelection />
+                    {/* Add the select location component */}
                 </div>
                 <div className="thirty-width-container">
                     <OrderCart />

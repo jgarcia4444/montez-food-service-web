@@ -12,10 +12,16 @@ const initialState = {
         caseCost: "",
         fiveCaseCost: "",
     },
+    selectedLocationIndex: null,
 }
 
 const orderReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "LOCATION_SELECTED":
+            return {
+                ...state,
+                selectedLocationIndex: action.selectedLocationIndex,
+            }
         case "CLEAR_SUGGESTIONS":
             return {
                 ...state,
