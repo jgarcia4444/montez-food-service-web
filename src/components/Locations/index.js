@@ -18,11 +18,15 @@ const Locations = ({userInfo}) => {
     const {usersAddress, locations} = userInfo;
 
     const renderLocations = () => {
-        console.log("Locations",locations)
-        if (locations.length === 0) {
-            return <h3 className="no-locations-text">No locations added yet...</h3>
+        console.log("Locations",typeof locations)
+        if (typeof locations !== 'number') {
+            if (locations.length === 0) {
+                return <h3 className="no-locations-text">No locations added yet...</h3>
+            } else {
+                return locations.map(location => <Location locationInfo={location} />)
+            }
         } else {
-            return locations.map(location => <Location locationInfo={location} />)
+            return <h3 className="no-locations-text">No locations added yet...</h3>
         }
     }
 

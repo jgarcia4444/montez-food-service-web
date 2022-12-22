@@ -41,14 +41,16 @@ const configureSignUpErrors = (errors) => {
     return errorsForReducer;
 }
 
+
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "LOCATION_DELETE_SUCCESS":
+            const locationRemoved = state.userInfo.locations.filter(location => location.id !== action.locationId)
             return {
                 ...state,
                 userInfo: {
                     ...state.userInfo,
-                    locations: action.locations,
+                    locations: locationRemoved,
                 },
                 deletingAddress: false,
                 addressError: "",
@@ -79,6 +81,7 @@ const userReducer = (state=initialState, action) => {
                 addressError: action.message
             }
         case "ADDRESS_SAVE_SUCCESS":
+            const locationsAdded = state.userInfo.locations.concat(action.usersAddress)
             return {
                 ...state,
                 savingAddress: false,
@@ -88,7 +91,7 @@ const userReducer = (state=initialState, action) => {
                     usersAddress: {
                         ...action.usersAddress,
                     },
-                    locations: state.userInfo.locations.push(action.usersAddress),
+                    locations: locationsAdded,
                 }
             }
         case "CLEAR_ERRORS":

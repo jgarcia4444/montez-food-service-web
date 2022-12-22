@@ -18,8 +18,9 @@ const removeLocation = (locationInfo) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {locations} = data;
-                    return({type: "LOCATION_DELETE_SUCCESS", locations});
+                    let {locations, locationId} = data;
+                    console.log("Data from remove location", data);
+                    return({type: "LOCATION_DELETE_SUCCESS", locations, locationId});
                 } else {
                     let {error} = data;
                     let message = error;
