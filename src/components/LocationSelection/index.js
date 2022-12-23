@@ -8,7 +8,7 @@ import SelectableLocation from './SelectableLocation';
 
 import selectLocation from '../../redux/actions/orderActions/selectLocation';
 
-const LocationSelection = ({locations, selectedLocationIndex}) => {
+const LocationSelection = ({locations, selectedLocationIndex, locationSelectionError}) => {
 
     const renderSelectableLocations = () => {
         if (locations.length === 0) {
@@ -30,6 +30,7 @@ const LocationSelection = ({locations, selectedLocationIndex}) => {
         <div className="location-selection-container">
             <div className="section-title-row">
                 <h2 className="section-title">Select Location</h2>
+                <p className="error"><strong>{locationSelectionError}</strong></p>
             </div>
             <div className="locations-selector-container">
                 {renderSelectableLocations()}
@@ -42,6 +43,7 @@ const mapStateToProps = state => {
     return {
         locations: state.userReducer.userInfo.locations,
         selectedLocationIndex: state.order.selectedLocationIndex,
+        locationSelectionError: state.order.locationSelectionError,
     }
 }
 

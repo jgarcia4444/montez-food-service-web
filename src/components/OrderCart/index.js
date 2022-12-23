@@ -9,7 +9,7 @@ import '../../styles/components/OrderCart.css';
 import UserAuthAlert from '../Alerts/UserAuthAlert';
 import OrderItem from './OrderItem';
 
-const OrderCart = ({cart, userInfo, sendOrder}) => {
+const OrderCart = ({cart, userInfo, sendOrder, selectedLocationIndex, noLocationSelected}) => {
 
     const {items, orderSendError} = cart;
 
@@ -22,7 +22,6 @@ const OrderCart = ({cart, userInfo, sendOrder}) => {
         if (items.length < 1) {
             return <p className="no-items-text">No items added to cart yet...</p>
         } else {
-            console.log("ITEMS FROM RENDERORDERITEMS FUNCTION", items);
             return items.map((orderItem, i) => <OrderItem key={`${orderItem.description}${i}`} itemInfo={orderItem} />)
         }
     }
@@ -60,9 +59,13 @@ const OrderCart = ({cart, userInfo, sendOrder}) => {
             if (companyName === "") {
                 setShowUserAuthOptions(true)
             } else {
-                sendOrder({email, items})
-                if (orderSendError === "") {
-                    navigate('/order-online/confirmation')
+                if (selectedLocationIndex !== null) {
+                    sendOrder({email, items})
+                    if (orderSendError === "") {
+                        navigate('/order-online/confirmation')
+                    }
+                } else {
+                    noLocationSelected()
                 }
             }
         }
@@ -105,12 +108,14 @@ const mapStateToProps = state => {
     return {
         cart: state.cart,
         userInfo: state.userReducer.userInfo,
+        selectedLocationIndex: state.order.selectedLocationIndex,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         sendOrder: (orderDetails) => dispatch(sendOrder(orderDetails)),
+        noLocationSelected: () => dispatch({type: "NO_LOCATION_SELECTED"}),
     }
 }
 

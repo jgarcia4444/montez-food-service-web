@@ -9,4 +9,8 @@
     margin: 0 auto;
     border: #a0262e;
     display: inline-block;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
 }

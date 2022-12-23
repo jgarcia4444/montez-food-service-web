@@ -13,14 +13,22 @@ const initialState = {
         fiveCaseCost: "",
     },
     selectedLocationIndex: null,
+    locationSelectionError: "",
 }
 
 const orderReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "NO_LOCATION_SELECTED":
+            return {
+                ...state,
+                selectedLocationIndex: null,
+                locationSelectionError: "A location must be selected to place an order."
+            }
         case "LOCATION_SELECTED":
             return {
                 ...state,
                 selectedLocationIndex: action.selectedLocationIndex,
+                locationSelectionError: "",
             }
         case "CLEAR_SUGGESTIONS":
             return {
