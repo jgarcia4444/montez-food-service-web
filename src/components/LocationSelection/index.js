@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import '../../styles/Global.css';
 import '../../styles/components/LocationSelection/index.css';
 
 import SelectableLocation from './SelectableLocation';
+import AddLocation from '../Locations/AddLocation';
 
 import selectLocation from '../../redux/actions/orderActions/selectLocation';
 
 const LocationSelection = ({locations, selectedLocationIndex, locationSelectionError}) => {
+
+    const [emphasize, setEmphasize] = useState(false);
 
     const renderSelectableLocations = () => {
         if (locations.length === 0) {
@@ -26,11 +29,20 @@ const LocationSelection = ({locations, selectedLocationIndex, locationSelectionE
         }
     }
 
+    useEffect(() => {
+        if (locations.length === 0) {
+            setEmphasize(true);
+        } else {
+            setEmphasize(false);
+        }
+    }, [locations.length]);
+
     return (
         <div className="location-selection-container">
             <div className="section-title-row">
                 <h2 className="section-title">Select Location</h2>
-                <p className="error"><strong>{locationSelectionError}</strong></p>
+                {locationSelectionError !== "" && <p className="error"><strong>{locationSelectionError}</strong></p>}
+                <AddLocation emphasizeLocation={emphasize} />                
             </div>
             <div className="locations-selector-container">
                 {renderSelectableLocations()}

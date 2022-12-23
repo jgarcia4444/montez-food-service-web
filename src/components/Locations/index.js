@@ -7,6 +7,7 @@ import '../../styles/Global.css'
 
 import AddLocationForm from './AddLocationForm';
 import Location from './Location';
+import AddLocation from './AddLocation';
 
 
 
@@ -48,16 +49,11 @@ const Locations = ({userInfo}) => {
         <div className="locations-container">
             <div className="section-title-row locations-title-row">
                 <h2 className="section-title">Locations</h2>
-                <div onClick={() => setShowForm(true)} className={addLocationButtonClass()}>
-                    <FiPlus size={24} color={"#fff"} />
-                </div>
+                <AddLocation emphasizeLocation={emphasizeLocation} />
             </div>
             <div className="locations-box">
                 {renderLocations()}
             </div>
-            {showForm === true &&
-                <AddLocationForm closeForm={() => setShowForm(false)} />
-            }
         </div>
     )
 
