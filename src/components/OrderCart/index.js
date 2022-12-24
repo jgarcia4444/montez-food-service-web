@@ -64,9 +64,9 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
                     let orderInfo = {
                         email,
                         items,
-                        selectedLocation
+                        address_id: selectedLocation.id
                     }
-                    sendOrder({orderInfo});
+                    sendOrder(orderInfo);
                     if (orderSendError === "") {
                         navigate('/order-online/confirmation')
                     }
