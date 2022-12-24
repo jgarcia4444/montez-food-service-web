@@ -9,7 +9,7 @@ import '../../styles/components/OrderCart.css';
 import UserAuthAlert from '../Alerts/UserAuthAlert';
 import OrderItem from './OrderItem';
 
-const OrderCart = ({cart, userInfo, sendOrder, selectedLocationIndex, noLocationSelected}) => {
+const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex, noLocationSelected}) => {
 
     const {items, orderSendError} = cart;
 
@@ -60,7 +60,13 @@ const OrderCart = ({cart, userInfo, sendOrder, selectedLocationIndex, noLocation
                 setShowUserAuthOptions(true)
             } else {
                 if (selectedLocationIndex !== null) {
-                    sendOrder({email, items})
+                    let selectedLocation = locations[selectedLocationIndex];
+                    let orderInfo = {
+                        email,
+                        items,
+                        selectedLocation
+                    }
+                    sendOrder({orderInfo});
                     if (orderSendError === "") {
                         navigate('/order-online/confirmation')
                     }
@@ -109,6 +115,7 @@ const mapStateToProps = state => {
         cart: state.cart,
         userInfo: state.userReducer.userInfo,
         selectedLocationIndex: state.order.selectedLocationIndex,
+        locations: state.userReducer.userInfo.locations
     }
 }
 

@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 const sendOrder = (orderDetails) => {
 
     const {baseUrl} = Urls;
-    const {email, items} = orderDetails;
+    const {email, items, selectedLocation} = orderDetails;
     const url = `${baseUrl}order-online/orders`;
     let configuredBody = {
         user_info: {
@@ -12,6 +12,9 @@ const sendOrder = (orderDetails) => {
         },
         order_info: {
             items: items
+        },
+        address_info: {
+            address_id: selectedLocation.id
         }
     }
     const options = {
