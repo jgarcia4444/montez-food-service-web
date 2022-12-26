@@ -19,6 +19,8 @@ import Account from './pages/Account';
 import AccountVerification from './pages/Account/AccountVerification';
 import AccountVerifying from './pages/Account/AccountVerifying';
 import OrderConfirmation from './pages/OrderConfirmation';
+import AdminHome from './pages/Admin/AdminHome';
+import AdminLogin from './pages/Admin/AdminLogin';
 
 import {store, persistor} from './redux/store';
 
@@ -43,6 +45,8 @@ const App = () => {
                 <Route path="/user-auth" element={<UserAuth />} />
                 <Route path="/user-auth/:auth_state" element={<UserAuth />} />
               </Route>
+              <Route path="/users/admin" element={<AdminHome />} />
+              <Route path="/users/admin/login" element={<AdminLogin />} />
             </Routes>
             <Footer />
           </div>
