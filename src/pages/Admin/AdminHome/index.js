@@ -1,7 +1,18 @@
 import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import Layout from '../../../shared/Layout';
 
-const AdminHome = () => {
+const AdminHome = ({username}) => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (username === "") {
+            navigate("/");
+        }
+    })
 
     return (
         <Layout>
@@ -12,4 +23,13 @@ const AdminHome = () => {
     )
 }
 
-export default AdminHome;
+const mapStateToProps = state => {
+    return {
+        username: state.admin.username,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(AdminHome);
