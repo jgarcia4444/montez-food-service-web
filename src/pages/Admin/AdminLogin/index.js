@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import { FiUser, FiLock } from 'react-icons/fi';
 import { connect } from 'react-redux';
 
+import '../../../styles/Global.css';
 import '../../../styles/pages/AdminLogin.css';
 
 import Layout from '../../../shared/Layout';
 import FormInput from '../../../components/FormInput';
+import SpinningLoader from '../../../components/Loaders/SpinningLoader';
 
 import loginAdmin from '../../../redux/actions/adminActions/loginAdmin';
 
@@ -51,8 +53,8 @@ const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
     return (
         <Layout>
             <div className="admin-login-container">
-                <div className="form-label-row">
-                    <h2 className="form-label">Admin Login</h2>
+                <div className="section-title-row">
+                    <h2 className="section-title">Admin Login</h2>
                 </div>
                 <div className="form">
                     <div className="form-row">
@@ -63,7 +65,7 @@ const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
                     </div>
                 </div>
                 <div onClick={handleAdminLoginClick} className="form-login-button">
-                    Login
+                    {loggingInAdmin === true ? <SpinningLoader color={'#ffc72c'} /> : "Login"}
                 </div>
             </div>
         </Layout>
