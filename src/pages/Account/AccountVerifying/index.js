@@ -16,7 +16,7 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
 
     useEffect(() => {
         setTimeout(() => {
-            verifyUser(email);
+            return verifyUser(email);
         }, 2000);
         if (isVerifying === false) {
             if (verificationError === "") {
@@ -26,8 +26,6 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
             }
         }
     },[isVerifying])
-
-    console.log(verificationError)
 
     return (
         <Layout>
