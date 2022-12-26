@@ -10,7 +10,12 @@ import presentOrderDetails from '../../../redux/actions/orderDetailsPresentation
 
 const PastOrder = ({orderInfo, presentOrderDetails}) => {
 
-    const {items, totalPrice, orderDate} = orderInfo;
+    const {items, totalPrice, orderDate, orderAddress} = orderInfo;
+
+    const configureOrderAddress = () => {
+        const {street, city, state, zipCode} = orderAddress;
+        return `${street}, ${city}, ${state}, ${zipCode}`;
+    }
 
     const totalQuantity = () => {
         let itemsQuantity = 0;
@@ -113,6 +118,10 @@ const PastOrder = ({orderInfo, presentOrderDetails}) => {
             </div>
             <div onClick={handleOrderDetailsClick} className="past-order-details-action-block">
                 <FiList className="past-order-details-button" color={'#ffc72c'} size={24} />
+            </div>
+            <div className="past-order-address-row">
+                <h3 className="past-order-address-label">Delivery To</h3>
+                <p className="past-order-address-value">{configureOrderAddress()}</p>
             </div>
         </div>
     )
