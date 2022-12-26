@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import { FiUser, FiLock } from 'react-icons/fi'
+import { FiUser, FiLock } from 'react-icons/fi';
+import { connect } from 'react-redux';
+
+import '../../../styles/pages/AdminLogin.css';
 
 import Layout from '../../../shared/Layout';
 import FormInput from '../../../components/FormInput';
 
-const AdminLogin = () => {
+import loginAdmin from '../../../redux/actions/adminActions/loginAdmin';
+
+const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
 
     const [adminUsername, setAdminUsername] = useState("");
     const [adminUsernameError, setAdminUsernameError] = useState("");
@@ -27,6 +32,22 @@ const AdminLogin = () => {
         icon: <FiLock size={24} color={'#ffc72c'} />
     }
 
+    const handleAdminLoginClick = () => {
+        if (adminUsername === "") {
+            setAdminUsernameError("Username can not be left blank.");
+        }
+        if (adminPassword === "") {
+            setAdminPasswordError("Password can not be left blank.");
+        }
+        if (adminUsernameError === "" && adminPasswordError === "") {
+            let adminInfo = {
+                username: adminUsername,
+                password: adminPassword,
+            }
+            loginAdmin(adminInfo);
+        }
+    }
+
     return (
         <Layout>
             <div className="admin-login-container">
@@ -35,15 +56,31 @@ const AdminLogin = () => {
                 </div>
                 <div className="form">
                     <div className="form-row">
-                        <FormInput inputinfo={usernameInputInfo}/>
+                        <FormInput inputInfo={usernameInputInfo}/>
                     </div>
                     <div className="form-row">
                         <FormInput inputInfo={passwordInputInfo}/>
                     </div>
                 </div>
+                <div onClick={handleAdminLoginClick} className="form-login-button">
+                    Login
+                </div>
             </div>
         </Layout>
     )
 }
+const mapStateToProps = state => {
+    return {
+        loggingInAdmin: state.admin.loggingInAdmin,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        loginAdmin: (adminInfo) => dispatch(loginAdmin(adminInfo)),
+    }
+}
 
-export default AdminLogin;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AdminLogin);

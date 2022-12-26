@@ -1,0 +1,14 @@
+
+.form {
+    background-color: #a0262e;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px -1px black;
+    padding: 1vh 0;
+}
+
+.form-row {
+    width: 95%;
+    margin: 0 auto;
+}
