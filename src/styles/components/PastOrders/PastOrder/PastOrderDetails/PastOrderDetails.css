@@ -1,5 +1,22 @@
 
 
+.order-delivery-label {
+    color: #a0262e;
+    margin-right: 2vw;
+}
+
+.order-delivery-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+}
+
+.order-delivery-value {
+    font-weight: bold;
+}
+
 .past-order-details-container {
     width: 75%;
     margin: 0 auto;

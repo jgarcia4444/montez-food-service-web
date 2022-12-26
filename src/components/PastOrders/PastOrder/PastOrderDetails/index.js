@@ -4,10 +4,17 @@ import { connect } from 'react-redux';
 import PastOrderItem from './PastOrderItem'
 import '../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderDetails.css';
 
-const PastOrderDetails = ({orderItems}) => {
+const PastOrderDetails = ({orderDetails}) => {
+
+    const {orderItems, orderAddress} = orderDetails;
 
     const renderItems = () => {
         return orderItems.map((item, i) => <PastOrderItem item={item} key={`${item.description}-${i}`} />)
+    }
+
+    const configuredOrderAddress = () => {
+        const {street, city, state, zipCode} = orderAddress;
+        return `${street}, ${city}, ${state}, ${zipCode}`;
     }
 
   return (
@@ -18,13 +25,18 @@ const PastOrderDetails = ({orderItems}) => {
         <div className="past-order-items-container">
             {renderItems()}
         </div>
+        <div className="order-delivery-row">
+            <h3 className="order-delivery-label">Delivery To</h3>
+            <p className="order-delivery-value">{configuredOrderAddress()}</p>
+        </div>
     </div>
   )
 }
 
 const mapStateToProps = state => {
     return {
-        orderItems: state.orderDetails.orderItems,
+        orderDetails: state.orderDetails
+        
     }
 }
 

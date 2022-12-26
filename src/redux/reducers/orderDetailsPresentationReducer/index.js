@@ -1,7 +1,8 @@
 const initialState = {
     showOrderDetails: false,
     totalPrice: 0,
-    orderItems: []
+    orderItems: [],
+    orderAddress: null,
 }
 
 const orderDetailsPresentationReducer = (state=initialState, action) => {
@@ -9,12 +10,13 @@ const orderDetailsPresentationReducer = (state=initialState, action) => {
     switch (action.type) {
         case "PRESENT_ORDER_DETAILS":
             let {orderInfo} = action;
-            let {totalPrice, items} = orderInfo;
+            let {totalPrice, items, orderAddress} = orderInfo;
             return {
                 ...state,
                 showOrderDetails: true,
                 orderItems: items,
-                totalPrice: totalPrice
+                totalPrice: totalPrice,
+                orderAddress: orderAddress,
             }
         case "DISMISS_ORDER_DETAILS":
             return {
@@ -22,6 +24,7 @@ const orderDetailsPresentationReducer = (state=initialState, action) => {
                 showOrderDetails: false,
                 orderItems: [],
                 totalPrice: 0,
+                orderAddress: null
             }
         default: 
             return {
