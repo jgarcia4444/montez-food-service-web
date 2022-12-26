@@ -34,4 +34,4 @@ const loginAdmin = (adminInfo) => {
 
 }
 
-export default loginAdmin;
+export default loginAdmin

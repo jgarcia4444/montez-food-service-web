@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../../../shared/Layout';
 import PendingOrders from '../../../components/PendingOrders';
 
-const AdminHome = ({username, logoutAdmin}) => {
+const AdminHome = ({admin, logoutAdmin}) => {
+    
+    console.log("Admin information from Admin Home component", admin);
+
+    const {username} = admin
 
     const navigate = useNavigate();
 
@@ -31,7 +35,7 @@ const AdminHome = ({username, logoutAdmin}) => {
 
 const mapStateToProps = state => {
     return {
-        username: state.admin.username,
+        admin: state.admin,
     }
 }
 

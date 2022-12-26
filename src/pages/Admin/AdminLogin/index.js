@@ -9,7 +9,7 @@ import Layout from '../../../shared/Layout';
 import FormInput from '../../../components/FormInput';
 import SpinningLoader from '../../../components/Loaders/SpinningLoader';
 
-import loginAdmin from '../../../redux/actions/adminActions/loginAdmin';
+import loginAdmin from '../../../redux/actions/adminActions/loginAdmin.js';
 
 const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
 
@@ -46,7 +46,7 @@ const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
                 username: adminUsername,
                 password: adminPassword,
             }
-            loginAdmin(adminInfo);
+            loginAdmin(adminInfo)
         }
     }
 
