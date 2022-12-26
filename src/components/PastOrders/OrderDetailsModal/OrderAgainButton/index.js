@@ -8,7 +8,11 @@ import '../../../../styles/components/PastOrders/OrderAgainButton.css';
 
 import ConfirmOrderAgain from '../ConfirmOrderAgain';
 
-const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
+const OrderAgainButton = ({orderDetails, email, sendOrder, orderSendError, }) => {
+
+    const {orderItems, orderAddress} = orderDetails;
+
+    const {addressId} = orderAddress;
 
     const [orderAgainPressed, setOrderAgainPressed] = useState(false);
 
@@ -19,6 +23,7 @@ const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
         let orderDetails = {
             items: itemsFormattedForBackend,
             email,
+            address_id: addressId,
         }
         sendOrder(orderDetails)
         if (orderSendError === "") {
@@ -48,7 +53,7 @@ const OrderAgainButton = ({orderItems, email, sendOrder, orderSendError}) => {
 
 const mapStateToProps = state => {
     return {
-        orderItems: state.orderDetails.orderItems,
+        orderDetails: state.orderDetails,
         email: state.userReducer.userInfo.email,
         orderSendError: state.cart.orderSendError,
     }
