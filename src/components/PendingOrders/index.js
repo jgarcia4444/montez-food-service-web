@@ -1,9 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import '../../styles/Global.css';
 
+import getPendingOrders from '../../redux/actions/adminActions/getPendingOrders';
+
+import PendingOrder from './PendingOrder';
+
 const PendingOrders = ({admin, getPendingOrders}) => {
+
+    const dispatch = useDispatch()
 
     const {username, pendingOrderIds, pendingOrders} = admin;
 
@@ -15,13 +22,20 @@ const PendingOrders = ({admin, getPendingOrders}) => {
         }
     }
 
-    useEffect(() => {
-        if (pendingOrders.length === 0) {
+    const fetchPendingOrders = () => {
+        dispatch({type: "FETCHING_PENDING_ORDERS"});
+        setTimeout(() => {
             let fetchInfo = {
                 username,
                 pending_order_ids: pendingOrderIds,
             }
-            getPendingOrders(fetchInfo)
+            getPendingOrders(fetchInfo);
+        }, 1000);
+    }
+
+    useEffect(() => {
+        if (pendingOrders === null) {
+            fetchPendingOrders()
         }
     })
 
