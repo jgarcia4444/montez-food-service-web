@@ -22,20 +22,13 @@ const PendingOrders = ({admin, getPendingOrders}) => {
         }
     }
 
-    const fetchPendingOrders = () => {
-        dispatch({type: "FETCHING_PENDING_ORDERS"});
-        setTimeout(() => {
+    useEffect(() => {
+        if (pendingOrders === null) {
             let fetchInfo = {
                 username,
                 pending_order_ids: pendingOrderIds,
             }
             getPendingOrders(fetchInfo);
-        }, 1000);
-    }
-
-    useEffect(() => {
-        if (pendingOrders === null) {
-            fetchPendingOrders()
         }
     })
 
