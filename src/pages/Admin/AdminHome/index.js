@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../../../shared/Layout';
 import PendingOrders from '../../../components/PendingOrders';
 
+import '../../../styles/pages/AdminHome/index.css';
+
 const AdminHome = ({admin, logoutAdmin}) => {
-    
-    console.log("Admin information from Admin Home component", admin);
 
     const {username} = admin
 

@@ -1,0 +1,31 @@
+.admin-home-container {
+    width: 100%;
+    height: 85vh;
+}
+.logout-admin-button {
+    border-radius: 5px;
+    background-color: #ffc72c;
+    padding: 10px 0px;
+    color: #a0262e;
+    font-weight: bold;
+    transition: all 400ms ease-in;
+    width: 20vw;
+}
+
+.logout-admin-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 3px -1px black;
+    transform: scale(1.05);
+}
+
+.logout-admin-button:active {
+    box-shadow: none;
+    transform: scale(0.95);
+}
+
+.logout-admin-row {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
