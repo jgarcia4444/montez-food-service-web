@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { FiUser, FiLock } from 'react-icons/fi';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import '../../../styles/Global.css';
 import '../../../styles/pages/AdminLogin.css';
@@ -11,7 +12,11 @@ import SpinningLoader from '../../../components/Loaders/SpinningLoader';
 
 import loginAdmin from '../../../redux/actions/adminActions/loginAdmin.js';
 
-const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
+const AdminLogin = ({loginAdmin, admin}) => {
+
+    const navigate = useNavigate();
+
+    const {loggingInAdmin, username} = admin;
 
     const [adminUsername, setAdminUsername] = useState("");
     const [adminUsernameError, setAdminUsernameError] = useState("");
@@ -50,6 +55,12 @@ const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
         }
     }
 
+    useEffect(() => {
+        if (username !== "") {
+            navigate("/users/admin")
+        }
+    },[username])
+
     return (
         <Layout>
             <div className="admin-login-container">
@@ -73,7 +84,7 @@ const AdminLogin = ({loggingInAdmin, loginAdmin}) => {
 }
 const mapStateToProps = state => {
     return {
-        loggingInAdmin: state.admin.loggingInAdmin,
+        admin: state.admin,
     }
 }
 const mapDispatchToProps = dispatch => {

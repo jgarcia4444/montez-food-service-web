@@ -20,6 +20,7 @@ const loginAdmin = (adminInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("data from login admin action", data);
                 let {success} = data;
                 if (success === true) {
                     let {username, pendingOrderIds} = data;
