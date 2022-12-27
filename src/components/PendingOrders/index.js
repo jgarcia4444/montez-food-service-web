@@ -7,16 +7,21 @@ import '../../styles/Global.css';
 import getPendingOrders from '../../redux/actions/adminActions/getPendingOrders';
 
 import PendingOrder from './PendingOrder';
+import SpinningLoader from '../Loaders/SpinningLoader';
 
 const PendingOrders = ({admin, getPendingOrders}) => {
 
-    const dispatch = useDispatch()
+    const {username, pendingOrderIds, pendingOrders, fetchingPendingOrders} = admin;
 
-    const {username, pendingOrderIds, pendingOrders} = admin;
+    console.log("fetching pending orders", fetchingPendingOrders);
 
     const renderPendingOrders = () => {
-        if (pendingOrders.length !== 0) {
-            return pendingOrders.map(pendingOrder => <PendingOrder orderInfo={pendingOrder} />)
+        if (pendingOrders !== null) {
+            if (pendingOrders.length > 0) {
+                return pendingOrders.map(pendingOrder => <PendingOrder orderInfo={pendingOrder} />)
+            } else {
+                return <h3 className="no-pending-orders">No pending Orders...</h3>    
+            }
         } else {
             return <h3 className="no-pending-orders">No pending Orders...</h3>
         }
@@ -30,7 +35,7 @@ const PendingOrders = ({admin, getPendingOrders}) => {
             }
             getPendingOrders(fetchInfo);
         }
-    })
+    }, [pendingOrders])
 
     return (
         <div className="pending-orders-container">
@@ -38,7 +43,11 @@ const PendingOrders = ({admin, getPendingOrders}) => {
                 <h2 className="section-title">Pending Orders</h2>
             </div>
             <div className="pending-orders">
-                {renderPendingOrders()}
+                {fetchingPendingOrders === true ?
+                <SpinningLoader color={"#ffc72c"} />
+                :
+                renderPendingOrders()
+                }
             </div>
         </div>
     )
