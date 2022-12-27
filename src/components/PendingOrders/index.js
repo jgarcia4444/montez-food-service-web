@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
-import { useDispatch } from 'react-redux';
 
 import '../../styles/Global.css';
+import '../../styles/components/PendingOrders/index.css';
 
 import getPendingOrders from '../../redux/actions/adminActions/getPendingOrders';
 
