@@ -21,6 +21,7 @@ import AccountVerifying from './pages/Account/AccountVerifying';
 import OrderConfirmation from './pages/OrderConfirmation';
 import AdminHome from './pages/Admin/AdminHome';
 import AdminLogin from './pages/Admin/AdminLogin';
+import PendingOrderDetails from './pages/Admin/PendingOrderDetails';
 
 import {store, persistor} from './redux/store';
 
@@ -47,6 +48,7 @@ const App = () => {
               </Route>
               <Route path="/users/admin" element={<AdminHome />} />
               <Route path="/users/admin/login" element={<AdminLogin />} />
+              <Route path="/users/admin/pending-order/:orderId" element={<PendingOrderDetails />} />
             </Routes>
             <Footer />
           </div>
