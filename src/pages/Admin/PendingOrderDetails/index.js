@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 
@@ -9,13 +9,17 @@ import '../../../styles/pages/PendingOrderDetails/index.css'
 
 import Layout from '../../../shared/Layout';
 import PastOrderItem from '../../../components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem';
+import ConfirmationForm from '../../../components/PendingOrders/PendingOrder/ConfirmationForm';
 
 const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
+
+    const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
 
     const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError} = pendingOrderDetails;
 
+    const [showForm, setShowForm] = useState(false);
 
     const configuredAddress = () => {
         if (deliveryAddress !== null) {
@@ -30,6 +34,10 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
         return items.map((item, i) => <PastOrderItem key={`${item.description}-${i}`} item={item}/>);
     }
 
+    const navigateToAdminHome = () => {
+        navigate('/users/admin');
+    }
+
     useEffect(() => {
         if (companyName === "" && loadingError === "") {
             fetchOrderDetails(orderId);
@@ -38,8 +46,14 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
 
     return (
         <Layout>
+            {showForm === true &&
+            <ConfirmationForm dismissForm={() => setShowForm(false)} />
+            }
             <div className="section-title-row">
                 <h2 className="section-title">Pending Order</h2>
+                <div onClick={navigateToAdminHome} className="admin-home-button">
+                    Home
+                </div>
             </div>
             <div className="pending-order-details-container">
                 <div className="pending-order-details-row">
@@ -75,7 +89,7 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
                 <div className="cancel-pending-order-button">
                     Cancel
                 </div>
-                <div className="confirm-pending-order-button">
+                <div onClick={() => setShowForm(true)} className="confirm-pending-order-button">
                     Confirm
                 </div>
             </div>
