@@ -10,6 +10,7 @@ import '../../../styles/pages/PendingOrderDetails/index.css'
 import Layout from '../../../shared/Layout';
 import PastOrderItem from '../../../components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem';
 import ConfirmationForm from '../../../components/PendingOrders/PendingOrder/ConfirmationForm';
+import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/CancelConfirmation';
 
 const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
 
@@ -20,6 +21,9 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
     const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError} = pendingOrderDetails;
 
     const [showForm, setShowForm] = useState(false);
+    const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
+    const [reasonText, setReasonText] = useState("");
+    const [reasonTextError, setReasonTextError] = useState("");
 
     const configuredAddress = () => {
         if (deliveryAddress !== null) {
@@ -38,6 +42,13 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
         navigate('/users/admin');
     }
 
+    const handleConfirmCancel = () => {
+        console.log("Handle Confirm Cancel triggerred!")
+        if (reasonText === "") {
+            setReasonTextError("A reason must be specified");
+        }
+    }
+
     useEffect(() => {
         if (companyName === "" && loadingError === "") {
             fetchOrderDetails(orderId);
@@ -48,6 +59,9 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
         <Layout>
             {showForm === true &&
                 <ConfirmationForm dismissForm={() => setShowForm(false)} />
+            }
+            {showCancelConfirmation === true &&
+                <CancelConfirmation reasonTextError={reasonTextError} reasonText={reasonText} setReasonText={setReasonText} dismiss={() => setShowCancelConfirmation(false)} handleConfirmCancel={handleConfirmCancel} />
             }
             <div className="section-title-row">
                 <h2 className="section-title">Pending Order</h2>
@@ -86,7 +100,7 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
                 </div>
             </div>
             <div className="pending-order-action-row">
-                <div className="cancel-pending-order-button">
+                <div onClick={() => setShowCancelConfirmation(true)} className="cancel-pending-order-button">
                     Cancel
                 </div>
                 <div onClick={() => setShowForm(true)} className="confirm-pending-order-button">

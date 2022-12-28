@@ -1,0 +1,72 @@
+
+.cancel-confirmation-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.85)
+}
+
+.cancel-order-container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    width: 76%;
+    padding: 2vh 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-button, .dismiss-button {
+    padding: 1vw;
+    border-radius: 50%;
+    transition: all 400ms ease-out;
+    box-shadow: 0 0 3px -1px black;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-button:hover, .dismiss-button:hover {
+    cursor: pointer;
+    transform: scale(1.075);
+    box-shadow: 0 0 7px -2px black;
+}
+
+.confirm-button:active, .dismiss-button:active {
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.confirm-button {
+    background-color: #0f0;
+}
+
+.dismiss-button {
+    background-color: #f00;
+    margin-right: 10vw;
+}
+
+.reason-input {
+    border: 2px solid #a0262e;
+    border-radius: 5px;
+    color: #a0262e;
+}
+
+.reason-text-error {
+    color: #f00;
+}
+
+.reason-text-error-row {
+}
+
+p {
+    margin: 0;
+}
