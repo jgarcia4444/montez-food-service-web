@@ -5,11 +5,14 @@
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
     transition: all 400ms ease-out;
+    background-color: #a0262e;
+    color: #fff;
+    font-weight: bold;
 }
 
 .admin-home-button:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.075);
     box-shadow: 0 0 7px -2px black;
 }
 
@@ -22,13 +25,16 @@
     padding: 1vh 2vw;
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
-    transition: all 400ms ease-out
+    transition: all 400ms ease-out;
+    background-color: #a0262e;
+    color: #fff;
+    font-weight: bold;
 }
 
 .cancel-pending-order-button:hover, .confirm-pending-order-button:hover {
     cursor: pointer;
-    transform: scale(1.05);
-    box-shadow: 0 0 5px -2px black
+    transform: scale(1.075);
+    box-shadow: 0 0 7px -2px black
 }
 
 .cancel-pending-order-button:active, .confirm-pending-order-button:active {

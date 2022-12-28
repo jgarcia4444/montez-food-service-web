@@ -47,7 +47,7 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
     return (
         <Layout>
             {showForm === true &&
-            <ConfirmationForm dismissForm={() => setShowForm(false)} />
+                <ConfirmationForm dismissForm={() => setShowForm(false)} />
             }
             <div className="section-title-row">
                 <h2 className="section-title">Pending Order</h2>

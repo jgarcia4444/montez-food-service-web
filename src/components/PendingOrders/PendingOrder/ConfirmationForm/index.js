@@ -4,6 +4,8 @@ import {FiMinus, FiCalendar} from 'react-icons/fi';
 
 import FormInput from '../../../FormInput';
 
+import '../../../../styles/components/ConfirmationForm/index.css';
+
 const ConfirmationForm = ({dismissForm}) => {
 
     const [deliveryDate, setDeliveryDate] = useState("");
@@ -27,20 +29,32 @@ const ConfirmationForm = ({dismissForm}) => {
         icon: <FiCalendar size={20} color={"#ffc72c"} />
     }
 
+    const handleConfirmOrderClick = () => {
+
+    }
+
     return (
         <div className="confirmation-form-container">
-            <div onClick={dismissForm} className="dismiss-confirmation-form-button">
-                <FiMinus size={24} color={'#a0262e'} />
+            <div className="dismiss-form-button-row">
+                <div onClick={dismissForm} className="dismiss-confirmation-form-button">
+                    <FiMinus size={24} color={'#fff'} />
+                </div>
             </div>
             <div className="confirmation-form">
                 <div className="input-column">
                     <FormInput inputInfo={deliveryDateInput} />
+                    <small className="date-format-text">Date Format: mm/dd/yyyy</small>
                 </div>
                 <div className="input-column">
                     <FormInput inputInfo={invoicePayableDateInput} />
+                    <small className="date-format-text">Date Format: mm/dd/yyyy</small>
                 </div>
             </div>
-            <div className="confirmation-form-action-row"></div>
+            <div className="confirmation-form-action-row">
+                <div onClick={handleConfirmOrderClick} className="send-confirm-action-button">
+                    Confirm Order
+                </div>
+            </div>
         </div>
     )
 };
