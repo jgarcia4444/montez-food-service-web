@@ -1,5 +1,6 @@
 
 const initialState = {
+    orderId: null,
     companyName: "",
     createdAt: "",
     deliveryAddress: null,

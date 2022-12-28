@@ -6,7 +6,9 @@ import FormInput from '../../../FormInput';
 
 import '../../../../styles/components/ConfirmationForm/index.css';
 
-const ConfirmationForm = ({dismissForm}) => {
+import confirmOrder from '../../../../redux/actions/pendingOrderActions/confirmOrder';
+
+const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
 
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryDateError, setDeliveryDateError] = useState("");
@@ -30,7 +32,24 @@ const ConfirmationForm = ({dismissForm}) => {
     }
 
     const handleConfirmOrderClick = () => {
-
+        setDeliveryDateError("");
+        setInvoicePayableDateError("");
+        if (deliveryDate === "") {
+            setDeliveryDateError("A delivery date must be set.");
+        }
+        if (invoicePayableDate === "") {
+            setInvoicePayableDateError("An invoice payable date must be set.")
+        }
+        if (deliveryDateError === "" && invoicePayableDateError === "") {
+            let confirmationInformation = {
+                confirmation_information: {
+                    delivery_date: deliveryDate,
+                    invoice_payable_date: invoicePayableDate,
+                    order_id: orderId,
+                }
+            }
+            confirmOrder(confirmationInformation);
+        }
     }
 
     return (
@@ -61,13 +80,13 @@ const ConfirmationForm = ({dismissForm}) => {
 
 const mapStateToProps = state => {
     return {
-
+        orderId: state.pendingOrderDetails.orderId,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        confirmOrder: (confirmationInfo) => dispatch(confirmOrder(confirmationInfo))
     }
 }
 
