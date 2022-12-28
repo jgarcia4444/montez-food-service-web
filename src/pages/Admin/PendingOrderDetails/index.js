@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 
 import '../../../styles/Global.css';
+import '../../../styles/pages/PendingOrderDetails/index.css'
 
 import Layout from '../../../shared/Layout';
 
@@ -66,6 +67,7 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
                 </div>
                 <div className="pending-order-details-row"></div>
             </div>
+            <div className="pending-order-action-row"></div>
         </Layout>
     )
 }

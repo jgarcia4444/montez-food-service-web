@@ -12,8 +12,9 @@ const fetchOrderDetails = (orderId) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {pendindOrderDetails} = data;
-                    return dispatch({type: "PENDING_DETAILS_SUCCESS", pendindOrderDetails});
+                    
+                    let {pendingOrderDetails} = data;
+                    return dispatch({type: "PENDING_DETAILS_SUCCESS", pendingOrderDetails});
                 } else {
                     let {error} = data;
                     let {message} = error;
