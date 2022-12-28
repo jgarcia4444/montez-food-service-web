@@ -8,6 +8,7 @@ import '../../../styles/Global.css';
 import '../../../styles/pages/PendingOrderDetails/index.css'
 
 import Layout from '../../../shared/Layout';
+import PastOrderItem from '../../../components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem';
 
 const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
     const params = useParams();
@@ -25,6 +26,10 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
         }
     }
 
+    const renderItems = () => {
+        return items.map((item, i) => <PastOrderItem key={`${item.description}-${i}`} item={item}/>);
+    }
+
     useEffect(() => {
         if (companyName === "" && loadingError === "") {
             fetchOrderDetails(orderId);
@@ -33,41 +38,47 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
 
     return (
         <Layout>
+            <div className="section-title-row">
+                <h2 className="section-title">Pending Order</h2>
+            </div>
             <div className="pending-order-details-container">
-                <div className="section-title-row">
-                    <h2 className="section-title">Pending Order</h2>
-                </div>
                 <div className="pending-order-details-row">
-                    <div className="order-details-label-container">
+                    <div className="order-details-column">
                         <h4 className="order-details-label">Company:</h4>
-                    </div>
-                    <div className="order-details-value-container">
                         <p className="order-details-value">{companyName}</p>
                     </div>
-                    <div className="order-details-label-container">
+                    <div className="order-details-column">
                         <h4 className="order-details-label">Order Date:</h4>
-                    </div>
-                    <div className="order-details-value-container">
                         <p className="order-details-value">{createdAt}</p>
                     </div>
                 </div>
                 <div className="pending-order-details-row">
-                    <div className="order-details-label-container">
+                    <div className="order-details-column">
                         <h4 className="order-details-label">Total:</h4>
-                    </div>
-                    <div className="order-details-value-container">
                         <p className="order-details-value">{totalPrice}</p>
                     </div>
-                    <div className="order-details-label-container">
+                    <div className="order-details-column">
                         <h4 className="order-details-label">Delivery To:</h4>
-                    </div>
-                    <div className="order-details-value-container">
                         <p className="order-details-value">{configuredAddress()}</p>
                     </div>
                 </div>
-                <div className="pending-order-details-row"></div>
+                <div className="section-title-row">
+                    <h2 className="section-title">Items</h2>
+                </div>
+                <div className="pending-order-details-items-row">
+                    <div className="items-container">
+                        {renderItems()}
+                    </div>
+                </div>
             </div>
-            <div className="pending-order-action-row"></div>
+            <div className="pending-order-action-row">
+                <div className="cancel-pending-order-button">
+                    Cancel
+                </div>
+                <div className="confirm-pending-order-button">
+                    Confirm
+                </div>
+            </div>
         </Layout>
     )
 }

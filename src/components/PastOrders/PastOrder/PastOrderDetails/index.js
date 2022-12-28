@@ -9,7 +9,7 @@ const PastOrderDetails = ({orderDetails}) => {
     const {orderItems, orderAddress} = orderDetails;
 
     const renderItems = () => {
-        return orderItems.map((item, i) => <PastOrderItem item={item} key={`${item.description}-${i}`} />)
+        return orderItems.map((item, i) => <PastOrderItem item={item}  />)
     }
 
     const configuredOrderAddress = () => {
