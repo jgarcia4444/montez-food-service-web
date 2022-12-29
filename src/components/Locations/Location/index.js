@@ -53,7 +53,7 @@ const Location = ({locationInfo, email, removeLocation}) => {
             </div>
             <div onClick={handleDeleteLocation} className="location-action-row">
                 <div className="remove-location-button">
-                    <FiTrash size={20} color={"#fff"} />
+                    <FiTrash size={24} color={"#a0262e"} />
                 </div>
             </div>
         </div>
