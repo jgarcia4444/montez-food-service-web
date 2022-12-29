@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
-
 import '../../../styles/Global.css';
 import '../../../styles/pages/PendingOrderDetails/index.css'
 
@@ -12,13 +10,16 @@ import PastOrderItem from '../../../components/PastOrders/PastOrder/PastOrderDet
 import ConfirmationForm from '../../../components/PendingOrders/PendingOrder/ConfirmationForm';
 import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/CancelConfirmation';
 
-const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
+import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
+import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
+
+const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
 
     const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
 
-    const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError} = pendingOrderDetails;
+    const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError, } = pendingOrderDetails;
 
     const [showForm, setShowForm] = useState(false);
     const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
@@ -43,9 +44,16 @@ const PendingOrderDetails = ({pendingOrderDetails, fetchOrderDetails}) => {
     }
 
     const handleConfirmCancel = () => {
-        console.log("Handle Confirm Cancel triggerred!")
+        setReasonTextError("");
         if (reasonText === "") {
             setReasonTextError("A reason must be specified");
+        }
+        if (reasonTextError === "") {
+            let orderInfo = {
+                order_id: parseInt(orderId),
+                reason_text: reasonText
+            }
+            cancelOrder(orderInfo);
         }
     }
 
@@ -119,7 +127,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchOrderDetails: (orderId) => dispatch(fetchOrderDetails(orderId))
+        fetchOrderDetails: (orderId) => dispatch(fetchOrderDetails(orderId)),
+        cancelOrder: (orderInfo) => dispatch(cancelOrder(orderInfo)),
     }
 }
 
