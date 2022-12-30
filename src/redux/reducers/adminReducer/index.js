@@ -10,6 +10,16 @@ const initialState = {
 
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ORDER_CONFIRMATION_SUCCESS":
+            return {
+                ...state,
+                pendingOrders: state.pendingOrders.filter(userOrder => userOrder.id !== action.orderId),
+            }
+        case "ORDER_CANCEL_SUCCESS":
+            return {
+                ...state,
+                pendingOrders: state.pendingOrders.filter(userOrder => userOrder.id !== action.orderId),
+            }
         case "PENDING_ORDERS_FETCH_ERROR":
             return {
                 ...state,

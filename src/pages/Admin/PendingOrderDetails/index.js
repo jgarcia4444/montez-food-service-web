@@ -19,7 +19,7 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
     const params = useParams();
     const {orderId} = params;
 
-    const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError, } = pendingOrderDetails;
+    const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError, cancelOrderError} = pendingOrderDetails;
 
     const [showForm, setShowForm] = useState(false);
     const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
@@ -54,6 +54,9 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
                 reason_text: reasonText
             }
             cancelOrder(orderInfo);
+            if (cancelOrderError === "") {
+                navigateToAdminHome();
+            }
         }
     }
 
