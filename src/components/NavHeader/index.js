@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import '../../styles/nav/NavHeader.css';
 import { Link } from 'react-router-dom';
 import { FiUser } from 'react-icons/fi'
 import { connect } from 'react-redux';
@@ -9,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import MobileNavButton from './MobileNavButton';
 
 import montezLogo from '../../pages/Home/imgs/montez-logo.png';
+
+import '../../styles/nav/NavHeader.css';
 
 const NavHeader = ({userInfo}) => {
 
