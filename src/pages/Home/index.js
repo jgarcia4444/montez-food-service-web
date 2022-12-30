@@ -73,6 +73,9 @@ const Home = ({userInfo}) => {
             </div>
             <div className="flex-container">
                 <div className="about-us-section-container">
+                    <div className="half-flex-container">
+                        <img className="about-us-image about-us-second-image" src={coverageMap} alt="Coverage Map" />
+                    </div>
                     <div className="half-flex-container column-flex">
                         <div className="about-us-info-container">    
                             <h4 className="about-us-section-title">Service Locations</h4>
@@ -88,9 +91,6 @@ const Home = ({userInfo}) => {
                                 <li>Everywhere in Between!</li>
                             </ul>
                         </div>
-                    </div>
-                    <div className="half-flex-container">
-                        <img className="about-us-image about-us-second-image" src={coverageMap} alt="Coverage Map" />
                     </div>
                 </div>
             </div>
