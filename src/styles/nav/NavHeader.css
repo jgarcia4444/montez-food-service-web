@@ -97,7 +97,7 @@
 }
 
 .mobile-nav-link:not(:last-child) {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #fff;
 }
 
 .mobile-nav-links {
