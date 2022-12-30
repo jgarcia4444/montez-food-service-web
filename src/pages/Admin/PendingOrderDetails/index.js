@@ -55,7 +55,7 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
             }
             cancelOrder(orderInfo);
             if (cancelOrderError === "") {
-                navigateToAdminHome();
+                setTimeout(navigateToAdminHome, 1500);
             }
         }
     }

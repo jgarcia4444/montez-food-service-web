@@ -1,11 +1,13 @@
 
 import React from 'react'
-import {FiMinus, FiPlus} from 'react-icons/fi'
+import {FiMinus, FiPlus, FiLoader} from 'react-icons/fi'
+import { connect } from 'react-redux';
 
 import '../../../../styles/Global.css';
 import '../../../../styles/components/PendingOrders/CancelConfirmation/index.css';
+import SpinningLoader from '../../../Loaders/SpinningLoader';
 
-const CancelConfirmation = ({reasonTextError, dismiss, handleConfirmCancel, reasonText, setReasonText}) => {
+const CancelConfirmation = ({cancellingOrder, reasonTextError, dismiss, handleConfirmCancel, reasonText, setReasonText}) => {
 
     return (
         <div className="cancel-confirmation-container">
@@ -13,6 +15,11 @@ const CancelConfirmation = ({reasonTextError, dismiss, handleConfirmCancel, reas
                 <h2 className="section-title">Cancel Order</h2>
             </div>
             <div className="cancel-order-container">
+                {cancellingOrder === true &&
+                    <div className="cancel-order-loader-container">
+                        <SpinningLoader color={"#ffc72c"}/>
+                    </div>
+                }
                 <h3 className="title">Are you certain?</h3>
                 <p>That you want to cancel this order.</p>
                 <div className="reason-container">
@@ -39,4 +46,13 @@ const CancelConfirmation = ({reasonTextError, dismiss, handleConfirmCancel, reas
     )
 }
 
-export default CancelConfirmation;
+const mapStateToProps = state => {
+    return {
+        cancellingOrder: state.pendingOrderDetails.cancellingOrder,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(CancelConfirmation);
