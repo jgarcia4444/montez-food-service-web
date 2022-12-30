@@ -79,7 +79,9 @@ const NavHeader = ({userInfo}) => {
             )
             :
             (
-                <img className='mobile-nav-header-img' src={montezLogo}/>
+                <Link onClick={() => setActivePage("Home")} to="/">
+                    <img className='mobile-nav-header-img' src={montezLogo}/>
+                </Link>
             )
     }
 
