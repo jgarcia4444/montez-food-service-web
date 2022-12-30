@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {FiMinus, FiCalendar} from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 import FormInput from '../../../FormInput';
+import SpinningLoader from '../../../Loaders/SpinningLoader';
 
 import '../../../../styles/components/ConfirmationForm/index.css';
 
 import confirmOrder from '../../../../redux/actions/pendingOrderActions/confirmOrder';
 
-const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
+const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails}) => {
+    const navigate = useNavigate();
 
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryDateError, setDeliveryDateError] = useState("");
     const [invoicePayableDate, setInvoicePayableDate] = useState("")
     const [invoicePayableDateError, setInvoicePayableDateError] = useState("");
+
+    const {orderId, confirmingOrder, confirmOrderError} = pendingOrderDetails
 
     let deliveryDateInput = {
         label: "Delivery Date",
@@ -29,6 +34,10 @@ const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
         changeFunction: val => setInvoicePayableDate(val),
         error: invoicePayableDateError,
         icon: <FiCalendar size={20} color={"#ffc72c"} />
+    }
+
+    const navigateToAdminHome = () => {
+        navigate('/users/admin');
     }
 
     const handleConfirmOrderClick = () => {
@@ -49,6 +58,9 @@ const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
                 }
             }
             confirmOrder(confirmationInformation);
+            if (confirmOrderError === "") {
+                setTimeout(navigateToAdminHome, 1500);
+            }
         }
     }
 
@@ -60,6 +72,11 @@ const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
                 </div>
             </div>
             <div className="confirmation-form">
+                {confirmingOrder === true &&
+                    <div className="confirmation-loader-container">
+                        <SpinningLoader color={"#ffc72c"}/>
+                    </div>
+                }
                 <div className="input-column">
                     <FormInput inputInfo={deliveryDateInput} />
                     <small className="date-format-text">Date Format: mm/dd/yyyy</small>
@@ -80,7 +97,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, orderId}) => {
 
 const mapStateToProps = state => {
     return {
-        orderId: state.pendingOrderDetails.orderId,
+        pendingOrderDetails: state.pendingOrderDetails,
     }
 }
 

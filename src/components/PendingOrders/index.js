@@ -13,12 +13,10 @@ const PendingOrders = ({admin, getPendingOrders}) => {
 
     const {username, pendingOrderIds, pendingOrders, fetchingPendingOrders} = admin;
 
-    console.log("fetching pending orders", fetchingPendingOrders);
-
     const renderPendingOrders = () => {
         if (pendingOrders !== null) {
             if (pendingOrders.length > 0) {
-                return pendingOrders.map(pendingOrder => <PendingOrder orderInfo={pendingOrder} />)
+                return pendingOrders.map(pendingOrder => <PendingOrder key={pendingOrder.id} orderInfo={pendingOrder} />)
             } else {
                 return <h3 className="no-pending-orders">No pending Orders...</h3>    
             }

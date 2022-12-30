@@ -18,8 +18,8 @@ const confirmOrder = (confirmationInformation) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {pendingOrderId} = data;
-                    return dispatch({type: "ORDER_CONFIRMATION_SUCCESS", pendingOrderId});
+                    let {orderId} = data;
+                    return dispatch({type: "ORDER_CONFIRMATION_SUCCESS", orderId});
                 } else {
                     let {error} = data;
                     let {message} = error;
