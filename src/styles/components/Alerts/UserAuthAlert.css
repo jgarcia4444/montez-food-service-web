@@ -70,3 +70,24 @@
         top: 0
     }
 }
+
+@keyframes DropDownMobile {
+    0% {
+        top: -100%
+    }
+    100% {
+        top: 50%;
+    }
+}
+
+@media screen and (max-width: 788px) {
+    .user-auth-alert-container {
+        width: 100%;
+        top: 50%;
+        right: 0;
+        animation-name: DropDownMobile;
+        animation-iteration-count: 1;
+        animation-duration: 400ms;
+        animation-timing-function: ease-out;
+    }
+}
