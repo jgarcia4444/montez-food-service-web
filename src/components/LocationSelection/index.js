@@ -9,9 +9,11 @@ import AddLocation from '../Locations/AddLocation';
 
 import selectLocation from '../../redux/actions/orderActions/selectLocation';
 
-const LocationSelection = ({locations, selectedLocationIndex, locationSelectionError}) => {
+const LocationSelection = ({userInfo, selectedLocationIndex, locationSelectionError}) => {
 
     const [emphasize, setEmphasize] = useState(false);
+
+    const {locations, companyName} = userInfo;
 
     const renderSelectableLocations = () => {
         if (locations.length === 0) {
@@ -30,30 +32,36 @@ const LocationSelection = ({locations, selectedLocationIndex, locationSelectionE
     }
 
     useEffect(() => {
-        if (locations.length === 0) {
-            setEmphasize(true);
-        } else {
-            setEmphasize(false);
+        if (companyName !== "") {
+            if (locations.length === 0) {
+                setEmphasize(true);
+            } else {
+                setEmphasize(false);
+            }
         }
     }, [locations.length]);
 
     return (
         <div className="location-selection-container">
-            <div className="section-title-row">
-                <h2 className="section-title">Select Location</h2>
-                {locationSelectionError !== "" && <p className="error">{locationSelectionError}</p>}
-                <AddLocation emphasizeLocation={emphasize} />                
-            </div>
-            <div className="locations-selector-container">
-                {renderSelectableLocations()}
-            </div>
+            {companyName !== "" &&
+            <>
+                <div className="section-title-row">
+                    <h2 className="section-title">Select Location</h2>
+                    {locationSelectionError !== "" && <p className="error">{locationSelectionError}</p>}
+                    <AddLocation emphasizeLocation={emphasize} />                
+                </div>
+                <div className="locations-selector-container">
+                    {renderSelectableLocations()}
+                </div>
+            </>
+            }
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        locations: state.userReducer.userInfo.locations,
+        userInfo: state.userReducer.userInfo,
         selectedLocationIndex: state.order.selectedLocationIndex,
         locationSelectionError: state.order.locationSelectionError,
     }
