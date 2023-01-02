@@ -36,6 +36,12 @@
     left: 0;
 }
 
+.error {
+    color: #f00;
+    font-weight: 900;
+    opacity: 0.5;
+}
+
 .order-form-row {
     display: flex;
     flex-direction: row;

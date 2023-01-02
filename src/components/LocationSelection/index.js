@@ -41,7 +41,7 @@ const LocationSelection = ({locations, selectedLocationIndex, locationSelectionE
         <div className="location-selection-container">
             <div className="section-title-row">
                 <h2 className="section-title">Select Location</h2>
-                {locationSelectionError !== "" && <p className="error"><strong>{locationSelectionError}</strong></p>}
+                {locationSelectionError !== "" && <p className="error">{locationSelectionError}</p>}
                 <AddLocation emphasizeLocation={emphasize} />                
             </div>
             <div className="locations-selector-container">

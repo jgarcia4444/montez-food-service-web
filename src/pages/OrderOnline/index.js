@@ -37,7 +37,6 @@ const OrderOnline = ({companyName, items}) => {
                 <div className="seventy-width-container">
                     <OrderForm />
                     <LocationSelection />
-                    {/* Add the select location component */}
                 </div>
                 <div className="thirty-width-container">
                     <OrderCart />

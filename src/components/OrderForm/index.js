@@ -11,14 +11,16 @@ import clearSelectedSuggestion from '../../redux/actions/orderActions/clearSelec
 import addItemOrderToCart from '../../redux/actions/cartActions/addItemOrderToCart';
 import clearSuggestions from '../../redux/actions/orderActions/clearSuggestions';
 
-const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSuggestion, clearSelectedSuggestion, addItemOrderToCart}) => {
+const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedSuggestion, addItemOrderToCart, order}) => {
 
     const [itemText, setItemText] = useState('');
     const [quantity, setQuantity] = useState('1');
-    const [showActionAlert, setShowActionALert] = useState(false)
+    const [showActionAlert, setShowActionAlert] = useState(false)
 
     const {email, companyName} = userInfo;
+    const {fetchSuggestionsError, selectedSuggestion} = order;
     const {price, } = selectedSuggestion;
+
 
     const configureTotalPrice = () => {
         if (price === "") {
@@ -44,8 +46,8 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
     }
 
     const presentActionAlert = () => {
-        setShowActionALert(true);
-        setTimeout(() => setShowActionALert(false), 2000);
+        setShowActionAlert(true);
+        setTimeout(() => setShowActionAlert(false), 2000);
     }
 
     const getNewItemTextValue = textValue => {
@@ -80,6 +82,9 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
         <div className="order-form-container">
             {showActionAlert === true && <CartActionAlert destructive={false} title={"Added To Cart"} message={`${selectedSuggestion.description} was added to your cart.`} />}
             <div className="order-form-row">
+                {fetchSuggestionsError !== "" &&
+                    <p className="error">{fetchSuggestionsError}</p>
+                }
                 <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={configureItemFinderText} suggestions={[]} />
                 <div className="item-price-container">
                     <div className="item-price-details-container">
@@ -109,7 +114,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, selectedSugges
 const mapStateToProps = state => {
     return {
         userInfo: state.userReducer.userInfo,
-        selectedSuggestion: state.order.selectedSuggestion
+        order: state.order,
     }
 }
 
