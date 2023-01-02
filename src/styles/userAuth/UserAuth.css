@@ -5,12 +5,19 @@
     border-radius: 5px;
     transition: all 400ms;
     font-weight: bold;
+    transition: all 400ms ease-out;
+    box-shadow: 0 0 3px -1px black;
 }
 
 .action-button:hover {
     cursor: pointer;
-    box-shadow: 0 0 5px -1px black;
-    transform: scale(1.1);
+    box-shadow: 0 0 7px -2px black;
+    transform: scale(1.075);
+}
+
+.action-button:active {
+    box-shadow: none;
+    transform: scale(0.98);
 }
 
 .action-button-row {
@@ -22,27 +29,45 @@
 }
 
 .action-login-button {
-    border: 3px solid #FFC72C;
-    color: #ffc72c;
+    background-color: #ffc72c;
+    color: #fff;
 }
 
 .action-signup-button {
-    background-color: #FFC72C;
-    color: #a0262e;
+    background-color: #a0262e;
+    color: #fff;
+}
+
+.user-auth-back-button {
+    background-color: #a0262e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vh;
+    border-radius: 5px;
+    margin-bottom: 1vh;
+    transition: all 400ms ease-out;
+    box-shadow: 0 0 3px -1px black;
+}
+
+.user-auth-back-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 7px -2px black;
+    transform: scale(1.05);
+}
+
+.user-auth-back-button:active {
+    box-shadow: none;
+    transform: scale(0.98);
 }
 
 .back-button-row {
     width: 75%;
     margin: 0 auto;
     display: flex;
-    color: #a0262e;
     align-items: center;
     justify-content: flex-start;
     font-weight: bold;
-}
-
-.back-button-row:hover {
-    cursor: pointer;
 }
 
 .column-flex-container {

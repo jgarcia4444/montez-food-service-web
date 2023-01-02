@@ -305,7 +305,10 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
 
     const backButton = (
         <div onClick={handleBackPress} className="back-button-row">
-            <FiChevronLeft color={'#a0262e'} size={20} /> Back
+            <div className="user-auth-back-button">
+                <FiChevronLeft color={'#fff'} size={20} /> 
+                <p className="back-button-text">Back</p>
+            </div>
         </div>
     )
 
