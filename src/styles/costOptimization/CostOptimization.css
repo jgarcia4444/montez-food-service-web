@@ -28,13 +28,13 @@
 .optimization-details-title {
     margin: 0 0 10px 0;
     color: #fff;
-    font-size: 1.40em;
+    font-size: 1.80em;
 }
 
 .optimization-title, .savings-title {
     color: #a0262e;
     font-size: 2.5em;
-    font-weight: 500;
+    font-weight: 900;
     margin-top: 0;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .table-headers {
-    font-size: 14px;
+    font-size: 1.1em;
 }
 
 .table-headers-row {
