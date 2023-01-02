@@ -28,7 +28,7 @@ const UserAuthAlert = ({closeAuthAlert, items}) => {
     return (
         <div className="user-auth-alert-container">
             <div onClick={closeAuthAlert} className="close-btn-container">
-                <FiMinus color={'#ff0000'} size={16} />
+                <FiMinus color={'#fff'} size={24} />
             </div>
             <div className="message-row">
                 <p className="message">

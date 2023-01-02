@@ -9,23 +9,28 @@
 
 .close-btn-container {
     position: absolute;
+    background-color: #a0262e;
     top: 5%;
     right: 5%;
-    width: 3vh;
-    height: 3vh;
-    border: 1px solid #ff0000;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 3px 0px gray;
-    transition: all 300ms;
+    box-shadow: 0 0 3px -1px black;
+    transition: all 400ms ease-out;
 }
 
 .close-btn-container:hover {
     cursor: pointer;
     transform: scale(1.075);
-    box-shadow: 0 0 5px -1px black;
+    box-shadow: 0 0 7px -1px black;
+}
+
+.close-btn-container:active {
+    transform: scale(0.98);
+    box-shadow: none;
 }
 
 .user-auth-alert-container {
@@ -35,21 +40,26 @@
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    padding: 10px;
     background-color: rgba(255, 255, 255, 0.9);
     top: 0;
-    left: 0;
-    border-radius: 5px;
+    right: 0;
     z-index: 100;
-    transition: all 300ms;
+    transition: all 400ms ease-out;
     animation-name: DropDown;
     animation-iteration-count: 1;
-    animation-duration: 300ms;
+    animation-duration: 400ms;
+    animation-timing-function: ease-out;
 }
 
 .message {
     text-align: left;
     margin-bottom: 5vh;
+    color: #a0262e;
+    font-weight: 900;
+}
+
+.sub-message {
+    font-weight: 500;
 }
 
 @keyframes DropDown {
