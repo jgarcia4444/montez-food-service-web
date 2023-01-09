@@ -10,9 +10,10 @@ const createUser = (userInfo, cartInfo) => {
         cart_info: cartInfo,
     }
     let options = {
+        mode: 'no-cors',
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
     };
