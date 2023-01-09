@@ -21,6 +21,7 @@ const createUser = (userInfo, cartInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("data from create user", data);
                 let {success} = data;
                 if (success === true) {
                     let {userInfo} = data;
