@@ -8,6 +8,16 @@
     height: 100vh;
 }
 
+.account-verification-message {
+    color: #a0262e;
+    font-size: 1.25em;
+}
+
+.account-verification-title {
+    font-size: 2.5em;
+    font-family: sans-serif;
+}
+
 .account-verification-title-row {
     height: 40%;
     width: 100%;
