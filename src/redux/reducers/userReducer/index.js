@@ -45,9 +45,7 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "LOCATION_DELETE_SUCCESS":
-            console.log("Location Removed SuccessFully");
             const locationRemoved = state.userInfo.locations.filter(location => parseInt(location.id) !== parseInt(action.locationId))
-            console.log("Location Removed", locationRemoved);
             return {
                 ...state,
                 userInfo: {
@@ -64,14 +62,12 @@ const userReducer = (state=initialState, action) => {
                 addressError: action.message,
             }
         case "DELETING_LOCATION":
-            console.log("Deleting Location");
             return {
                 ...state,
                 deletingAddress: true,
                 addressError: ""
             }
         case "SAVING_ADDRESS":
-            console.log("Saving Address reducer case triggered!!!")
             return {
                 ...state,
                 savingAddress: true,
@@ -134,7 +130,6 @@ const userReducer = (state=initialState, action) => {
         case "persist/REHYDRATE":
             if (action.payload !== undefined) {
                 let {payload} = action;
-                console.log("PAYLOAD", payload);
                 return {
                     ...state,
                     ...payload.userReducer,
@@ -146,10 +141,13 @@ const userReducer = (state=initialState, action) => {
                 }
             }
         case "ORDER_SEND_SUCCESS":
-            let updatedPastOrders = [action.pastOrder,...state.userInfo.pastOrders]
+            let updatedPastOrders = state.userInfo.pastOrders.concat(action.pastOrder);
             return {
                 ...state,
-                pastOrders: updatedPastOrders,
+                userInfo: {
+                    ...state.userInfo,
+                    pastOrders: updatedPastOrders,
+                }
             }
         case "PASSWORD_CHANGE_ERROR":
             return {
