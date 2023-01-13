@@ -38,6 +38,7 @@ const sendOrder = (orderDetails) => {
                         action: "User Placed An Order",
                         label: "Order Placed"
                     });
+                    console.log("ORDER SUCCESS", pastOrder);
                     return dispatch({type: "ORDER_SEND_SUCCESS", pastOrder});
                 } else {
                     let {error} = data;
