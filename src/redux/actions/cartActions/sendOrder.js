@@ -2,7 +2,7 @@ import Urls from '../../../config/Urls';
 import ReactGA from 'react-ga';
 
 const sendOrder = (orderDetails) => {
-
+    console.log("Order details from send order action", orderDetails);
     const {baseUrl} = Urls;
     const {email, items, address_id} = orderDetails;
     const url = `${baseUrl}order-online/orders`;
