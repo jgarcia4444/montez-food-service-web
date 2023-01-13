@@ -14,10 +14,12 @@ const AccountVerifying = ({verifyUser, userInfo}) => {
     const navigate = useNavigate();
     const {isVerifying, verificationError, isOrdering, companyName} = userInfo;
 
+    const handleVerify = () => {
+        verifyUser(email);
+    }
+
     useEffect(() => {
-        setTimeout(() => {
-            return verifyUser(email);
-        }, 2000);
+        setTimeout(handleVerify, 2000);
         if (isVerifying === false) {
             if (verificationError === "") {
                 if (companyName !== "") {
