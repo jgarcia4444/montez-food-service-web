@@ -50,6 +50,11 @@
     justify-content: flex-start;
 }
 
+.order-details-value {
+    color: #a0262e;
+    font-weight: bold;
+}
+
 .pending-order-details-container, .peding-order-action-row {
     width: 80%;
     margin: 2vh auto;
