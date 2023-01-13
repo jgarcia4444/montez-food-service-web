@@ -142,7 +142,6 @@ const userReducer = (state=initialState, action) => {
             }
         case "ORDER_SEND_SUCCESS":
             let updatedPastOrders = state.userInfo.pastOrders.concat(action.pastOrder);
-            console.log("ORDER_SEND_SUCCESS_TRIGERRED", action.updatedPastOrders);
             return {
                 ...state,
                 userInfo: {

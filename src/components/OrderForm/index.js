@@ -89,7 +89,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                 <div className="item-price-container">
                     <div className="item-price-details-container">
                         <h3 className="price-label">Price</h3>
-                        <p className="price-details">{price === "" ? "$0.00" : `$${price}`}</p>
+                        <p className="price-details">{price === "" ? "$0.00" : `$${price.toFixed(2)}`}</p>
                     </div>
                 </div>
             </div>
