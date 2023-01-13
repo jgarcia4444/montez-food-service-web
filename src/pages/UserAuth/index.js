@@ -366,18 +366,20 @@ const UserAuth = ({clearAuthReduxErrors, items, createUser, userReducer, loginUs
             }
         } else if (displayState === 'signup') {
             if (signupErrors.length === 0 && userCreationError === "") {
-                if (authState === "signup") {
-                    navigate('/users/account/verify', {
-                        state: {
-                            isMidOrder: true
-                        }
-                    })
-                } else {
-                    navigate('/users/account/verify', {
-                        state: {
-                            isMidOrder: false
-                        }
-                    });
+                if (userInfo.email !== "") {
+                    if (authState === "signup") {
+                        navigate('/users/account/verify', {
+                            state: {
+                                isMidOrder: true
+                            }
+                        })
+                    } else {
+                        navigate('/users/account/verify', {
+                            state: {
+                                isMidOrder: false
+                            }
+                        });
+                    }
                 }
             } else {
                 configureGenericError(userCreationError);
