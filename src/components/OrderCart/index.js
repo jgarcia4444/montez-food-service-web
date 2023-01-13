@@ -61,7 +61,6 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
             } else {
                 if (selectedLocationIndex !== null) {
                     let selectedLocation = locations[selectedLocationIndex];
-                    console.log("Selected Location from order cart", selectedLocation);
                     let orderInfo = {
                         email,
                         items,

@@ -7,7 +7,6 @@ import '../../../styles/components/LocationSelection/SelectableLocation.css'
 const SelectableLocation = ({locationIndex, locationInfo, selected, selectLocation}) => {
 
     const handleSelectClick = () => {
-        console.log("Location Selected", locationIndex);
         selectLocation(locationIndex)
     }
 
