@@ -136,7 +136,9 @@ const userReducer = (state=initialState, action) => {
                 let {payload} = action;
                 console.log("PAYLOAD", payload);
                 return {
+                    ...state,
                     ...payload.userReducer,
+                    loading: false,
                 }
             } else {
                 return {
