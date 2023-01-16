@@ -26,7 +26,6 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
             return "#"
         }
     }
-
     useEffect(() => {
         if (username === "") {
             navigate("/");
@@ -40,7 +39,8 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
     return (
         <Layout>
             <div className="admin-home-container">
-                <Link to={{pathname:configureLinkPath()}} target="_blank" >Authorize Quickbooks</Link>
+                <a href={configureLinkPath()} target="_blank"></a>
+                <Link to={{pathname:configureLinkPath()}}  >Authorize Quickbooks</Link>
                 <PendingOrders />
                 <div className="logout-admin-row">
                     <div onClick={logoutAdmin} className="logout-admin-button">
