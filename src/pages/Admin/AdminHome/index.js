@@ -39,16 +39,18 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                     realmID: iD
                 };
                 setAuthCodeAndRealmId(infoObject);
-                let authorizationInfo = {
-                    authorizationCode,
-                    realmID
+                if (authorizationCode !== "") {
+                    let authorizationInfo = {
+                        authorizationCode,
+                        realmID
+                    }
+                    getTokens(authorizationInfo);
+                    console.log("Access Token: ", accessToken);
+                    console.log("Refresh Token: ", refreshToken);
                 }
-                getTokens(authorizationInfo);
-                console.log("Access Token: ", accessToken);
-                console.log("Refresh Token: ", refreshToken);
             }
         }
-    },[username, code])
+    },[username, authorizationCode])
 
     return (
         <Layout>
