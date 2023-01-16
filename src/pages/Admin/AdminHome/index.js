@@ -21,7 +21,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
     const configureLinkPath = () => {
         if (clientID !== "" && clientSecret !== "") {
             let redirectUri = "https://montez-food-service-web.vercel.app/users/admin"
-            return `${authorizeUrl}client_id=${clientID}&redirect_uri=${redirectUri}&scope=com.intuit.quickbooks.accounting&response_type=code`;
+            return `${authorizeUrl}client_id=${clientID}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&scope=com.intuit.quickbooks.accounting&response_type=code`;
         } else {
             return "#"
         }
