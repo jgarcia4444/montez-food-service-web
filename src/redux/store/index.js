@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import rootReducer from '../reducers';
 import userReducer from '../reducers/userReducer';
+import adminReducer from '../reducers/adminReducer';
 
 const migrations = {
     0: state => {
@@ -85,13 +86,21 @@ const migrations = {
             }
         }
     },
+    5: state => {
+        return {
+            ...state,
+            adminReducer: {
+                ...state.adminReducer,
+            }
+        }
+    }
 }
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['userReducer'],
-    version: 4,
+    whitelist: ['userReducer', 'adminReducer'],
+    version: 5,
     debug: true,
     migrate: createMigrate(migrations, {debug: true}),
 };

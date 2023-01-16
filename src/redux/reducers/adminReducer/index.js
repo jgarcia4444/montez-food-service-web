@@ -15,6 +15,7 @@ const initialState = {
         refreshToken: "",
         fetchingClientDetails: false,
         clientDetailsError: "",
+        authorizeUrl: "https://appcenter.intuit.com/connect/oauth2?",
     }
 }
 
