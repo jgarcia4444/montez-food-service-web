@@ -50,7 +50,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                 }
             }
         }
-    },[username, authorizationCode])
+    },[username, authorizationCode, clientID])
 
     return (
         <Layout>
