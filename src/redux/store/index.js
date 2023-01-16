@@ -93,14 +93,22 @@ const migrations = {
                 ...state.adminReducer,
             }
         }
+    },
+    6: state => {
+        return {
+            ...state,
+            admin: {
+                ...adminReducer,
+            }
+        }
     }
 }
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['userReducer', 'adminReducer'],
-    version: 5,
+    whitelist: ['userReducer', 'admin'],
+    version: 6,
     debug: true,
     migrate: createMigrate(migrations, {debug: true}),
 };
