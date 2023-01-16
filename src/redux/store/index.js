@@ -98,15 +98,15 @@ const migrations = {
         return {
             ...state,
             admin: {
-                ...admin,
+                ...adminReducer,
             }
         }
     },
     7: state => {
         return {
             ...state,
-            adminReducer: {
-                ...admin,
+            admin: {
+                ...adminReducer,
             }
         }
     }
