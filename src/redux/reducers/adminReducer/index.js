@@ -5,11 +5,47 @@ const initialState = {
     loggingInAdmin: false,
     pendingOrders: null,
     fetchingPendingOrders: false,
-    pendingOrdersFetchError: ""
+    pendingOrdersFetchError: "",
+    quickbooksAuth: {
+        clientID: "",
+        clientSecret: "",
+        authorizationCode: "",
+        realmID: "",
+        accessToken: "",
+        refreshToken: "",
+        fetchingClientDetails: false,
+        clientDetailsError: "",
+    }
 }
 
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "":
+            return {
+                ...state,
+                quickbooksAuth: {
+                    ...state.quickbooksAuth,
+                    fetchingClientDetails: false,
+                    ...action.clientDetails,
+                }
+            }
+        case "":
+            return {
+                ...state,
+                quickbooksAuth: {
+                    ...state.quickbooksAuth,
+                    fetchingClientDetails: false,
+                    clientDetailsError: action.message,
+                }
+            }
+        case "FETCHING_CLIENT_DETAILS": 
+            return {
+                ...state,
+                quickbooksAuth: {
+                    ...state.quickbooksAuth,
+                    fetchingClientDetails: true,
+                }
+            }
         case "ORDER_CONFIRMATION_SUCCESS":
             return {
                 ...state,

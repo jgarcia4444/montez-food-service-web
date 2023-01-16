@@ -6,16 +6,23 @@ import Layout from '../../../shared/Layout';
 import PendingOrders from '../../../components/PendingOrders';
 
 import '../../../styles/pages/AdminHome/index.css';
+import getClientDetails from '../../../redux/actions/oauthActions/getClientDetails';
 
-const AdminHome = ({admin, logoutAdmin}) => {
+const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
 
-    const {username} = admin
+    const {username, quickbooksAuth} = admin;
+
+    const {clientID, clientSecret, fetchingClientDetails} = quickbooksAuth;
 
     const navigate = useNavigate();
 
     useEffect(() => {
         if (username === "") {
             navigate("/");
+        } else {
+            if (clientID === "" && clientSecret === "") {
+                getClientDetails(username);
+            }
         }
     })
 
@@ -42,6 +49,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         logoutAdmin: () => dispatch({type: "LOGOUT_ADMIN"}),
+        getClientDetails: (adminUsername) => dispatch(getClientDetails(adminUsername)),
     }
 }
 
