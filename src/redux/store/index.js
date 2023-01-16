@@ -105,7 +105,7 @@ const migrations = {
     7: state => {
         return {
             ...state,
-            admin: {
+            adminReducer: {
                 ...admin,
             }
         }

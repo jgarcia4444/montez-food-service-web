@@ -25,10 +25,10 @@ const adminReducer = (state=initialState, action) => {
             console.log("Here is the action info.", action);
             if (action.payload !== undefined) {
                 let {payload} = action;
-                let {adminReducer} = payload;
+                let {admin} = payload;
                 return {
                     ...state,
-                    ...adminReducer
+                    ...admin
                 }
             } else {
                 return {
