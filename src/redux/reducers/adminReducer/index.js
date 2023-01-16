@@ -20,7 +20,7 @@ const initialState = {
 
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "":
+        case "FETCH_CLIENT_DETAILS_SUCCESS":
             return {
                 ...state,
                 quickbooksAuth: {
@@ -29,7 +29,7 @@ const adminReducer = (state=initialState, action) => {
                     ...action.clientDetails,
                 }
             }
-        case "":
+        case "FETCH_CLIENT_DETAILS_ERROR":
             return {
                 ...state,
                 quickbooksAuth: {
