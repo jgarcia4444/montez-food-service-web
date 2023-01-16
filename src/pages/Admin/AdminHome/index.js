@@ -35,12 +35,12 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
                 getClientDetails(username);
             } 
         }
-    },[quickbooksAuth.clientID])
+    },[])
 
     return (
         <Layout>
             <div className="admin-home-container">
-                <Link to={configureLinkPath()} >Authorize Quickbooks</Link>
+                <Link to={{pathname:configureLinkPath()}} target="_blank" >Authorize Quickbooks</Link>
                 <PendingOrders />
                 <div className="logout-admin-row">
                     <div onClick={logoutAdmin} className="logout-admin-button">
