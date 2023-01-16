@@ -21,6 +21,19 @@ const initialState = {
 
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "persist/REHYDRATE":
+            if (action.payload !== undefined) {
+                let {payload} = action;
+                let {adminReducer} = payload;
+                return {
+                    ...state,
+                    ...adminReducer
+                }
+            } else {
+                return {
+                    ...state,
+                }
+            }
         case "FETCH_CLIENT_DETAILS_SUCCESS":
             return {
                 ...state,
