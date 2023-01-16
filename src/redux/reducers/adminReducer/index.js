@@ -22,6 +22,7 @@ const initialState = {
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
         case "persist/REHYDRATE":
+            console.log("Here is the action info.", action);
             if (action.payload !== undefined) {
                 let {payload} = action;
                 let {adminReducer} = payload;
