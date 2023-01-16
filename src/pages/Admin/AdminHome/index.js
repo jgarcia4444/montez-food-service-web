@@ -7,25 +7,13 @@ import PendingOrders from '../../../components/PendingOrders';
 
 import '../../../styles/pages/AdminHome/index.css';
 import getClientDetails from '../../../redux/actions/oauthActions/getClientDetails';
+import setAuthCodeAndRealmId from '../../../redux/actions/oauthActions/setauthCodeAndRealmId';
 
-const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
-
-    // const params = useParams();
-    // console.log("params from the admin home page", params);
-
-    const queryParams = new URLSearchParams(window.location.search);
-    const code = queryParams.get("code");
-    console.log("Here is the authorization code", code);
-    const realmID = queryParams.get("realmId");
-    console.log("Here is the realm id", realmID);
+const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId}) => {
 
     const {username, quickbooksAuth} = admin;
-
-    const {clientID, clientSecret, fetchingClientDetails, authorizeUrl} = quickbooksAuth;
-
+    const {clientID, clientSecret, fetchingClientDetails, authorizeUrl, tokenUrl, authorizationCode, realmID, accessToken, refreshToken} = quickbooksAuth;
     const navigate = useNavigate();
-
-    console.log(`Client ID: ${quickbooksAuth.clientID}, Client Secret: ${quickbooksAuth.clientSecret}`);
 
     const configureLinkPath = () => {
         if (clientID !== "" && clientSecret !== "") {
@@ -41,9 +29,25 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
         } else {
             if (clientID === "" && clientSecret === "") {
                 getClientDetails(username);
-            } 
+            } else if (clientID !== "" && clientSecret !== "") {
+                const queryParams = new URLSearchParams(window.location.search);
+                let code = queryParams.get('code');
+                let iD = queryParams.get("realmId");
+                let infoObject = {
+                    authorizationCode: code,
+                    realmID: iD
+                };
+                setAuthCodeAndRealmId(infoObject);
+                let authorizationInfo = {
+                    authorizationCode,
+                    realmID
+                }
+                getTokens(authorizationInfo);
+                console.log("Access Token: ", accessToken);
+                console.log("Refresh Token: ", refreshToken);
+            }
         }
-    },[username])
+    },[username, code])
 
     return (
         <Layout>
@@ -70,6 +74,7 @@ const mapDispatchToProps = dispatch => {
     return {
         logoutAdmin: () => dispatch({type: "LOGOUT_ADMIN"}),
         getClientDetails: (adminUsername) => dispatch(getClientDetails(adminUsername)),
+        setAuthCodeAndRealmId: (infoObject) => dispatch(setAuthCodeAndRealmId(infoObject))
     }
 }
 

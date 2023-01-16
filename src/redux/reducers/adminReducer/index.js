@@ -16,11 +16,29 @@ const initialState = {
         fetchingClientDetails: false,
         clientDetailsError: "",
         authorizeUrl: "https://appcenter.intuit.com/connect/oauth2?",
+        tokenUrl: "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
     }
 }
 
 const adminReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "TOKENS_FETCH_SUCCESS":
+            return {
+                ...state,
+                quickbooksAuth: {
+                    ...state.quickbooksAuth,
+                    accessToken: action.accessToken,
+                    refreshToken: action.refreshToken,
+                }
+            }
+        case "SET_AUTH_CODE_AND_REALM_ID":
+            return {
+                ...state,
+                quickbooksAuth: {
+                    ...state.quickbooksAuth,
+                    ...action.infObject,
+                }
+            }
         case "persist/REHYDRATE":
             console.log("Here is the action info.", action);
             if (action.payload !== undefined) {
