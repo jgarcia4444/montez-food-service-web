@@ -9,6 +9,7 @@ const getClientDetails = (adminUsername) => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
+                console.log("Data from get client details", data);
                 let {success} = data;
                 if (success === true) {
                     let {clientDetails} = data;
