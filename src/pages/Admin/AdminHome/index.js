@@ -29,17 +29,23 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
             navigate("/");
         } else {
             if (clientID === "" && clientSecret === "") {
+                console.log("Getting client details");
                 getClientDetails(username);
             } else if (clientID !== "" && clientSecret !== "") {
+                console.log("Client details fetched");
                 const queryParams = new URLSearchParams(window.location.search);
-                let code = queryParams.get('code');
-                let iD = queryParams.get("realmId");
-                let infoObject = {
-                    authorizationCode: code,
-                    realmID: iD
-                };
-                setAuthCodeAndRealmId(infoObject);
+                if (queryParams.get('code') !== undefined) {
+                    console.log("App authorized")
+                    let code = queryParams.get('code');
+                    let iD = queryParams.get("realmId");
+                    let infoObject = {
+                        authorizationCode: code,
+                        realmID: iD
+                    };
+                    setAuthCodeAndRealmId(infoObject);
+                }
                 if (authorizationCode !== "") {
+                    console.log("Tokens being fetched")
                     let authorizationInfo = {
                         authorizationCode,
                         realmID
