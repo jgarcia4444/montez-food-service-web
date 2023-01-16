@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
 import Layout from '../../../shared/Layout';
 import PendingOrders from '../../../components/PendingOrders';
@@ -9,6 +9,9 @@ import '../../../styles/pages/AdminHome/index.css';
 import getClientDetails from '../../../redux/actions/oauthActions/getClientDetails';
 
 const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
+
+    const params = useParams();
+    console.log("params from the admin home page")
 
     const {username, quickbooksAuth} = admin;
 
