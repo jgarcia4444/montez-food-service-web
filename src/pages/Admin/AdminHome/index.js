@@ -10,8 +10,14 @@ import getClientDetails from '../../../redux/actions/oauthActions/getClientDetai
 
 const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
 
-    const params = useParams();
-    console.log("params from the admin home page", params);
+    // const params = useParams();
+    // console.log("params from the admin home page", params);
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const code = queryParams.get("code");
+    console.log("Here is the authorization code", code);
+    const realmID = queryParams.get("realmId");
+    console.log("Here is the realm id", realmID);
 
     const {username, quickbooksAuth} = admin;
 

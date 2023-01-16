@@ -47,6 +47,7 @@ const App = () => {
                 <Route path="/user-auth/:auth_state" element={<UserAuth />} />
               </Route>
               <Route path="/users/admin" element={<AdminHome />} />
+              
               <Route path="/users/admin/login" element={<AdminLogin />} />
               <Route path="/users/admin/pending-order/:orderId" element={<PendingOrderDetails />} />
             </Routes>
