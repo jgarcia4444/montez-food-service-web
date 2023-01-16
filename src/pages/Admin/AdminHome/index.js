@@ -8,8 +8,9 @@ import PendingOrders from '../../../components/PendingOrders';
 import '../../../styles/pages/AdminHome/index.css';
 import getClientDetails from '../../../redux/actions/oauthActions/getClientDetails';
 import setAuthCodeAndRealmId from '../../../redux/actions/oauthActions/setauthCodeAndRealmId';
+import getTokens from '../../../redux/actions/oauthActions/getTokens';
 
-const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId}) => {
+const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId, getTokens}) => {
 
     const {username, quickbooksAuth} = admin;
     const {clientID, clientSecret, fetchingClientDetails, authorizeUrl, tokenUrl, authorizationCode, realmID, accessToken, refreshToken} = quickbooksAuth;
@@ -74,7 +75,8 @@ const mapDispatchToProps = dispatch => {
     return {
         logoutAdmin: () => dispatch({type: "LOGOUT_ADMIN"}),
         getClientDetails: (adminUsername) => dispatch(getClientDetails(adminUsername)),
-        setAuthCodeAndRealmId: (infoObject) => dispatch(setAuthCodeAndRealmId(infoObject))
+        setAuthCodeAndRealmId: (infoObject) => dispatch(setAuthCodeAndRealmId(infoObject)),
+        getTokens: (authInfo) => dispatch(getTokens(authInfo)),
     }
 }
 
