@@ -8,6 +8,7 @@ const getTokens = (authorizationInfo) => {
     let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
     let options = {
         method: "POST",
+        mode: 'no-cors',
     }
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
