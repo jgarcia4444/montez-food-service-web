@@ -43,7 +43,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
                 getClientDetails(username);
             } 
         }
-    },[])
+    },[username])
 
     return (
         <Layout>
