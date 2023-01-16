@@ -16,6 +16,8 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
 
     const navigate = useNavigate();
 
+    console.log(`Client ID: ${quickbooksAuth.clientID}, Client Secret: ${quickbooksAuth.clientSecret}`);
+
     useEffect(() => {
         if (username === "") {
             navigate("/");
