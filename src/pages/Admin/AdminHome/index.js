@@ -11,7 +11,7 @@ import getClientDetails from '../../../redux/actions/oauthActions/getClientDetai
 const AdminHome = ({admin, logoutAdmin, getClientDetails}) => {
 
     const params = useParams();
-    console.log("params from the admin home page")
+    console.log("params from the admin home page", params);
 
     const {username, quickbooksAuth} = admin;
 
