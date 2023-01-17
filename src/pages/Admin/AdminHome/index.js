@@ -28,33 +28,31 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
         if (username === "") {
             navigate("/");
         } else {
+            const queryParams = new URLSearchParams(window.location.search);
             if (clientID === "" && clientSecret === "") {
                 console.log("Getting client details");
                 getClientDetails(username);
-            } else if (clientID !== "" && clientSecret !== "") {
+            } else if ((clientID !== "" && clientSecret !== "") && queryParams.get('code') !== undefined) {
                 console.log("Client details fetched");
-                const queryParams = new URLSearchParams(window.location.search);
-                if (queryParams.get('code') !== undefined) {
-                    console.log("App authorized")
-                    let code = queryParams.get('code');
-                    let iD = queryParams.get("realmId");
-                    let infoObject = {
-                        authorizationCode: code,
-                        realmID: iD
-                    };
-                    setAuthCodeAndRealmId(infoObject);
-                    
+                console.log("App authorized")
+                let code = queryParams.get('code');
+                let iD = queryParams.get("realmId");
+                let infoObject = {
+                    authorizationCode: code,
+                    realmID: iD
+                };
+                setAuthCodeAndRealmId(infoObject);
+            } else {
+                if (authorizationCode !== "") {
+                    console.log("Tokens being fetched")
+                    let authorizationInfo = {
+                        authorizationCode,
+                        realmID
+                    }
+                    getTokens(authorizationInfo);
+                    console.log("Access Token: ", accessToken);
+                    console.log("Refresh Token: ", refreshToken);
                 }
-            }
-            if (authorizationCode !== "") {
-                console.log("Tokens being fetched")
-                let authorizationInfo = {
-                    authorizationCode,
-                    realmID
-                }
-                getTokens(authorizationInfo);
-                console.log("Access Token: ", accessToken);
-                console.log("Refresh Token: ", refreshToken);
             }
         }
     },[username, authorizationCode, clientID])
