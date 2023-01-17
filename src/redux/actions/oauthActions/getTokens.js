@@ -8,7 +8,7 @@ const getTokens = (authorizationInfo) => {
     let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
-        fetch(url)
+        fetch(url, {mode: 'no-cors'})
             .then(res => res.json())
             .then(data => {
                 console.log("Data from get tokens action: ", data);
