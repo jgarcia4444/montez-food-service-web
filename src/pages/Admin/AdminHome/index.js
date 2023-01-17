@@ -25,6 +25,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
         }
     }
     useEffect(() => {
+        console.log("Authorization Code: ", authorizationCode);
         if (username === "") {
             navigate("/");
         } else {
@@ -43,20 +44,20 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                             realmID: iD
                         };
                         setAuthCodeAndRealmId(infoObject);
+                        console.log("Tokens being fetched")
+                        let authorizationInfo = {
+                            authorizationCode,
+                            realmID
+                        }
+                        getTokens(authorizationInfo);
+                        console.log("Access Token: ", accessToken);
+                        console.log("Refresh Token: ", refreshToken);
                     }
                 } else {
-                    console.log("Tokens being fetched")
-                    let authorizationInfo = {
-                        authorizationCode,
-                        realmID
-                    }
-                    getTokens(authorizationInfo);
-                    console.log("Access Token: ", accessToken);
-                    console.log("Refresh Token: ", refreshToken);
                 }
             }
         }
-    },[username, authorizationCode.length, clientID])
+    },[username, authorizationCode, clientID])
 
     return (
         <Layout>
