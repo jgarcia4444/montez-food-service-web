@@ -36,23 +36,25 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                 console.log("App authorized")
                 const queryParams = new URLSearchParams(window.location.search);
                 console.log(queryParams);
-                let code = queryParams.get('code');
-                let iD = queryParams.get("realmId");
-                let infoObject = {
-                    authorizationCode: code,
-                    realmID: iD
-                };
-                setAuthCodeAndRealmId(infoObject);
-            } else {
-                if (authorizationCode !== "") {
-                    console.log("Tokens being fetched")
-                    let authorizationInfo = {
-                        authorizationCode,
-                        realmID
+                if (queryParams.get('code') !== undefined && authorizationCode === "") {
+                    let code = queryParams.get('code');
+                    let iD = queryParams.get("realmId");
+                    let infoObject = {
+                        authorizationCode: code,
+                        realmID: iD
+                    };
+                    setAuthCodeAndRealmId(infoObject);
+                } else {
+                    if (authorizationCode !== "") {
+                        console.log("Tokens being fetched")
+                        let authorizationInfo = {
+                            authorizationCode,
+                            realmID
+                        }
+                        getTokens(authorizationInfo);
+                        console.log("Access Token: ", accessToken);
+                        console.log("Refresh Token: ", refreshToken);
                     }
-                    getTokens(authorizationInfo);
-                    console.log("Access Token: ", accessToken);
-                    console.log("Refresh Token: ", refreshToken);
                 }
             }
         }
