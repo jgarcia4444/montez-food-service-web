@@ -29,14 +29,11 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
             navigate("/");
         } else {
             if (clientID === "" && clientSecret === "") {
-                console.log("Getting client details");
                 getClientDetails(username);
             } else if (clientID !== "" && clientSecret !== "") {
-                console.log("Client details fetched");
-                console.log("App authorized")
                 const queryParams = new URLSearchParams(window.location.search);
-                console.log(queryParams);
                 if (queryParams.get('code') !== undefined && authorizationCode === "") {
+                    console.log("Setting auth code and realm id.")
                     let code = queryParams.get('code');
                     let iD = queryParams.get("realmId");
                     let infoObject = {
@@ -44,8 +41,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                         realmID: iD
                     };
                     setAuthCodeAndRealmId(infoObject);
-                } else {
-                    if (authorizationCode !== "") {
+                } else if (authorizationCode !== "" ) {
                         console.log("Tokens being fetched")
                         let authorizationInfo = {
                             authorizationCode,
@@ -54,11 +50,10 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                         getTokens(authorizationInfo);
                         console.log("Access Token: ", accessToken);
                         console.log("Refresh Token: ", refreshToken);
-                    }
                 }
             }
         }
-    },[username, authorizationCode, clientID])
+    },[username, authorizationCode.length, clientID])
 
     return (
         <Layout>
