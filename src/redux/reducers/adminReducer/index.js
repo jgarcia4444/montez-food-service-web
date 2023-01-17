@@ -36,7 +36,7 @@ const adminReducer = (state=initialState, action) => {
                 ...state,
                 quickbooksAuth: {
                     ...state.quickbooksAuth,
-                    ...action.infObject,
+                    ...action.infoObject,
                 }
             }
         case "persist/REHYDRATE":
