@@ -6,13 +6,9 @@ const getTokens = (authorizationInfo) => {
     let redirectUri = "https://montez-food-service-web.vercel.app/users/admin"
     let {authorizationCode, realmID} = authorizationInfo
     let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
-    let options = {
-        method: "POST",
-        mode: 'no-cors',
-    }
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
-        fetch(url, options)
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 console.log("Data from get tokens action: ", data);
