@@ -31,26 +31,27 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
             if (clientID === "" && clientSecret === "") {
                 getClientDetails(username);
             } else if (clientID !== "" && clientSecret !== "") {
-                const queryParams = new URLSearchParams(window.location.search);
-                if (queryParams.get('code') !== null && authorizationCode === "") {
-                    console.log("Query params get code: ", queryParams.get('code'));
-                    console.log("Setting auth code and realm id.")
-                    let code = queryParams.get('code');
-                    let iD = queryParams.get("realmId");
-                    let infoObject = {
-                        authorizationCode: code,
-                        realmID: iD
-                    };
-                    setAuthCodeAndRealmId(infoObject);
-                } else if (authorizationCode !== "" ) {
-                        console.log("Tokens being fetched")
-                        let authorizationInfo = {
-                            authorizationCode,
-                            realmID
-                        }
-                        getTokens(authorizationInfo);
-                        console.log("Access Token: ", accessToken);
-                        console.log("Refresh Token: ", refreshToken);
+                if (authorizationCode === "") {
+                    const queryParams = new URLSearchParams(window.location.search);
+                    if (queryParams.get('code') !== null) {
+                        console.log("Query params get code: ", queryParams.get('code'));
+                        console.log("Setting auth code and realm id.")
+                        let code = queryParams.get('code');
+                        let iD = queryParams.get("realmId");
+                        let infoObject = {
+                            authorizationCode: code,
+                            realmID: iD
+                        };
+                        setAuthCodeAndRealmId(infoObject);
+                } else {
+                    console.log("Tokens being fetched")
+                    let authorizationInfo = {
+                        authorizationCode,
+                        realmID
+                    }
+                    getTokens(authorizationInfo);
+                    console.log("Access Token: ", accessToken);
+                    console.log("Refresh Token: ", refreshToken);
                 }
             }
         }
