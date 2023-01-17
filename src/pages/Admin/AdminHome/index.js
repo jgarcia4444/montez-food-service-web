@@ -32,7 +32,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                 getClientDetails(username);
             } else if (clientID !== "" && clientSecret !== "") {
                 const queryParams = new URLSearchParams(window.location.search);
-                if (queryParams.get('code') !== undefined && authorizationCode === "") {
+                if (queryParams.get('code') !== null && authorizationCode === "") {
                     console.log("Query params get code: ", queryParams.get('code'));
                     console.log("Setting auth code and realm id.")
                     let code = queryParams.get('code');
