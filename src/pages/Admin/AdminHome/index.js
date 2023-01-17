@@ -25,7 +25,6 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
         }
     }
     useEffect(() => {
-        console.log("Authorization Code: ", authorizationCode);
         if (username === "") {
             navigate("/");
         } else {
@@ -47,6 +46,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                     }
                 } else {
                     console.log("Tokens being fetched")
+                    console.log(authorizationCode)
                     let authorizationInfo = {
                         authorizationCode,
                         realmID
