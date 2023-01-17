@@ -13,7 +13,7 @@ const getTokens = (authorizationInfo) => {
     //         'Accept': 'application/json'
     //     }
     // }
-    let url = `${baseUrl}oauth/tokens/get/${authorizationCode}`;
+    let url = `${baseUrl}oauth/authenticate`;
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
         fetch(url)
