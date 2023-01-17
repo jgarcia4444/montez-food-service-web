@@ -28,13 +28,14 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
         if (username === "") {
             navigate("/");
         } else {
-            const queryParams = new URLSearchParams(window.location.search);
             if (clientID === "" && clientSecret === "") {
                 console.log("Getting client details");
                 getClientDetails(username);
-            } else if ((clientID !== "" && clientSecret !== "") && queryParams.get('code') !== undefined) {
+            } else if (clientID !== "" && clientSecret !== "") {
                 console.log("Client details fetched");
                 console.log("App authorized")
+                const queryParams = new URLSearchParams(window.location.search);
+                console.log(queryParams);
                 let code = queryParams.get('code');
                 let iD = queryParams.get("realmId");
                 let infoObject = {
