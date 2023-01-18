@@ -20,7 +20,7 @@ const getTokens = (authorizationInfo) => {
     let url = `${baseUrl}oauth/callback/`;
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
-        fetch(url)
+        fetch(url, options)
             .then(res => res.json())
             .then(data => {
                 console.log("Data from get tokens action: ", data);
