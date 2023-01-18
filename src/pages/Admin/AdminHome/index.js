@@ -13,7 +13,7 @@ import getTokens from '../../../redux/actions/oauthActions/getTokens';
 const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId, getTokens}) => {
 
     const {username, quickbooksAuth} = admin;
-    const {clientID, clientSecret, fetchingClientDetails, authorizeUrl, tokenUrl, authorizationCode, realmID, accessToken, refreshToken} = quickbooksAuth;
+    const {clientID, clientSecret, fetchingClientDetails, authorizeUrl, authorizationCode, realmID, accessToken, refreshToken} = quickbooksAuth;
     const navigate = useNavigate();
 
     const configureLinkPath = () => {
@@ -62,7 +62,10 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
     return (
         <Layout>
             <div className="admin-home-container">
-                <a href={configureLinkPath()} target="_blank">Authorize Quickbooks</a>
+                {accessToken === "" && 
+                    <a href={configureLinkPath()} target="_blank">Authorize Quickbooks</a>
+                }
+                
                 <PendingOrders />
                 <div className="logout-admin-row">
                     <div onClick={logoutAdmin} className="logout-admin-button">

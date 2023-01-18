@@ -1,16 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../../../styles/components/PendingOrders/PendingOrder/index.css';
 
-const PendingOrder = ({orderInfo}) => {
+const PendingOrder = ({orderInfo, accessToken}) => {
 
     const navigate = useNavigate();
 
     const {created_at, total_price} = orderInfo;
 
     const navigateToPendingOrderDetails = () => {
-        navigate(`/users/admin/pending-order/${orderInfo.id}`)
+        if (accessToken !== "") {
+            navigate(`/users/admin/pending-order/${orderInfo.id}`)
+        }
     }
 
     return (
@@ -25,4 +28,13 @@ const PendingOrder = ({orderInfo}) => {
     )
 };
 
-export default PendingOrder;
+const mapStateToProps = state => {
+    return {
+        accessToken: state.admin.quickbooksAuth.accessToken
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(PendingOrder);
