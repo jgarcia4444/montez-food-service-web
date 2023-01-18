@@ -10,7 +10,7 @@ import '../../../../styles/components/ConfirmationForm/index.css';
 
 import confirmOrder from '../../../../redux/actions/pendingOrderActions/confirmOrder';
 
-const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails}) => {
+const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quickbooksAuth}) => {
     const navigate = useNavigate();
 
     const [deliveryDate, setDeliveryDate] = useState("");
@@ -18,7 +18,8 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails}) => {
     const [invoicePayableDate, setInvoicePayableDate] = useState("")
     const [invoicePayableDateError, setInvoicePayableDateError] = useState("");
 
-    const {orderId, confirmingOrder, confirmOrderError} = pendingOrderDetails
+    const {orderId, confirmingOrder, confirmOrderError} = pendingOrderDetails;
+    const {realmID, accessToken, refreshToken} = quickbooksAuth;
 
     let deliveryDateInput = {
         label: "Delivery Date",
@@ -55,6 +56,11 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails}) => {
                     delivery_date: deliveryDate,
                     invoice_payable_date: invoicePayableDate,
                     order_id: orderId,
+                },
+                service_info: {
+                    realm_id: realmID,
+                    access_token: accessToken,
+                    refresh_token: refreshToken,
                 }
             }
             confirmOrder(confirmationInformation);
@@ -98,6 +104,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails}) => {
 const mapStateToProps = state => {
     return {
         pendingOrderDetails: state.pendingOrderDetails,
+        quickbooksAuth: state.admin.quickbooksAuth
     }
 }
 
