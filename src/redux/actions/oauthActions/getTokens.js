@@ -3,10 +3,7 @@ import Urls from "../../../config/Urls"
 const {tokenUrl, baseUrl} = Urls;
 
 const getTokens = (authorizationInfo) => {
-    console.log("Get tokens triggered.")
-    // let redirectUri = "https://montez-food-service-web.vercel.app/users/admin"
     let {authorizationCode, realmID} = authorizationInfo;
-    // let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
     let options = {
         method: "POST",
         headers: {
@@ -24,9 +21,15 @@ const getTokens = (authorizationInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
-                console.log("Data from get tokens action: ", data);
-                let {refreshToken, accessToken} = data;
-                return dispatch({type: "TOKENS_FETCH_SUCCESS", refreshToken, accessToken});
+                let {success} = data;
+                if (success) {
+                    let {refreshToken, accessToken} = data;
+                    return dispatch({type: "TOKENS_FETCH_SUCCESS", refreshToken, accessToken});
+                } else {
+                    let {error} = data;
+                    let {message} = error;
+                    return dispatch({type: "TOKENS_FETCH_ERROR", message});
+                }
             })
     }
 }
