@@ -3,6 +3,7 @@ import Urls from "../../../config/Urls"
 const {tokenUrl, baseUrl} = Urls;
 
 const getTokens = (authorizationInfo) => {
+    console.log("Get tokens triggered.")
     // let redirectUri = "https://montez-food-service-web.vercel.app/users/admin"
     let {authorizationCode, realmID} = authorizationInfo;
     // let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
