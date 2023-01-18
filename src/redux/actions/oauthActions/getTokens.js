@@ -21,6 +21,7 @@ const getTokens = (authorizationInfo) => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("Data from get tokens", data);
                 let {success} = data;
                 if (success) {
                     let {refreshToken, accessToken} = data;

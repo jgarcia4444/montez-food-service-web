@@ -52,8 +52,6 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                         realmID
                     }
                     getTokens(authorizationInfo);
-                    console.log("Access Token: ", accessToken);
-                    console.log("Refresh Token: ", refreshToken);
                 }
             }
         }
