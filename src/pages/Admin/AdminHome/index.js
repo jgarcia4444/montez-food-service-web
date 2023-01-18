@@ -45,13 +45,15 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                         setAuthCodeAndRealmId(infoObject);
                     }
                 } else {
-                    console.log("Tokens being fetched")
-                    console.log(authorizationCode)
-                    let authorizationInfo = {
-                        authorizationCode,
-                        realmID
+                    if (accessToken === "") {
+                        console.log("Tokens being fetched")
+                        console.log(authorizationCode)
+                        let authorizationInfo = {
+                            authorizationCode,
+                            realmID
+                        }
+                        getTokens(authorizationInfo);
                     }
-                    getTokens(authorizationInfo);
                 }
             }
         }
