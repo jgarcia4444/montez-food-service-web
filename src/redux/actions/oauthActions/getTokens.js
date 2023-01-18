@@ -6,14 +6,18 @@ const getTokens = (authorizationInfo) => {
     // let redirectUri = "https://montez-food-service-web.vercel.app/users/admin"
     let {authorizationCode, realmID} = authorizationInfo;
     // let url = `${tokenUrl}?grant_type=authorization_code&code=${authorizationCode}&redirect_uri=${redirectUri}`;
-    // let options = {
-    //     method: "POST",
-    //     mode: 'no-cors',
-    //     headers: {
-    //         'Accept': 'application/json'
-    //     }
-    // }
-    let url = `${baseUrl}oauth/authenticate`;
+    let options = {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            code: authorizationCode,
+            realm_id: realmID
+        })
+    }
+    let url = `${baseUrl}oauth/callback/`;
     return async dispatch => {
         dispatch({type: "FETCHING_TOKENS"});
         fetch(url)
