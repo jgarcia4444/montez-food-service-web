@@ -122,7 +122,11 @@
     .add-location-form-container {
         width: 80%;
     }
-    .state-select, .state-select-container {
+    .state-select-container {
         width: 50%;
     }
+    .state-select {
+        width: 75%;
+    }
+
 }
