@@ -19,8 +19,12 @@
 
 /* sdf */
 
-.location-info-label, .location-info-value {
+.location-info-label {
     color: #fff;
+}
+
+.location-info-value {
+    color: #ffc72f;
 }
 
 
@@ -52,4 +56,10 @@
     cursor: pointer;
     transform: scale(1.1);
     box-shadow: 0 0 5px 2px white inset ;
+}
+
+@media screen and (max-width: 788px) {
+    .location-info-value {
+        font-size: 0.75em;;
+    }
 }
