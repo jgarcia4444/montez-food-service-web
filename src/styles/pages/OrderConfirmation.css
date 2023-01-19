@@ -35,6 +35,11 @@
     height: 100vh;
 }
 
+.order-message {
+    color: #a0262e;
+    font-size: 1.25em;
+}
+
 .order-title {
     font-size: 3em;
     color: #a0262e;
