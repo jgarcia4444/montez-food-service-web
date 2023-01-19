@@ -103,6 +103,7 @@
     color: #FFC72C;
     font-weight: bold;
     font-size: 16px;
+    
 }
 
 .state-select-label {
@@ -120,5 +121,8 @@
 @media screen and (max-width: 788px) {
     .add-location-form-container {
         width: 80%;
+    }
+    .state-select, .state-select-container {
+        width: 50%;
     }
 }
