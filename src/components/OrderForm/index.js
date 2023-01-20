@@ -18,7 +18,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     const [showActionAlert, setShowActionAlert] = useState(false)
 
     const {email, companyName} = userInfo;
-    const {fetchSuggestionsError, selectedSuggestion} = order;
+    const {selectedSuggestion} = order;
     const {price, } = selectedSuggestion;
 
 
@@ -82,9 +82,6 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
         <div className="order-form-container">
             {showActionAlert === true && <CartActionAlert destructive={false} title={"Added To Cart"} message={`${selectedSuggestion.description} was added to your cart.`} />}
             <div className="order-form-row">
-                {fetchSuggestionsError !== "" &&
-                    <p className="error">{fetchSuggestionsError}</p>
-                }
                 <ItemFinder itemFinderTextChange={itemFinderTextChange} itemText={configureItemFinderText} suggestions={[]} />
                 <div className="item-price-container">
                     <div className="item-price-details-container">

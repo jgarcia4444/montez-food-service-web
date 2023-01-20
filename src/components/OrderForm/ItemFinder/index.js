@@ -7,7 +7,7 @@ import Suggestion from './Suggestion';
 
 const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
 
-    const {suggestions} = order;
+    const {suggestions, fetchSuggestionsError} = order;
 
     const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -25,6 +25,9 @@ const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
 
     return (
         <div className="item-finder-container"> 
+            {fetchSuggestionsError !== "" &&
+                <p className="error">{fetchSuggestionsError}</p>
+            }
             <div className="item-finder-label-row">
                 <h3 className="item-finder-label">Item Name</h3>
             </div>
