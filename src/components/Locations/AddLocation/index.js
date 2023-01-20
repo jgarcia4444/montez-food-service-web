@@ -19,7 +19,7 @@ const AddLocation = ({emphasizeLocation}) => {
     return (
         <>
             <div onClick={() => setShowForm(true)} className={addLocationButtonClass()}>
-                <FiPlus size={24} color={"#fff"} />
+                <FiPlus size={20} color={"#fff"} />
             </div>
             {showForm === true &&
                 <AddLocationForm closeForm={() => setShowForm(false)} />
