@@ -50,7 +50,7 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
         if (items.length === 0) {
             return "0.00";
         } else {
-            return (parseFloat(calculateSubTotal()) + parseFloat(calculateSalesTax())).toFixed(2);
+            return parseFloat(calculateSubTotal()).toFixed(2);
         }
     }
     
@@ -90,17 +90,20 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
                 {renderOrderItems()}
             </div>
             <div className="calculated-total-container">
-                <div className="sub-total-row">
+                {/* <div className="sub-total-row">
                     <h4 className="cost-calulation-label">Subtotal:</h4>
                     <span className="calculated-values">${calculateSubTotal()}</span>
                 </div>
                 <div className="calculated-taxes-row">
                     <h4 className="cost-calulation-label">Taxes:</h4>
                     <span className="calculated-values">${calculateSalesTax()}</span>
-                </div>
+                </div> */}
                 <div className="total-row">
                     <h4 className="cost-calulation-label">Total:</h4>
                     <span className="calculated-values">${calculateOrderTotal()}</span>
+                </div>
+                <div className="delivery-message-row">
+                    <p className="delivery-message">Delivery fee applies</p>
                 </div>
             </div>
             <div className="order-checkout-button" onClick={handleOrderCheckout}>
