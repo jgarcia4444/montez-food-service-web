@@ -45,7 +45,7 @@ const configureSignUpErrors = (errors) => {
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
         case "LOCATION_DELETE_SUCCESS":
-            const locationRemoved = state.userInfo.locations.filter(location => parseInt(location.id) !== parseInt(action.locationId))
+            const locationRemoved = state.userInfo.locations.filter(location => parseInt(location.id) !== parseInt(action.addressId))
             return {
                 ...state,
                 userInfo: {
