@@ -8,6 +8,7 @@
     box-shadow: 0px 1px 3px -1px black;
     background-color: #a0262e;
     padding: 5px 0;
+    z-index: 1000;
 }
 
 .nav-link {
