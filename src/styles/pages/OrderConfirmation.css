@@ -38,11 +38,13 @@
 .order-message {
     color: #a0262e;
     font-size: 1.25em;
+    text-align: left;
 }
 
 .order-title {
     font-size: 3em;
     color: #a0262e;
+    text-align: left;
 }
 
 .message-row, .title-row {
@@ -55,4 +57,13 @@
 
 .title-row {
 
+}
+
+@media screen and (max-width: 788px) {
+    .order-message {
+        font-size: 1em;
+    }
+    .order-title {
+        font-size: 1.75em;
+    }
 }
