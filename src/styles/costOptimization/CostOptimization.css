@@ -139,4 +139,7 @@
         flex-direction: column;
         align-items: center;
     }
+    .table-headers {
+        font-size: 0.9em;
+    }
 }
