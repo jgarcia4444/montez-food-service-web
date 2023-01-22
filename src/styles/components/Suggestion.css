@@ -1,13 +1,14 @@
 
 .suggestion-row {
     width: 100%;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid black;
     padding: 10px 0;
-    transform: all 300ms;
+    transform: all 300ms ease-out;
+    font-weight: bold;
 }
 
 .suggestion-row:hover {
     cursor: pointer;
-    box-shadow: 0 0 3px 1px gray;
+    box-shadow: 0 0 5px -2px gray;
 }

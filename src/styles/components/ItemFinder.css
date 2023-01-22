@@ -52,7 +52,7 @@
     overflow-y: auto;
     box-shadow: 0 0 3px -1px gray;
     max-height: 30vh;
-    width: 100%;
+    width: 80%;
     animation-name: FadeIn;
     animation-duration: 300ms;
     animation-iteration-count: 1;
