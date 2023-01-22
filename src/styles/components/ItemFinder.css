@@ -47,11 +47,12 @@
     position: absolute;
     top: 100%;
     display: block;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #a0262e;
+    color: #fff;
     overflow-y: auto;
     box-shadow: 0 0 3px -1px gray;
-    max-height: 20vh;
-    width: 50%;
+    max-height: 30vh;
+    width: 100%;
     animation-name: FadeIn;
     animation-duration: 300ms;
     animation-iteration-count: 1;
