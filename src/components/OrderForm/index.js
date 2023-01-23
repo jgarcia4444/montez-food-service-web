@@ -64,7 +64,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
         if (value === "") {
             clearSuggestions();
         } else {
-            fetchSuggestions(inputText);
+            fetchSuggestions(inputText, email);
         }
         setItemText(inputText);
     }

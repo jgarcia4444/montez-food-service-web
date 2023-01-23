@@ -1,8 +1,8 @@
 import Urls from "../../../config/Urls"; 
 const {baseUrl} = Urls;
 
-const fetchSuggestions = (itemQuery) => {
-    let url = `${baseUrl}order-online/fetch-suggestions/${itemQuery}`;
+const fetchSuggestions = (itemQuery, email) => {
+    let url = `${baseUrl}order-online/fetch-suggestions/${itemQuery}/${email}`;
 
     return async dispatch => {
         dispatch({type: "FETCHING_SUGGESTIONS"})
