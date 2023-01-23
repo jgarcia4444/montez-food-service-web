@@ -2,6 +2,7 @@ import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
 const fetchSuggestions = (itemQuery, email) => {
+    console.log("Here is the email value", email)
     let url = `${baseUrl}order-online/fetch-suggestions/${itemQuery}/${email}`;
 
     return async dispatch => {
