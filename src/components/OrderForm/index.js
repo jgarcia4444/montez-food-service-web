@@ -18,6 +18,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     const [showActionAlert, setShowActionAlert] = useState(false)
 
     const {email, companyName} = userInfo;
+    console.log("User info from the order form page.", userInfo)
     const {selectedSuggestion} = order;
     const {price, } = selectedSuggestion;
 
