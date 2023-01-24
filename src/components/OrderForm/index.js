@@ -118,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
+        fetchSuggestions: (itemQuery, email) => dispatch(fetchSuggestions(itemQuery, email)),
         clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion()),
         addItemOrderToCart: (cartItem) => dispatch(addItemOrderToCart(cartItem)),
         clearSuggestions: () => dispatch(clearSuggestions()),
