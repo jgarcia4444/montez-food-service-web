@@ -93,7 +93,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                     </div>
                 </div>
             </div>
-            {unitsPerCase !== 0 &&
+            {unitsPerCase !== 0 && unitsPerCase !== "" &&
                 <div className="order-form-row">
                     <div className="units-or-case-selection-container">
                         <div className="units-selection-container">
