@@ -101,6 +101,8 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                                 {unitsSelected === true && <FiCheck size={20} color={'#a0262e'}/>}
                             </div> Units
                         </div>
+                        <div className="or-descriptive-container">
+                        </div>
                         <div className="case-selection-container">
                             <div className="case-selection-box">
                                 {unitsSelected === false &&

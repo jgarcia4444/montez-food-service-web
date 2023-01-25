@@ -78,3 +78,36 @@
     margin-bottom: 1%;
     color: #a0262e;
 }
+
+.units-or-case-selection-container {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.units-selection-box, .case-selection-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a0262e;
+    border-radius: 5px;
+}
+
+.units-selection-container, .case-selection-container {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.or-descriptive-container {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
