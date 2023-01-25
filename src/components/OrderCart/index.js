@@ -36,16 +36,6 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
         }
     }
 
-    const calculateSalesTax = () => {
-        if (items.length === 0) {
-            return "0.00";
-        } else {
-            var taxesTotal = 0.00;
-            items.forEach(item => taxesTotal += (parseFloat(item.price) * 0.0725))
-            return taxesTotal.toFixed(2);
-        }
-    }
-
     const calculateOrderTotal = () => {
         if (items.length === 0) {
             return "0.00";

@@ -52,6 +52,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
             addItemOrderToCart(cartItem);
             setQuantity('1');
             presentActionAlert();
+            setUnitsSelected(true);
         }
     }
 
