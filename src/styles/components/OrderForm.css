@@ -109,6 +109,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    color: #a0262e;
 }
 
 .or-descriptive-container {
@@ -116,4 +117,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #a0262e;
+}
+
+.case-details-container {
+    color: #a0262e;
 }
