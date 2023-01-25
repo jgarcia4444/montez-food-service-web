@@ -22,7 +22,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     const {email, companyName} = userInfo;
     console.log("User info from the order form page.", userInfo)
     const {selectedSuggestion} = order;
-    const {price, unitsPerCase} = selectedSuggestion;
+    const {price, unitsPerCase, caseCost} = selectedSuggestion;
 
 
     const configureTotalPrice = () => {
@@ -75,6 +75,14 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
 
     const configureItemFinderText = selectedSuggestion.description === "" ? itemText : selectedSuggestion.description;
 
+    const configurePrice = () => {
+        if (unitsSelected === true) {
+            return price === "" ? "$0.00" : `$${parseFloat(price).toFixed(2)}`
+        } else {
+            return caseCost === "" ? "$0.00" : `$${parseFloat(caseCost).toFixed(2)}`
+        }
+    }
+
     useEffect(() => {
         if (selectedSuggestion.description !== "") {
             clearSuggestions();
@@ -89,7 +97,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                 <div className="item-price-container">
                     <div className="item-price-details-container">
                         <h3 className="price-label">Price</h3>
-                        <p className="price-details">{price === "" ? "$0.00" : `$${price.toFixed(2)}`}</p>
+                        <p className="price-details">{configurePrice()}</p>
                     </div>
                 </div>
             </div>
