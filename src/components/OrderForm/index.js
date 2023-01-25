@@ -97,6 +97,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     }
 
     useEffect(() => {
+        console.log(selectedSuggestion)
         if (selectedSuggestion.description !== "") {
             clearSuggestions();
         }
