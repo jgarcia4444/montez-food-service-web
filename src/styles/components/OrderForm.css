@@ -85,6 +85,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    border: 1px solid black;
 }
 
 .units-selection-box, .case-selection-box {
@@ -109,6 +110,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    border: 1px solid black;
 }
 
 .or-descriptive-container {
