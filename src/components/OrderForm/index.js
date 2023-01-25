@@ -85,7 +85,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
 
     const calcuateSavings = () => {
         let difference = (parseFloat(price) * parseFloat(unitsPerCase)) - parseFloat(caseCost);
-        return `${difference.toFixed(2)} per case`;
+        return `$${difference.toFixed(2)} per case`;
     }
 
     useEffect(() => {
