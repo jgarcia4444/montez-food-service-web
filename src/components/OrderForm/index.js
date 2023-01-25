@@ -26,13 +26,19 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
 
 
     const configureTotalPrice = () => {
-        if (price === "") {
-            return "0.00"
+        var totalPrice = ""
+        if (unitsSelected === true) {
+            if (price !== "") {
+                let priceNum = parseFloat(price);
+                totalPrice = (parseInt(quantity) * priceNum).toFixed(2);
+            }
         } else {
-            let priceNum = parseFloat(price);
-            let totalPrice = (parseInt(quantity) * priceNum).toFixed(2);
-            return totalPrice;
+            if (caseCost !== "") {
+                let priceNum = parseFloat(caseCost);
+                totalPrice = (parseFloat(quantity) * priceNum).toFixed(2);
+            }
         }
+        return totalPrice
     }
 
     const addItemToOrder = () => {
@@ -40,7 +46,8 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
             let cartItem = {
                 ...selectedSuggestion,
                 quantity,
-                totalPrice: configureTotalPrice()
+                totalPrice: configureTotalPrice(),
+                caseBought: unitsSelected === true ? false : true,
             };
             addItemOrderToCart(cartItem);
             setQuantity('1');
