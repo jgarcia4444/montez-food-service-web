@@ -16,7 +16,7 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
     const [showDestructiveAlert, setShowDestructiveAlert] = useState(false);
     const [showUpdateAlert, setShowUpdateAlert] = useState(false);
 
-    const {description, price, quantity, totalPrice} = itemInfo;
+    const {unitsPerCase, description, price, quantity, totalPrice, caseBought} = itemInfo;
 
     const handleRemoveOrderItem = () => {
         removeOrderItem(description);
@@ -33,7 +33,6 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
                 }
                 updateOrderItemQuantity(editOrderItemInfo)
                 setEditingQuantity(false);
-                // Show a success message
                 setShowUpdateAlert(true);
                 setTimeout(() => setShowUpdateAlert(false), 2000);
             }
@@ -70,7 +69,7 @@ const OrderItem = ({itemInfo, removeOrderItem, updateOrderItemQuantity}) => {
                     </div>
                     <div className="item-name-row">
                         <p className="item-value">
-                            {description}
+                            {description} {caseBought === true && `${unitsPerCase} Case`}
                         </p>
                     </div>
                 </div>
