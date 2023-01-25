@@ -102,6 +102,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                             </div> Units
                         </div>
                         <div className="or-descriptive-container">
+                            Or
                         </div>
                         <div className="case-selection-container">
                             <div onClick={() => setUnitsSelected(false)} className="case-selection-box">
