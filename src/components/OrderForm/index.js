@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import {FiCheck} from 'react-icons/fi';
 
 import '../../styles/components/OrderForm.css'
 import ItemFinder from './ItemFinder';
@@ -15,12 +16,13 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
 
     const [itemText, setItemText] = useState('');
     const [quantity, setQuantity] = useState('1');
-    const [showActionAlert, setShowActionAlert] = useState(false)
+    const [showActionAlert, setShowActionAlert] = useState(false);
+    const [unitsSelected, setUnitsSelected] = useState(true);
 
     const {email, companyName} = userInfo;
     console.log("User info from the order form page.", userInfo)
     const {selectedSuggestion} = order;
-    const {price, } = selectedSuggestion;
+    const {price, unitsPerCase} = selectedSuggestion;
 
 
     const configureTotalPrice = () => {
@@ -91,6 +93,27 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                     </div>
                 </div>
             </div>
+            {unitsPerCase !== 0 &&
+                <div className="order-form-row">
+                    <div className="units-or-case-selection-container">
+                        <div className="units-selection-container">
+                            <div className="units-selection-box">
+                                {unitsSelected === true && <FiCheck size={20} color={'#a0262e'}/>}
+                            </div> Units
+                        </div>
+                        <div className="case-selection-container">
+                            <div className="case-selection-box">
+                                {unitsSelected === false &&
+                                    <FiCheck color={"#a0262e"} size={20} />
+                                }
+                            </div> Case
+                        </div>
+                    </div>
+                    <div className="case-details-container">
+                        Units Per Case {unitsPerCase}
+                    </div>
+                </div>
+            }
             <div className="order-form-row">
                 <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
                 <div className="total-price-container">

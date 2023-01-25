@@ -8,7 +8,7 @@ const initialState = {
         description: "",
         upc: "",
         item: "",
-        costPerUnit: "",
+        unitsPerCase: "",
         caseCost: "",
         fiveCaseCost: "",
     },

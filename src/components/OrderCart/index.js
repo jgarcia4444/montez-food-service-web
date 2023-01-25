@@ -85,19 +85,11 @@ const OrderCart = ({locations, cart, userInfo, sendOrder, selectedLocationIndex,
             {showUserAuthOptions === true &&
                 <UserAuthAlert closeAuthAlert={() => setShowUserAuthOptions(false)} />
             }
-            <h2 className="order-cart-title">Order</h2>
+            <h2 className="order-cart-title">Cart</h2>
             <div className="order-items-container">
                 {renderOrderItems()}
             </div>
             <div className="calculated-total-container">
-                {/* <div className="sub-total-row">
-                    <h4 className="cost-calulation-label">Subtotal:</h4>
-                    <span className="calculated-values">${calculateSubTotal()}</span>
-                </div>
-                <div className="calculated-taxes-row">
-                    <h4 className="cost-calulation-label">Taxes:</h4>
-                    <span className="calculated-values">${calculateSalesTax()}</span>
-                </div> */}
                 <div className="total-row">
                     <h4 className="cost-calulation-label">Total:</h4>
                     <span className="calculated-values">${calculateOrderTotal()}</span>
