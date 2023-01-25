@@ -95,6 +95,12 @@
     justify-content: center;
     border: 1px solid #a0262e;
     border-radius: 5px;
+    transition: all 400ms ease-out;
+}
+
+.units-selection-box:hover, .case-selection-box:hover {
+    cursor: pointer;
+    background-color: #ddd;
 }
 
 .units-selection-container, .case-selection-container {

@@ -97,14 +97,14 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                 <div className="order-form-row">
                     <div className="units-or-case-selection-container">
                         <div className="units-selection-container">
-                            <div className="units-selection-box">
+                            <div onClick={() => setUnitsSelected(true)} className="units-selection-box">
                                 {unitsSelected === true && <FiCheck size={20} color={'#a0262e'}/>}
                             </div> Units
                         </div>
                         <div className="or-descriptive-container">
                         </div>
                         <div className="case-selection-container">
-                            <div className="case-selection-box">
+                            <div onClick={() => setUnitsSelected(false)} className="case-selection-box">
                                 {unitsSelected === false &&
                                     <FiCheck color={"#a0262e"} size={20} />
                                 }
