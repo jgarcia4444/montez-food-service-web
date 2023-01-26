@@ -20,7 +20,6 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     const [unitsSelected, setUnitsSelected] = useState(true);
 
     const {email, companyName} = userInfo;
-    console.log("User info from the order form page.", userInfo)
     const {selectedSuggestion} = order;
     const {price, unitsPerCase, caseCost} = selectedSuggestion;
 
@@ -96,8 +95,37 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
         return `$${difference.toFixed(2)} per case`;
     }
 
+    const unitsOrCaseSelection = (
+        <div className="order-form-row">
+            <div className="units-or-case-selection-container">
+                <div className="units-selection-container">
+                    <div onClick={() => setUnitsSelected(true)} className="units-selection-box">
+                        {unitsSelected === true && <FiCheck size={20} color={'#a0262e'}/>}
+                    </div> Units
+                </div>
+                <div className="or-descriptive-container">
+                    Or
+                </div>
+                <div className="case-selection-container">
+                    <div onClick={() => setUnitsSelected(false)} className="case-selection-box">
+                        {unitsSelected === false &&
+                            <FiCheck color={"#a0262e"} size={20} />
+                        }
+                    </div> Case
+                </div>
+            </div>
+            <div className="case-details-container">
+                <div className="units-per-case-info-row">
+                    Units Per Case {unitsPerCase}
+                </div>
+                <div className="case-savings-row">
+                    Approximate Savings {calcuateSavings()}
+                </div>
+            </div>
+        </div>
+    )
+
     useEffect(() => {
-        console.log(selectedSuggestion)
         if (selectedSuggestion.description !== "") {
             clearSuggestions();
         }
@@ -116,33 +144,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
                 </div>
             </div>
             {unitsPerCase !== 0 && unitsPerCase !== "" &&
-                <div className="order-form-row">
-                    <div className="units-or-case-selection-container">
-                        <div className="units-selection-container">
-                            <div onClick={() => setUnitsSelected(true)} className="units-selection-box">
-                                {unitsSelected === true && <FiCheck size={20} color={'#a0262e'}/>}
-                            </div> Units
-                        </div>
-                        <div className="or-descriptive-container">
-                            Or
-                        </div>
-                        <div className="case-selection-container">
-                            <div onClick={() => setUnitsSelected(false)} className="case-selection-box">
-                                {unitsSelected === false &&
-                                    <FiCheck color={"#a0262e"} size={20} />
-                                }
-                            </div> Case
-                        </div>
-                    </div>
-                    <div className="case-details-container">
-                        <div className="units-per-case-info-row">
-                            Units Per Case {unitsPerCase}
-                        </div>
-                        <div className="case-savings-row">
-                            Approximate Savings {calcuateSavings()}
-                        </div>
-                    </div>
-                </div>
+                unitsOrCaseSelection
             }
             <div className="order-form-row">
                 <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
