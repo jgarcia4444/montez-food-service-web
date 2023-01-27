@@ -5,10 +5,19 @@ import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/P
 const PastOrderItem = ({item}) => {
 
     const {itemInfo, quantity} = item;
-    const {description, price } = itemInfo;
+    const {description, price, caseBought, caseCost } = itemInfo;
 
     const calculateTotalPrice = () => {
-        return (parseInt(quantity) * parseFloat(price)).toFixed(2);
+        let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
+        return (parseFloat(quantity) * priceToCharge).toFixed(2);
+    }
+
+    const renderPricePer = () => {
+        if (caseBought === true) {
+            return caseCost;
+        } else {
+            return price;
+        }
     }
 
     return (
@@ -20,7 +29,7 @@ const PastOrderItem = ({item}) => {
                 </div>
                 <div className="item-info-block">
                     <div className="item-info-label">Price Per</div>
-                    <div className="item-info-value">${price}</div>
+                    <div className="item-info-value">${renderPricePer()}</div>
                 </div>
             </div>
             <div className="item-info-block-row">
@@ -30,7 +39,7 @@ const PastOrderItem = ({item}) => {
                 </div>
                 <div className="item-info-block">
                     <div className="item-info-label">Total Price</div>
-                    <div className="item-info-value">{calculateTotalPrice()}</div>
+                    <div className="item-info-value">${calculateTotalPrice()}</div>
                 </div>
             </div>
         </div>
