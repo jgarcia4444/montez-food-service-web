@@ -5,7 +5,7 @@ import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/P
 const PastOrderItem = ({item}) => {
 
     const {itemInfo, quantity} = item;
-    const {description, price, caseBought, caseCost } = itemInfo;
+    const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
 
     const calculateTotalPrice = () => {
         let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
@@ -20,12 +20,16 @@ const PastOrderItem = ({item}) => {
         }
     }
 
+    const configureDescription = () => {
+        return caseBought === true ? description + `${description} ${unitsPerCase} case` : description;
+    }
+
     return (
         <div className="past-order-item-container">
             <div className="item-info-block-row">
                 <div className="item-info-block">
                     <div className="item-info-label">Name</div>
-                    <div className="item-info-value">{description}</div>
+                    <div className="item-info-value">{configureDescription()}</div>
                 </div>
                 <div className="item-info-block">
                     <div className="item-info-label">Price Per</div>
