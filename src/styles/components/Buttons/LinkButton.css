@@ -2,13 +2,14 @@
 
 .link-button {
     background-color: #a0262e;
-    padding: 1vh 2vw;
+    width: 40%;
+    padding: 1vh 0;
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
     transition: all 400ms ease-out;
     animation-name: Breathe;
     animation-iteration-count: infinite;
-    animation-duration: 400ms;
+    animation-duration: 750ms;
     animation-timing-function: ease-out;
 }
 
