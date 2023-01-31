@@ -11,6 +11,7 @@
     animation-iteration-count: infinite;
     animation-duration: 750ms;
     animation-timing-function: ease-out;
+    margin: 5vh auto 0 auto;
 }
 
 .link-button:hover {
