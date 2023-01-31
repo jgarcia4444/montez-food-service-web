@@ -4,6 +4,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 
 import Layout from '../../../shared/Layout';
 import PendingOrders from '../../../components/PendingOrders';
+import LinkButton from '../../../components/Buttons/LinkButton';
 
 import '../../../styles/pages/AdminHome/index.css';
 import getClientDetails from '../../../redux/actions/oauthActions/getClientDetails';
@@ -34,8 +35,6 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                 if (authorizationCode === "") {
                     const queryParams = new URLSearchParams(window.location.search);
                     if (queryParams.get('code') !== null) {
-                        console.log("Query params get code: ", queryParams.get('code'));
-                        console.log("Setting auth code and realm id.")
                         let code = queryParams.get('code');
                         let iD = queryParams.get("realmId");
                         let infoObject = {
@@ -46,8 +45,6 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                     }
                 } else {
                     if (accessToken === "") {
-                        console.log("Tokens being fetched")
-                        console.log(authorizationCode)
                         let authorizationInfo = {
                             authorizationCode,
                             realmID
@@ -63,7 +60,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
         <Layout>
             <div className="admin-home-container">
                 {accessToken === "" && 
-                    <a href={configureLinkPath()} target="_blank">Authorize Quickbooks</a>
+                    <LinkButton text={"Authorize Quickbooks"} to={configureLinkPath()} />
                 }
                 
                 <PendingOrders />

@@ -1,0 +1,41 @@
+
+
+.link-button {
+    background-color: #a0262e;
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    transition: all 400ms ease-out;
+    animation-name: Breathe;
+    animation-iteration-count: infinite;
+    animation-duration: 400ms;
+    animation-timing-function: ease-out;
+}
+
+.link-button:hover {
+    box-shadow: 0 0 5x -2px black;
+    cursor: pointer;
+}
+
+.link-button:active {
+    box-shadow: none;
+    animation-name: none;
+}
+
+.link-button-text {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+@keyframes Breathe {
+    0% {
+        transform: scale(1.0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
