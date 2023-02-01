@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FiMinus } from 'react-icons/fi';
 
 import '../../../styles/Global.css';
 import '../../../styles/pages/PendingOrderDetails/index.css'
@@ -12,8 +13,9 @@ import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/C
 
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
+import LinkButton from '../../../components/Buttons/LinkButton';
 
-const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
+const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
 
     const navigate = useNavigate();
     const params = useParams();
@@ -25,6 +27,7 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
     const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
     const [reasonText, setReasonText] = useState("");
     const [reasonTextError, setReasonTextError] = useState("");
+    const [showAuthorizationAlert, setShowAuthorizationAlert] = useState(false);
 
     const configuredAddress = () => {
         if (deliveryAddress !== null) {
@@ -60,14 +63,57 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
         }
     }
 
+    const handleCancelClick = () => {
+        if (accessToken !== "") {
+            setShowCancelConfirmation(true);
+        } else {
+            setShowAuthorizationAlert(true);
+        }
+    }
+
+    const handleConfirmClick = () => {
+        if (accessToken !== "") {
+            setShowForm(true);
+        } else {
+            setShowAuthorizationAlert(true);
+        }
+    }
+
+    const authorizationAlert = (
+        <div className="authorization-alert-container">
+            <div onClick={() => setShowAuthorizationAlert(false)} className="authorization-alert-dismiss-button">
+                <FiMinus size={24} color={"#fff"} />
+            </div>
+            <div className="authorization-alert">
+                <div className="authorization-title-row">
+                    <h2 className="authorization-title">Authorization Needed</h2>
+                </div>
+                <div className="authorization-action-row">
+                    <p className="authorization-message">Quickbooks must be authorized to complete the below action. Follow the instructions below.</p>
+                    <div className="authorization-instructions">
+                        <ul className="authorization-instructions-list">
+                            <li className="authorization-instruction">Go back to Admin Home.</li>
+                            <li className="authorization-instruction">Click the button towards the top "Authorize Quickbooks."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+
     useEffect(() => {
         if (companyName === "" && loadingError === "") {
             fetchOrderDetails(orderId);
+        } else {
+            setShowAuthorizationAlert(true)
         }
     },[companyName])
 
     return (
         <Layout>
+            {showAuthorizationAlert === true &&
+             authorizationAlert
+            }
             {showForm === true &&
                 <ConfirmationForm dismissForm={() => setShowForm(false)} />
             }
@@ -111,10 +157,10 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
                 </div>
             </div>
             <div className="pending-order-action-row">
-                <div onClick={() => setShowCancelConfirmation(true)} className="cancel-pending-order-button">
+                <div onClick={handleCancelClick} className="cancel-pending-order-button">
                     Cancel
                 </div>
-                <div onClick={() => setShowForm(true)} className="confirm-pending-order-button">
+                <div onClick={handleConfirmClick} className="confirm-pending-order-button">
                     Confirm
                 </div>
             </div>
@@ -125,6 +171,7 @@ const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetail
 const mapStateToProps = state => {
     return {
         pendingOrderDetails: state.pendingOrderDetails,
+        accessToken: state.admin.quickbooksAuth.accessToken
     }
 }
 

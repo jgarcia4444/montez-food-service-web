@@ -21,6 +21,54 @@
     box-shadow: none;
 }
 
+.authorization-alert-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.33);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.authorization-alert-dismiss-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 400ms ease-out;
+    background-color: #a0262e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px -1px black;
+}
+
+.authorization-alert-dismiss-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px -2px black;
+}
+
+.authorization-alert-dismiss-button:active {
+    transform: scale(0.9);
+    box-shadow: none;
+}
+
+.authorization-alert {
+    width: 50%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a0262e;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+}
+
+.authorization-title, .authorization-message, .authorization-instruction {
+    color: #fff
+}
+
 .cancel-pending-order-button, .confirm-pending-order-button {
     padding: 1vh 2vw;
     border-radius: 5px;

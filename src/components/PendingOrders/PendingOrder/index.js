@@ -11,9 +11,7 @@ const PendingOrder = ({orderInfo, accessToken}) => {
     const {created_at, total_price} = orderInfo;
 
     const navigateToPendingOrderDetails = () => {
-        if (accessToken !== "") {
-            navigate(`/users/admin/pending-order/${orderInfo.id}`)
-        }
+        navigate(`/users/admin/pending-order/${orderInfo.id}`)
     }
 
     return (
