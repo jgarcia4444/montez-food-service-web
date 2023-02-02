@@ -75,3 +75,42 @@
     transform: scale(0.95);
     box-shadow: none;
 }
+
+.editing-buttons-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.editing-button {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    transition: all 400ms ease-out;
+    color: #fff;
+    font-weight: bold;
+}
+
+.editing-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px -2px black;
+    transform: scale(1.05);
+}
+
+.editing-button:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.cancel-editing-button {
+    background-color: #ffc72c;
+}
+
+.confirm-editing-button {
+    background-color: #a0262e;
+    
+}

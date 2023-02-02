@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {FiEdit2} from 'react-icons/fi';
 
@@ -9,11 +9,13 @@ const PastOrderItem = ({item, adminUsername}) => {
     const {itemInfo, quantity} = item;
     const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
 
+    const [isEditing, setIsEditing] = useState(false);
+
     const calculateTotalPrice = () => {
         let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
         return (parseFloat(quantity) * priceToCharge).toFixed(2);
     }
-
+//
     const renderPricePer = () => {
         if (caseBought === true) {
             return caseCost;
@@ -24,6 +26,10 @@ const PastOrderItem = ({item, adminUsername}) => {
 
     const configureDescription = () => {
         return caseBought === true ? description + `${description} ${unitsPerCase} case` : description;
+    }
+
+    const handleConfirmEditingClick = () => {
+        console.log("Confirm Editing Clicked!");
     }
 
     return (
@@ -50,10 +56,18 @@ const PastOrderItem = ({item, adminUsername}) => {
                     </div>
                 </div>
             </div>
-            {adminUsername !== "" &&
+            {(adminUsername !== "" && isEditing === false) &&
                 <div className="order-item-edit-action-row">
-                    <div className="order-item-edit-button">
+                    <div onClick={() => setIsEditing(true)} className="order-item-edit-button">
                         <FiEdit2 size={20} color={"#fff"} />
+                    </div>
+                </div>
+            }
+            { (adminUsername !== "" && isEditing === true) &&
+                <div className="order-item-edit-action-row">
+                    <div className="editing-buttons-container">
+                        <div onClick={() => setIsEditing(false)} className="editing-button cancel-editing-button">Cancel</div>
+                        <div onClick={handleConfirmEditingClick} className="editing-button confirm-editing-button">Confirm</div>
                     </div>
                 </div>
             }
