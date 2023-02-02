@@ -71,7 +71,8 @@
     width: 50%;
     margin-bottom: 1vh;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 ul>li {
