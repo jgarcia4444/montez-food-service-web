@@ -52,3 +52,23 @@
     justify-content: flex-end;
     align-items: center;
 }
+
+.order-item-edit-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    background-color: #a0262e;
+    transition: all 400ms ease-out;
+}
+
+.order-item-edit-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px -2px black;
+    transform: scale(1.05);
+}
+
+.order-item-edit-button:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}

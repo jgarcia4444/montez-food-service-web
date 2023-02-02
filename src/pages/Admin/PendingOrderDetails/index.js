@@ -13,7 +13,6 @@ import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/C
 
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
-import LinkButton from '../../../components/Buttons/LinkButton';
 
 const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
 
@@ -139,7 +138,7 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
                         <p className="order-details-value">{configuredAddress()}</p>
                     </div>
                 </div>
-                <div className="section-title-row">
+                <div className="pending-order-title-row">
                     <h2 className="section-title">Items</h2>
                 </div>
                 <div className="pending-order-details-items-row">

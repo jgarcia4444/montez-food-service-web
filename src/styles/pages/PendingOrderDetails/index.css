@@ -130,7 +130,7 @@ ul>li {
 
 .pending-order-details-items-row {
     width: 100%;
-    height: 30vh;
+    height: 35vh;
     background-color: #a0262e;
     border-radius: 5px;
     overflow-y: auto;
@@ -150,4 +150,8 @@ ul>li {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.pending-order-title-row {
+    width: 100%;
 }
