@@ -81,7 +81,7 @@
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 }
 
 .editing-button {
@@ -115,5 +115,5 @@
 
 .confirm-editing-button {
     background-color: #a0262e;
-    
+    margin-left: 10%;
 }
