@@ -63,14 +63,6 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
         }
     }
 
-    const handleCancelClick = () => {
-        if (accessToken !== "") {
-            setShowCancelConfirmation(true);
-        } else {
-            setShowAuthorizationAlert(true);
-        }
-    }
-
     const handleConfirmClick = () => {
         if (accessToken !== "") {
             setShowForm(true);
@@ -81,8 +73,10 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
 
     const authorizationAlert = (
         <div className="authorization-alert-container">
-            <div onClick={() => setShowAuthorizationAlert(false)} className="authorization-alert-dismiss-button">
-                <FiMinus size={24} color={"#fff"} />
+            <div className="authorization-alert-dismiss-button-row">
+                <div onClick={() => setShowAuthorizationAlert(false)} className="authorization-alert-dismiss-button">
+                    <FiMinus size={24} color={"#fff"} />
+                </div>
             </div>
             <div className="authorization-alert">
                 <div className="authorization-title-row">
@@ -155,7 +149,7 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
                 </div>
             </div>
             <div className="pending-order-action-row">
-                <div onClick={handleCancelClick} className="cancel-pending-order-button">
+                <div onClick={() => setShowCancelConfirmation(true)} className="cancel-pending-order-button">
                     Cancel
                 </div>
                 <div onClick={handleConfirmClick} className="confirm-pending-order-button">

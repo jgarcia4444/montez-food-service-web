@@ -66,6 +66,14 @@
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
 }
+
+.authorization-alert-dismiss-button-row {
+    width: 50%;
+    margin-bottom: 1vh;
+    display: flex;
+    align-items: flex-end;
+}
+
 ul>li {
     text-align: left;
 }
