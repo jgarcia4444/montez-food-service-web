@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 2vh;
 }
 
 .item-info-block-row {
@@ -38,7 +39,7 @@
     box-shadow: 0 0 3px -1px black;
     margin: 3vh auto 1vh auto;
     border-radius: 5px;
-    padding: 2vh;
+    /* padding: 2vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
