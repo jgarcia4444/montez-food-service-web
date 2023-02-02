@@ -93,6 +93,7 @@
     transition: all 400ms ease-out;
     color: #fff;
     font-weight: bold;
+    padding: 1vh 0;
 }
 
 .editing-button:hover {
