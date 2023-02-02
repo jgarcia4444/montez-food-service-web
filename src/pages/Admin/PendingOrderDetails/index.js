@@ -104,15 +104,13 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
     useEffect(() => {
         if (companyName === "" && loadingError === "") {
             fetchOrderDetails(orderId);
-        } else {
-            setShowAuthorizationAlert(true)
-        }
+        } 
     },[companyName])
 
     return (
         <Layout>
             {showAuthorizationAlert === true &&
-             {authorizationAlert}
+             authorizationAlert
             }
             {showForm === true &&
                 <ConfirmationForm dismissForm={() => setShowForm(false)} />
