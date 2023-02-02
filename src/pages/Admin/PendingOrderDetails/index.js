@@ -112,7 +112,7 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
     return (
         <Layout>
             {showAuthorizationAlert === true &&
-             authorizationAlert
+             {authorizationAlert}
             }
             {showForm === true &&
                 <ConfirmationForm dismissForm={() => setShowForm(false)} />
@@ -157,10 +157,10 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
                 </div>
             </div>
             <div className="pending-order-action-row">
-                <div onClick={() =>handleCancelClick()} className="cancel-pending-order-button">
+                <div onClick={handleCancelClick} className="cancel-pending-order-button">
                     Cancel
                 </div>
-                <div onClick={() => handleConfirmClick()} className="confirm-pending-order-button">
+                <div onClick={handleConfirmClick} className="confirm-pending-order-button">
                     Confirm
                 </div>
             </div>
