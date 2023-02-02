@@ -44,3 +44,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.order-item-edit-action-row {
+    width: 50%;
+    margin: 1vh auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
