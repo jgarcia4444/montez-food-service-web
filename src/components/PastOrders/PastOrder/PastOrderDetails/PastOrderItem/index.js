@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import {FiEdit2} from 'react-icons/fi';
 
 import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem/PastOrderItem.css';
+
 import updatePendingOrderItem from '../../../../../redux/actions/pendingOrderActions/updatePendingOrderItem';
 
-const PastOrderItem = ({item, adminUsername, updatePendingOrderItem}) => {
+import SpinningLoader from '../../../../Loaders/SpinningLoader';
+
+const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrderDetails}) => {
 
     const {itemInfo, quantity} = item;
     const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
+    const {itemEditProcessing, itemEditError} = pendingOrderDetails;
 
     const [isEditing, setIsEditing] = useState(false);
     const [editingPrice, setEditingPrice] = useState(price);
@@ -100,9 +104,27 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem}) => {
         )
     }
 
+    const itemError = (
+        <div className="item-error-row">
+            <p className="item-error">{itemEditError}</p>
+        </div>
+    )
+
+    const itemProcessing = (
+        <div className="item-processing-container">
+            <SpinningLoader color={"#ffc72c"}/>
+        </div>
+    )
+
     return (
         <>
             <div className="past-order-item-container">
+                {itemEditError !== "" &&
+                    itemError
+                }
+                {itemEditProcessing === true &&
+                    itemProcessing
+                }
                 <div className="item-info-block-row">
                     <div className="item-info-block">
                         <div className="item-info-label">Name</div>
@@ -146,6 +168,7 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem}) => {
 const mapStateToProps = state => {
     return {
         adminUsername: state.admin.username,
+        pendingOrderDetails: state.pendingOrderDetails,
     }
 }
 

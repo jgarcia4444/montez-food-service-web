@@ -38,7 +38,6 @@ const pendingOrderDetailsReducer = (state=initialState, action) => {
                 itemEditError: action.message,
             }
         case "ORDER_ITEM_UPDATE_SUCCESS":
-            // Change the item that was edited.
             let changedItemItems = changeItem(action.orderItemInfo, state.items)
             return {
                 ...state,
