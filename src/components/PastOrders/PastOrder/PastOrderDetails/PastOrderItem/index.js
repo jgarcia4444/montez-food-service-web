@@ -10,12 +10,13 @@ const PastOrderItem = ({item, adminUsername}) => {
     const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
 
     const [isEditing, setIsEditing] = useState(false);
+    const [editingPrice, setEditingPrice] = useState(price);
 
     const calculateTotalPrice = () => {
         let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
         return (parseFloat(quantity) * priceToCharge).toFixed(2);
     }
-//
+
     const renderPricePer = () => {
         if (caseBought === true) {
             return caseCost;
@@ -32,6 +33,20 @@ const PastOrderItem = ({item, adminUsername}) => {
         console.log("Confirm Editing Clicked!");
     }
 
+    const pricePer = () => {
+        let value;
+        if (isEditing) {
+            value = <input onChange={(e) => setEditingPrice(e.target.value)} type="number" value={editingPrice} />
+        } else {
+            value = renderPricePer();
+        }
+        return (
+            <div className="item-info-value">
+                ${value}
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="past-order-item-container">
@@ -42,7 +57,7 @@ const PastOrderItem = ({item, adminUsername}) => {
                     </div>
                     <div className="item-info-block">
                         <div className="item-info-label">Price Per</div>
-                        <div className="item-info-value">${renderPricePer()}</div>
+                        {pricePer()}
                     </div>
                 </div>
                 <div className="item-info-block-row">
