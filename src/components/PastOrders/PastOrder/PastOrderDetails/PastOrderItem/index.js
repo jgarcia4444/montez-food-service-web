@@ -47,6 +47,25 @@ const PastOrderItem = ({item, adminUsername}) => {
         )
     }
 
+    const configurePriceLabel = () => {
+        let label;
+        if (caseBought === true) {
+            label = "Case Price"
+        } else {
+            label = "Unit Price"
+        }
+        return (
+            <div className="item-info-label">
+                {label}
+            </div>
+        )
+    }
+
+    const handleCancelClick = () => {
+        setIsEditing(false);
+        setEditingPrice(price);
+    }
+
     return (
         <>
             <div className="past-order-item-container">
@@ -56,7 +75,7 @@ const PastOrderItem = ({item, adminUsername}) => {
                         <div className="item-info-value">{configureDescription()}</div>
                     </div>
                     <div className="item-info-block">
-                        <div className="item-info-label">Price Per</div>
+                        {configurePriceLabel()}
                         {pricePer()}
                     </div>
                 </div>
@@ -81,7 +100,7 @@ const PastOrderItem = ({item, adminUsername}) => {
             { (adminUsername !== "" && isEditing === true) &&
                 <div className="order-item-edit-action-row">
                     <div className="editing-buttons-container">
-                        <div onClick={() => setIsEditing(false)} className="editing-button cancel-editing-button">Cancel</div>
+                        <div onClick={handleCancelClick} className="editing-button cancel-editing-button">Cancel</div>
                         <div onClick={handleConfirmEditingClick} className="editing-button confirm-editing-button">Confirm</div>
                     </div>
                 </div>
