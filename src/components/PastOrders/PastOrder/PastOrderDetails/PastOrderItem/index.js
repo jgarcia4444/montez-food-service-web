@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import {FiEdit2} from 'react-icons/fi';
 
 import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem/PastOrderItem.css';
+import updatePendingOrderItem from '../../../../../redux/actions/pendingOrderActions/updatePendingOrderItem';
 
-const PastOrderItem = ({item, adminUsername}) => {
+const PastOrderItem = ({item, adminUsername, updatePendingOrderItem}) => {
 
     const {itemInfo, quantity} = item;
     const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
@@ -36,7 +37,11 @@ const PastOrderItem = ({item, adminUsername}) => {
     }
 
     const handleConfirmEditingClick = () => {
-        console.log("Confirm Editing Clicked!");
+        console.log("Confirm Clicked!");
+        // let updateParams = {
+
+        // };
+        // updatePendingOrderItem(updateParams);
     }
 
     const pricePer = () => {
@@ -70,6 +75,7 @@ const PastOrderItem = ({item, adminUsername}) => {
     const handleCancelClick = () => {
         setIsEditing(false);
         setEditingPrice(price);
+        setEditingQuantity(quantity);
     }
 
     const configureQuantityLabel = () => {
@@ -145,7 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        updatePendingOrderItem: (itemInfo) => dispatch(updatePendingOrderItem(itemInfo)),
     }
 }
 
