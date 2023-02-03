@@ -12,15 +12,15 @@ import SpinningLoader from '../../../../Loaders/SpinningLoader';
 const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrderDetails}) => {
 
     const {itemInfo, quantity} = item;
-    const {description, price, caseBought, caseCost, unitsPerCase } = itemInfo;
+    const {description, price, caseBought, caseCost, unitsPerCase, id} = itemInfo;
     const {itemEditProcessing, itemEditError} = pendingOrderDetails;
 
     const [isEditing, setIsEditing] = useState(false);
     const [editingPrice, setEditingPrice] = useState(price);
-    const [editingQunatity, setEditingQuantity] = useState(quantity);
+    const [editingQuantity, setEditingQuantity] = useState(quantity);
 
     const params = useParams();
-    console.log("Params", params);
+    const {orderId} = params;
 
     const calculateTotalPrice = () => {
         if (isEditing === false) {
@@ -28,7 +28,7 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
             return (parseFloat(quantity) * priceToCharge).toFixed(2);
         } else {
             let priceToCharge = parseFloat(editingPrice);
-            return (parseFloat(editingQunatity) * priceToCharge).toFixed(2);
+            return (parseFloat(editingQuantity) * priceToCharge).toFixed(2);
         }
     }
 
@@ -45,11 +45,20 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
     }
 
     const handleConfirmEditingClick = () => {
-        console.log("Confirm Clicked!");
-        // let updateParams = {
-
-        // };
-        // updatePendingOrderItem(updateParams);
+        let updateParams = {
+            user_order_id: orderId,
+            order_item_info: {
+                order_item_id: id,
+                quantity: editingQuantity,
+                price: caseBought === true ? price : editingPrice,
+                case_cost: caseBought === true ? editingPrice : caseCost,
+            },
+            case_bought: caseBought,
+            admin_info: {
+                username: adminUsername
+            }
+        };
+        updatePendingOrderItem(updateParams);
     }
 
     const pricePer = () => {
@@ -97,7 +106,7 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
     const configureQuantity = () => {
         let body;
         if (isEditing === true) {
-            body = <input type="number" value={editingQunatity} onChange={e => setEditingQuantity(e.target.value)} />
+            body = <input type="number" value={editingQuantity} onChange={e => setEditingQuantity(e.target.value)} />
         } else {
             body = quantity
         }

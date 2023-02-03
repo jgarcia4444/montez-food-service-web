@@ -18,8 +18,8 @@ const updatePendingOrderItem = (updateOrderItemInfo) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    let {orderItemInfo} = data;
-                    return dispatch({type: 'ORDER_ITEM_UPDATE_SUCCESS', orderItemInfo});
+                    let {orderItemInfo, totalPrice} = data;
+                    return dispatch({type: 'ORDER_ITEM_UPDATE_SUCCESS', orderItemInfo, totalPrice});
                 } else {
                     let {error} = data;
                     let {message} = error;

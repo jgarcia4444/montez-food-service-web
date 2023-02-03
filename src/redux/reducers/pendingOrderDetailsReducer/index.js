@@ -44,6 +44,7 @@ const pendingOrderDetailsReducer = (state=initialState, action) => {
                 itemEditProcessing: false,
                 itemEditError: "",
                 items: changedItemItems,
+                totalPrice: action.totalPrice
             }
         case "UPDATING_ORDER_ITEM":
             return {
