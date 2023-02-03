@@ -12,10 +12,46 @@ const initialState = {
     confirmOrderError: "",
     cancellingOrder: false,
     confirmingOrder: false,
+    itemEditProcessing: false,
+    itemEditError: "",
 }
+
+const changeItem = (itemInfo, items) => {
+    let indexToReinsert;
+    let itemsSelected = items.select((item, i) => {
+        if (item.id !== itemInfo.id) {
+            return item;
+        } else {
+            indexToReinsert = i;
+        }
+    })
+    itemsSelected.splice(indexToReinsert, 0, itemInfo);
+    return itemsSelected;
+} 
 
 const pendingOrderDetailsReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "":
+            return {
+                ...state,
+                itemEditProcessing: false,
+                itemEditError: action.message,
+            }
+        case "ORDER_ITEM_UPDATE_SUCCESS":
+            // Change the item that was edited.
+            let changedItemItems = changeItem(action.orderItemInfo, state.items)
+            return {
+                ...state,
+                itemEditProcessing: false,
+                itemEditError: "",
+                items: changedItemItems,
+            }
+        case "UPDATING_ORDER_ITEM":
+            return {
+                ...state,
+                itemEditProcessing: true,
+                itemEditError: ""
+            }
         case "ORDER_CONFIRMATION_ERROR":
             return {
                 ...state,
