@@ -14,8 +14,13 @@ const PastOrderItem = ({item, adminUsername}) => {
     const [editingQunatity, setEditingQuantity] = useState(quantity);
 
     const calculateTotalPrice = () => {
-        let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
-        return (parseFloat(quantity) * priceToCharge).toFixed(2);
+        if (isEditing === false) {
+            let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
+            return (parseFloat(quantity) * priceToCharge).toFixed(2);
+        } else {
+            let priceToCharge = parseFloat(editingPrice);
+            return (parseFloat(editingQunatity) * priceToCharge).toFixed(2);
+        }
     }
 
     const renderPricePer = () => {
