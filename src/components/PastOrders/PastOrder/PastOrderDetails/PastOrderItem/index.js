@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {FiEdit2} from 'react-icons/fi';
 
@@ -17,6 +18,9 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
     const [isEditing, setIsEditing] = useState(false);
     const [editingPrice, setEditingPrice] = useState(price);
     const [editingQunatity, setEditingQuantity] = useState(quantity);
+
+    const params = useParams();
+    console.log("Params", params);
 
     const calculateTotalPrice = () => {
         if (isEditing === false) {
