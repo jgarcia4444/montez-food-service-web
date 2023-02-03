@@ -11,6 +11,7 @@ const PastOrderItem = ({item, adminUsername}) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [editingPrice, setEditingPrice] = useState(price);
+    const [editingQunatity, setEditingQuantity] = useState(quantity);
 
     const calculateTotalPrice = () => {
         let priceToCharge = caseBought === true ? parseFloat(caseCost) : parseFloat(price);
@@ -66,6 +67,28 @@ const PastOrderItem = ({item, adminUsername}) => {
         setEditingPrice(price);
     }
 
+    const configureQuantityLabel = () => {
+        if (caseBought === true) {
+            return "of Cases";
+        } else {
+            return "of Units";
+        }
+    }
+
+    const configureQuantity = () => {
+        let body;
+        if (isEditing === true) {
+            body = <input type="number" value={editingQunatity} onChange={e => setEditingQuantity(e.target.value)} />
+        } else {
+            body = quantity
+        }
+        return (
+            <div className="item-info-value">
+                {body}
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="past-order-item-container">
@@ -81,8 +104,8 @@ const PastOrderItem = ({item, adminUsername}) => {
                 </div>
                 <div className="item-info-block-row">
                     <div className="item-info-block">
-                        <div className="item-info-label"># Ordered</div>
-                        <div className="item-info-value">{quantity}</div>
+                        <div className="item-info-label"># {configureQuantityLabel()}</div>
+                        {configureQuantity()}
                     </div>
                     <div className="item-info-block">
                         <div className="item-info-label">Total Price</div>
