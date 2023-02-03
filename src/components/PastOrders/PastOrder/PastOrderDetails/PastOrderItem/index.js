@@ -59,6 +59,15 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
             }
         };
         updatePendingOrderItem(updateParams);
+        if (itemEditError === "") {
+            setIsEditing(false);
+            setEditingQuantity(quantity);
+            if (caseBought === true) {
+                setEditingPrice(caseCost);
+            } else {
+                setEditingPrice(price);
+            }
+        }
     }
 
     const pricePer = () => {
