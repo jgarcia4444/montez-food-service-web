@@ -16,7 +16,7 @@ const PastOrderItem = ({item, adminUsername, updatePendingOrderItem, pendingOrde
     const {itemEditProcessing, itemEditError} = pendingOrderDetails;
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editingPrice, setEditingPrice] = useState(price);
+    const [editingPrice, setEditingPrice] = useState(caseBought === true ? caseCost : price);
     const [editingQuantity, setEditingQuantity] = useState(quantity);
 
     const params = useParams();
