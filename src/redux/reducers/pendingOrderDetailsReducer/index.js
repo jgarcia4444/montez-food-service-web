@@ -18,7 +18,7 @@ const initialState = {
 
 const changeItem = (itemInfo, items) => {
     let indexToReinsert;
-    let itemsSelected = items.select((item, i) => {
+    let itemsSelected = items.filter((item, i) => {
         if (item.id !== itemInfo.id) {
             return item;
         } else {
