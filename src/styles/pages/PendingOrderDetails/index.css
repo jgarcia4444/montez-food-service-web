@@ -134,7 +134,7 @@ ul>li {
     background-color: #a0262e;
     border-radius: 5px;
     overflow-y: auto;
-    z-index: -1;
+    z-index: 1;
 }
 
 .pending-order-details-row {

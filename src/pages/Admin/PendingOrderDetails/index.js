@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FiMinus } from 'react-icons/fi';
 
 import '../../../styles/Global.css';
-import '../../../styles/pages/PendingOrderDetails/index.css'
+import '../../../styles/pages/'
 
 import Layout from '../../../shared/Layout';
 import PastOrderItem from '../../../components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem';
