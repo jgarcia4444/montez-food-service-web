@@ -15,7 +15,7 @@ import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchO
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
 
 const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
-
+//
     const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
@@ -95,10 +95,8 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
     )
 
     useEffect(() => {
-        if (companyName === "" && loadingError === "") {
-            fetchOrderDetails(orderId);
-        } 
-    },[companyName])
+        fetchOrderDetails(orderId);
+    },[])
 
     return (
         <Layout>
