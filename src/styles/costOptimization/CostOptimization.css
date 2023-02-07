@@ -71,6 +71,7 @@
 .table-data-container {
     height: 20vh;
     overflow-y: auto;
+    background-color: rgba(160, 38, 46, 0.33);
 }
 .table-data-container::-webkit-scrollbar {
     width: 1vw;
