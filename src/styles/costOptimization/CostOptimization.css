@@ -99,6 +99,10 @@
     color: #fff;
 }
 
+.table-data-row:last-child {
+    margin: 0 auto;
+}
+
 .table-headers {
     font-size: 1.1em;
 }
