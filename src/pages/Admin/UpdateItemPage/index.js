@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import "../../../styles/Global.css";
 
 import Layout from '../../../shared/Layout';
+import UpdateItemForm from '../../../components/UpdateItems/Forms/UpdateItemForm';
 
 const UpdateItemPage = () => {
 
@@ -15,9 +16,16 @@ const UpdateItemPage = () => {
                 </div>
                 <div className="update-item-actions-container">
                     <div className="item-update-container">
-                        
+                        <UpdateItemForm />
+                        <div className="add-to-staging-row">
+                            <div className="add-to-staging-button">
+                                Add To Staging
+                            </div>
+                        </div>
                     </div>
-                    <div className="update-items-staging-container"></div>
+                    <div className="update-items-staging-container">
+                        {/* <StagedItems /> */}
+                    </div>
                 </div>
             </div>
         </Layout>
