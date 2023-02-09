@@ -27,9 +27,9 @@ const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fe
     }
 
     const renderPrice = () => {
-        return selectedSuggestion.price !== "" && (
+        return (
             <div className="unit-label-row">
-                <div className="item-saved-value">\
+                <div className="item-saved-value">
                     <h5 className="unit-label">Price: $</h5>
                     <p className="unit-value">{selectedSuggestion.price}</p>
                 </div>
@@ -72,7 +72,9 @@ const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fe
                     <ItemFinder itemFinderTextChange={handleItemFinderTextChange} itemText={updateItemText} />
                 </div>
                 <div className="half-column item-price-container">
-                    {renderPrice()}
+                    {selectedSuggestion.price !== "" && 
+                        renderPrice()
+                    }
                 </div>
             </div>
         </div>
