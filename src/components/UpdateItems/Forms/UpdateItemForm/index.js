@@ -27,7 +27,7 @@ const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fe
     }
 
     const renderPrice = () => {
-        selectedSuggestion.price !== "" && (
+        return selectedSuggestion.price !== "" && (
             <div className="unit-label-row">
                 <div className="item-saved-value">\
                     <h5 className="unit-label">Price: $</h5>

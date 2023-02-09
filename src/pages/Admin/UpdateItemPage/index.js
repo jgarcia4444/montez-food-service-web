@@ -32,4 +32,4 @@ const UpdateItemPage = () => {
     )
 }
 
-export default UpdateItemPage
+export default UpdateItemPage;
