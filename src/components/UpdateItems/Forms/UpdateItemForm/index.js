@@ -9,7 +9,7 @@ import fetchSuggestions from '../../../../redux/actions/orderActions/fetchSugges
 import clearSuggestions from '../../../../redux/actions/orderActions/clearSuggestions';
 import clearSelectedSuggestion from '../../../../redux/actions/orderActions/clearSelectedSuggestion';
 
-const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fetchSuggestions, clearSuggestions, order}) => {
+const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggestions, order}) => {
 
     const [updateItemText, setUpdateItemText] = useState("");
 
@@ -59,14 +59,13 @@ const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fe
         setUpdateItemText(inputText);
     }
 
-    useEffect(() => {
-        return () => {
-            clearSelectedSuggestion()
-        }
-    })
+    // useEffect(() => {
+
+    // })
 
     return (
         <div className="update-item-form">
+            Item Form
             <div className="row row-1">
                 <div className="half-column find-item-container">
                     <ItemFinder itemFinderTextChange={handleItemFinderTextChange} itemText={updateItemText} />
@@ -95,7 +94,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default (
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(UpdateItemForm);

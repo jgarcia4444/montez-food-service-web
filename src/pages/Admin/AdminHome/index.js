@@ -63,7 +63,7 @@ const AdminHome = ({admin, logoutAdmin, getClientDetails, setAuthCodeAndRealmId,
                     <LinkButton text={"Authorize Quickbooks"} to={configureLinkPath()} />
                 }
                 <div className="update-items-nav-button-row">
-                    <div className="update-items-nav-button" onClick={() => navigate('/users/admin/update-item')}>
+                    <div className="update-items-nav-button" onClick={() => navigate("/users/admin/update-item")}>
                         Update Items
                     </div>
                 </div>
