@@ -76,6 +76,10 @@
     justify-content: center;
 }
 
+.update-item-item-finder {
+    width: 100%;
+}
+
 @keyframes FadeIn {
     0% {
         opacity: 0.0;

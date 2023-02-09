@@ -61,16 +61,18 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
         setUpdateItemText(inputText);
     }
 
-    // useEffect(() => {
-
-    // })
+    useEffect(() => {
+        if (selectedSuggestion.description !== "") {
+            setUpdateItemText(selectedSuggestion.description);
+        }
+    },[selectedSuggestion])
 
     return (
         <div className="update-item-form">
             <div className="row row-1">
-                {/* <div className="half-column find-item-container"> */}
+                <div className="half-column find-item-container">
                     <ItemFinder customStyle={"update-item-item-finder"} itemFinderTextChange={handleItemFinderTextChange} itemText={updateItemText} />
-                {/* </div> */}
+                </div>
                 <div className="half-column item-price-container">
                     {selectedSuggestion.price !== "" && 
                         renderPrice()

@@ -5,7 +5,7 @@ import { FiChevronDown } from 'react-icons/fi';
 
 import Suggestion from './Suggestion';
 
-const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
+const ItemFinder = ({itemFinderTextChange, itemText, order, customStyle }) => {
 
     const {suggestions, fetchSuggestionsError} = order;
 
@@ -24,7 +24,7 @@ const ItemFinder = ({itemFinderTextChange, itemText, order }) => {
     },[suggestions])
 
     return (
-        <div className="item-finder-container"> 
+        <div className={`item-finder-container ${customStyle}`}> 
             {fetchSuggestionsError !== "" &&
                 <p className="error">{fetchSuggestionsError}</p>
             }
