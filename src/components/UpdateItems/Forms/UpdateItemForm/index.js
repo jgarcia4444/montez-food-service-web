@@ -65,7 +65,6 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
 
     return (
         <div className="update-item-form">
-            Item Form
             <div className="row row-1">
                 <div className="half-column find-item-container">
                     <ItemFinder itemFinderTextChange={handleItemFinderTextChange} itemText={updateItemText} />
