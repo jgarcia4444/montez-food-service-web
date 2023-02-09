@@ -1,7 +1,6 @@
 
 .half-column {
-    width: 48%;
-    margin: 0 auto;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,13 +18,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .update-item-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 70%;
+    height: 60vh;
 }
 
 .update-item-value>.input-row>.input-outer>.input {
