@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {FiDollarSign} from 'react-icon/fi';
 
@@ -6,13 +6,17 @@ import FormInput from '../../../FormInput';
 import ItemFinder from '../../../OrderForm/ItemFinder';
 
 import fetchSuggestions from '../../../../redux/actions/orderActions/fetchSuggestions';
+import clearSuggestions from '../../../../redux/actions/orderActions/clearSuggestions';
+import clearSelectedSuggestion from '../../../../redux/actions/orderActions/clearSelectedSuggestion';
 
-const UpdateItemForm = ({removeSelectedItemToUpdate, fetchSuggesstions}) => {
+const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fetchSuggestions, clearSuggestions, order}) => {
 
     const [updateItemText, setUpdateItemText] = useState("");
 
     const [newUnitPrice, setNewUnitPrice] = useState("");
     const [newUnitPriceError, setNewUnitPriceError] = useState("");
+
+    const {selectedSuggestion} = order;
 
     const newPriceInputInfo = {
         label: "New Price",
@@ -23,11 +27,11 @@ const UpdateItemForm = ({removeSelectedItemToUpdate, fetchSuggesstions}) => {
     }
 
     const renderPrice = () => {
-        itemToUpdate.price !== "" (
+        selectedSuggestion.price !== "" (
             <div className="unit-label-row">
                 <div className="item-saved-value">\
                     <h5 className="unit-label">Price: $</h5>
-                    <p className="unit-value">{itemToUpdate.price}</p>
+                    <p className="unit-value">{selectedSuggestion.price}</p>
                 </div>
                 <div className="update-item-value">
                     <FormInput inputInfo={newPriceInputInfo} />
@@ -39,17 +43,23 @@ const UpdateItemForm = ({removeSelectedItemToUpdate, fetchSuggesstions}) => {
     const handleItemFinderTextChange = (e) => {
         let {value} = e.target
         var inputText = value;
-        if (itemToUpdate.description !== "") {
-            removeSelectedItemToUpdate()
+        if (selectedSuggestion.description !== "") {
+            clearSelectedSuggestion()
             inputText = getNewItemTextValue(value);
         }
         if (value === "") {
             clearSuggestions();
         } else {
-            fetchSuggestions(inputText, email);
+            fetchSuggestions(inputText);
         }
-        setItemText(inputText);
+        setUpdateItemText(inputText);
     }
+
+    useEffect(() => {
+        return () => {
+            clearSelectedSuggestion()
+        }
+    })
 
     return (
         <div className="update-item-form">
@@ -67,13 +77,15 @@ const UpdateItemForm = ({removeSelectedItemToUpdate, fetchSuggesstions}) => {
 
 const mapStateToProps = state => {
     return {
-
+        order: state.order,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSuggestions: () => dispatch(fetchSuggestions()),
+        fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
+        clearSuggestions: () => dispatch(clearSuggestions()),
+        clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion()),
     }
 }
 
