@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import {FiDollarSign} from 'react-icon/fi';
+import {FiDollarSign} from 'react-icons/fi';
 
 import FormInput from '../../../FormInput';
 import ItemFinder from '../../../OrderForm/ItemFinder';
