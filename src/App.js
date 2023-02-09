@@ -22,6 +22,7 @@ import OrderConfirmation from './pages/OrderConfirmation';
 import AdminHome from './pages/Admin/AdminHome';
 import AdminLogin from './pages/Admin/AdminLogin';
 import PendingOrderDetails from './pages/Admin/PendingOrderDetails';
+import UpdateItemPage from './pages/Admin/UpdateItemPage';
 
 import {store, persistor} from './redux/store';
 
@@ -49,7 +50,9 @@ const App = () => {
               <Route path="/users/admin" element={<AdminHome />} />
               
               <Route path="/users/admin/login" element={<AdminLogin />} />
-              <Route path="/users/admin/pending-order/:orderId" element={<PendingOrderDetails />} />
+              <Route path="/users/admin/pending-order/:orderId" element=
+              {<PendingOrderDetails />} />
+              <Route path="users/admin/update-item" element={<UpdateItemPage />} />
             </Routes>
             <Footer />
           </div>
