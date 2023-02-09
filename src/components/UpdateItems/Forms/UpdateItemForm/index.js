@@ -40,6 +40,10 @@ const UpdateItemForm = ({clearSelectedSuggestion, removeSelectedItemToUpdate, fe
         )
     }
 
+    const getNewItemTextValue = textValue => {
+        return textValue.slice(textValue.length - 1);
+    }
+
     const handleItemFinderTextChange = (e) => {
         let {value} = e.target
         var inputText = value;
