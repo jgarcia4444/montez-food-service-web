@@ -1,0 +1,10 @@
+
+.update-item-value>.input-row>.input-outer>.input {
+    color: #a0262e;
+    border-bottom: 2px solid #a0262e;
+}
+
+.update-item-value>.input-row>.input-label-row {
+    color: #a0262e;
+    font-family: sans-serif;
+}

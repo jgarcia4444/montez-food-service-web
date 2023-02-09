@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {FiDollarSign} from 'react-icons/fi';
 
+
 import FormInput from '../../../FormInput';
 import ItemFinder from '../../../OrderForm/ItemFinder';
+import '../../../../styles/components/UpdateItems/Forms/UpdateItemForm/index.css';
 
 import fetchSuggestions from '../../../../redux/actions/orderActions/fetchSuggestions';
 import clearSuggestions from '../../../../redux/actions/orderActions/clearSuggestions';
