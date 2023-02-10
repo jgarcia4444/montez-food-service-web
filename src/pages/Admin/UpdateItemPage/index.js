@@ -8,7 +8,7 @@ import Layout from '../../../shared/Layout';
 import UpdateItemForm from '../../../components/UpdateItems/Forms/UpdateItemForm';
 import StagedItems from '../../../components/UpdateItems/StagedItems';
 
-const UpdateItemPage = ({stagedItems}) => {
+const UpdateItemPage = ({stagedItems, }) => {
 
     return (
         <Layout>
