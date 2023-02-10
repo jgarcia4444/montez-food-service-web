@@ -30,10 +30,10 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
 
     const renderPrice = () => {
         return (
-            <div className="unit-label-row">
+            <div className="edit-item-price-container">
                 <div className="item-saved-value">
-                    <h5 className="unit-label">Price: $</h5>
-                    <p className="unit-value">{selectedSuggestion.price}</p>
+                    <h3 className="unit-label">Price:</h3>
+                    <p className="unit-value">${selectedSuggestion.price}</p>
                 </div>
                 <div className="update-item-value">
                     <FormInput inputInfo={newPriceInputInfo} />
