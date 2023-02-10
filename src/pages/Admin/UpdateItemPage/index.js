@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import "../../../styles/Global.css";
+import '../../../styles/pages/UpdateItemPage/index.css';
 
 import Layout from '../../../shared/Layout';
 import UpdateItemForm from '../../../components/UpdateItems/Forms/UpdateItemForm';
