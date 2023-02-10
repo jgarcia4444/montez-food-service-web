@@ -7,7 +7,7 @@ import Suggestion from './Suggestion';
 
 const ItemFinder = ({itemFinderTextChange, itemText, order, customStyle }) => {
 
-    const {suggestions, fetchSuggestionsError} = order;
+    const {suggestions, fetchSuggestionsError, selectedSuggestion} = order;
 
     const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -21,7 +21,10 @@ const ItemFinder = ({itemFinderTextChange, itemText, order, customStyle }) => {
         } else {
             setShowSuggestions(false);
         }
-    },[suggestions])
+        if (selectedSuggestion.description !== "") {
+            setShowSuggestions(false)
+        }
+    },[suggestions, selectedSuggestion.description])
 
     return (
         <div className={`item-finder-container ${customStyle}`}> 
