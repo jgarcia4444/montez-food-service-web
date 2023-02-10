@@ -10,8 +10,9 @@ import '../../../../styles/components/UpdateItems/Forms/UpdateItemForm/index.css
 import fetchSuggestions from '../../../../redux/actions/orderActions/fetchSuggestions';
 import clearSuggestions from '../../../../redux/actions/orderActions/clearSuggestions';
 import clearSelectedSuggestion from '../../../../redux/actions/orderActions/clearSelectedSuggestion';
+import addToStaging from '../../../../redux/actions/editItemActions/addToStaging';
 
-const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggestions, order}) => {
+const UpdateItemForm = ({addToStaging, clearSelectedSuggestion, fetchSuggestions, clearSuggestions, order}) => {
 
     const [updateItemText, setUpdateItemText] = useState("");
 
@@ -24,7 +25,7 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
 
     const {selectedSuggestion} = order;
 
-    const {unitsPerCase, } = selectedSuggestion;
+    const {unitsPerCase, price, caseCost, description} = selectedSuggestion;
 
     const newPriceInputInfo = {
         label: "New Price",
@@ -111,8 +112,35 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
         setUpdateItemText(inputText);
     }
 
+    const itemEdited = () => {
+        let itemHasBeenEdited = false;
+        if (newUnitPrice !== price) {
+            itemHasBeenEdited = true;
+        }
+        if (newUnitsPerCase !== unitsPerCase) {
+            itemHasBeenEdited = true;
+        }
+        if (newCasePrice !== caseCost) {
+            itemHasBeenEdited = true;
+        }
+        return itemHasBeenEdited;
+    }
+
+    const configureUpdateItemInfo = () => {
+        let updateItemInfo = {
+            new_price: newUnitPrice !== price ? newUnitPrice : price,
+            new_case_cost: newCasePrice !== caseCost ? newCasePrice : caseCost,
+            new_units_per_case: newUnitsPerCase !== unitsPerCase ? newUnitsPerCase : unitsPerCase,
+            description: description,
+        }
+        return updateItemInfo;
+    }
+
     const handleAddToStagingClick = () => {
-        
+        if (itemEdited() === true) {
+            let updateItemInfo = configureUpdateItemInfo();
+            addToStaging(updateItemInfo);
+        }
     }
 
     useEffect(() => {
@@ -165,6 +193,7 @@ const mapDispatchToProps = dispatch => {
         fetchSuggestions: (itemQuery) => dispatch(fetchSuggestions(itemQuery)),
         clearSuggestions: () => dispatch(clearSuggestions()),
         clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion()),
+        addToStaging: itemInfo => dispatch(addToStaging(itemInfo)),
     }
 }
 

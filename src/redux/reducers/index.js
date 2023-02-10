@@ -5,6 +5,7 @@ import cartReducer from "./cartReducer";
 import orderDetailsPresentationReducer from "./orderDetailsPresentationReducer";
 import adminReducer from "./adminReducer";
 import pendingOrderDetailsReducer from "./pendingOrderDetailsReducer";
+import editItemReducer from "./editItemReducer";
 
 const rootReducer = combineReducers({
     userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     orderDetails: orderDetailsPresentationReducer,
     admin: adminReducer,
     pendingOrderDetails: pendingOrderDetailsReducer,
+    editItemReducer: editItemReducer,
 })
 
 export default rootReducer;
