@@ -6,8 +6,9 @@ import '../../../styles/pages/UpdateItemPage/index.css';
 
 import Layout from '../../../shared/Layout';
 import UpdateItemForm from '../../../components/UpdateItems/Forms/UpdateItemForm';
+import StagedItems from '../../../components/UpdateItems/StagedItems';
 
-const UpdateItemPage = () => {
+const UpdateItemPage = ({stagedItems}) => {
 
     return (
         <Layout>
@@ -20,7 +21,9 @@ const UpdateItemPage = () => {
                         <UpdateItemForm />
                     </div>
                     <div className="update-items-staging-container">
-                        {/* <StagedItems /> */}
+                        {stagedItems.length !== 0 &&
+                            <StagedItems />
+                        }
                     </div>
                 </div>
             </div>
@@ -28,4 +31,13 @@ const UpdateItemPage = () => {
     )
 }
 
-export default UpdateItemPage;
+const mapStateToProps = state => {
+    return {
+        stagedItems: state.editItemReducer.stagedItems,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(UpdateItemPage);

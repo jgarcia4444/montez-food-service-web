@@ -1,5 +1,5 @@
 const initialState = {
-    stagedItems: [],
+    stagedItems: [1],
 }
 
 const editItemReducer = (state=initialState, action) => {
