@@ -83,7 +83,7 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
             <div className="edit-item-units-per-container">
                 <div className="item-saved-value">
                     <h3 className="unit-label">Units/Case:</h3>
-                    <p className="unit-value">${selectedSuggestion.unitsPerCase}</p>
+                    <p className="unit-value">{selectedSuggestion.unitsPerCase}</p>
                 </div>
                 <div className="update-item-value">
                     <FormInput inputInfo={unitsPerCaseInputInfo} />
