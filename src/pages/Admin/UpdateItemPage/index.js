@@ -18,11 +18,6 @@ const UpdateItemPage = () => {
                 <div className="update-item-actions-container">
                     <div className="item-update-container">
                         <UpdateItemForm />
-                        <div className="add-to-staging-row">
-                            <div className="add-to-staging-button">
-                                Add To Staging
-                            </div>
-                        </div>
                     </div>
                     <div className="update-items-staging-container">
                         {/* <StagedItems /> */}

@@ -111,6 +111,10 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
         setUpdateItemText(inputText);
     }
 
+    const handleAddToStagingClick = () => {
+        
+    }
+
     useEffect(() => {
         if (selectedSuggestion.description !== "") {
             setUpdateItemText(selectedSuggestion.description);
@@ -139,6 +143,13 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
                     </div>
                 </div>
             }
+            <div className="row row-3">
+                <div className="add-to-staging-row">
+                    <div onClick={handleAddToStagingClick} className="add-to-staging-button">
+                        Add To Staging
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
