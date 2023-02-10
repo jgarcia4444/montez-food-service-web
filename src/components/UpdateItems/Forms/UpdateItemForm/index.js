@@ -114,13 +114,13 @@ const UpdateItemForm = ({addToStaging, clearSelectedSuggestion, fetchSuggestions
 
     const itemEdited = () => {
         let itemHasBeenEdited = false;
-        if (newUnitPrice !== price) {
+        if (newUnitPrice !== price && newUnitPrice !== "") {
             itemHasBeenEdited = true;
         }
-        if (newUnitsPerCase !== unitsPerCase) {
+        if (newUnitsPerCase !== unitsPerCase && newUnitsPerCase !== "") {
             itemHasBeenEdited = true;
         }
-        if (newCasePrice !== caseCost) {
+        if (newCasePrice !== caseCost && newCasePrice !== "") {
             itemHasBeenEdited = true;
         }
         return itemHasBeenEdited;
