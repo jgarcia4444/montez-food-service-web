@@ -5,7 +5,7 @@ const initialState = {
 const editItemReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ADD_ITEM_TO_STAGING":
-            itemToAdd["index"] = state.stagedItems.length;
+            action.itemToAdd["index"] = state.stagedItems.length;
             return {
                 ...state,
                 stagedItems: state.stagedItems.concat(action.itemToAdd),
