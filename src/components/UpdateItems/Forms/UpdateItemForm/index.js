@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import {FiDollarSign} from 'react-icons/fi';
+import {FiDollarSign, FiLayers} from 'react-icons/fi';
 
 
 import FormInput from '../../../FormInput';
@@ -17,15 +17,21 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
 
     const [newUnitPrice, setNewUnitPrice] = useState("");
     const [newUnitPriceError, setNewUnitPriceError] = useState("");
+    const [newCasePrice, setNewCasePrice] = useState("");
+    const [newCasePriceError, setNewCasePriceError] = useState("");
+    const [newUnitsPerCase, setNewUnitsPerCase] = useState("");
+    const [newUnitsPerCaseError, setNewUnitsPerCaseError] = useState("");
 
     const {selectedSuggestion} = order;
+
+    const {unitsPerCase, } = selectedSuggestion;
 
     const newPriceInputInfo = {
         label: "New Price",
         value: newUnitPrice,
         changeFunction: e => setNewUnitPrice(e),
         error: newUnitPriceError,
-        icon: <FiDollarSign color={"#a0262e"} size={20} />
+        icon: <FiDollarSign color={"#a0262e"} size={24} />
     }
 
     const renderPrice = () => {
@@ -37,6 +43,50 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
                 </div>
                 <div className="update-item-value">
                     <FormInput inputInfo={newPriceInputInfo} />
+                </div>
+            </div>
+        )
+    }
+
+    const casePriceInputInfo = {
+        label: "New Case Price",
+        value: newCasePrice,
+        changeFunction: e => setNewCasePrice(e),
+        error: newCasePriceError,
+        icon: <FiDollarSign color={"#a0262e"} size={24} />,
+    }
+
+    const renderCasePrice = () => {
+        return (
+            <div className="edit-item-case-price-container">
+                <div className="item-saved-value">
+                    <h3 className="unit-label">Case Price:</h3>
+                    <p className="unit-value">${selectedSuggestion.caseCost}</p>
+                </div>
+                <div className="update-item-value">
+                    <FormInput inputInfo={casePriceInputInfo} />
+                </div>
+            </div>
+        )
+    }
+
+    const unitsPerCaseInputInfo = {
+        label: "New Units/Case",
+        value: newUnitsPerCase,
+        changeFunction: e => setNewUnitsPerCase(e),
+        error: newUnitsPerCaseError,
+        icon: <FiLayers color={"#a0262e"} size={24} />,
+    }
+
+    const renderUnitsPerCase = () => {
+        return (
+            <div className="edit-item-units-per-container">
+                <div className="item-saved-value">
+                    <h3 className="unit-label">Units/Case:</h3>
+                    <p className="unit-value">${selectedSuggestion.unitsPerCase}</p>
+                </div>
+                <div className="update-item-value">
+                    <FormInput inputInfo={unitsPerCaseInputInfo} />
                 </div>
             </div>
         )
@@ -79,6 +129,16 @@ const UpdateItemForm = ({clearSelectedSuggestion, fetchSuggestions, clearSuggest
                     }
                 </div>
             </div>
+            {unitsPerCase !== 0 && unitsPerCase !== "" &&
+                <div className="row row-2">
+                    <div className="half-column">
+                        {renderCasePrice()}
+                    </div>
+                    <div className="half-column">
+                        {renderUnitsPerCase()}
+                    </div>
+                </div>
+            }
         </div>
     )
 }
