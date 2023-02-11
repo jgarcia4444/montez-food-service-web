@@ -5,6 +5,23 @@
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
     opacity: 1;
+    background-color: #a0262e;
+    border-radius: 5px;
+    padding: 0.5vw;
+    min-height: 50vh; 
+    height: 50vh;
+    overflow-y: auto;
+}
+
+.staged-items-holding-container {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px #fff inset;
+    padding: 5px;
+}
+
+.section-title {
+    color: #fff;
 }
 
 @keyframes Fadein {

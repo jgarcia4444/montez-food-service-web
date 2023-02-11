@@ -15,9 +15,7 @@ const StagedItems = ({stagedItems}) => {
     return (
         <div className="staged-items-container">
             <div className="staged-items">
-                <div className="section-title-row">
                     <h3 className="section-title">Staged Items</h3>
-                </div>
                 <div className="staged-items-holding-container">
                     {renderStagedItems()}
                 </div>
