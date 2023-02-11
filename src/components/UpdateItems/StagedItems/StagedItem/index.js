@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import {FiTrash2} from 'react-icons/fi';
 
+import '../../../../styles/components/UpdateItems/StagedItems/StagedItem/index.css';
+
 import removeStagedItem from '../../../../redux/actions/editItemActions/removeStagedItem';
 
 const StagedItem = ({itemInfo, removeStagedItem}) => {
@@ -11,7 +13,7 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
 
 
     const handleDeleteStagedItemClick = () => {
-
+        removeStagedItem(id);
     }
 
     return (
