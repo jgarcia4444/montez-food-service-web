@@ -16,6 +16,14 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
         removeStagedItem(id);
     }
 
+    const configureCaseCost = () => {
+        return case_cost !== "" ? case_cost : "N/A";
+    }
+
+    const configureUnitsPerCase = () => {
+        return units_per_case !== "" ? units_per_case : "N/A";
+    }
+
     return (
         <div className="staged-item-cell">
             <div className="staged-item-info-container">
@@ -35,7 +43,7 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
                             <h6 className="staged-item-label">Price</h6>
                         </div>
                         <div className="value-row">
-                            <p className="staged-item-value">{price}</p>
+                            <p className="staged-item-value">${price}</p>
                         </div>
                     </div>
                     <div className="staged-item-info-block">
@@ -43,7 +51,7 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
                             <h6 className="staged-item-label">Case Price</h6>
                         </div>
                         <div className="value-row">
-                            <p className="staged-item-value">{case_cost}</p>
+                            <p className="staged-item-value">{configureCaseCost()}</p>
                         </div>
                     </div>
                     <div className="staged-item-info-block">
@@ -51,13 +59,13 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
                             <h6 className="staged-item-label">Units/Case</h6>
                         </div>
                         <div className="value-row">
-                            <p className="staged-item-value">{units_per_case}</p>
+                            <p className="staged-item-value">{configureUnitsPerCase()}</p>
                         </div>
                     </div>
                     <div className="staged-item-info-block">
                         <div className="staged-item-action-block">
                             <div onClick={handleDeleteStagedItemClick} className="staged-item-action-button">
-                                <FiTrash2 color={'#fff'} size={18} />
+                                <FiTrash2 className="delete-staged-item-icon" color={'#fff'} size={18} />
                             </div>
                         </div>
                     </div>
