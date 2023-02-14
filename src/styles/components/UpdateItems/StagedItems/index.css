@@ -10,18 +10,50 @@
     padding: 0.5vw;
     min-height: 50vh; 
     height: 50vh;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .staged-items-holding-container {
+    height: 35vh;
+    width: 100%;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+
+.staged-item-cell {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 5px;
     box-shadow: 0 0 5px 2px #fff inset;
     padding: 5px;
+    margin: 1vh auto;
 }
 
 .section-title {
     color: #fff;
+}
+
+.update-items-button {
+    width: 99%;
+    margin: 0 auto;
+    background-color: #a0262e;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 3px -1px black;
+    height: 4vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    transition: all 400ms ease-out;
+}
+
+.update-items-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px -2px black;
+    transform: scale(1.02);
+}
+
+.update-items-button-row {
+    width: 100%;
 }
 
 @keyframes Fadein {

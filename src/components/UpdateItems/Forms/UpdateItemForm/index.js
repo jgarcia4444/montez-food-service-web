@@ -128,9 +128,9 @@ const UpdateItemForm = ({addToStaging, clearSelectedSuggestion, fetchSuggestions
 
     const configureUpdateItemInfo = () => {
         let updateItemInfo = {
-            price: newUnitPrice !== price ? newUnitPrice : price,
-            case_cost: newCasePrice !== caseCost ? newCasePrice : caseCost,
-            units_per_case: newUnitsPerCase !== unitsPerCase ? newUnitsPerCase : unitsPerCase,
+            price: newUnitPrice !== "" ? newUnitPrice : price,
+            case_cost: newCasePrice !== "" ? newCasePrice : caseCost,
+            units_per_case: newUnitsPerCase !== "" ? newUnitsPerCase : unitsPerCase,
             description: description,
         }
         return updateItemInfo;

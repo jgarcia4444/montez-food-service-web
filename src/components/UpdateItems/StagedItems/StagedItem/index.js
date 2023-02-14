@@ -9,7 +9,7 @@ import removeStagedItem from '../../../../redux/actions/editItemActions/removeSt
 
 const StagedItem = ({itemInfo, removeStagedItem}) => {
 
-    let {description,price,case_cost, units_per_case, id} = itemInfo;
+    let {description, price, case_cost, units_per_case, id} = itemInfo;
 
 
     const handleDeleteStagedItemClick = () => {
@@ -17,7 +17,7 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
     }
 
     const configureCaseCost = () => {
-        return case_cost !== "" ? case_cost : "N/A";
+        return case_cost !== "" ? `$${case_cost}` : "N/A";
     }
 
     const configureUnitsPerCase = () => {
