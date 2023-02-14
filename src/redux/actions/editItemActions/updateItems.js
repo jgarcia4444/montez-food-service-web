@@ -8,7 +8,7 @@ const updateItems = items => {
         headers: {
             'Content-Type': "application/json"
         },
-        body: JSON.stringify(items)
+        body: JSON.stringify({items: items})
     }
     return async dispatch => {
         dispatch({type: "UPDATING_ITEMS"});
