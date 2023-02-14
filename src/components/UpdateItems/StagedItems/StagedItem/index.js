@@ -17,11 +17,11 @@ const StagedItem = ({itemInfo, removeStagedItem}) => {
     }
 
     const configureCaseCost = () => {
-        return case_cost !== "" ? `$${case_cost}` : "N/A";
+        return case_cost !== "" && case_cost !== 0 ? `$${case_cost}` : "N/A";
     }
 
     const configureUnitsPerCase = () => {
-        return units_per_case !== "" ? units_per_case : "N/A";
+        return units_per_case !== "" && units_per_case !== 0 ? units_per_case : "N/A";
     }
 
     return (

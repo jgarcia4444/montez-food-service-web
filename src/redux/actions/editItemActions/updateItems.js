@@ -18,11 +18,12 @@ const updateItems = items => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    return dispatch({type: "ITEMS_UPDATE_SUCCESS"});
+                    let {itemsUpdated} = data;
+                    return dispatch({type: "ITEMS_UPDATE_SUCCESS", itemsUpdated});
                 } else {
                     let {error} = data;
-                    let {message} = error;
-                    return dispatch({type: "ITEMS_UPDATE_ERROR"});
+                    let {message, itemsUpdated} = error;
+                    return dispatch({type: "ITEMS_UPDATE_ERROR", message, itemsUpdated});
                 }
             })
     }

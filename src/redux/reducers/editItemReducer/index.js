@@ -4,6 +4,24 @@ const initialState = {
     itemsUpdateError: "",
 }
 
+const configureItemsUpdated = (items, itemsToRemove) => {
+    if (itemsToRemove.length <= items.length) {
+        if (items.length === itemsToRemove.length) {
+            return [];
+        } else {
+            let remainingItems = [];
+            items.forEach(item => {
+                if (itemsToRemove.some(itemToRemoveItem => itemToRemoveItem.description === item.description) === false) {
+                    remainingItems.push(item);
+                }
+            })
+            return remainingItems;
+        }
+    } else {
+        return items;
+    }
+}
+
 const editItemReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ITEMS_UPDATE_SUCCESS":
@@ -11,12 +29,14 @@ const editItemReducer = (state=initialState, action) => {
                 ...state,
                 itemsUpdateError: "",
                 updatingItems: false,
+                stagedItems: configureItemsUpdated(state.stagedItems, action.itemsUpdated),
             }
         case "ITEMS_UPDATE_ERROR":
             return {
                 ...state,
                 updatingItems: false,
                 itemsUpdateError: action.message,
+                stagedItems: configureItemsUpdated(state.stagedItems, action.itemsUpdated)
             }
         case "UPDATING_ITEMS":
             return {
