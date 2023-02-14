@@ -6,17 +6,26 @@ import '../../../styles/components/UpdateItems/StagedItems/index.css';
 
 import StagedItem from './StagedItem';
 import updateItems from '../../../redux/actions/editItemActions/updateItems';
+import SpinningLoader from '../../Loaders/SpinningLoader';
 
-const StagedItems = ({stagedItems, updateItems}) => {
+const StagedItems = ({updateItems, editItemReducer}) => {
+
+    const {updatingItems, stagedItems} = editItemReducer;
 
     const renderStagedItems = () => {
         return stagedItems.map((item, i) => <StagedItem key={`${item.description} ${i}`} itemInfo={item} />)
     }
 
     const handleUpdateItemsClick = () => {
-        if (stagedItems.length > 0) {
-            updateItems(stagedItems)
+        if (updatingItems !== true) {
+            if (stagedItems.length > 0) {
+                updateItems(stagedItems)
+            }
         }
+    }
+
+    const configureButtonDisplay = () => {
+        return updatingItems === true ? <SpinningLoader color={"#fff"} /> : `Update Item${stagedItems.length > 1 ? "s" : ""}`
     }
 
     return (
@@ -29,7 +38,7 @@ const StagedItems = ({stagedItems, updateItems}) => {
             </div>
             <div className="update-items-button-row">
                 <div onClick={handleUpdateItemsClick} className="update-items-button">
-                    Update Item{stagedItems.length > 1 ? "s" : ""}
+                    {configureButtonDisplay()}
                 </div>
             </div>
         </div>
@@ -38,7 +47,7 @@ const StagedItems = ({stagedItems, updateItems}) => {
 
 const mapStateToProps = state => {
     return {
-        stagedItems: state.editItemReducer.stagedItems,
+        editItemReducer: state.editItemReducer,
     }
 }
 
