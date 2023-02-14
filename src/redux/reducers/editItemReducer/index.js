@@ -1,9 +1,29 @@
 const initialState = {
     stagedItems: [],
+    updatingItems: false,
+    itemsUpdateError: "",
 }
 
 const editItemReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "ITEMS_UPDATE_SUCCESS":
+            return {
+                ...state,
+                itemsUpdateError: "",
+                updatingItems: false,
+            }
+        case "ITEMS_UPDATE_ERROR":
+            return {
+                ...state,
+                updatingItems: false,
+                itemsUpdateError: action.message,
+            }
+        case "UPDATING_ITEMS":
+            return {
+                ...state,
+                updatingItems: true,
+                itemsUpdateError: ""
+            }
         case "REMOVE_STAGED_ITEM":
             return {
                 ...state,
