@@ -67,6 +67,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
     const itemFinderTextChange = (e) => {
         let {value} = e.target
         var inputText = value;
+        let userEmail = email === "" ? "not_logged_in" : email
         if (selectedSuggestion.description !== "") {
             clearSelectedSuggestion()
             inputText = getNewItemTextValue(value);
@@ -74,7 +75,7 @@ const OrderForm = ({clearSuggestions, userInfo, fetchSuggestions, clearSelectedS
         if (value === "") {
             clearSuggestions();
         } else {
-            fetchSuggestions(inputText, email);
+            fetchSuggestions(inputText, userEmail);
         }
         setItemText(inputText);
     }
