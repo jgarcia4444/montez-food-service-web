@@ -22,6 +22,10 @@ const configureItemsUpdated = (items, itemsToRemove) => {
     }
 }
 
+const addToStagedItems = (items, itemToAdd) => {
+    return items.some(item => item.description === itemToAdd.description) === true ? items : items.concat(itemToAdd);
+}
+
 const editItemReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ITEMS_UPDATE_SUCCESS":
@@ -51,9 +55,10 @@ const editItemReducer = (state=initialState, action) => {
             }
         case "ADD_ITEM_TO_STAGING":
             action.itemToAdd["id"] = state.stagedItems.length;
+            let newStagedItems = addToStagedItems(state.stagedItems, action.itemToAdd);
             return {
                 ...state,
-                stagedItems: state.stagedItems.concat(action.itemToAdd),
+                stagedItems: newStagedItems,
             }
         default: 
             return {
