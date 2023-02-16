@@ -12,6 +12,8 @@
     width: 20vw;
 }
 
+
+
 .logout-admin-button:hover {
     cursor: pointer;
     box-shadow: 0 0 3px -1px black;
@@ -28,4 +30,21 @@
     margin: 0 auto;
     display: flex;
     justify-content: flex-end;
+}
+
+.update-items-nav-button {
+    background-color: #ffc72c;
+    width: 40%;
+    margin: 2vh auto 0 auto;
+    padding: 1vh 0;
+    border-radius: 5px;
+    color: #a0262e;
+    font-weight: bold;
+    transition: all 500ms ease-out;
+}
+
+.update-items-nav-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px -2px black;
+    transform: scale(1.02);
 }
