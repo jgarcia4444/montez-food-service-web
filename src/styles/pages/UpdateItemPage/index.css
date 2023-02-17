@@ -2,13 +2,25 @@
 
 .item-update-container {
     width: 70%;
+    transition: all 400ms ease-out;
 }
 
 .update-items-staging-container {
     width: 30%;
+    transition: all 400ms ease-out;
 }
 
 .update-item-actions-container {
     display: flex;
     flex-direction: row;
+    transition: all 400ms ease-out;
+}
+
+@media screen and (max-width: 788px) {
+    .update-item-actions-container {
+        flex-direction: column;
+    }
+    .item-update-container, .update-items-staging-container {
+        width: 100%;
+    }
 }

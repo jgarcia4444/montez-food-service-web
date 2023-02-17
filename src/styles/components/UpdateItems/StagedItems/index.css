@@ -35,8 +35,9 @@
 .update-items-button {
     width: 99%;
     margin: 0 auto;
-    background-color: #a0262e;
-    color: #fff;
+    background-color: #ffc72c;
+    color: #a0262e;
+    font-weight: bold;
     border-radius: 5px;
     box-shadow: 0 0 3px -1px black;
     height: 4vh;
