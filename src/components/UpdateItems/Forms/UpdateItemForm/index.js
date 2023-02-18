@@ -12,7 +12,8 @@ import clearSuggestions from '../../../../redux/actions/orderActions/clearSugges
 import clearSelectedSuggestion from '../../../../redux/actions/orderActions/clearSelectedSuggestion';
 import addToStaging from '../../../../redux/actions/editItemActions/addToStaging';
 
-const UpdateItemForm = ({addToStaging, clearSelectedSuggestion, fetchSuggestions, clearSuggestions, order}) => {
+        
+        const UpdateItemForm = ({clearItemFinder, addToStaging, clearSelectedSuggestion, fetchSuggestions, clearSuggestions, order}) => {
 
     const [updateItemText, setUpdateItemText] = useState("");
 
@@ -140,6 +141,7 @@ const UpdateItemForm = ({addToStaging, clearSelectedSuggestion, fetchSuggestions
         if (itemEdited() === true) {
             let updateItemInfo = configureUpdateItemInfo();
             addToStaging(updateItemInfo);
+            clearItemFinder();
         }
     }
 
@@ -194,6 +196,7 @@ const mapDispatchToProps = dispatch => {
         clearSuggestions: () => dispatch(clearSuggestions()),
         clearSelectedSuggestion: () => dispatch(clearSelectedSuggestion()),
         addToStaging: itemInfo => dispatch(addToStaging(itemInfo)),
+        clearItemFinder: () => dispatch({type: "CLEAR_ITEM_FINDER"}),
     }
 }
 

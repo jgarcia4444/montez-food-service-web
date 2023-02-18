@@ -18,6 +18,10 @@ const initialState = {
 
 const orderReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "CLEAR_ITEM_FINDER": 
+        return {
+            ...initialState,
+        }
         case "NO_LOCATION_SELECTED":
             return {
                 ...state,
