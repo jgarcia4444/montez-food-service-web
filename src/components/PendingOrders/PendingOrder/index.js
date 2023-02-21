@@ -14,13 +14,28 @@ const PendingOrder = ({orderInfo, accessToken}) => {
         navigate(`/users/admin/pending-order/${orderInfo.id}`)
     }
 
+    const dayOfTheWeek = (dayIndex) => {
+        let dayCipher = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        return dayCipher[dayIndex];
+    } 
+
+    const month = (monthIndex) => {
+        let monthCipher = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        return monthCipher[monthIndex];
+    }
+
+    const formatDate = () => {
+        let date = new Date(Date.parse(created_at));
+        return `${dayOfTheWeek(date.getDay())}, ${month(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`
+    }
+
     return (
         <div onClick={navigateToPendingOrderDetails} className="pending-order-container">
             <div className="pending-order-section">
                 <p className="pending-order-text"><strong>Total:</strong> ${total_price.toFixed(2)}</p>
             </div>
             <div className="pending-order-section">
-                <p className="pending-order-text"><strong>Order Date:</strong> {created_at}</p>
+                <p className="pending-order-text"><strong>Order Date:</strong> {formatDate()}</p>
             </div>
         </div>
     )

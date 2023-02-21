@@ -112,9 +112,14 @@ ul>li {
     justify-content: flex-start;
 }
 
+.order-details-label {
+    font-weight: 300;
+}
+
 .order-details-value {
     color: #a0262e;
     font-weight: bold;
+    margin-left: 5px;
 }
 
 .pending-order-details-container, .peding-order-action-row {

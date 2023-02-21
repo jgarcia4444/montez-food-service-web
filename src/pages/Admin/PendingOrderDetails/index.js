@@ -70,6 +70,21 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
         }
     }
 
+    const dayOfTheWeek = (dayIndex) => {
+        let dayCipher = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        return dayCipher[dayIndex];
+    } 
+
+    const month = (monthIndex) => {
+        let monthCipher = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        return monthCipher[monthIndex];
+    }
+
+    const formatDate = () => {
+        let date = new Date(Date.parse(createdAt));
+        return `${dayOfTheWeek(date.getDay())}, ${month(date.getMonth())} ${date.getDate()}, ${date.getFullYear()}`
+    }
+
     const authorizationAlert = (
         <div className="authorization-alert-container">
             <div className="authorization-alert-dismiss-button-row">
@@ -96,7 +111,7 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
 
     useEffect(() => {
         fetchOrderDetails(orderId);
-    },[])
+    }, [])
 
     return (
         <Layout>
@@ -123,13 +138,13 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
                     </div>
                     <div className="order-details-column">
                         <h4 className="order-details-label">Order Date:</h4>
-                        <p className="order-details-value">{createdAt}</p>
+                        <p className="order-details-value">{formatDate()}</p>
                     </div>
                 </div>
                 <div className="pending-order-details-row">
                     <div className="order-details-column">
                         <h4 className="order-details-label">Total:</h4>
-                        <p className="order-details-value">{totalPrice}</p>
+                        <p className="order-details-value">${totalPrice}</p>
                     </div>
                     <div className="order-details-column">
                         <h4 className="order-details-label">Delivery To:</h4>
