@@ -31,7 +31,7 @@ const StagedItems = ({updateItems, editItemReducer}) => {
     return (
         <div className="staged-items-container">
             <div className="staged-items">
-                <h3 className="section-title">Staged Items</h3>
+                <h3 className="title">Staged Items</h3>
                 <div className="staged-items-holding-container">
                     {renderStagedItems()}
                 </div>
