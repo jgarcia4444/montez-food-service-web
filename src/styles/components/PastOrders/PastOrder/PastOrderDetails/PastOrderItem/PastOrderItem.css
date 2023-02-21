@@ -22,15 +22,15 @@
 }
 
 .item-info-label {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.15em;
+    color: #ffc72c;
+    font-weight: 300;
+    font-size: 1em;
 }
 
 .item-info-value {
-    color: #ffc72c;
-    font-weight: 300;
-    font-size: 0.75em;
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.05em;
 }
 
 .past-order-item-container {
