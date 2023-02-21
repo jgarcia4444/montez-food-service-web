@@ -31,6 +31,7 @@ const sendOrder = (orderDetails) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
+                    console.log("Data sent back from persist order action", data);
                     let {pastOrder} = data;
                     ReactGA.initialize('G-7380SQJ6M9');
                     ReactGA.event({
