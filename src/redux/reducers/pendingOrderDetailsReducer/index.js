@@ -14,6 +14,7 @@ const initialState = {
     confirmingOrder: false,
     itemEditProcessing: false,
     itemEditError: "",
+    previousDeliveryFee: "",
 }
 
 const changeItem = (itemInfo, items) => {
@@ -23,6 +24,7 @@ const changeItem = (itemInfo, items) => {
             return item;
         } else {
             indexToReinsert = i;
+            return false;
         }
     })
     itemsSelected.splice(indexToReinsert, 0, itemInfo);

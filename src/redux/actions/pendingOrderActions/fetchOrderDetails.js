@@ -12,7 +12,6 @@ const fetchOrderDetails = (orderId) => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-                    
                     let {pendingOrderDetails} = data;
                     return dispatch({type: "PENDING_DETAILS_SUCCESS", pendingOrderDetails});
                 } else {

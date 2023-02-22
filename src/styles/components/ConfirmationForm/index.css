@@ -52,6 +52,18 @@
     margin-left: 5%;
 }
 
+.delivery-fee-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.delivery-fee-title {
+    font-size: 20px;
+    color: #ffc72c;
+}
+
 .dismiss-confirmation-form-button {
     padding: 5px;
     display: flex;

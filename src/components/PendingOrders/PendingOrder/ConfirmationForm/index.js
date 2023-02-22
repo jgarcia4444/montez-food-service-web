@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import {FiMinus, FiCalendar} from 'react-icons/fi';
+import {FiMinus, FiCalendar, FiDollarSign} from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 import FormInput from '../../../FormInput';
 import SpinningLoader from '../../../Loaders/SpinningLoader';
+import SelectBox from '../../../Buttons/SelectBox';
 
 import '../../../../styles/components/ConfirmationForm/index.css';
 
@@ -15,10 +16,13 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
 
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryDateError, setDeliveryDateError] = useState("");
-    const [invoicePayableDate, setInvoicePayableDate] = useState("")
+    // const [invoicePayableDate, setInvoicePayableDate] = useState("")
     const [invoicePayableDateError, setInvoicePayableDateError] = useState("");
+    const [deliveryFee, setDeliveryFee] = useState('');
+    const [deliveryFeeError, setDeliveryFeeError] = useState('');
+    const [previousSelected, setPreviousSelected] = useState(false);
 
-    const {orderId, confirmingOrder, confirmOrderError} = pendingOrderDetails;
+    const {orderId, confirmingOrder, confirmOrderError, previousDeliveryFee} = pendingOrderDetails;
     const {realmID, accessToken, refreshToken} = quickbooksAuth;
 
     let deliveryDateInput = {
@@ -29,12 +33,20 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
         icon: <FiCalendar size={20} color={"#ffc72c"} />
     }
 
-    let invoicePayableDateInput = {
-        label: "Invoice Payable",
-        value: invoicePayableDate,
-        changeFunction: val => setInvoicePayableDate(val),
-        error: invoicePayableDateError,
-        icon: <FiCalendar size={20} color={"#ffc72c"} />
+    // let invoicePayableDateInput = {
+    //     label: "Invoice Payable",
+    //     value: invoicePayableDate,
+    //     changeFunction: val => setInvoicePayableDate(val),
+    //     error: invoicePayableDateError,
+    //     icon: <FiCalendar size={20} color={"#ffc72c"} />
+    // }
+
+    let deliveryFeeInfo = {
+        label: "Amount",
+        value: deliveryFee,
+        changeFunction: handleDeliveryFeeChange,
+        error: deliveryFeeError,
+        icon: <FiDollarSign size={20} color={'#ffc72c'} />
     }
 
     const navigateToAdminHome = () => {
@@ -47,15 +59,15 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
         if (deliveryDate === "") {
             setDeliveryDateError("A delivery date must be set.");
         }
-        if (invoicePayableDate === "") {
-            setInvoicePayableDateError("An invoice payable date must be set.")
+        if (deliveryFee === "") {
+            setDeliveryFeeError("A delivery fee must be set.");
         }
         if (deliveryDateError === "" && invoicePayableDateError === "") {
             let confirmationInformation = {
                 confirmation_information: {
                     delivery_date: deliveryDate,
-                    invoice_payable_date: invoicePayableDate,
                     order_id: orderId,
+                    delivery_fee: deliveryFee,
                 },
                 service_info: {
                     realm_id: realmID,
@@ -69,6 +81,20 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
             }
         }
     }
+    const handleDeliveryFeeChange = (feeValue) => {
+        if (previousSelected === true && feeValue !== deliveryFee) {
+            setPreviousSelected(false);
+            setDeliveryFee(feeValue);
+        } else {
+            setDeliveryFee(feeValue)
+        }
+    }
+
+    useEffect(() => {
+        if (previousSelected === true) {
+            setDeliveryFee(previousDeliveryFee);
+        }
+    },[previousSelected])
 
     return (
         <div className="confirmation-form-container">
@@ -88,8 +114,32 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
                     <small className="date-format-text">Date Format: mm/dd/yyyy</small>
                 </div>
                 <div className="input-column">
-                    <FormInput inputInfo={invoicePayableDateInput} />
-                    <small className="date-format-text">Date Format: mm/dd/yyyy</small>
+                    <div className = "delivery-fee-row">
+                        <h4 className="delivery-fee-title">Delivery Fee</h4>
+                    </div>
+                    <div className = "delivery-fee-row">
+                        <div className="delivery-fee-column">
+                            <FormInput inputInfo={deliveryFeeInfo} />
+                        </div>
+                        {previousDeliveryFee !== "" && (
+                            <div className="delivery-fee-column">
+                                <div className = "delivery-fee-row">
+                                    <p className="delivery-fee-use-last-description">
+                                        Use Previous
+                                    </p>
+                                </div>
+                                <div className = "delivery-fee-row">
+                                    <div className="delivery-fee-column">
+                                        <SelectBox value={previousSelected} setValue={() => setPreviousSelected(!previousSelected)} />
+                                    </div>
+                                    <div className="delivery-fee-column">
+                                        ${previousDeliveryFee}
+                                    </div>
+                                </div>
+                            </div>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
             <div className="confirmation-form-action-row">

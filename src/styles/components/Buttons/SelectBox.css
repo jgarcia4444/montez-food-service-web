@@ -1,0 +1,17 @@
+
+.select-box {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffc72c;
+    border-radius: 5px;
+    transition: all 400ms ease-out;
+}
+
+.select-box:hover {
+    cursor: pointer;
+    border: 3px solid #ffc72c;
+    border-radius: 10px;
+}
