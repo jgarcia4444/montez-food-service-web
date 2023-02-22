@@ -41,6 +41,15 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
     //     icon: <FiCalendar size={20} color={"#ffc72c"} />
     // }
 
+    const handleDeliveryFeeChange = (feeValue) => {
+        if (previousSelected === true && feeValue !== deliveryFee) {
+            setPreviousSelected(false);
+            setDeliveryFee(feeValue);
+        } else {
+            setDeliveryFee(feeValue)
+        }
+    }
+
     let deliveryFeeInfo = {
         label: "Amount",
         value: deliveryFee,
@@ -79,14 +88,6 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
             if (confirmOrderError === "") {
                 setTimeout(navigateToAdminHome, 1500);
             }
-        }
-    }
-    const handleDeliveryFeeChange = (feeValue) => {
-        if (previousSelected === true && feeValue !== deliveryFee) {
-            setPreviousSelected(false);
-            setDeliveryFee(feeValue);
-        } else {
-            setDeliveryFee(feeValue)
         }
     }
 
