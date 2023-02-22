@@ -20,8 +20,8 @@ const CancelConfirmation = ({cancellingOrder, reasonTextError, dismiss, handleCo
                         <SpinningLoader color={"#ffc72c"}/>
                     </div>
                 }
-                <h3 className="title">Are you certain?</h3>
-                <p>That you want to cancel this order.</p>
+                <h3 className="cancel-title">Are you certain?</h3>
+                <p className="cancel-description">That you want to cancel this order.</p>
                 <div className="reason-container">
                     <h3>State a reason:</h3>
                     {reasonTextError !== "" &&

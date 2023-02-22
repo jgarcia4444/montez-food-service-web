@@ -12,6 +12,12 @@
     background-color: rgba(255, 255, 255, 0.85)
 }
 
+.cancel-description, .cancel-title {
+    color: #a0262a;
+}
+
+
+
 .cancel-order-loader-container {
     position: absolute;
     top: 0;

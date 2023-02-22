@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {FiEdit2} from 'react-icons/fi';
 
 import '../../../../../styles/components/PastOrders/PastOrder/PastOrderDetails/PastOrderItem/PastOrderItem.css';
-
 import updatePendingOrderItem from '../../../../../redux/actions/pendingOrderActions/updatePendingOrderItem';
 
 import SpinningLoader from '../../../../Loaders/SpinningLoader';
