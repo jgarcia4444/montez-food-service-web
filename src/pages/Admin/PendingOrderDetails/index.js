@@ -15,7 +15,7 @@ import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchO
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
 
 const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetails, quickbooksAuth}) => {
-    
+
     const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
@@ -191,7 +191,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchOrderDetails: (orderId) => dispatch(fetchOrderDetails(orderId)),
+        fetchOrderDetails: (orderId, serviceInfo) => dispatch(fetchOrderDetails(orderId, serviceInfo)),
         cancelOrder: (orderInfo) => dispatch(cancelOrder(orderInfo)),
     }
 }
