@@ -12,6 +12,5 @@
 
 .select-box:hover {
     cursor: pointer;
-    border: 3px solid #ffc72c;
     border-radius: 10px;
 }
