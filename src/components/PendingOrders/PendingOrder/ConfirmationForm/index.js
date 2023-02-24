@@ -51,7 +51,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
     }
 
     let deliveryFeeInfo = {
-        label: "Amount",
+        label: "Delivery Fee",
         value: deliveryFee,
         changeFunction: handleDeliveryFeeChange,
         error: deliveryFeeError,
@@ -115,9 +115,9 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
                     <small className="date-format-text">Date Format: mm/dd/yyyy</small>
                 </div>
                 <div className="input-column">
-                    <div className = "delivery-fee-row">
+                    {/* <div className = "delivery-fee-row">
                         <h4 className="delivery-fee-title">Delivery Fee</h4>
-                    </div>
+                    </div> */}
                     <div className = "delivery-fee-row">
                         <div className="delivery-fee-column">
                             <FormInput inputInfo={deliveryFeeInfo} />
