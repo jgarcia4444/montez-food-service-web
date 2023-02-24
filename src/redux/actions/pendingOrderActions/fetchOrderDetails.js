@@ -1,13 +1,20 @@
 import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
-const fetchOrderDetails = (orderId) => {
+const fetchOrderDetails = (orderId, serviceInfo) => {
 
     let url = `${baseUrl}users/admin/pending-order/${orderId}`;
+    let options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({service_info: serviceInfo})
+    }
 
     return async dispatch => {
         dispatch({type: "FETCHING_PENDING_DETAILS"});
-        fetch(url)
+        fetch(url, options)
             .then(res => res.json())
             .then(data => {
                 let {success} = data;

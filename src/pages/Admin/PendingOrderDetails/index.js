@@ -14,13 +14,14 @@ import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/C
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
 
-const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails}) => {
+const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails, quickbooksAuth}) => {
 //
     const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
 
     const {companyName, createdAt, totalPrice, deliveryAddress, items, loadingError, cancelOrderError} = pendingOrderDetails;
+    const {accessToken, refreshToken, realmID} = quickbooksAuth
 
     const [showForm, setShowForm] = useState(false);
     const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
@@ -110,7 +111,16 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
     )
 
     useEffect(() => {
-        fetchOrderDetails(orderId);
+        if (accessToken !== "") {
+            let serviceInfo = {
+                access_token: accessToken,
+                refresh_token: refreshToken,
+                realm_id: realmID,
+            }
+            fetchOrderDetails(orderId, serviceInfo);
+        } else {
+            navigate('/users/admin');
+        }
     }, [])
 
     return (
@@ -175,7 +185,7 @@ const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fet
 const mapStateToProps = state => {
     return {
         pendingOrderDetails: state.pendingOrderDetails,
-        accessToken: state.admin.quickbooksAuth.accessToken
+        quickbooksAuth: state.admin.quickbooksAuth,
     }
 }
 
