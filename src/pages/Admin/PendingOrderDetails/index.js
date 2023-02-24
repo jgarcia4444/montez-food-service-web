@@ -14,8 +14,8 @@ import CancelConfirmation from '../../../components/PendingOrders/PendingOrder/C
 import fetchOrderDetails from '../../../redux/actions/pendingOrderActions/fetchOrderDetails';
 import cancelOrder from '../../../redux/actions/pendingOrderActions/cancelOrder';
 
-const PendingOrderDetails = ({accessToken, cancelOrder, pendingOrderDetails, fetchOrderDetails, quickbooksAuth}) => {
-//
+const PendingOrderDetails = ({cancelOrder, pendingOrderDetails, fetchOrderDetails, quickbooksAuth}) => {
+    
     const navigate = useNavigate();
     const params = useParams();
     const {orderId} = params;
