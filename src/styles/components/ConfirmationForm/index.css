@@ -73,6 +73,10 @@
     margin: 0;
 }
 
+.delivery-fee-use-last-description {
+    color: #ffc72c;
+}
+
 .dismiss-confirmation-form-button {
     padding: 5px;
     display: flex;
