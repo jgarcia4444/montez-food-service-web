@@ -5,10 +5,12 @@ import '../../../styles/components/Buttons/SelectBox.css';
 
 const SelectBox = ({value, setValue}) => {
 
+    console.log("Here is the select box value", value);
+
     return (
         <div className="select-box" onClick={setValue}>
             {value === true &&
-                <FiCheck size={12} color={'#a0262e'} />
+                <FiCheck size={12} color={'#ffc73c'} />
             }
         </div>
     )
