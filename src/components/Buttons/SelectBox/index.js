@@ -10,7 +10,7 @@ const SelectBox = ({value, setValue}) => {
     return (
         <div className="select-box" onClick={setValue}>
             {value === true &&
-                <FiCheck size={12} color={'#ffc73c'} />
+                <FiCheck size={16} color={'#ffc73c'} />
             }
         </div>
     )
