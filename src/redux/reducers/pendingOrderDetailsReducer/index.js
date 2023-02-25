@@ -33,7 +33,11 @@ const changeItem = (itemInfo, items) => {
 
 const pendingOrderDetailsReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "":
+        case "LOGOUT_ADMIN":
+            return {
+                ...initialState,
+            }
+        case "ORDER_ITEM_UPDATE_ERROR":
             return {
                 ...state,
                 itemEditProcessing: false,

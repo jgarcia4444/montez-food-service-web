@@ -40,7 +40,6 @@ const adminReducer = (state=initialState, action) => {
                 }
             }
         case "persist/REHYDRATE":
-            console.log("Here is the action info.", action);
             if (action.payload !== undefined) {
                 let {payload} = action;
                 let {admin} = payload;
