@@ -16,14 +16,12 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
 
     const [deliveryDate, setDeliveryDate] = useState("");
     const [deliveryDateError, setDeliveryDateError] = useState("");
-    // const [invoicePayableDate, setInvoicePayableDate] = useState("")
     const [invoicePayableDateError, setInvoicePayableDateError] = useState("");
     const [deliveryFee, setDeliveryFee] = useState('');
     const [deliveryFeeError, setDeliveryFeeError] = useState('');
     const [previousSelected, setPreviousSelected] = useState(false);
 
     const {orderId, confirmingOrder, confirmOrderError, previousDeliveryFee, deliveryAddress} = pendingOrderDetails;
-    console.log("Here is the previous delivery fee", previousDeliveryFee);
     const {realmID, accessToken, refreshToken} = quickbooksAuth;
 
     let deliveryDateInput = {
