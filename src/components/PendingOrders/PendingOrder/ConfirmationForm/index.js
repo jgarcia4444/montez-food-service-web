@@ -23,6 +23,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
     const [previousSelected, setPreviousSelected] = useState(false);
 
     const {orderId, confirmingOrder, confirmOrderError, previousDeliveryFee, deliveryAddress} = pendingOrderDetails;
+    console.log("Here is the previous delivery fee", previousDeliveryFee);
     const {realmID, accessToken, refreshToken} = quickbooksAuth;
 
     let deliveryDateInput = {
