@@ -22,7 +22,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
     const [deliveryFeeError, setDeliveryFeeError] = useState('');
     const [previousSelected, setPreviousSelected] = useState(false);
 
-    const {orderId, confirmingOrder, confirmOrderError, previousDeliveryFee} = pendingOrderDetails;
+    const {orderId, confirmingOrder, confirmOrderError, previousDeliveryFee, deliveryAddress} = pendingOrderDetails;
     const {realmID, accessToken, refreshToken} = quickbooksAuth;
 
     let deliveryDateInput = {
@@ -32,14 +32,6 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
         error: deliveryDateError,
         icon: <FiCalendar size={20} color={"#ffc72c"} />
     }
-
-    // let invoicePayableDateInput = {
-    //     label: "Invoice Payable",
-    //     value: invoicePayableDate,
-    //     changeFunction: val => setInvoicePayableDate(val),
-    //     error: invoicePayableDateError,
-    //     icon: <FiCalendar size={20} color={"#ffc72c"} />
-    // }
 
     const handleDeliveryFeeChange = (feeValue) => {
         if (previousSelected === true && feeValue !== deliveryFee) {
@@ -72,11 +64,20 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
             setDeliveryFeeError("A delivery fee must be set.");
         }
         if (deliveryDateError === "" && invoicePayableDateError === "") {
+            const {street, city, state, zipCode} = deliveryAddress;
+            let deliveryItem = {
+                itemInfo: {
+                    description: `Deliver To: ${street} ${city}, ${state}, ${zipCode}`,
+                    price: parseFloat(deliveryFee),
+                },
+                case_bought: false,
+                quantity: 1,
+            }
             let confirmationInformation = {
                 confirmation_information: {
                     delivery_date: deliveryDate,
                     order_id: orderId,
-                    delivery_fee: deliveryFee,
+                    delivery_item: deliveryItem,
                 },
                 service_info: {
                     realm_id: realmID,
@@ -115,9 +116,6 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
                     <small className="date-format-text">Date Format: mm/dd/yyyy</small>
                 </div>
                 <div className="input-column">
-                    {/* <div className = "delivery-fee-row">
-                        <h4 className="delivery-fee-title">Delivery Fee</h4>
-                    </div> */}
                     <div className = "delivery-fee-row">
                         <div className="delivery-fee-column">
                             <FormInput inputInfo={deliveryFeeInfo} />
