@@ -71,10 +71,13 @@
     font-size: 20px;
     color: #ffc72c;
     margin: 0;
+    font-family: sans-serif;
 }
 
 .delivery-fee-use-last-description {
     color: #ffc72c;
+    font-weight: 900;
+    font-family: sans-serif;
 }
 
 .dismiss-confirmation-form-button {
