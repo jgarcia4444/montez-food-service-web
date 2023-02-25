@@ -108,6 +108,7 @@ const pendingOrderDetailsReducer = (state=initialState, action) => {
                 ...state,
                 loading: true,
                 loadingError: "",
+                previousDeliveryFee: "",
             }
         default: 
             return {
