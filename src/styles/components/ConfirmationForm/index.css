@@ -109,6 +109,11 @@
     align-items: flex-start;
 }
 
+.past-delivery-fee {
+    color: #ffc72c;
+    font-weight: 900;
+}
+
 .send-confirm-action-button {
     background-color: #a0262e;
     padding: 1vh 2vw;

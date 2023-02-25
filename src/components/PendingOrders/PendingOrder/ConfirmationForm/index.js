@@ -131,7 +131,7 @@ const ConfirmationForm = ({dismissForm, confirmOrder, pendingOrderDetails, quick
                                         <SelectBox value={previousSelected} setValue={() => setPreviousSelected(!previousSelected)} />
                                     </div>
                                     <div className="delivery-fee-column">
-                                        ${parseFloat(previousDeliveryFee).toFixed(2)}
+                                        <p className="past-delivery-fee">${parseFloat(previousDeliveryFee).toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>
