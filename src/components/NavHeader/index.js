@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { FiUser } from 'react-icons/fi'
+import { FiUser, FiHome, FiList, FiShoppingCart, FiDollarSign } from 'react-icons/fi'
 import { connect } from 'react-redux';
 import useWindowDimensions from '../../customHooks/useWindowDimensions';
 
@@ -30,6 +30,32 @@ const NavHeader = ({userInfo}) => {
             navigate('/users/account')
         }
     }
+
+    const iconSize = 24;
+    const iconColor = "#fff";
+
+    const navLinkObjects =[
+        {
+            text: "Home",
+            icon: <FiHome size={iconSize} color={iconColor}/>
+        },
+        {
+            text: "Products",
+            icon: <FiList size={iconSize} color={iconColor}/>
+        },
+        {
+            text: "Order Online",
+            icon: <FiShoppingCart size={iconSize} color={iconColor}/>
+        },
+        {
+            text: "Cost Optimization",
+            icon: <FiDollarSign size={iconSize} color={iconColor}/>
+        },
+        {
+            text: "Account",
+            icon: <FiUser size={iconSize} color={iconColor}/>
+        }
+    ]
 
     const navLinks = (
         <div className="nav-links-container">
