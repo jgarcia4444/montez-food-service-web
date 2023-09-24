@@ -6,6 +6,7 @@ import useWindowDimensions from '../../customHooks/useWindowDimensions';
 
 import { useNavigate } from 'react-router-dom';
 import MobileNavButton from './MobileNavButton';
+import DesktopNavLink from './DesktopNavLink';
 
 import montezLogo from '../../pages/Home/imgs/montez-logo.png';
 
@@ -31,10 +32,10 @@ const NavHeader = ({userInfo}) => {
         }
     }
 
-    const iconSize = 24;
+    const iconSize = 20;
     const iconColor = "#fff";
 
-    const navLinkObjects =[
+    const navLinkObjects = [
         {
             text: "Home",
             icon: <FiHome size={iconSize} color={iconColor}/>
@@ -55,7 +56,7 @@ const NavHeader = ({userInfo}) => {
             text: "Account",
             icon: <FiUser size={iconSize} color={iconColor}/>
         }
-    ]
+    ];
 
     const navLinks = (
         <div className="nav-links-container">
@@ -90,34 +91,41 @@ const NavHeader = ({userInfo}) => {
         </div>
     )
 
+    const renderDesktopNavLinks = () => {
+        console.log("Render Desktop Nav Links triggered!")
+        return navLinkObjects.map((linkInfo, i) => <DesktopNavLink info={linkInfo} key={`${linkInfo.text}-${i}`}/>);
+    }
+
     const renderNavLinks = () => {
         if (width > 788) {
-            return navLinks;
+            return renderDesktopNavLinks();
         } else {
             return mobileNavLinks;
         }
     }
 
     const renderNavTitle = () => {
-        return width > 788 ? (
-            <h2 className="nav-title">
-                <Link onClick={() => setActivePage("Home")} to="/" className="nav-title-link">Montez Food Service</Link>
-            </h2>
-            )
-            :
-            (
-                <Link onClick={() => setActivePage("Home")} to="/">
-                    <img className='mobile-nav-header-img' src={montezLogo}/>
-                </Link>
-            )
+        // return width > 788 ? (
+        //     <h2 className="">
+        //         <Link onClick={() => setActivePage("Home")} to="/" className="">Montez Food Service</Link>
+        //     </h2>
+        //     )
+        //     :
+        //     (
+        //         <Link onClick={() => setActivePage("Home")} to="/">
+        //             <img className='mobile-nav-header-img' src={montezLogo}/>
+        //         </Link>
+        //     )    
     }
 
     return (
-        <div className="nav-header-row">
-            <div className="nav-title-container">
+        <div className="flex flex-row bg-red-600 p-2 justify-between">
+            <div className="flex flex-row border-white border-2">
                 {renderNavTitle()}
             </div>
-            {renderNavLinks()}
+            <div className="flex flex-row border-white border-2">
+                {renderNavLinks()}
+            </div>
         </div>
     )
 }
