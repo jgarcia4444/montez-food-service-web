@@ -7,6 +7,7 @@ import useWindowDimensions from '../../customHooks/useWindowDimensions';
 import { useNavigate } from 'react-router-dom';
 import MobileNavButton from './MobileNavButton';
 import DesktopNavLink from './DesktopNavLink';
+import MobileNavLink from './MobileNavLink';
 
 import montezLogo from '../../pages/Home/imgs/montez-logo.png';
 
@@ -58,17 +59,6 @@ const NavHeader = ({userInfo}) => {
         }
     ];
 
-    const navLinks = (
-        <div className="nav-links-container">
-            <Link onClick={() => setActivePage("Home")} className={`nav-link ${activePage === "Home" ? "active-link" : ""}`}to="/">Home</Link>
-            <Link onClick={() => setActivePage("Products")} className={`nav-link ${activePage === "Products" ? "active-link" : ""}`} to="/products">Products</Link>
-            <Link onClick={() => setActivePage("Order Online")} className={`nav-link ${activePage === "Order Online" ? "active-link" : ""}`} to="/order-online">Order Online</Link>
-            <Link onClick={() => setActivePage("Cost Optimization")} className={`nav-link ${activePage === 'Cost Optimization' ? "active-link" : ""}`} to="/cost-optimization">Cost Optimization</Link>
-            <span className="vertical-separator">|</span>
-            <FiUser onClick={handleUserPress} className={`user-icon ${activePage === 'User Auth' ? "active-link" : ""}`} size={20} />
-        </div>
-    )
-
     const handleMobileLinkClick = (pageName) => {
         setShowMobileNavLinks(false);
         setActivePage(pageName);
@@ -95,11 +85,27 @@ const NavHeader = ({userInfo}) => {
         return navLinkObjects.map((linkInfo, i) => <DesktopNavLink info={linkInfo} key={`${linkInfo.text}-${i}`}/>);
     }
 
+    const renderMobileNavLinks = () => {
+        return (
+            <div className="relative">
+                <MobileNavButton handleMobileNavClick={() => setShowMobileNavLinks(!showMobileNavLinks)} />
+                {showMobileNavLinks === true && 
+                    (
+                        <div className="absolute top-10 right-0 z-50 rounded flex flex-col text-center">
+                            {navLinkObjects.map((info, i) => <MobileNavLink info={info} key={`${i}-${info.to}`} />)}
+                        </div>
+                    )
+                }
+                
+            </div>
+        )
+    }
+
     const renderNavLinks = () => {
         if (width > 788) {
             return renderDesktopNavLinks();
         } else {
-            return mobileNavLinks;
+            return renderMobileNavLinks();
         }
     }
 
