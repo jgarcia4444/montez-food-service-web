@@ -105,25 +105,24 @@ const NavHeader = ({userInfo}) => {
     }
 
     const renderNavTitle = () => {
-        // return width > 788 ? (
-        //     <h2 className="">
-        //         <Link onClick={() => setActivePage("Home")} to="/" className="">Montez Food Service</Link>
-        //     </h2>
-        //     )
-        //     :
-        //     (
-        //         <Link onClick={() => setActivePage("Home")} to="/">
-        //             <img className='mobile-nav-header-img' src={montezLogo}/>
-        //         </Link>
-        //     )    
+        return (
+            <div className="">
+                <div className="flex md:hidden">
+                    <img src={montezLogo} alt="Company logo" className="w-12 h-12 rounded duration-300 transition-all hover:scale-110 cursor-pointer" />
+                </div>
+                <div className="hidden md:flex">
+                    <a href="/" className="">
+                        <h2 className="text-white font-bold">Montez Food Service</h2>
+                    </a>
+                </div>
+            </div>  
+        )
     }
 
     return (
-        <div className="flex flex-row bg-red-600 p-2 justify-between">
-            <div className="flex flex-row border-white border-2">
-                {renderNavTitle()}
-            </div>
-            <div className="flex flex-row border-white border-2">
+        <div className="flex flex-row bg-crimson p-2 justify-between">
+            {renderNavTitle()}
+            <div className="flex flex-row">
                 {renderNavLinks()}
             </div>
         </div>
