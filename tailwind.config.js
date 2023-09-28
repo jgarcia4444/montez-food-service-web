@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        crimson: "#a0262e"
+        crimson: "#a0262e",
+        gold: "#ffc72c",
       }
     },
   },

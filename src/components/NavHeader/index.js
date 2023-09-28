@@ -33,28 +33,28 @@ const NavHeader = ({userInfo}) => {
     }
 
     const iconSize = 20;
-    const iconColor = "#fff";
+    const iconColor = "#a0262e";
 
     const navLinkObjects = [
         {
-            text: "Home",
-            icon: <FiHome size={iconSize} color={iconColor}/>
-        },
-        {
             text: "Products",
-            icon: <FiList size={iconSize} color={iconColor}/>
+            icon: <FiList size={iconSize} color={iconColor}/>,
+            to: "/products"
         },
         {
             text: "Order Online",
-            icon: <FiShoppingCart size={iconSize} color={iconColor}/>
+            icon: <FiShoppingCart size={iconSize} color={iconColor}/>,
+            to: "/order-online"
         },
         {
             text: "Cost Optimization",
-            icon: <FiDollarSign size={iconSize} color={iconColor}/>
+            icon: <FiDollarSign size={iconSize} color={iconColor}/>,
+            to: "/cost-optimization"
         },
         {
             text: "Account",
-            icon: <FiUser size={iconSize} color={iconColor}/>
+            icon: <FiUser size={iconSize} color={iconColor}/>,
+            to: "/user-auth"
         }
     ];
 
@@ -92,7 +92,6 @@ const NavHeader = ({userInfo}) => {
     )
 
     const renderDesktopNavLinks = () => {
-        console.log("Render Desktop Nav Links triggered!")
         return navLinkObjects.map((linkInfo, i) => <DesktopNavLink info={linkInfo} key={`${linkInfo.text}-${i}`}/>);
     }
 
@@ -112,7 +111,7 @@ const NavHeader = ({userInfo}) => {
                 </div>
                 <div className="hidden md:flex">
                     <a href="/" className="">
-                        <h2 className="text-white font-bold">Montez Food Service</h2>
+                        <h2 className="text-white font-serif font-bold text-xl">Montez Food Service</h2>
                     </a>
                 </div>
             </div>  
@@ -120,9 +119,9 @@ const NavHeader = ({userInfo}) => {
     }
 
     return (
-        <div className="flex flex-row bg-crimson p-2 justify-between">
+        <div className="flex flex-row bg-crimson p-2 justify-between items-center">
             {renderNavTitle()}
-            <div className="flex flex-row">
+            <div className="flex flex-row pr-2">
                 {renderNavLinks()}
             </div>
         </div>
