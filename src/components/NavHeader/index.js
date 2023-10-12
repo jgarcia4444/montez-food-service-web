@@ -91,7 +91,7 @@ const NavHeader = ({userInfo}) => {
                 <MobileNavButton handleMobileNavClick={() => setShowMobileNavLinks(!showMobileNavLinks)} />
                 {showMobileNavLinks === true && 
                     (
-                        <div className="absolute top-10 right-0 z-50 rounded flex flex-col text-center">
+                        <div className="absolute top-10 right-0 z-50 rounded flex flex-col text-center overflow-hidden">
                             {navLinkObjects.map((info, i) => <MobileNavLink info={info} key={`${i}-${info.to}`} />)}
                         </div>
                     )
